@@ -141,14 +141,14 @@ export default function SearchBar({ locale = "en", variant = "dark" }: { locale?
     if (!q.trim()) { setResults(null); setIsOpen(false); return }
     setLoading(true)
     try {
-      const res = await fetch(`/api/ai-search?q=${encodeURIComponent(q)}&limit=6`)
+      const res = await fetch(`/api/ai-search?q=${encodeURIComponent(q)}&limit=6&locale=${encodeURIComponent(locale)}`)
       const data: SearchResult = await res.json()
       setResults(data)
       setIsOpen(data.hits.length > 0)
       setActiveIdx(-1)
     } catch { setResults(null) }
     setLoading(false)
-  }, [])
+  }, [locale])
 
   const handleChange = (value: string) => {
     setQuery(value)

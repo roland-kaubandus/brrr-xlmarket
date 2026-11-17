@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
-import { searchProducts, escapeMeiliFilterValue, isSafeHandleToken } from "@/lib/meilisearch"
+import { searchProducts, escapeMeiliFilterValue, isSafeHandleToken, getProductTitle } from "@/lib/meilisearch"
 
 const ALLOWED_SORTS = new Set([
   "price:asc", "price:desc",
@@ -51,6 +51,7 @@ function parseFilter(raw: string | null): string[] | undefined {
 export async function GET(request: NextRequest) {
   const params = request.nextUrl.searchParams
   const q = params.get("q") || ""
+  const locale = params.get("locale") || "en"
   const limit = Math.min(Math.max(parseInt(params.get("limit") || "6"), 1), 50)
   const offset = Math.max(parseInt(params.get("offset") || "0"), 0)
   const sortRaw = params.get("sort")
@@ -73,19 +74,24 @@ export async function GET(request: NextRequest) {
       sort,
       filter: parseFilter(params.get("filter")),
       facets: facets && facets.length ? facets : undefined,
-      attributesToHighlight: ["title"],
+      attributesToHighlight: ["title_et", "title_en", "title"],
     })
 
+    const et = locale === "et"
     return NextResponse.json(
       {
         hits: result.hits.map(hit => ({
           id: hit.id,
-          title: hit.title,
+          title: getProductTitle(hit, locale),
           handle: hit.handle,
           thumbnail: hit.thumbnail,
           price: hit.price,
           categories: hit.categories ?? [],
-          _formatted: hit._formatted,
+          _formatted: {
+            title: (et && hit._formatted?.title_et)
+              ? hit._formatted.title_et
+              : (hit._formatted?.title || hit._formatted?.title_en),
+          },
         })),
         totalHits: result.totalHits || result.estimatedTotalHits || 0,
         query: result.query,
