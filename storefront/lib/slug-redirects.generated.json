@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-13T09:39:44.420Z",
-  "count": 592,
+  "generatedAt": "2026-11-17T12:36:42.154Z",
+  "count": 595,
   "productCount": 0,
   "redirects": {
     "12-volt-dc-automotive-circuit-tester": "automotive-electrical-tools",
@@ -526,9 +526,12 @@
     "v4-auto-koorma-kinnitusketid": "v4-autovaruosad-ja-tarvikud-pukseerimisseadmed-koormasidurid-ja-ratsettkinnitid",
     "v4-auto-mootor-rv-markiisid": "v4-auto-matka-haagissuvila-markiisid",
     "v4-autovaruosad-ja-tarvikud-katuse-ja-koormakandjad-katusereilingud": "v4-autovaruosad-ja-tarvikud-katuse-ja-koormakandjad-katusekandurid",
+    "v4-autovaruosad-ja-tarvikud-kute-diiselsoojendi-osad": "v4-garaaziseadmed-diiselsoojendite-varuosad",
+    "v4-autovaruosad-ja-tarvikud-kute-soiduki-ohusoojendid": "v4-garaaziseadmed-autonoomsed-diiselsoojendid",
     "v4-autovaruosad-ja-tarvikud-mootorratta-sadulakotid": "v4-autovaruosad-ja-tarvikud-mootorratta-kotid",
     "v4-autovaruosad-ja-tarvikud-veoauto-tarvikud-hoiukastid-ja-karbid": "v4-autovaruosad-ja-tarvikud-veoauto-tarvikud-tooriistakastid",
     "v4-ehitus-remont-ja-varvid": "v4-ehitus-ja-remont",
+    "v4-kaasaskantavad-ruumisoojendid": "v4-garaaziseadmed-diisli-petrooleumi-soojapuhurid",
     "v4-kodumasinad-ja-kodutehnika-koogitehnika-mahla-ja-veinipressid": "v4-suurkoogiseadmed-veini-ja-siidripressid",
     "v4-kodumasinad-ja-kodutehnika-koogitehnika-piiritus-destilleerimisaparaadid": "v4-suurkoogiseadmed-piiritus-ja-destilleerimisaparaadid",
     "v4-kodumasinad-ja-kodutehnika-koogitehnika-toiduhakkijad-ja-tukeldajad": "v4-kodumasinad-ja-kodutehnika-koogitehnika-koogikombainid-ja-toiduprotsessorid",
