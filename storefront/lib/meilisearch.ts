@@ -1,3 +1,5 @@
+import { expandEstonianQuery } from "./morph-et"
+
 const MEILI_HOST = process.env.MEILISEARCH_HOST || "http://127.0.0.1:7700"
 const MEILI_KEY = process.env.MEILISEARCH_KEY || ""
 const INDEX = "products"
@@ -152,9 +154,9 @@ export async function getMeiliProductByHandle(handle: string): Promise<MeiliHit 
   }
 }
 
-export async function searchProducts(options: SearchOptions): Promise<MeiliSearchResult> {
+async function meiliSearchRaw(q: string, options: SearchOptions): Promise<MeiliSearchResult> {
   const body: Record<string, unknown> = {
-    q: expandCompoundWords(options.q),
+    q,
     limit: options.limit ?? 24,
     offset: options.offset || 0,
     attributesToHighlight: options.attributesToHighlight || ["title"],
@@ -184,4 +186,29 @@ export async function searchProducts(options: SearchOptions): Promise<MeiliSearc
   }
 
   return res.json()
+}
+
+export async function searchProducts(options: SearchOptions): Promise<MeiliSearchResult> {
+  // KIHT 1 Eesti liitsõna-otsing: inglise liitsõna-expand → Eesti käände-normaliseerimine (lemma).
+  const englishExpanded = expandCompoundWords(options.q)
+  const { primary, heads } = expandEstonianQuery(englishExpanded)
+
+  const result = await meiliSearchRaw(primary, options)
+
+  // NULL-TULEMUSE VARUVARIANT (deterministlik, Tarmo): primaarne (lemma) andis alla läve →
+  // proovi liitsõna VIIMAST komponenti (praeahi→ahi, aurupesur→pesur). Lävi = SUHTELINE (päringu
+  // limit, 1 leht), MITTE fikseeritud arv. Kasuta fallbacki AINULT kui see annab rohkem tabamusi.
+  const limit = options.limit ?? 24
+  if (heads && heads !== primary && (result.estimatedTotalHits ?? 0) < limit) {
+    try {
+      const fallback = await meiliSearchRaw(heads, options)
+      if ((fallback.estimatedTotalHits ?? 0) > (result.estimatedTotalHits ?? 0)) {
+        return fallback
+      }
+    } catch {
+      // fallback-viga ei tohi primaar-tulemust katki teha
+    }
+  }
+
+  return result
 }

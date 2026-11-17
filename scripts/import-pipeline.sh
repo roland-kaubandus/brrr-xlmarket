@@ -418,6 +418,28 @@ else
   echo "  [DRY] outlet-ristkuvamine vahele (kirjutust polnud)"
 fi
 
+# ── [6.9] MORPH-ET (host) — Eesti liitsõna-otsing KIHT 1 HOOK (HARD RULE #5+#6) ──
+# SAMA transform+write kui backfill (morph-et-apply.mjs --all). Öine = DEFICIT-režiim: ainult tooted,
+# mille morph_et puudub/aegunud (source-hash ≠ salvestatu — self-healing, deficit ⊇ delta; eelmisel ööl
+# kukkunu jõuab ISE järele). Python-morfoloogia host-CPU-l (EstNLTK pole konteineris) → DB morph_et →
+# [7] reindeks indekseerib. BRÄND-AGNOSTILINE (töötab title_et peal, mitte brändi-prefiksil → kõik feedid).
+# ASUKOHT: ENNE [7] reindeks (morph_et peab jõudma samal ööl indeksisse). Stack-lukk päritakse (re-entrant).
+# FAIL-LOUD: süsteemne (python/DB maas, kogu partii) → fail(); morph on puhas-andme-rikastus (otsing töötab
+# ka ilma — morph_et ainult parandab liitsõna-recalli) → üksik-kukkumisel samm raporteerib, EI blokeeri poodi.
+echo "[6.9/7] morph-et (Eesti liitsõna-otsing KIHT 1 — deficit, self-healing, bränd-agnostiline)"
+if [ "$EXECUTE" = "1" ]; then
+  ME_OUT=$(node "$ROOT/scripts/morph-et-apply.mjs" --execute 2>&1) && ME_RC=0 || ME_RC=$?
+  echo "$ME_OUT" | sed 's/^/  /'
+  if [ "$ME_RC" != "0" ]; then
+    fail "morph-et" "morph-et-apply.mjs rc=$ME_RC (süsteemne — python/EstNLTK või DB maas?)"
+  fi
+  ME_N=$(printf '%s' "$ME_OUT" | grep -oE 'MORPH_UPDATED=[0-9]+' | cut -d= -f2); ME_N=${ME_N:-0}
+  echo "  morph_et uuendatud: $ME_N toodet (qmap MERGE → järgmine deploy toob päringu-poolde)"
+else
+  MED_OUT=$(node "$ROOT/scripts/morph-et-apply.mjs" 2>&1 || true)
+  echo "$MED_OUT" | sed 's/^/  /'
+fi
+
 # ── [7] REINDEX (konteiner) — ainult EXECUTE (uued tooted + hinnad nähtavaks) ─
 echo "[7/7] reindeks Meili"
 if [ "$EXECUTE" = "1" ]; then
@@ -435,6 +457,19 @@ if [ "$EXECUTE" = "1" ]; then
     || slack "⚠️ XLM sync-synonyms [7.5] nurjus — Meili synonyms puudu kuni järgmine sync (otsing töötab, aga sünonüümid/variandid ei laienda). Käsitsi: docker exec \$MEDUSA node scripts/sync-synonyms.mjs"
 else
   echo "  [DRY] sync vahele (reindeksit polnud)"
+fi
+
+# ── [7.6] OTSING-REGRESS (host) — Eesti liitsõna-otsing KIHT 1 verifitseerimine ──
+# PÄRAST reindeksit + sünonüüm-synci: päri REAALSET storefront'i /api/search (locale=et) iga sõnaga failist
+# reports/otsing-regress-sonad.txt → iga PEAB leidma >= min toodet (SUHTELINE lävi). Testib KOGU päringu-teed
+# (lemma + põhisõna-fallback + Meili morph_et). Kukub → --notify Telegram (fail-loud). Mitte-fataalne poodile
+# (otsing töötab, ainult liitsõna-recall halvenes) → HOIATUS + Telegram, EI katkesta pipeline'i.
+echo "[7.6/7] otsing-regress (liitsõna-otsing KIHT 1 verifitseerimine → Telegram kui kukub)"
+if [ "$EXECUTE" = "1" ]; then
+  node "$ROOT/scripts/otsing-regress-check.mjs" --notify 2>&1 | sed 's/^/  /' \
+    || echo "  ⚠️ otsing-regress leidis kukkumisi (Telegram saadetud) — liitsõna-otsing vajab kontrolli (morph_et/qmap/reindeks)"
+else
+  echo "  [DRY] otsing-regress vahele (storefront päring = live-verifitseerimine, ainult EXECUTE)"
 fi
 
 # ── review-bucket nähtavus (alati — ka DRY) ──────────────────────────────────

@@ -1,0 +1,61 @@
+# Eesti liitsõna-otsing — REGRESSIOONITEST (KIHT 1)
+# Iga sõna PEAB leidma vähemalt N toodet storefront'i /api/search kaudu (locale=et).
+# Vorming:  sõna            (vaikimisi min=1)   VÕI   sõna<TAB>min
+# Rida mis algab #-ga = kommentaar. TARMO SAAB SEDA FAILI MUUTA (lisa/eemalda sõnu).
+# Kontroll: scripts/otsing-regress-check.mjs (jookseb öise pipeline [7] järel → Telegram kui kukub).
+# Lävi on SUHTELINE (>= min, vaikimisi 1 = "leidis midagi"), MITTE fikseeritud tootearv (CLAUDE.md).
+#
+# --- Tarmo KOHUSTUSLIKUD liitsõna-näited (põhisõna-fallback peab need leidma) ---
+praeahi
+mikrolaineahi
+aurupesur
+#
+# --- Käände + mitmus (lemma-normaliseerimine) ---
+ahi
+ahju
+ahjud
+pesur
+pesurid
+saed
+saag
+pump
+pumbad
+riiul
+riiulid
+laud
+lauad
+tool
+toolid
+lamp
+käru
+generaator
+generaatorid
+soojendi
+soojendid
+kompressor
+kompressorid
+#
+# --- Liitsõna teine pool + spetsiifilised liitsõnad ---
+lihvija
+nurklihvija
+ketassaag
+mootorsaag
+kettsaag
+veepump
+soojuspump
+õhksoojuspump
+survepesur
+kõrgsurvepesur
+elektriahi
+soojapuhur
+tolmuimeja
+muruniiduk
+töölaud
+puurvasar
+nõudepesumasin
+pesumasin
+kohvimasin
+jäätisemasin
+pehmejäätisemasin
+akutrell
+aku trell
