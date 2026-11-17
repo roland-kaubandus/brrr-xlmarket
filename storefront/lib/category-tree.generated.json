@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-17T12:35:17.290Z",
+  "generated_at": "2026-11-17T16:39:00.130Z",
   "nodes": {
     "v4-tooriistad-ja-tarvikud": {
       "handle": "v4-tooriistad-ja-tarvikud",
@@ -71,8 +71,8 @@
         "v4-tooriistad-ja-tarvikud-kasitooriistad-postirammijad",
         "v4-tooriistad-ja-tarvikud-kasitooriistad-katuse-ja-sindlitooriistad",
         "v4-tooriistad-ja-tarvikud-kasitooriistad-uldtooriistakomplektid",
-        "v4-tooriistad-ja-tarvikud-kasitooriistad-kiviplaatide-paigaldustooriistad",
-        "v4-tooriistad-ja-tarvikud-kasitooriistad-roolisusteemi-tooriistad"
+        "v4-tooriistad-ja-tarvikud-kasitooriistad-roolisusteemi-tooriistad",
+        "v4-tooriistad-ja-tarvikud-kasitooriistad-kiviplaatide-paigaldustooriistad"
       ],
       "image_path": "/cat-thumbs/v4-tooriistad-ja-tarvikud-kasitooriistad-lookpadrunite-komplektid.webp",
       "image_source": "inherited",
@@ -418,20 +418,6 @@
       "tagline_en": "All the tools you need in one set",
       "tagline_et": "Kõik vajalikud tööriistad ühes komplektis"
     },
-    "v4-tooriistad-ja-tarvikud-kasitooriistad-kiviplaatide-paigaldustooriistad": {
-      "handle": "v4-tooriistad-ja-tarvikud-kasitooriistad-kiviplaatide-paigaldustooriistad",
-      "name_en": "Stone Slab Installation Tools",
-      "name_et": "Kiviplaatide paigaldustööriistad",
-      "level": 3,
-      "parent_handle": "v4-tooriistad-ja-tarvikud-kasitooriistad",
-      "child_handles": [],
-      "image_path": "/cat-thumbs/v4-tooriistad-ja-tarvikud-kasitooriistad-kiviplaatide-paigaldustooriistad.webp",
-      "image_source": "direct",
-      "description_en": "Here you'll find tools for installing stone, marble and granite slabs and aligning their seams. Suitable for professional installers and DIY enthusiasts aiming for smooth, precise joints. Choose a gripping mechanism and build quality that matches your slab type and size.",
-      "description_et": "Siit leiad tööriistad kiviplaatide, marmori ja graniitplaatide paigaldamiseks ning vuukide ühtlustamiseks. Sobivad professionaalsetele paigaldajatele ja kodumeistritele, kes soovivad siledaid ja täpseid liitekohti. Vali tööle sobiv haaramismehhanism ja materjal, arvestades plaadi tüüpi ja suurust.",
-      "tagline_en": "Smooth seams, precise installation",
-      "tagline_et": "Siledad vuugid, täpne paigaldus"
-    },
     "v4-tooriistad-ja-tarvikud-kasitooriistad-roolisusteemi-tooriistad": {
       "handle": "v4-tooriistad-ja-tarvikud-kasitooriistad-roolisusteemi-tooriistad",
       "name_en": "Steering System Tools",
@@ -445,6 +431,20 @@
       "description_et": "Siit leiad spetsiaalsed tööriistad roolisüsteemi ja rooliotste hooldamiseks ning parandamiseks, mis sobivad nii automeistrile kui ka kodusele garaažimeistrile. Valikus on erinevad eemaldus- ja paigaldustööriistad ning adapterid, mis hõlbustavad kinnikiilunud või raskesti ligipääsetavate detailide lahtivõtmist. Vali sobiv komplekt lähtuvalt sõiduki tüübist ja vajalikust tööriista otsast või suurusest.",
       "tagline_en": "Reliable tools for steering system repair",
       "tagline_et": "Tugevad tööriistad roolisüsteemi hoolduseks"
+    },
+    "v4-tooriistad-ja-tarvikud-kasitooriistad-kiviplaatide-paigaldustooriistad": {
+      "handle": "v4-tooriistad-ja-tarvikud-kasitooriistad-kiviplaatide-paigaldustooriistad",
+      "name_en": "Stone Slab Installation Tools",
+      "name_et": "Kiviplaatide paigaldustööriistad",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-kasitooriistad",
+      "child_handles": [],
+      "image_path": "/cat-thumbs/v4-tooriistad-ja-tarvikud-kasitooriistad-kiviplaatide-paigaldustooriistad.webp",
+      "image_source": "direct",
+      "description_en": "Here you'll find tools for installing stone, marble and granite slabs and aligning their seams. Suitable for professional installers and DIY enthusiasts aiming for smooth, precise joints. Choose a gripping mechanism and build quality that matches your slab type and size.",
+      "description_et": "Siit leiad tööriistad kiviplaatide, marmori ja graniitplaatide paigaldamiseks ning vuukide ühtlustamiseks. Sobivad professionaalsetele paigaldajatele ja kodumeistritele, kes soovivad siledaid ja täpseid liitekohti. Vali tööle sobiv haaramismehhanism ja materjal, arvestades plaadi tüüpi ja suurust.",
+      "tagline_en": "Smooth seams, precise installation",
+      "tagline_et": "Siledad vuugid, täpne paigaldus"
     },
     "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad": {
       "handle": "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad",
@@ -3091,7 +3091,6 @@
         "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-elektrilised-talid",
         "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-kett-talid",
         "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-terastrossid",
-        "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-vintsid",
         "v4-tooriistad-ja-tarvikud-tostmine-kaartostelauad",
         "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-tosteketid-ja-tropid",
         "v4-tooriistad-ja-tarvikud-tostmine-tostemagnetid",
@@ -3159,20 +3158,6 @@
       "description_et": "Terastrossid sobivad tõstetöödeks, piirete, käsipuude ja välialade kinnituslahenduste ehitamiseks ning paljudeks muudeks tööstuslikeks ja koduseks kasutuseks. Valikus on erineva paksuse, materjali ja punutisega trossid, mis sobivad nii sise- kui välitingimustesse. Vali sobiv tross vastavalt kasutuskohale, koormusele ja keskkonnamõjudele, nagu niiskus või ilmastik.",
       "tagline_en": "Durable ropes for every lifting and fastening task",
       "tagline_et": "Vastupidavad trossid igaks tõste- ja kinnitustööks"
-    },
-    "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-vintsid": {
-      "handle": "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-vintsid",
-      "name_en": "Winches",
-      "name_et": "Vintsid",
-      "level": 3,
-      "parent_handle": "v4-tooriistad-ja-tarvikud-tosteseadmed-ja-talid",
-      "child_handles": [],
-      "image_path": "/cat-thumbs/v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-vintsid.webp",
-      "image_source": "direct",
-      "description_en": "Winches are manual or electric pulling and lifting devices designed to move, hoist, or tow heavy loads both indoors and outdoors. Ideal for garages, warehouses, workshops, or roadside use where a dependable pulling tool is needed. When choosing, consider the operating method, control type, and suitability for your specific task.",
-      "description_et": "Vintsid on käsitsi või elektriliselt juhitavad tõmbe- ja tõsteseadmed, mis aitavad liigutada, tõsta või vedada raskeid koormaid nii siseruumides kui ka väljas. Sobivad garaaži, lattu, tootmisesse või teele, kus on vaja usaldusväärset jõuseadet. Valikul tasub jälgida kasutusviisi, juhtimisviisi ja sobivust konkreetsele tööülesandele.",
-      "tagline_en": "Power and control for every lifting job",
-      "tagline_et": "Jõud ja kontroll iga tõstetöö jaoks"
     },
     "v4-tooriistad-ja-tarvikud-tostmine-kaartostelauad": {
       "handle": "v4-tooriistad-ja-tarvikud-tostmine-kaartostelauad",
@@ -4428,8 +4413,8 @@
         "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-tsangid-ja-tsangihoidikud",
         "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-t-soone-kinnituskomplektid",
         "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-puurpead-ja-siseavatooriistad",
-        "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-poordtooriista-tarvikud",
-        "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-puurile-kinnitatavad-loikurid"
+        "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-puurile-kinnitatavad-loikurid",
+        "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-poordtooriista-tarvikud"
       ],
       "image_path": "/cat-thumbs/v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-teemantpuurkroonid-ja-sudamikpuurid.webp",
       "image_source": "inherited",
@@ -4817,20 +4802,6 @@
       "tagline_en": "Precise hole machining for every setup",
       "tagline_et": "Täpne avade töötlemine iga masinale"
     },
-    "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-poordtooriista-tarvikud": {
-      "handle": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-poordtooriista-tarvikud",
-      "name_en": "Rotary Tool Accessories",
-      "name_et": "Pöördtööriista tarvikud",
-      "level": 3,
-      "parent_handle": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid",
-      "child_handles": [],
-      "image_path": "/cat-thumbs/v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-poordtooriista-tarvikud.webp",
-      "image_source": "direct",
-      "description_en": "Here you'll find a range of rotary tool accessories for sanding, cutting, drilling, engraving and cleaning. Suitable for both home use and craft or hobby projects involving various materials. When choosing, check the accessory type and compatibility with your rotary tool.",
-      "description_et": "Siit leiad pöördtööriistade tarvikute valiku lihvimiseks, lõikamiseks, puurimiseks, graveerimiseks ja puhastamiseks. Sobivad nii kodumeistrile kui ka käsitöö- ja hobitöödeks erinevatest materjalidest detailidega töötamisel. Valides jälgi tarviku tüüpi ja sobivust oma pöördtööriistaga.",
-      "tagline_en": "Versatile accessories for every rotary tool",
-      "tagline_et": "Mitmekülgsed tarvikud iga pöördtööriista jaoks"
-    },
     "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-puurile-kinnitatavad-loikurid": {
       "handle": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-puurile-kinnitatavad-loikurid",
       "name_en": "Drill-Mounted Cutters",
@@ -4844,6 +4815,20 @@
       "description_et": "Puurile kinnitatavad lõikurid muudavad tavalise trelli käepärast lõiketööriistaks plekk-, kipsplaat- ja muude plaatmaterjalide lõikamiseks. Sobivad nii kodumeistrile kui ka ehitajale, kes vajab kiiret ja täpset viimistluslõiget ilma eraldi elektritööriistata. Valides tasub jälgida kinnituse sobivust oma puuriga ning lõikuri materjali ja tera tüüpi vastavalt töödeldavale materjalile.",
       "tagline_en": "Turn your drill into a cutter",
       "tagline_et": "Tee oma trellist täpne lõikur"
+    },
+    "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-poordtooriista-tarvikud": {
+      "handle": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-poordtooriista-tarvikud",
+      "name_en": "Rotary Tool Accessories",
+      "name_et": "Pöördtööriista tarvikud",
+      "level": 3,
+      "parent_handle": "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid",
+      "child_handles": [],
+      "image_path": "/cat-thumbs/v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-poordtooriista-tarvikud.webp",
+      "image_source": "direct",
+      "description_en": "Here you'll find a range of rotary tool accessories for sanding, cutting, drilling, engraving and cleaning. Suitable for both home use and craft or hobby projects involving various materials. When choosing, check the accessory type and compatibility with your rotary tool.",
+      "description_et": "Siit leiad pöördtööriistade tarvikute valiku lihvimiseks, lõikamiseks, puurimiseks, graveerimiseks ja puhastamiseks. Sobivad nii kodumeistrile kui ka käsitöö- ja hobitöödeks erinevatest materjalidest detailidega töötamisel. Valides jälgi tarviku tüüpi ja sobivust oma pöördtööriistaga.",
+      "tagline_en": "Versatile accessories for every rotary tool",
+      "tagline_et": "Mitmekülgsed tarvikud iga pöördtööriista jaoks"
     },
     "v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus": {
       "handle": "v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus",
@@ -9409,8 +9394,8 @@
         "v4-moobel-ja-sisustus-toolid-ja-istmed-taburetid-ja-tootoolid-ratastega",
         "v4-moobel-ja-sisustus-toolid-ja-istmed-baaritoolid",
         "v4-moobel-ja-sisustus-toolid-ja-istmed-vannitoa-istmed",
-        "v4-moobel-ja-sisustus-toolid-ja-istmed-polvitustoolid",
-        "v4-moobel-ja-sisustus-toolid-ja-istmed-aktiivse-istumise-istmed"
+        "v4-moobel-ja-sisustus-toolid-ja-istmed-aktiivse-istumise-istmed",
+        "v4-moobel-ja-sisustus-toolid-ja-istmed-polvitustoolid"
       ],
       "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-toolid-ja-istmed-soogitoolid.webp",
       "image_source": "inherited",
@@ -9476,20 +9461,6 @@
       "tagline_en": "Comfort and support for your bathroom routine",
       "tagline_et": "Mugavus ja tugi vannitoa igapäevarutiini"
     },
-    "v4-moobel-ja-sisustus-toolid-ja-istmed-polvitustoolid": {
-      "handle": "v4-moobel-ja-sisustus-toolid-ja-istmed-polvitustoolid",
-      "name_en": "Kneeling Chairs",
-      "name_et": "Põlvitustoolid",
-      "level": 3,
-      "parent_handle": "v4-moobel-ja-sisustus-toolid-ja-istmed",
-      "child_handles": [],
-      "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-toolid-ja-istmed-polvitustoolid.webp",
-      "image_source": "direct",
-      "description_en": "Kneeling chairs are ergonomic seats that support the back and improve posture by distributing body weight between the seat and knees. They suit home offices, desks or meditation for anyone who spends long hours sitting. When choosing one, consider suitable height, material and extra features like a backrest or wheels.",
-      "description_et": "Põlvitustoolid on ergonoomilised istmed, mis toetavad selga ja parandavat rühti, jaotades keharaskuse istmiku ja põlvede vahel. Sobivad kodukontorisse, töölauale või meditatsiooniks neile, kes veedavad palju aega istudes. Valikul tasub jälgida sobivat kõrgust, materjali ja lisavõimalusi nagu seljatugi või rattad.",
-      "tagline_en": "Better posture, comfortable sitting",
-      "tagline_et": "Parem rüht, mugavam istumine"
-    },
     "v4-moobel-ja-sisustus-toolid-ja-istmed-aktiivse-istumise-istmed": {
       "handle": "v4-moobel-ja-sisustus-toolid-ja-istmed-aktiivse-istumise-istmed",
       "name_en": "Wobble Chairs",
@@ -9503,6 +9474,20 @@
       "description_et": "Aktiivse istumise istmed ehk kiiktoolid-taburetid on mõeldud neile, kes soovivad istumise ajal keha pidevalt liikuma panna ja rühti parandada. Sobivad nii kooli, kontorisse kui koju – õpilastele, kaugtöötajatele ja kõigile, kes istuvad palju. Valides tasub jälgida istme kõrgust, materjali ja seda, kui paindlik või kõikuv iste konkreetse kasutaja jaoks sobib.",
       "tagline_en": "Move while you sit, focus while you work",
       "tagline_et": "Liikumine istudes – parem rüht ja fookus"
+    },
+    "v4-moobel-ja-sisustus-toolid-ja-istmed-polvitustoolid": {
+      "handle": "v4-moobel-ja-sisustus-toolid-ja-istmed-polvitustoolid",
+      "name_en": "Kneeling Chairs",
+      "name_et": "Põlvitustoolid",
+      "level": 3,
+      "parent_handle": "v4-moobel-ja-sisustus-toolid-ja-istmed",
+      "child_handles": [],
+      "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-toolid-ja-istmed-polvitustoolid.webp",
+      "image_source": "direct",
+      "description_en": "Kneeling chairs are ergonomic seats that support the back and improve posture by distributing body weight between the seat and knees. They suit home offices, desks or meditation for anyone who spends long hours sitting. When choosing one, consider suitable height, material and extra features like a backrest or wheels.",
+      "description_et": "Põlvitustoolid on ergonoomilised istmed, mis toetavad selga ja parandavat rühti, jaotades keharaskuse istmiku ja põlvede vahel. Sobivad kodukontorisse, töölauale või meditatsiooniks neile, kes veedavad palju aega istudes. Valikul tasub jälgida sobivat kõrgust, materjali ja lisavõimalusi nagu seljatugi või rattad.",
+      "tagline_en": "Better posture, comfortable sitting",
+      "tagline_et": "Parem rüht, mugavam istumine"
     },
     "v4-moobel-ja-sisustus-lauad": {
       "handle": "v4-moobel-ja-sisustus-lauad",
@@ -9685,9 +9670,9 @@
         "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-voodipohjad-ja-latialused",
         "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-vooditelgid",
         "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-voodipeatsid",
-        "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-raskustekid",
+        "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kokkupandavad-kulalisvoodid",
         "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kattemadratsid",
-        "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kokkupandavad-kulalisvoodid"
+        "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-raskustekid"
       ],
       "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kummutid-ja-sahtlikapid.webp",
       "image_source": "inherited",
@@ -9809,19 +9794,19 @@
       "tagline_en": "A stylish finish for your bed",
       "tagline_et": "Stiilne viimistlus sinu voodile"
     },
-    "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-raskustekid": {
-      "handle": "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-raskustekid",
-      "name_en": "Weighted Blankets",
-      "name_et": "Raskustekid",
+    "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kokkupandavad-kulalisvoodid": {
+      "handle": "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kokkupandavad-kulalisvoodid",
+      "name_en": "Folding Guest Beds",
+      "name_et": "Kokkupandavad külalisvoodid",
       "level": 3,
       "parent_handle": "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu",
       "child_handles": [],
-      "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-raskustekid.webp",
+      "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kokkupandavad-kulalisvoodid.webp",
       "image_source": "direct",
-      "description_en": "Weighted blankets are filled blankets that provide gentle, even pressure to help you relax and sleep better. Designed for adults looking for relief from stress and restless nights, they come in various sizes, fabrics, and covers. When choosing, pay attention to blanket size, fabric type, and suitability for your body weight.",
-      "description_et": "Raskustekid on täidisega tekid, mis loovad ühtlase ja rahustava surve, aidates lõõgastuda ning und parandada. Sobivad täiskasvanutele, kes otsivad abi pingete ja rahutu une vastu, valikus erinevad suurused, materjalid ja katted. Valides tasub jälgida teki suurust, kattematerjali ja sobivust oma kehakaalule.",
-      "tagline_en": "Soothing weight for better sleep",
-      "tagline_et": "Rahustav raskus parema une jaoks"
+      "description_en": "Folding guest beds are a practical solution for extra sleeping space when room is limited or guests arrive unexpectedly. Models with a sturdy frame and comfortable mattress suit both adults and children, and fold away easily for storage. When choosing, consider the bed's size, build quality, and how compactly it stores away.",
+      "description_et": "Kokkupandavad külalisvoodid on praktiline lahendus lisamagamiskohale, kui ruumi on vähe või külalisi tuleb ootamatult. Tugeva raami ja mugava madratsiga mudelid sobivad nii täiskasvanutele kui lastele ning on kergesti kokkupandavad ja hoiustatavad. Valikul tasub jälgida voodi suurust, materjali kvaliteeti ning kui lihtsalt see kokku pannes ruumi mahub.",
+      "tagline_en": "Comfortable extra bed, folds away with ease",
+      "tagline_et": "Mugav lisavoodi külalistele, lihtsalt kokkupandav"
     },
     "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kattemadratsid": {
       "handle": "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kattemadratsid",
@@ -9837,19 +9822,19 @@
       "tagline_en": "Better sleep without a new mattress",
       "tagline_et": "Mugavam uni ilma uue madratsita"
     },
-    "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kokkupandavad-kulalisvoodid": {
-      "handle": "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kokkupandavad-kulalisvoodid",
-      "name_en": "Folding Guest Beds",
-      "name_et": "Kokkupandavad külalisvoodid",
+    "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-raskustekid": {
+      "handle": "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-raskustekid",
+      "name_en": "Weighted Blankets",
+      "name_et": "Raskustekid",
       "level": 3,
       "parent_handle": "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu",
       "child_handles": [],
-      "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kokkupandavad-kulalisvoodid.webp",
+      "image_path": "/cat-thumbs/v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-raskustekid.webp",
       "image_source": "direct",
-      "description_en": "Folding guest beds are a practical solution for extra sleeping space when room is limited or guests arrive unexpectedly. Models with a sturdy frame and comfortable mattress suit both adults and children, and fold away easily for storage. When choosing, consider the bed's size, build quality, and how compactly it stores away.",
-      "description_et": "Kokkupandavad külalisvoodid on praktiline lahendus lisamagamiskohale, kui ruumi on vähe või külalisi tuleb ootamatult. Tugeva raami ja mugava madratsiga mudelid sobivad nii täiskasvanutele kui lastele ning on kergesti kokkupandavad ja hoiustatavad. Valikul tasub jälgida voodi suurust, materjali kvaliteeti ning kui lihtsalt see kokku pannes ruumi mahub.",
-      "tagline_en": "Comfortable extra bed, folds away with ease",
-      "tagline_et": "Mugav lisavoodi külalistele, lihtsalt kokkupandav"
+      "description_en": "Weighted blankets are filled blankets that provide gentle, even pressure to help you relax and sleep better. Designed for adults looking for relief from stress and restless nights, they come in various sizes, fabrics, and covers. When choosing, pay attention to blanket size, fabric type, and suitability for your body weight.",
+      "description_et": "Raskustekid on täidisega tekid, mis loovad ühtlase ja rahustava surve, aidates lõõgastuda ning und parandada. Sobivad täiskasvanutele, kes otsivad abi pingete ja rahutu une vastu, valikus erinevad suurused, materjalid ja katted. Valides tasub jälgida teki suurust, kattematerjali ja sobivust oma kehakaalule.",
+      "tagline_en": "Soothing weight for better sleep",
+      "tagline_et": "Rahustav raskus parema une jaoks"
     },
     "v4-moobel-ja-sisustus-esikumoobel-ja-jalatsikapid": {
       "handle": "v4-moobel-ja-sisustus-esikumoobel-ja-jalatsikapid",
@@ -15001,8 +14986,8 @@
         "v4-auto-madratsid",
         "v4-autovaruosad-ja-tarvikud-salongitarvikud-pagasiruumi-matid-ja-katted",
         "v4-autovaruosad-ja-tarvikud-salongitarvikud-voidusoiduistmed",
-        "v4-autovaruosad-ja-tarvikud-salongitarvikud-auto-konsoolid-ja-hoiukastid",
-        "v4-autovaruosad-ja-tarvikud-salongitarvikud-autoroolid"
+        "v4-autovaruosad-ja-tarvikud-salongitarvikud-autoroolid",
+        "v4-autovaruosad-ja-tarvikud-salongitarvikud-auto-konsoolid-ja-hoiukastid"
       ],
       "image_path": "/cat-thumbs/v4-autovaruosad-ja-tarvikud-salongitarvikud-auto-porandamatid.webp",
       "image_source": "inherited",
@@ -15082,20 +15067,6 @@
       "tagline_en": "Sporty support for every drive",
       "tagline_et": "Sportlik tugi igale sõidule"
     },
-    "v4-autovaruosad-ja-tarvikud-salongitarvikud-auto-konsoolid-ja-hoiukastid": {
-      "handle": "v4-autovaruosad-ja-tarvikud-salongitarvikud-auto-konsoolid-ja-hoiukastid",
-      "name_en": "Center Consoles & Storage Boxes",
-      "name_et": "Auto konsoolid ja hoiukastid",
-      "level": 3,
-      "parent_handle": "v4-autovaruosad-ja-tarvikud-salongitarvikud",
-      "child_handles": [],
-      "image_path": "/cat-thumbs/v4-autovaruosad-ja-tarvikud-salongitarvikud-auto-konsoolid-ja-hoiukastid.webp",
-      "image_source": "direct",
-      "description_en": "This category features car center consoles and storage boxes designed to keep your cabin organized and add extra storage between or behind seats. Suitable for a wide range of vehicles, from sedans to vans and SUVs. When choosing, consider fit for your seat layout and any extra features you may want, such as cup holders or phone mounts.",
-      "description_et": "Siit leiad auto vahekonsoolid ja hoiukastid, mis aitavad hoida salongi korras ning pakuvad lisahoiuruumi esi- ja tagaistmetele. Sobivad erinevat tüüpi sõidukitele alates sedaanidest kuni kaubikute ja maasturiteni. Valikul tasub jälgida sobivust oma auto istmerea ja salongi paigutusega ning soovitud lisafunktsioone, nagu joogitopside hoidjad või telefoni ase.",
-      "tagline_en": "Smart storage and order for your car interior",
-      "tagline_et": "Mugav kord ja hoiuruum sinu auto salongis"
-    },
     "v4-autovaruosad-ja-tarvikud-salongitarvikud-autoroolid": {
       "handle": "v4-autovaruosad-ja-tarvikud-salongitarvikud-autoroolid",
       "name_en": "Steering Wheels",
@@ -15109,6 +15080,20 @@
       "description_et": "Autoroolid eri mudelitele – asendusroolid, mis sobivad kindlatele automarkidele ja -mudelitele. Sobivad juhtidele, kes soovivad uuendada salongi väljanägemist või parandada roolis hoidmise mugavust. Vali sobivus oma auto mudeli ja tootmisaasta järgi ning jälgi materjali ja viimistluse kvaliteeti.",
       "tagline_en": "Upgrade your car's steering style and comfort",
       "tagline_et": "Uuenda oma auto rooli stiili ja mugavust"
+    },
+    "v4-autovaruosad-ja-tarvikud-salongitarvikud-auto-konsoolid-ja-hoiukastid": {
+      "handle": "v4-autovaruosad-ja-tarvikud-salongitarvikud-auto-konsoolid-ja-hoiukastid",
+      "name_en": "Center Consoles & Storage Boxes",
+      "name_et": "Auto konsoolid ja hoiukastid",
+      "level": 3,
+      "parent_handle": "v4-autovaruosad-ja-tarvikud-salongitarvikud",
+      "child_handles": [],
+      "image_path": "/cat-thumbs/v4-autovaruosad-ja-tarvikud-salongitarvikud-auto-konsoolid-ja-hoiukastid.webp",
+      "image_source": "direct",
+      "description_en": "This category features car center consoles and storage boxes designed to keep your cabin organized and add extra storage between or behind seats. Suitable for a wide range of vehicles, from sedans to vans and SUVs. When choosing, consider fit for your seat layout and any extra features you may want, such as cup holders or phone mounts.",
+      "description_et": "Siit leiad auto vahekonsoolid ja hoiukastid, mis aitavad hoida salongi korras ning pakuvad lisahoiuruumi esi- ja tagaistmetele. Sobivad erinevat tüüpi sõidukitele alates sedaanidest kuni kaubikute ja maasturiteni. Valikul tasub jälgida sobivust oma auto istmerea ja salongi paigutusega ning soovitud lisafunktsioone, nagu joogitopside hoidjad või telefoni ase.",
+      "tagline_en": "Smart storage and order for your car interior",
+      "tagline_et": "Mugav kord ja hoiuruum sinu auto salongis"
     },
     "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud": {
       "handle": "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud",
@@ -15128,8 +15113,8 @@
         "v4-ehitus-remont-ja-varvid-aarekivirambid",
         "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-autokatted-presendid",
         "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-lumeharjad-jaakraabitsad",
-        "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-kaitserauad",
-        "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-vertikaalselt-avanevate-uste-komplektid-lambo-stiilis"
+        "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-vertikaalselt-avanevate-uste-komplektid-lambo-stiilis",
+        "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-kaitserauad"
       ],
       "image_path": "/cat-thumbs/v4-autovaruosad-ja-tarvikud-valistarvikud-jeep-maasturi-valisosad.webp",
       "image_source": "inherited",
@@ -15293,20 +15278,6 @@
       "tagline_en": "Clear snow and ice with ease",
       "tagline_et": "Vabasta klaasid lumest ja jääst mugavalt"
     },
-    "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-kaitserauad": {
-      "handle": "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-kaitserauad",
-      "name_en": "Bumpers",
-      "name_et": "Kaitserauad",
-      "level": 3,
-      "parent_handle": "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud",
-      "child_handles": [],
-      "image_path": "/cat-thumbs/v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-kaitserauad.webp",
-      "image_source": "direct",
-      "description_en": "Bumpers for vehicles provide body protection against bumps and minor collisions while giving the car a proper finished look. They work well as replacement parts or for styling upgrades, fitting various models and model years. When choosing, pay attention to compatibility with your specific vehicle as well as material and finish that suit your needs.",
-      "description_et": "Kaitserauad sõidukitele pakuvad kere kaitset põrgete ja kergete kokkupõrgete eest ning annavad autole korrektse väljanägemise. Sobivad asendustoodeteks või tuunimiseks, sobivad erinevatele mudelitele ja aastakäikudele. Valides tasub jälgida sobivust konkreetse sõidukimudeliga ning materjali ja viimistluse vastavust oma vajadustele.",
-      "tagline_en": "Solid protection, sharp look",
-      "tagline_et": "Tugev kaitse ja korralik välimus"
-    },
     "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-vertikaalselt-avanevate-uste-komplektid-lambo-stiilis": {
       "handle": "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-vertikaalselt-avanevate-uste-komplektid-lambo-stiilis",
       "name_en": "Vertical Door Conversion Kits (Lambo)",
@@ -15320,6 +15291,20 @@
       "description_et": "Siin leiad komplektid, mis võimaldavad paigaldada autole vertikaalselt avanevad uksed Lambo-stiilis. Sobivad erinevatele sõidukimudelitele ja annavad autole sportlikuma, silmapaistvama välimuse. Valides tasub jälgida sobivust konkreetse mudeliga ning komplekti kvaliteeti ja paigaldusvalmidust.",
       "tagline_en": "Give your car a bold, sporty edge",
       "tagline_et": "Anna autole sportlik, silmatorkav ilme"
+    },
+    "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-kaitserauad": {
+      "handle": "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-kaitserauad",
+      "name_en": "Bumpers",
+      "name_et": "Kaitserauad",
+      "level": 3,
+      "parent_handle": "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud",
+      "child_handles": [],
+      "image_path": "/cat-thumbs/v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-kaitserauad.webp",
+      "image_source": "direct",
+      "description_en": "Bumpers for vehicles provide body protection against bumps and minor collisions while giving the car a proper finished look. They work well as replacement parts or for styling upgrades, fitting various models and model years. When choosing, pay attention to compatibility with your specific vehicle as well as material and finish that suit your needs.",
+      "description_et": "Kaitserauad sõidukitele pakuvad kere kaitset põrgete ja kergete kokkupõrgete eest ning annavad autole korrektse väljanägemise. Sobivad asendustoodeteks või tuunimiseks, sobivad erinevatele mudelitele ja aastakäikudele. Valides tasub jälgida sobivust konkreetse sõidukimudeliga ning materjali ja viimistluse vastavust oma vajadustele.",
+      "tagline_en": "Solid protection, sharp look",
+      "tagline_et": "Tugev kaitse ja korralik välimus"
     },
     "v4-autovaruosad-ja-tarvikud-veoauto-tarvikud": {
       "handle": "v4-autovaruosad-ja-tarvikud-veoauto-tarvikud",
@@ -16155,7 +16140,6 @@
         "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-louatomberauad-ja-pull-up-jaamad",
         "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-kohulihaste-treeningpingid-ja-masinad",
         "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-reguleeritavad-kettlebellid-ja-kettaste-hoidikud",
-        "v4-jalgratta-trenazoorialused",
         "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-voimlemise-tasakaalupoomid-ja-talad",
         "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-huperekstensiooni-pingid",
         "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-parallett-ja-dip-kangid",
@@ -16556,20 +16540,6 @@
       "description_et": "Kettaste hoidikud ja -restid aitavad hoida trenniruumi korras, pakkudes mugavat kohta kangi- ja ketaste hoiustamiseks. Sobivad nii kodusesse jõusaali kui ka treeningklubisse, kus ruumi tuleb kasutada otstarbekalt. Valides tasub jälgida hoidiku kuju, materjali tugevust ja sobivust kasutatavate ketaste suurusega.",
       "tagline_en": "An organized gym starts with the right rack",
       "tagline_et": "Korrastatud jõusaal algab õigest hoidikust"
-    },
-    "v4-jalgratta-trenazoorialused": {
-      "handle": "v4-jalgratta-trenazoorialused",
-      "name_en": "Bike Trainer Stands",
-      "name_et": "Jalgratta trenažöörialused",
-      "level": 3,
-      "parent_handle": "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed",
-      "child_handles": [],
-      "image_path": "/cat-thumbs/v4-jalgratta-trenazoorialused.webp",
-      "image_source": "direct",
-      "description_en": "Bike trainer stands let you turn your regular bicycle into an indoor training setup, perfect for staying active at home or in the garage regardless of the weather. Suitable for both mountain and road cyclists who want to maintain fitness year-round. When choosing, pay attention to frame compatibility with your bike type and wheel size, as well as how easily the stand folds for storage.",
-      "description_et": "Jalgratta trenažöörialused aitavad su tavalise jalgratta muuta sisetrenažööriks, et treenida mugavalt kodus või garaažis igal aastaajal. Sobivad nii maastiku- kui ka maanteeratturitele, kes soovivad hoida vormi ka halva ilmaga. Valides tasub jälgida raami sobivust oma ratta tüübi ja rattasuurusega ning kokkupandavuse mugavust hoiustamisel.",
-      "tagline_en": "Train with your bike indoors",
-      "tagline_et": "Treeni oma rattaga ka kodus"
     },
     "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-voimlemise-tasakaalupoomid-ja-talad": {
       "handle": "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-voimlemise-tasakaalupoomid-ja-talad",
@@ -20874,8 +20844,8 @@
         "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-kaasaskantavad-elektrijaamad",
         "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-tuulegeneraatorid",
         "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-generaatori-katted",
-        "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-energiasalvestusakud",
-        "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelide-hoiu-ja-kandekotid"
+        "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelide-hoiu-ja-kandekotid",
+        "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-energiasalvestusakud"
       ],
       "image_path": "/cat-thumbs/v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikeseenergia-komplektid.webp",
       "image_source": "inherited",
@@ -21053,20 +21023,6 @@
       "tagline_en": "Protect your generator in any weather",
       "tagline_et": "Kaitse oma generaatorit igas ilmas"
     },
-    "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-energiasalvestusakud": {
-      "handle": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-energiasalvestusakud",
-      "name_en": "Energy Storage Batteries",
-      "name_et": "Energiasalvestusakud",
-      "level": 3,
-      "parent_handle": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid",
-      "child_handles": [],
-      "image_path": "/cat-thumbs/v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-energiasalvestusakud.webp",
-      "image_source": "direct",
-      "description_en": "Energy storage batteries are designed for home use, camping, RVs, and solar power systems, providing backup power for outages and off-grid needs. The range includes various battery types, sizes, and expansion modules compatible with different devices and output options. Choose the battery type, connection options, and usage environment that best fit your needs.",
-      "description_et": "Energiasalvestusakud sobivad kodumajapidamisele, matkamiseks, autoelamutele ja päikeseenergia süsteemidele, pakkudes varustust elektrikatkestuste ja väljaspool võrku kasutamise jaoks. Valikus on erinevat tüüpi ja suurusega akud ning laiendusmoodulid, mis ühilduvad erinevate seadmete ja väljunditega. Vali oma vajadustele sobiv akutüüp, ühenduste arv ja kasutuskeskkond.",
-      "tagline_en": "Reliable power for every situation",
-      "tagline_et": "Usaldusväärne energia igaks olukorraks"
-    },
     "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelide-hoiu-ja-kandekotid": {
       "handle": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelide-hoiu-ja-kandekotid",
       "name_en": "Solar Panel Storage & Carrying Bags",
@@ -21080,6 +21036,20 @@
       "description_et": "Kotid ja katted kokkupandavate päikesepaneelide hoidmiseks ja transportimiseks. Sobivad matkamiseks, autoga reisimiseks ja paneelide igapäevaseks kaitsmiseks tolmu, mustuse ja kriimustuste eest. Vali kott vastavalt paneeli suurusele ja materjali vastupidavusele.",
       "tagline_en": "Keep your solar panels safely protected",
       "tagline_et": "Hoia oma päikesepaneelid turvaliselt kaitstuna"
+    },
+    "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-energiasalvestusakud": {
+      "handle": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-energiasalvestusakud",
+      "name_en": "Energy Storage Batteries",
+      "name_et": "Energiasalvestusakud",
+      "level": 3,
+      "parent_handle": "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid",
+      "child_handles": [],
+      "image_path": "/cat-thumbs/v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-energiasalvestusakud.webp",
+      "image_source": "direct",
+      "description_en": "Energy storage batteries are designed for home use, camping, RVs, and solar power systems, providing backup power for outages and off-grid needs. The range includes various battery types, sizes, and expansion modules compatible with different devices and output options. Choose the battery type, connection options, and usage environment that best fit your needs.",
+      "description_et": "Energiasalvestusakud sobivad kodumajapidamisele, matkamiseks, autoelamutele ja päikeseenergia süsteemidele, pakkudes varustust elektrikatkestuste ja väljaspool võrku kasutamise jaoks. Valikus on erinevat tüüpi ja suurusega akud ning laiendusmoodulid, mis ühilduvad erinevate seadmete ja väljunditega. Vali oma vajadustele sobiv akutüüp, ühenduste arv ja kasutuskeskkond.",
+      "tagline_en": "Reliable power for every situation",
+      "tagline_et": "Usaldusväärne energia igaks olukorraks"
     },
     "v4-elektritarvikud-ja-valgustus-mootorid-ja-osad": {
       "handle": "v4-elektritarvikud-ja-valgustus-mootorid-ja-osad",
@@ -25947,8 +25917,8 @@
         "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-vaakumvalamismasinad",
         "v4-tooriistad-ja-tarvikud-kasitooriistad-kellaparandustooriistad",
         "v4-tooriistad-ja-tarvikud-sulatustiiglid",
-        "v4-hobi-ehtekunst-graafikapressid",
-        "v4-hobi-ehtekunst-sormuste-suuruse-muutmise-tooriistad"
+        "v4-hobi-ehtekunst-sormuste-suuruse-muutmise-tooriistad",
+        "v4-hobi-ehtekunst-graafikapressid"
       ],
       "image_path": "/cat-thumbs/v4-tooriistad-ja-tarvikud-moote-vaakumkambrid.webp",
       "image_source": "inherited",
@@ -26084,20 +26054,6 @@
       "tagline_en": "Durable crucibles for melting metal",
       "tagline_et": "Vastupidavad tiiglid metalli sulatamiseks"
     },
-    "v4-hobi-ehtekunst-graafikapressid": {
-      "handle": "v4-hobi-ehtekunst-graafikapressid",
-      "name_en": "Printmaking Presses",
-      "name_et": "Graafikapressid",
-      "level": 3,
-      "parent_handle": "v4-hobi-ehtekunst",
-      "child_handles": [],
-      "image_path": "/cat-thumbs/v4-hobi-ehtekunst-graafikapressid.webp",
-      "image_source": "direct",
-      "description_en": "Printmaking presses are designed for etching, linocut and other print techniques, suited for hobbyists and studios needing consistent, repeatable pressure for quality prints. The range includes presses of different sizes and build types, from beginner-friendly to professional models. When choosing a press, consider the working surface size, build durability and ease of use in your workspace.",
-      "description_et": "Graafikapressid on mõeldud süvatrüki, linolõike ja muude trükitehnikate harrastajatele ning ateljeedele, kes vajavad ühtlast ja korduvat survet kvaliteetse jälje saamiseks. Valikus on erineva suuruse ja konstruktsiooniga pressid nii algajale kui kogenud kunstnikule. Sobiva mudeli valikul tasub jälgida töölaua suurust, materjali vastupidavust ja kasutusmugavust oma stuudios.",
-      "tagline_en": "Precise pressure for every print",
-      "tagline_et": "Täpne surve, selge jälg igale trükile"
-    },
     "v4-hobi-ehtekunst-sormuste-suuruse-muutmise-tooriistad": {
       "handle": "v4-hobi-ehtekunst-sormuste-suuruse-muutmise-tooriistad",
       "name_en": "Ring Sizing Tools",
@@ -26111,6 +26067,20 @@
       "description_et": "Siit leiad tööriistad sõrmuste suuruse muutmiseks ja vormimiseks – venitajad, mandrelid ja abivahendid nii kodukasutajale kui ehtemeistrile. Sobivad sõrmuste laiendamiseks või kuju korrigeerimiseks, aidates ehteid mugavalt ja täpselt kohandada. Vali tööriist vastavalt materjalile ja kasutuseesmärgile, et töö tuleks puhas ja täpne.",
       "tagline_en": "Precise ring fitting for every need",
       "tagline_et": "Täpne sõrmuste sobitamine iga vajaduse jaoks"
+    },
+    "v4-hobi-ehtekunst-graafikapressid": {
+      "handle": "v4-hobi-ehtekunst-graafikapressid",
+      "name_en": "Printmaking Presses",
+      "name_et": "Graafikapressid",
+      "level": 3,
+      "parent_handle": "v4-hobi-ehtekunst",
+      "child_handles": [],
+      "image_path": "/cat-thumbs/v4-hobi-ehtekunst-graafikapressid.webp",
+      "image_source": "direct",
+      "description_en": "Printmaking presses are designed for etching, linocut and other print techniques, suited for hobbyists and studios needing consistent, repeatable pressure for quality prints. The range includes presses of different sizes and build types, from beginner-friendly to professional models. When choosing a press, consider the working surface size, build durability and ease of use in your workspace.",
+      "description_et": "Graafikapressid on mõeldud süvatrüki, linolõike ja muude trükitehnikate harrastajatele ning ateljeedele, kes vajavad ühtlast ja korduvat survet kvaliteetse jälje saamiseks. Valikus on erineva suuruse ja konstruktsiooniga pressid nii algajale kui kogenud kunstnikule. Sobiva mudeli valikul tasub jälgida töölaua suurust, materjali vastupidavust ja kasutusmugavust oma stuudios.",
+      "tagline_en": "Precise pressure for every print",
+      "tagline_et": "Täpne surve, selge jälg igale trükile"
     },
     "v4-hobi-keraamika-ja-pottsepatoo": {
       "handle": "v4-hobi-keraamika-ja-pottsepatoo",
@@ -27259,8 +27229,8 @@
       "parent_handle": "v4-lemmikloomatarbed",
       "child_handles": [
         "v4-lemmikloomatarbed-puurid-ja-aedikud-manguplatsid-ja-aedikud",
-        "v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud",
         "v4-lemmikloomatarbed-puurid-ja-aedikud-linnupuurid",
+        "v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud",
         "v4-lemmikloomatarbed-puurid-ja-aedikud-narilistepuurid",
         "v4-lemmikloomatarbed-puurid-ja-aedikud-poegimiskastid-ja-nurgad",
         "v4-lemmikloomatarbed-puurid-ja-aedikud-koerapuurid-ja-moobel"
@@ -27287,20 +27257,6 @@
       "tagline_en": "A safe and comfy space for your pet",
       "tagline_et": "Turvaline ja mugav ala lemmikule"
     },
-    "v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud": {
-      "handle": "v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud",
-      "name_en": "Cat Cages & Enclosures",
-      "name_et": "Kassipuurid ja aedikud",
-      "level": 3,
-      "parent_handle": "v4-lemmikloomatarbed-puurid-ja-aedikud",
-      "child_handles": [],
-      "image_path": "/cat-thumbs/v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud.webp",
-      "image_source": "direct",
-      "description_en": "This category features multi-tier cat cages and enclosures for indoor and outdoor use, suitable for one or several cats. Products vary in size, number of tiers, and extras such as hammocks, ramps, and resting platforms. Choose the right size and material based on where it will be used and how many cats you have.",
-      "description_et": "Siit leiad mitmekorruselised kassipuurid ja aedikud nii sise- kui välitingimustesse, sobivad ühele või mitmele kassile. Tooted erinevad suuruse, korruste arvu ja lisavarustuse (riputusvõrgud, treppid, puhkeplatvormid) poolest. Vali sobiv suurus ja materjal vastavalt kasutuskohale ja kasside arvule.",
-      "tagline_en": "Safe and comfy living space for your cat",
-      "tagline_et": "Turvaline ja mugav elamisruum sinu kassile"
-    },
     "v4-lemmikloomatarbed-puurid-ja-aedikud-linnupuurid": {
       "handle": "v4-lemmikloomatarbed-puurid-ja-aedikud-linnupuurid",
       "name_en": "Bird Cages",
@@ -27314,6 +27270,20 @@
       "description_et": "Linnupuurid sobivad nii väikestele lemmiklindudele kui ka suurematele papagoidele, pakkudes turvalist ja mugavat elukeskkonda. Valikus on erineva suuruse, kuju ja materjaliga puure, mis sobivad nii koju kui ka reisimiseks. Vali puur vastavalt linnu liigile, suurusele ja kodu interjöörile, jälgides ka puuri tugevust ja turvalisust.",
       "tagline_en": "A safe home for your feathered friend",
       "tagline_et": "Turvaline kodu su lennulinnule"
+    },
+    "v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud": {
+      "handle": "v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud",
+      "name_en": "Cat Cages & Enclosures",
+      "name_et": "Kassipuurid ja aedikud",
+      "level": 3,
+      "parent_handle": "v4-lemmikloomatarbed-puurid-ja-aedikud",
+      "child_handles": [],
+      "image_path": "/cat-thumbs/v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud.webp",
+      "image_source": "direct",
+      "description_en": "This category features multi-tier cat cages and enclosures for indoor and outdoor use, suitable for one or several cats. Products vary in size, number of tiers, and extras such as hammocks, ramps, and resting platforms. Choose the right size and material based on where it will be used and how many cats you have.",
+      "description_et": "Siit leiad mitmekorruselised kassipuurid ja aedikud nii sise- kui välitingimustesse, sobivad ühele või mitmele kassile. Tooted erinevad suuruse, korruste arvu ja lisavarustuse (riputusvõrgud, treppid, puhkeplatvormid) poolest. Vali sobiv suurus ja materjal vastavalt kasutuskohale ja kasside arvule.",
+      "tagline_en": "Safe and comfy living space for your cat",
+      "tagline_et": "Turvaline ja mugav elamisruum sinu kassile"
     },
     "v4-lemmikloomatarbed-puurid-ja-aedikud-narilistepuurid": {
       "handle": "v4-lemmikloomatarbed-puurid-ja-aedikud-narilistepuurid",
@@ -30035,8 +30005,8 @@
     "v4-tooriistad-ja-tarvikud-kasitooriistad-postirammijad",
     "v4-tooriistad-ja-tarvikud-kasitooriistad-katuse-ja-sindlitooriistad",
     "v4-tooriistad-ja-tarvikud-kasitooriistad-uldtooriistakomplektid",
-    "v4-tooriistad-ja-tarvikud-kasitooriistad-kiviplaatide-paigaldustooriistad",
     "v4-tooriistad-ja-tarvikud-kasitooriistad-roolisusteemi-tooriistad",
+    "v4-tooriistad-ja-tarvikud-kasitooriistad-kiviplaatide-paigaldustooriistad",
     "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad",
     "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-magnetpuurid",
     "v4-tooriistad-ja-tarvikud-elektrilised-tooriistad-teemantpuurmasinad",
@@ -30216,7 +30186,6 @@
     "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-elektrilised-talid",
     "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-kett-talid",
     "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-terastrossid",
-    "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-vintsid",
     "v4-tooriistad-ja-tarvikud-tostmine-kaartostelauad",
     "v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-tosteketid-ja-tropid",
     "v4-tooriistad-ja-tarvikud-tostmine-tostemagnetid",
@@ -30327,8 +30296,8 @@
     "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-tsangid-ja-tsangihoidikud",
     "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-t-soone-kinnituskomplektid",
     "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-puurpead-ja-siseavatooriistad",
-    "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-poordtooriista-tarvikud",
     "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-puurile-kinnitatavad-loikurid",
+    "v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-poordtooriista-tarvikud",
     "v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus",
     "v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus-lockout-tagout-komplektid",
     "v4-ehitus-remont-ja-varvid-isolatsioon-ja-soojustus-tolmubarjaarid",
@@ -30632,8 +30601,8 @@
     "v4-moobel-ja-sisustus-toolid-ja-istmed-taburetid-ja-tootoolid-ratastega",
     "v4-moobel-ja-sisustus-toolid-ja-istmed-baaritoolid",
     "v4-moobel-ja-sisustus-toolid-ja-istmed-vannitoa-istmed",
-    "v4-moobel-ja-sisustus-toolid-ja-istmed-polvitustoolid",
     "v4-moobel-ja-sisustus-toolid-ja-istmed-aktiivse-istumise-istmed",
+    "v4-moobel-ja-sisustus-toolid-ja-istmed-polvitustoolid",
     "v4-moobel-ja-sisustus-lauad",
     "v4-moobel-ja-sisustus-lauad-diivanilauad",
     "v4-moobel-ja-sisustus-lauad-konsoollauad",
@@ -30654,9 +30623,9 @@
     "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-voodipohjad-ja-latialused",
     "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-vooditelgid",
     "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-voodipeatsid",
-    "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-raskustekid",
-    "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kattemadratsid",
     "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kokkupandavad-kulalisvoodid",
+    "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kattemadratsid",
+    "v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-raskustekid",
     "v4-moobel-ja-sisustus-esikumoobel-ja-jalatsikapid",
     "v4-moobel-ja-sisustus-esikumoobel-ja-jalatsikapid-jalatsikapid",
     "v4-moobel-ja-sisustus-esikumoobel-ja-jalatsikapid-jalatsipingid-ja-istmed",
@@ -31001,8 +30970,8 @@
     "v4-auto-madratsid",
     "v4-autovaruosad-ja-tarvikud-salongitarvikud-pagasiruumi-matid-ja-katted",
     "v4-autovaruosad-ja-tarvikud-salongitarvikud-voidusoiduistmed",
-    "v4-autovaruosad-ja-tarvikud-salongitarvikud-auto-konsoolid-ja-hoiukastid",
     "v4-autovaruosad-ja-tarvikud-salongitarvikud-autoroolid",
+    "v4-autovaruosad-ja-tarvikud-salongitarvikud-auto-konsoolid-ja-hoiukastid",
     "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud",
     "v4-autovaruosad-ja-tarvikud-valistarvikud-jeep-maasturi-valisosad",
     "v4-autovaruosad-ja-tarvikud-valistarvikud-rehvitarvikud-ja-lumeketid",
@@ -31015,8 +30984,8 @@
     "v4-ehitus-remont-ja-varvid-aarekivirambid",
     "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-autokatted-presendid",
     "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-lumeharjad-jaakraabitsad",
-    "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-kaitserauad",
     "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-vertikaalselt-avanevate-uste-komplektid-lambo-stiilis",
+    "v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-kaitserauad",
     "v4-autovaruosad-ja-tarvikud-veoauto-tarvikud",
     "v4-autovaruosad-ja-tarvikud-veoauto-tarvikud-tooriistakastid",
     "v4-autovaruosad-ja-tarvikud-kutusekanistrid-ja-ohutuskanistrid",
@@ -31097,7 +31066,6 @@
     "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-louatomberauad-ja-pull-up-jaamad",
     "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-kohulihaste-treeningpingid-ja-masinad",
     "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-reguleeritavad-kettlebellid-ja-kettaste-hoidikud",
-    "v4-jalgratta-trenazoorialused",
     "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-voimlemise-tasakaalupoomid-ja-talad",
     "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-huperekstensiooni-pingid",
     "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-parallett-ja-dip-kangid",
@@ -31394,8 +31362,8 @@
     "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-kaasaskantavad-elektrijaamad",
     "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-tuulegeneraatorid",
     "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-generaatori-katted",
-    "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-energiasalvestusakud",
     "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelide-hoiu-ja-kandekotid",
+    "v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-energiasalvestusakud",
     "v4-elektritarvikud-ja-valgustus-mootorid-ja-osad",
     "v4-elektritarvikud-ja-valgustus-mootorid-ja-osad-lineaaraktuaatorid",
     "v4-elektritarvikud-ja-valgustus-mootorid-ja-osad-harjadeta-alalisvoolumootorid",
@@ -31723,8 +31691,8 @@
     "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-vaakumvalamismasinad",
     "v4-tooriistad-ja-tarvikud-kasitooriistad-kellaparandustooriistad",
     "v4-tooriistad-ja-tarvikud-sulatustiiglid",
-    "v4-hobi-ehtekunst-graafikapressid",
     "v4-hobi-ehtekunst-sormuste-suuruse-muutmise-tooriistad",
+    "v4-hobi-ehtekunst-graafikapressid",
     "v4-hobi-keraamika-ja-pottsepatoo",
     "v4-hobi-keraamika-pottsepakettad-ja-keraamikarattad",
     "v4-hobi-kunst-ja-maalimine",
@@ -31801,8 +31769,8 @@
     "v4-lemmikloomatarbed-pesad-ja-asemed-inimsuuruses-koeravoodid",
     "v4-lemmikloomatarbed-puurid-ja-aedikud",
     "v4-lemmikloomatarbed-puurid-ja-aedikud-manguplatsid-ja-aedikud",
-    "v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud",
     "v4-lemmikloomatarbed-puurid-ja-aedikud-linnupuurid",
+    "v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud",
     "v4-lemmikloomatarbed-puurid-ja-aedikud-narilistepuurid",
     "v4-lemmikloomatarbed-puurid-ja-aedikud-poegimiskastid-ja-nurgad",
     "v4-lemmikloomatarbed-puurid-ja-aedikud-koerapuurid-ja-moobel",
