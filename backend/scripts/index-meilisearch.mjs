@@ -48,7 +48,10 @@ async function configureIndex() {
     // EI TOHI enam sõltuda title'st (title on strippitud). Bränd tuleb metadata'st
     // (deriveBrandSlug), on otsitav siin ja filtreeritav filter_tokens'i kaudu. Multi-brand
     // tulevik (Powermat/KraftDele): sama muster, "powermat" otsing leiab ilma title-brändita.
-    searchableAttributes: ["title_et", "title_en", "brand_name", "description_et", "description_en", "categories", "sku", "handle"],
+    // morph_et = VIIMANE (madalaim prioriteet): Eesti liitsõna-otsing KIHT 1 (deterministlik
+    // morfoloogia, scripts/lib/morph_et.py → metadata.morph_et). Annab liitsõna-teise-poole
+    // tabamuse (ahi → elektriahi) ILMA et tõstaks neid üle title/description täppis-tabamuste.
+    searchableAttributes: ["title_et", "title_en", "brand_name", "description_et", "description_en", "categories", "sku", "handle", "morph_et"],
     filterableAttributes: [
       "categories", "category_handles", "subcategory", "price", "in_stock", "archived", "translated", "filter_tokens",
       // Taxonomy v3 SSoT fields (F2.8). See docs/superpowers/specs/2026-04-18-taxonomy-final-design.md §6.
@@ -322,6 +325,7 @@ function transform(row) {
     title_en,                       // search: English
     title_et,                       // search: Estonian
     // future: title_ru, title_fi — same pattern
+    morph_et: meta.morph_et || '',  // search: Eesti liitsõna KIHT 1 (lemma+komponendid; madal prio)
     brand: brandSlug || '',         // slug (filter/URL)
     brand_name: brandName,          // search: bränd (nt "VEVOR") — sõltumatu title'st
     handle: row.handle || '',
