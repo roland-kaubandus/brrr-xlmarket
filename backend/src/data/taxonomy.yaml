@@ -2572,14 +2572,6 @@ l1:
             description_en: "This category features boring heads and bore-adjustment tools for precision drilling on milling and drill press machines. Suitable for metalworkers and workshops that need accurately sized holes. Choose a tool based on your machine's shank type and the material you work with."
             description_et: "Siin leiad puurpead ja siseavatööriistad täppispuurimiseks freespinkidel ja puurpinkidel. Sobivad metallitöötlejatele ja töökodadele, kus on vaja avasid täpselt läbimõõdu järgi seadistada. Vali tööriist vastavalt masina kinnitustüübile ja materjalile, millega töötad."
             product_count: 0
-          - slug: v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-puurile-kinnitatavad-loikurid
-            name_en: "Drill-Mounted Cutters"
-            name_et: "Puurile kinnitatavad lõikurid"
-            tagline_en: "Turn your drill into a cutter"
-            tagline_et: "Tee oma trellist täpne lõikur"
-            description_en: "Drill-mounted cutters turn an ordinary power drill into a handy cutting tool for sheet metal, plasterboard and similar flat materials. They suit both DIY users and professionals who need fast, accurate finishing cuts without a separate power tool. When choosing, check that the attachment fits your drill and that the blade material and type match the material you plan to cut."
-            description_et: "Puurile kinnitatavad lõikurid muudavad tavalise trelli käepärast lõiketööriistaks plekk-, kipsplaat- ja muude plaatmaterjalide lõikamiseks. Sobivad nii kodumeistrile kui ka ehitajale, kes vajab kiiret ja täpset viimistluslõiget ilma eraldi elektritööriistata. Valides tasub jälgida kinnituse sobivust oma puuriga ning lõikuri materjali ja tera tüüpi vastavalt töödeldavale materjalile."
-            product_count: 0
           - slug: v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-poordtooriista-tarvikud
             name_en: "Rotary Tool Accessories"
             name_et: "Pöördtööriista tarvikud"
@@ -2587,6 +2579,14 @@ l1:
             tagline_et: "Mitmekülgsed tarvikud iga pöördtööriista jaoks"
             description_en: "Here you'll find a range of rotary tool accessories for sanding, cutting, drilling, engraving and cleaning. Suitable for both home use and craft or hobby projects involving various materials. When choosing, check the accessory type and compatibility with your rotary tool."
             description_et: "Siit leiad pöördtööriistade tarvikute valiku lihvimiseks, lõikamiseks, puurimiseks, graveerimiseks ja puhastamiseks. Sobivad nii kodumeistrile kui ka käsitöö- ja hobitöödeks erinevatest materjalidest detailidega töötamisel. Valides jälgi tarviku tüüpi ja sobivust oma pöördtööriistaga."
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-puurile-kinnitatavad-loikurid
+            name_en: "Drill-Mounted Cutters"
+            name_et: "Puurile kinnitatavad lõikurid"
+            tagline_en: "Turn your drill into a cutter"
+            tagline_et: "Tee oma trellist täpne lõikur"
+            description_en: "Drill-mounted cutters turn an ordinary power drill into a handy cutting tool for sheet metal, plasterboard and similar flat materials. They suit both DIY users and professionals who need fast, accurate finishing cuts without a separate power tool. When choosing, check that the attachment fits your drill and that the blade material and type match the material you plan to cut."
+            description_et: "Puurile kinnitatavad lõikurid muudavad tavalise trelli käepärast lõiketööriistaks plekk-, kipsplaat- ja muude plaatmaterjalide lõikamiseks. Sobivad nii kodumeistrile kui ka ehitajale, kes vajab kiiret ja täpset viimistluslõiget ilma eraldi elektritööriistata. Valides tasub jälgida kinnituse sobivust oma puuriga ning lõikuri materjali ja tera tüüpi vastavalt töödeldavale materjalile."
             product_count: 0
       - slug: v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus
         name_en: "Workplace Safety & Emergency Equipment"
@@ -3302,6 +3302,39 @@ l1:
             tagline_et: "Kvaliteetsed varuosad garaažiukse korrashoiuks"
             description_en: "This category features garage door spare parts and maintenance accessories – torsion springs, seals and other replacement components to keep your door mechanism running smoothly. Suitable for DIY homeowners and professional installers alike who need reliable replacement parts. Before buying, check your garage door's measurements and model to ensure a proper fit."
             description_et: "Siit leiad garaažiukse varuosad ja hooldustarvikud – torsioonvedrud, tihendid ja muud asendusdetailid uksemehhanismi korrashoiuks. Sobivad nii omanikele, kes teevad ise remonti, kui ka paigaldajatele, kes vajavad kvaliteetseid asendusosi. Enne ostu kontrolli oma garaažiukse mõõtmeid ja mudelit, et osa sobiks täpselt."
+            product_count: 0
+      - slug: v4-garaaziseadmed-soojapuhurid-ja-kutteseadmed
+        name_en: "Space Heaters & Heating Equipment"
+        name_et: "Soojapuhurid ja kütteseadmed"
+        tagline_en: "Soojapuhurid ja kütteseadmed"
+        tagline_et: "Soojapuhurid ja kütteseadmed"
+        description_en: "Soojapuhurid ja kütteseadmed — products."
+        description_et: "Soojapuhurid ja kütteseadmed — tooted."
+        product_count: 0
+        subs:
+          - slug: v4-garaaziseadmed-diisli-petrooleumi-soojapuhurid
+            name_en: "Diesel & Kerosene Forced-Air Heaters"
+            name_et: "Diisli- ja petrooleumi soojapuhurid"
+            tagline_en: "Heat wherever you need it"
+            tagline_et: "Soojus kaasas, kuhu iganes vaja"
+            description_en: "Portable space heaters are designed for quick, flexible heating of homes, garages, workshops and job sites where fixed heating is unavailable or insufficient. The range includes different types and heat sources, so choose a model that matches your room size and intended use, whether indoors, outdoors or both. Before buying, consider safety features, portability and the availability of fuel or power."
+            description_et: "Kaasaskantavad ruumisoojendid sobivad nii kodu, garaaži kui ka töökoja kiireks ja paindlikuks soojendamiseks, kus statsionaarne küte puudub või on ebapiisav. Valikus on erinevat tüüpi ja kütteallikaga mudelid – vali oma ruumi suurusele ja kasutuskohale (sisetingimused, välitingimused või mõlemad) sobiv lahendus. Enne ostu tasub kaaluda ohutusfunktsioone, teisaldatavust ja kütuse või energiaallika saadavust."
+            product_count: 0
+          - slug: v4-garaaziseadmed-autonoomsed-diiselsoojendid
+            name_en: "Standalone Diesel Air Heaters"
+            name_et: "Autonoomsed diiselsoojendid"
+            tagline_en: "Warm cabin anywhere, anytime"
+            tagline_et: "Soe salong igal pool ja igal ajal"
+            description_en: "Vehicle air heaters are diesel-powered parking heaters that provide warm air inside cars, motorhomes, boats and trucks even when the engine is off. They suit drivers who want a quick and comfortable warm cabin during cold periods without idling the engine. When choosing one, pay attention to the heater's power class, installation method and compatibility with your vehicle type."
+            description_et: "Sõiduki õhusoojendid on diisliküttel töötavad seisuasendi soojendid, mis annavad sooja õhku autode, haagiselamute, paatide ja veokite salongi ka siis, kui mootor ei tööta. Sobivad neile, kes soovivad külmal perioodil mugavat ja kiiret sooja salongi, ilma et peaks mootorit tühikäigul käivitama. Valides tasub jälgida soojendi võimsusklassi, paigaldusviisi ja sobivust konkreetse sõidukitüübiga."
+            product_count: 0
+          - slug: v4-garaaziseadmed-diiselsoojendite-varuosad
+            name_en: "Diesel Heater Spare Parts"
+            name_et: "Diiselsoojendite varuosad"
+            tagline_en: "Diesel heater parts for repair and maintenance"
+            tagline_et: "Diiselsoojendi varuosad ja tarvikud hoolduseks"
+            description_en: "Find spare parts and accessories for diesel heaters here – glow plugs, air and exhaust hoses, connectors and fuel pumps. Suitable for both repair and maintenance to keep your heater running smoothly. When choosing, check compatibility with your heater model and the quality of hose and fitting materials."
+            description_et: "Siit leiad diiselsoojendite varuosad ja tarvikud – küttekehad, õhu- ja väljalaskevoolikud, ühendusdetailid ning kütusepumbad. Sobivad nii remondiks kui hoolduseks, et soojendi töökorras hoida. Valikul jälgi sobivust oma soojendi mudeliga ning vooliku ja ühenduste materjali kvaliteeti."
             product_count: 0
   - slug: v4-suurkoogiseadmed
     name_en: "Commercial Kitchen Equipment"
@@ -5033,14 +5066,6 @@ l1:
             description_en: "Bathroom stools and benches are designed for sitting while showering or getting dressed, offering comfort for children, adults and elderly users alike. The range includes various materials and designs, so check that the style and size match your bathroom space and needs. A practical addition to daily hygiene routines, adding both comfort and stability."
             description_et: "Vannitoa istmed ja pingid sobivad dušši alla istumiseks või riietumise hõlbustamiseks, pakkudes mugavust nii lastele, täiskasvanutele kui eakatele. Valikus on erinevatest materjalidest ja disainiga mudelid – vaata, et stiil ja mõõdud sobiksid sinu vannitoa ruumi ja vajadusega. Hea abivahend igapäevasesse hügieenirutiini, lisades turvatunnet ja mugavust."
             product_count: 0
-          - slug: v4-moobel-ja-sisustus-toolid-ja-istmed-aktiivse-istumise-istmed
-            name_en: "Wobble Chairs"
-            name_et: "Aktiivse istumise istmed"
-            tagline_en: "Move while you sit, focus while you work"
-            tagline_et: "Liikumine istudes – parem rüht ja fookus"
-            description_en: "Active sitting chairs, also known as wobble stools, are designed for those who want to keep moving while seated and improve their posture. Suitable for schools, offices and homes – for students, remote workers and anyone who spends long hours sitting. When choosing, pay attention to seat height, material and how flexible or wobbly the chair feels for the intended user."
-            description_et: "Aktiivse istumise istmed ehk kiiktoolid-taburetid on mõeldud neile, kes soovivad istumise ajal keha pidevalt liikuma panna ja rühti parandada. Sobivad nii kooli, kontorisse kui koju – õpilastele, kaugtöötajatele ja kõigile, kes istuvad palju. Valides tasub jälgida istme kõrgust, materjali ja seda, kui paindlik või kõikuv iste konkreetse kasutaja jaoks sobib."
-            product_count: 0
           - slug: v4-moobel-ja-sisustus-toolid-ja-istmed-polvitustoolid
             name_en: "Kneeling Chairs"
             name_et: "Põlvitustoolid"
@@ -5048,6 +5073,14 @@ l1:
             tagline_et: "Parem rüht, mugavam istumine"
             description_en: "Kneeling chairs are ergonomic seats that support the back and improve posture by distributing body weight between the seat and knees. They suit home offices, desks or meditation for anyone who spends long hours sitting. When choosing one, consider suitable height, material and extra features like a backrest or wheels."
             description_et: "Põlvitustoolid on ergonoomilised istmed, mis toetavad selga ja parandavat rühti, jaotades keharaskuse istmiku ja põlvede vahel. Sobivad kodukontorisse, töölauale või meditatsiooniks neile, kes veedavad palju aega istudes. Valikul tasub jälgida sobivat kõrgust, materjali ja lisavõimalusi nagu seljatugi või rattad."
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-toolid-ja-istmed-aktiivse-istumise-istmed
+            name_en: "Wobble Chairs"
+            name_et: "Aktiivse istumise istmed"
+            tagline_en: "Move while you sit, focus while you work"
+            tagline_et: "Liikumine istudes – parem rüht ja fookus"
+            description_en: "Active sitting chairs, also known as wobble stools, are designed for those who want to keep moving while seated and improve their posture. Suitable for schools, offices and homes – for students, remote workers and anyone who spends long hours sitting. When choosing, pay attention to seat height, material and how flexible or wobbly the chair feels for the intended user."
+            description_et: "Aktiivse istumise istmed ehk kiiktoolid-taburetid on mõeldud neile, kes soovivad istumise ajal keha pidevalt liikuma panna ja rühti parandada. Sobivad nii kooli, kontorisse kui koju – õpilastele, kaugtöötajatele ja kõigile, kes istuvad palju. Valides tasub jälgida istme kõrgust, materjali ja seda, kui paindlik või kõikuv iste konkreetse kasutaja jaoks sobib."
             product_count: 0
       - slug: v4-moobel-ja-sisustus-lauad
         name_en: "Tables"
@@ -5219,14 +5252,6 @@ l1:
             description_en: "Weighted blankets are filled blankets that provide gentle, even pressure to help you relax and sleep better. Designed for adults looking for relief from stress and restless nights, they come in various sizes, fabrics, and covers. When choosing, pay attention to blanket size, fabric type, and suitability for your body weight."
             description_et: "Raskustekid on täidisega tekid, mis loovad ühtlase ja rahustava surve, aidates lõõgastuda ning und parandada. Sobivad täiskasvanutele, kes otsivad abi pingete ja rahutu une vastu, valikus erinevad suurused, materjalid ja katted. Valides tasub jälgida teki suurust, kattematerjali ja sobivust oma kehakaalule."
             product_count: 0
-          - slug: v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kokkupandavad-kulalisvoodid
-            name_en: "Folding Guest Beds"
-            name_et: "Kokkupandavad külalisvoodid"
-            tagline_en: "Comfortable extra bed, folds away with ease"
-            tagline_et: "Mugav lisavoodi külalistele, lihtsalt kokkupandav"
-            description_en: "Folding guest beds are a practical solution for extra sleeping space when room is limited or guests arrive unexpectedly. Models with a sturdy frame and comfortable mattress suit both adults and children, and fold away easily for storage. When choosing, consider the bed's size, build quality, and how compactly it stores away."
-            description_et: "Kokkupandavad külalisvoodid on praktiline lahendus lisamagamiskohale, kui ruumi on vähe või külalisi tuleb ootamatult. Tugeva raami ja mugava madratsiga mudelid sobivad nii täiskasvanutele kui lastele ning on kergesti kokkupandavad ja hoiustatavad. Valikul tasub jälgida voodi suurust, materjali kvaliteeti ning kui lihtsalt see kokku pannes ruumi mahub."
-            product_count: 0
           - slug: v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kattemadratsid
             name_en: "Mattress Toppers"
             name_et: "Kattemadratsid"
@@ -5234,6 +5259,14 @@ l1:
             tagline_et: "Mugavam uni ilma uue madratsita"
             description_en: "Mattress toppers make an existing bed more comfortable and help extend the mattress's lifespan. Ideal for anyone wanting a softer or more supportive sleeping surface without buying a new mattress. Choose the right size and material to match your bed and sleep preferences."
             description_et: "Kattemadratsid ehk madratsikaitsed muudavad olemasoleva voodi mugavamaks ja pikendavad madratsi eluiga. Sobivad neile, kes soovivad pehmemat või toetavamat magamispinda ilma uut madratsit ostmata. Vali sobiv suurus ja materjal vastavalt oma voodile ja unieelistustele."
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kokkupandavad-kulalisvoodid
+            name_en: "Folding Guest Beds"
+            name_et: "Kokkupandavad külalisvoodid"
+            tagline_en: "Comfortable extra bed, folds away with ease"
+            tagline_et: "Mugav lisavoodi külalistele, lihtsalt kokkupandav"
+            description_en: "Folding guest beds are a practical solution for extra sleeping space when room is limited or guests arrive unexpectedly. Models with a sturdy frame and comfortable mattress suit both adults and children, and fold away easily for storage. When choosing, consider the bed's size, build quality, and how compactly it stores away."
+            description_et: "Kokkupandavad külalisvoodid on praktiline lahendus lisamagamiskohale, kui ruumi on vähe või külalisi tuleb ootamatult. Tugeva raami ja mugava madratsiga mudelid sobivad nii täiskasvanutele kui lastele ning on kergesti kokkupandavad ja hoiustatavad. Valikul tasub jälgida voodi suurust, materjali kvaliteeti ning kui lihtsalt see kokku pannes ruumi mahub."
             product_count: 0
       - slug: v4-moobel-ja-sisustus-esikumoobel-ja-jalatsikapid
         name_en: "Hallway Furniture & Shoe Cabinets"
@@ -7834,22 +7867,6 @@ l1:
         description_et: "Siit leiad sõiduki küttesüsteemi ja kliimaseadmetega seotud tooted – alates salongi soojendavatest lahendustest kuni õhu värskendamise ja temperatuuri reguleerimise tarvikuteni. Sobivad nii sõiduauto, veoauto kui ka haagiselamu omanikele, kes soovivad mugavamat sõidukeskkonda igal aastaajal. Vali toode lähtuvalt sõiduki tüübist ja kasutusvajadusest."
         product_count: 0
         subs:
-          - slug: v4-autovaruosad-ja-tarvikud-kute-soiduki-ohusoojendid
-            name_en: "Parking Heaters"
-            name_et: "Sõiduki õhusoojendid"
-            tagline_en: "Warm cabin anywhere, anytime"
-            tagline_et: "Soe salong igal pool ja igal ajal"
-            description_en: "Vehicle air heaters are diesel-powered parking heaters that provide warm air inside cars, motorhomes, boats and trucks even when the engine is off. They suit drivers who want a quick and comfortable warm cabin during cold periods without idling the engine. When choosing one, pay attention to the heater's power class, installation method and compatibility with your vehicle type."
-            description_et: "Sõiduki õhusoojendid on diisliküttel töötavad seisuasendi soojendid, mis annavad sooja õhku autode, haagiselamute, paatide ja veokite salongi ka siis, kui mootor ei tööta. Sobivad neile, kes soovivad külmal perioodil mugavat ja kiiret sooja salongi, ilma et peaks mootorit tühikäigul käivitama. Valides tasub jälgida soojendi võimsusklassi, paigaldusviisi ja sobivust konkreetse sõidukitüübiga."
-            product_count: 0
-          - slug: v4-autovaruosad-ja-tarvikud-kute-diiselsoojendi-osad
-            name_en: "Diesel Heater Parts"
-            name_et: "Diiselsoojendi osad"
-            tagline_en: "Diesel heater parts for repair and maintenance"
-            tagline_et: "Diiselsoojendi varuosad ja tarvikud hoolduseks"
-            description_en: "Find spare parts and accessories for diesel heaters here – glow plugs, air and exhaust hoses, connectors and fuel pumps. Suitable for both repair and maintenance to keep your heater running smoothly. When choosing, check compatibility with your heater model and the quality of hose and fitting materials."
-            description_et: "Siit leiad diiselsoojendite varuosad ja tarvikud – küttekehad, õhu- ja väljalaskevoolikud, ühendusdetailid ning kütusepumbad. Sobivad nii remondiks kui hoolduseks, et soojendi töökorras hoida. Valikul jälgi sobivust oma soojendi mudeliga ning vooliku ja ühenduste materjali kvaliteeti."
-            product_count: 0
           - slug: v4-autovaruosad-ja-tarvikud-kute-soiduki-konditsioneerid
             name_en: "Vehicle Air Conditioners"
             name_et: "Sõiduki konditsioneerid"
@@ -8054,14 +8071,6 @@ l1:
             description_en: "Racing seats for driving enthusiasts who want strong side support and durable build quality in their car or kart interior. Suitable for tuning everyday vehicles as well as upgrading sports cars and go-karts. When choosing, pay attention to compatibility with mounting points, material type and overall comfort."
             description_et: "Võidusõiduistmed sportliku sõidustiili austajatele, kes soovivad autosse või kardile paigaldada tugevat külgtuge pakkuva ja vastupidavast materjalist istme. Sobivad nii tavapäraste sõiduautode tuunimiseks kui ka spordiautode ja kardide salongi uuendamiseks. Valikul tasub jälgida istme sobivust sõiduki kinnituspunktidega, materjali tüüpi ja üldist mugavust."
             product_count: 0
-          - slug: v4-autovaruosad-ja-tarvikud-salongitarvikud-autoroolid
-            name_en: "Steering Wheels"
-            name_et: "Autoroolid"
-            tagline_en: "Upgrade your car's steering style and comfort"
-            tagline_et: "Uuenda oma auto rooli stiili ja mugavust"
-            description_en: "Steering wheels for various vehicle models – replacement wheels designed to fit specific car makes and models. Suited for drivers looking to refresh their cabin look or improve grip and comfort. Check compatibility with your car's model and year, and consider material and finish quality."
-            description_et: "Autoroolid eri mudelitele – asendusroolid, mis sobivad kindlatele automarkidele ja -mudelitele. Sobivad juhtidele, kes soovivad uuendada salongi väljanägemist või parandada roolis hoidmise mugavust. Vali sobivus oma auto mudeli ja tootmisaasta järgi ning jälgi materjali ja viimistluse kvaliteeti."
-            product_count: 0
           - slug: v4-autovaruosad-ja-tarvikud-salongitarvikud-auto-konsoolid-ja-hoiukastid
             name_en: "Center Consoles & Storage Boxes"
             name_et: "Auto konsoolid ja hoiukastid"
@@ -8069,6 +8078,14 @@ l1:
             tagline_et: "Mugav kord ja hoiuruum sinu auto salongis"
             description_en: "This category features car center consoles and storage boxes designed to keep your cabin organized and add extra storage between or behind seats. Suitable for a wide range of vehicles, from sedans to vans and SUVs. When choosing, consider fit for your seat layout and any extra features you may want, such as cup holders or phone mounts."
             description_et: "Siit leiad auto vahekonsoolid ja hoiukastid, mis aitavad hoida salongi korras ning pakuvad lisahoiuruumi esi- ja tagaistmetele. Sobivad erinevat tüüpi sõidukitele alates sedaanidest kuni kaubikute ja maasturiteni. Valikul tasub jälgida sobivust oma auto istmerea ja salongi paigutusega ning soovitud lisafunktsioone, nagu joogitopside hoidjad või telefoni ase."
+            product_count: 0
+          - slug: v4-autovaruosad-ja-tarvikud-salongitarvikud-autoroolid
+            name_en: "Steering Wheels"
+            name_et: "Autoroolid"
+            tagline_en: "Upgrade your car's steering style and comfort"
+            tagline_et: "Uuenda oma auto rooli stiili ja mugavust"
+            description_en: "Steering wheels for various vehicle models – replacement wheels designed to fit specific car makes and models. Suited for drivers looking to refresh their cabin look or improve grip and comfort. Check compatibility with your car's model and year, and consider material and finish quality."
+            description_et: "Autoroolid eri mudelitele – asendusroolid, mis sobivad kindlatele automarkidele ja -mudelitele. Sobivad juhtidele, kes soovivad uuendada salongi väljanägemist või parandada roolis hoidmise mugavust. Vali sobivus oma auto mudeli ja tootmisaasta järgi ning jälgi materjali ja viimistluse kvaliteeti."
             product_count: 0
       - slug: v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud
         name_en: "Exterior & Tire Accessories"
@@ -12269,14 +12286,6 @@ l1:
             description_en: "This category features baseboard heater covers designed to replace old or worn covers and refresh the look of your heating unit. Suitable for homes and smaller spaces, they help create a neat and consistent interior appearance. When choosing a cover, consider your room's style along with your heater's dimensions and mounting type."
             description_et: "Siit leiad põrandaliistkütte seadmete katted, mis sobivad vana või kulunud katte asendamiseks ning kütteseadme välimuse uuendamiseks. Sobivad nii kodu kui ka väiksemate ruumide kütteseadmetele, aidates luua korrastatud ja ühtlase interjööri. Valides katte arvesta ruumi stiili ning olemasoleva kütteseadme mõõtude ja kinnitusviisiga."
             product_count: 0
-          - slug: v4-kaasaskantavad-ruumisoojendid
-            name_en: "Portable Space Heaters"
-            name_et: "Kaasaskantavad ruumisoojendid"
-            tagline_en: "Heat wherever you need it"
-            tagline_et: "Soojus kaasas, kuhu iganes vaja"
-            description_en: "Portable space heaters are designed for quick, flexible heating of homes, garages, workshops and job sites where fixed heating is unavailable or insufficient. The range includes different types and heat sources, so choose a model that matches your room size and intended use, whether indoors, outdoors or both. Before buying, consider safety features, portability and the availability of fuel or power."
-            description_et: "Kaasaskantavad ruumisoojendid sobivad nii kodu, garaaži kui ka töökoja kiireks ja paindlikuks soojendamiseks, kus statsionaarne küte puudub või on ebapiisav. Valikus on erinevat tüüpi ja kütteallikaga mudelid – vali oma ruumi suurusele ja kasutuskohale (sisetingimused, välitingimused või mõlemad) sobiv lahendus. Enne ostu tasub kaaluda ohutusfunktsioone, teisaldatavust ja kütuse või energiaallika saadavust."
-            product_count: 0
           - slug: v4-santehnika-kute-ja-ventilatsioon-konvektorid
             name_en: "Convector Heaters"
             name_et: "Konvektorid"
@@ -13969,14 +13978,6 @@ l1:
             description_en: "Melting crucibles are tools used for melting metals such as gold, silver, copper and aluminum in jewelry making and small-scale casting. They suit both hobbyists and professional jewelers who need a durable container for high-temperature work. When choosing, pay attention to the crucible's material, shape and compatibility with your furnace or torch."
             description_et: "Sulatustiiglid on tööriistad metallide (nt kulla, hõbeda, vase, alumiiniumi) sulatamiseks ehte- ja metallitöös ning väikesemahulises valutöös. Sobivad nii hobitöökodadele kui professionaalsetele juveliiridele, kes vajavad vastupidavat anumat kõrgel temperatuuril töötamiseks. Valikul tasub jälgida tiigli materjali, kuju ja sobivust kasutatava ahju või põletiga."
             product_count: 0
-          - slug: v4-hobi-ehtekunst-sormuste-suuruse-muutmise-tooriistad
-            name_en: "Ring Sizing Tools"
-            name_et: "Sõrmuste suuruse muutmise tööriistad"
-            tagline_en: "Precise ring fitting for every need"
-            tagline_et: "Täpne sõrmuste sobitamine iga vajaduse jaoks"
-            description_en: "This category features tools for resizing and shaping rings – stretchers, mandrels and related accessories for both home use and professional jewelers. They help enlarge or adjust rings for a better, more comfortable fit. Choose a tool based on material and intended use for precise, clean results."
-            description_et: "Siit leiad tööriistad sõrmuste suuruse muutmiseks ja vormimiseks – venitajad, mandrelid ja abivahendid nii kodukasutajale kui ehtemeistrile. Sobivad sõrmuste laiendamiseks või kuju korrigeerimiseks, aidates ehteid mugavalt ja täpselt kohandada. Vali tööriist vastavalt materjalile ja kasutuseesmärgile, et töö tuleks puhas ja täpne."
-            product_count: 0
           - slug: v4-hobi-ehtekunst-graafikapressid
             name_en: "Printmaking Presses"
             name_et: "Graafikapressid"
@@ -13984,6 +13985,14 @@ l1:
             tagline_et: "Täpne surve, selge jälg igale trükile"
             description_en: "Printmaking presses are designed for etching, linocut and other print techniques, suited for hobbyists and studios needing consistent, repeatable pressure for quality prints. The range includes presses of different sizes and build types, from beginner-friendly to professional models. When choosing a press, consider the working surface size, build durability and ease of use in your workspace."
             description_et: "Graafikapressid on mõeldud süvatrüki, linolõike ja muude trükitehnikate harrastajatele ning ateljeedele, kes vajavad ühtlast ja korduvat survet kvaliteetse jälje saamiseks. Valikus on erineva suuruse ja konstruktsiooniga pressid nii algajale kui kogenud kunstnikule. Sobiva mudeli valikul tasub jälgida töölaua suurust, materjali vastupidavust ja kasutusmugavust oma stuudios."
+            product_count: 0
+          - slug: v4-hobi-ehtekunst-sormuste-suuruse-muutmise-tooriistad
+            name_en: "Ring Sizing Tools"
+            name_et: "Sõrmuste suuruse muutmise tööriistad"
+            tagline_en: "Precise ring fitting for every need"
+            tagline_et: "Täpne sõrmuste sobitamine iga vajaduse jaoks"
+            description_en: "This category features tools for resizing and shaping rings – stretchers, mandrels and related accessories for both home use and professional jewelers. They help enlarge or adjust rings for a better, more comfortable fit. Choose a tool based on material and intended use for precise, clean results."
+            description_et: "Siit leiad tööriistad sõrmuste suuruse muutmiseks ja vormimiseks – venitajad, mandrelid ja abivahendid nii kodukasutajale kui ehtemeistrile. Sobivad sõrmuste laiendamiseks või kuju korrigeerimiseks, aidates ehteid mugavalt ja täpselt kohandada. Vali tööriist vastavalt materjalile ja kasutuseesmärgile, et töö tuleks puhas ja täpne."
             product_count: 0
       - slug: v4-hobi-keraamika-ja-pottsepatoo
         name_en: "Pottery & Ceramics"
@@ -14617,14 +14626,6 @@ l1:
             description_en: "Here you'll find playpens and enclosures for pets, suitable for both indoor and outdoor use for dogs, cats and other small animals, providing them a safe space to move and play. The selection includes various materials and designs, with foldable and easily portable options. Choose the right size and material based on your pet's needs and intended use - at home, in the yard or while traveling."
             description_et: "Siit leiad mänguplatsid ja aedikud lemmikloomadele nii kodu kui ka õue tarbeks – sobivad koertele, kassidele ja teistele väikeloomadele turvaliseks liikumiseks ja mängimiseks. Valikus on erinevast materjalist ja kujundusega lahendused, kokkupandavad ja kergesti teisaldatavad mudelid. Vali sobiv suurus ja materjal vastavalt lemmiku suurusele ning kasutuskohale – kodus, aias või reisil."
             product_count: 0
-          - slug: v4-lemmikloomatarbed-puurid-ja-aedikud-linnupuurid
-            name_en: "Bird Cages"
-            name_et: "Linnupuurid"
-            tagline_en: "A safe home for your feathered friend"
-            tagline_et: "Turvaline kodu su lennulinnule"
-            description_en: "Bird cages are suitable for both small pet birds and larger parrots, offering a safe and comfortable living environment. The selection includes cages of various sizes, shapes, and materials, suitable for both home use and travel. Choose a cage based on the bird's species, size, and your home interior, while also considering the cage's durability and safety."
-            description_et: "Linnupuurid sobivad nii väikestele lemmiklindudele kui ka suurematele papagoidele, pakkudes turvalist ja mugavat elukeskkonda. Valikus on erineva suuruse, kuju ja materjaliga puure, mis sobivad nii koju kui ka reisimiseks. Vali puur vastavalt linnu liigile, suurusele ja kodu interjöörile, jälgides ka puuri tugevust ja turvalisust."
-            product_count: 0
           - slug: v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud
             name_en: "Cat Cages & Enclosures"
             name_et: "Kassipuurid ja aedikud"
@@ -14632,6 +14633,14 @@ l1:
             tagline_et: "Turvaline ja mugav elamisruum sinu kassile"
             description_en: "This category features multi-tier cat cages and enclosures for indoor and outdoor use, suitable for one or several cats. Products vary in size, number of tiers, and extras such as hammocks, ramps, and resting platforms. Choose the right size and material based on where it will be used and how many cats you have."
             description_et: "Siit leiad mitmekorruselised kassipuurid ja aedikud nii sise- kui välitingimustesse, sobivad ühele või mitmele kassile. Tooted erinevad suuruse, korruste arvu ja lisavarustuse (riputusvõrgud, treppid, puhkeplatvormid) poolest. Vali sobiv suurus ja materjal vastavalt kasutuskohale ja kasside arvule."
+            product_count: 0
+          - slug: v4-lemmikloomatarbed-puurid-ja-aedikud-linnupuurid
+            name_en: "Bird Cages"
+            name_et: "Linnupuurid"
+            tagline_en: "A safe home for your feathered friend"
+            tagline_et: "Turvaline kodu su lennulinnule"
+            description_en: "Bird cages are suitable for both small pet birds and larger parrots, offering a safe and comfortable living environment. The selection includes cages of various sizes, shapes, and materials, suitable for both home use and travel. Choose a cage based on the bird's species, size, and your home interior, while also considering the cage's durability and safety."
+            description_et: "Linnupuurid sobivad nii väikestele lemmiklindudele kui ka suurematele papagoidele, pakkudes turvalist ja mugavat elukeskkonda. Valikus on erineva suuruse, kuju ja materjaliga puure, mis sobivad nii koju kui ka reisimiseks. Vali puur vastavalt linnu liigile, suurusele ja kodu interjöörile, jälgides ka puuri tugevust ja turvalisust."
             product_count: 0
           - slug: v4-lemmikloomatarbed-puurid-ja-aedikud-narilistepuurid
             name_en: "Small Animal Cages"

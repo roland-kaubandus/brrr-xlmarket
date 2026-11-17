@@ -233,3 +233,7 @@ keyboards-electronic-instruments: digital-pianos
 stage-dance-performance: area-lights
 game-room-entertainment: game-room
 instrument-storage-cases: tool-chests
+# Soojendid VARIANT B (2026-11-17): renamed L3 → säilita vana cat-thumb pilt (handle muutus)
+v4-garaaziseadmed-diisli-petrooleumi-soojapuhurid: v4-kaasaskantavad-ruumisoojendid
+v4-garaaziseadmed-autonoomsed-diiselsoojendid: v4-autovaruosad-ja-tarvikud-kute-soiduki-ohusoojendid
+v4-garaaziseadmed-diiselsoojendite-varuosad: v4-autovaruosad-ja-tarvikud-kute-diiselsoojendi-osad
