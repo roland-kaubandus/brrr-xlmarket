@@ -215,14 +215,6 @@ l1:
             description_en: "Here you'll find versatile tool sets for home use, repairs, and automotive maintenance. These kits typically include a variety of hand tools along with a convenient storage case to keep everything organized and accessible. Choose a set based on your needs and the types of tools most useful for your projects."
             description_et: "Siin leiad mitmekülgsed tööriistakomplektid koduseks kasutuseks, remonditöödeks ja autohoolduseks. Komplektid sisaldavad tavaliselt erinevaid käsitööriistu koos mugava hoiukarbiga, mis hoiab kõik vahendid korras ja käepärast. Vali komplekt vastavalt kasutusvajadusele ja sellele, milliseid tööriistu oma projektide jaoks kõige rohkem vajad."
             product_count: 0
-          - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-kiviplaatide-paigaldustooriistad
-            name_en: "Stone Slab Installation Tools"
-            name_et: "Kiviplaatide paigaldustööriistad"
-            tagline_en: "Smooth seams, precise installation"
-            tagline_et: "Siledad vuugid, täpne paigaldus"
-            description_en: "Here you'll find tools for installing stone, marble and granite slabs and aligning their seams. Suitable for professional installers and DIY enthusiasts aiming for smooth, precise joints. Choose a gripping mechanism and build quality that matches your slab type and size."
-            description_et: "Siit leiad tööriistad kiviplaatide, marmori ja graniitplaatide paigaldamiseks ning vuukide ühtlustamiseks. Sobivad professionaalsetele paigaldajatele ja kodumeistritele, kes soovivad siledaid ja täpseid liitekohti. Vali tööle sobiv haaramismehhanism ja materjal, arvestades plaadi tüüpi ja suurust."
-            product_count: 0
           - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-roolisusteemi-tooriistad
             name_en: "Steering System Tools"
             name_et: "Roolisüsteemi tööriistad"
@@ -230,6 +222,14 @@ l1:
             tagline_et: "Tugevad tööriistad roolisüsteemi hoolduseks"
             description_en: "Here you'll find specialized tools for servicing and repairing steering systems and tie rods, suitable for both professional mechanics and home garage use. The selection includes various removal and installation tools along with adapters that make loosening stuck or hard-to-reach parts easier. Choose the right set based on your vehicle type and the required tool size or fitting."
             description_et: "Siit leiad spetsiaalsed tööriistad roolisüsteemi ja rooliotste hooldamiseks ning parandamiseks, mis sobivad nii automeistrile kui ka kodusele garaažimeistrile. Valikus on erinevad eemaldus- ja paigaldustööriistad ning adapterid, mis hõlbustavad kinnikiilunud või raskesti ligipääsetavate detailide lahtivõtmist. Vali sobiv komplekt lähtuvalt sõiduki tüübist ja vajalikust tööriista otsast või suurusest."
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-kasitooriistad-kiviplaatide-paigaldustooriistad
+            name_en: "Stone Slab Installation Tools"
+            name_et: "Kiviplaatide paigaldustööriistad"
+            tagline_en: "Smooth seams, precise installation"
+            tagline_et: "Siledad vuugid, täpne paigaldus"
+            description_en: "Here you'll find tools for installing stone, marble and granite slabs and aligning their seams. Suitable for professional installers and DIY enthusiasts aiming for smooth, precise joints. Choose a gripping mechanism and build quality that matches your slab type and size."
+            description_et: "Siit leiad tööriistad kiviplaatide, marmori ja graniitplaatide paigaldamiseks ning vuukide ühtlustamiseks. Sobivad professionaalsetele paigaldajatele ja kodumeistritele, kes soovivad siledaid ja täpseid liitekohti. Vali tööle sobiv haaramismehhanism ja materjal, arvestades plaadi tüüpi ja suurust."
             product_count: 0
       - slug: v4-tooriistad-ja-tarvikud-elektrilised-tooriistad
         name_en: "Power Tools"
@@ -1675,14 +1675,6 @@ l1:
             description_en: "Wire ropes are suited for lifting tasks, building railings, fences, and outdoor fastening solutions, as well as many other industrial and home uses. The selection includes ropes of varying thickness, material, and strand construction, suitable for both indoor and outdoor conditions. Choose a rope based on intended use, load requirements, and exposure to environmental factors like moisture or weather."
             description_et: "Terastrossid sobivad tõstetöödeks, piirete, käsipuude ja välialade kinnituslahenduste ehitamiseks ning paljudeks muudeks tööstuslikeks ja koduseks kasutuseks. Valikus on erineva paksuse, materjali ja punutisega trossid, mis sobivad nii sise- kui välitingimustesse. Vali sobiv tross vastavalt kasutuskohale, koormusele ja keskkonnamõjudele, nagu niiskus või ilmastik."
             product_count: 0
-          - slug: v4-tooriistad-ja-tarvikud-tostmine-ja-kinnitamine-vintsid
-            name_en: "Winches"
-            name_et: "Vintsid"
-            tagline_en: "Power and control for every lifting job"
-            tagline_et: "Jõud ja kontroll iga tõstetöö jaoks"
-            description_en: "Winches are manual or electric pulling and lifting devices designed to move, hoist, or tow heavy loads both indoors and outdoors. Ideal for garages, warehouses, workshops, or roadside use where a dependable pulling tool is needed. When choosing, consider the operating method, control type, and suitability for your specific task."
-            description_et: "Vintsid on käsitsi või elektriliselt juhitavad tõmbe- ja tõsteseadmed, mis aitavad liigutada, tõsta või vedada raskeid koormaid nii siseruumides kui ka väljas. Sobivad garaaži, lattu, tootmisesse või teele, kus on vaja usaldusväärset jõuseadet. Valikul tasub jälgida kasutusviisi, juhtimisviisi ja sobivust konkreetsele tööülesandele."
-            product_count: 0
           - slug: v4-tooriistad-ja-tarvikud-tostmine-kaartostelauad
             name_en: "Scissor Lift Tables"
             name_et: "Käärtõstelauad ja -tõstukid"
@@ -2572,14 +2564,6 @@ l1:
             description_en: "This category features boring heads and bore-adjustment tools for precision drilling on milling and drill press machines. Suitable for metalworkers and workshops that need accurately sized holes. Choose a tool based on your machine's shank type and the material you work with."
             description_et: "Siin leiad puurpead ja siseavatööriistad täppispuurimiseks freespinkidel ja puurpinkidel. Sobivad metallitöötlejatele ja töökodadele, kus on vaja avasid täpselt läbimõõdu järgi seadistada. Vali tööriist vastavalt masina kinnitustüübile ja materjalile, millega töötad."
             product_count: 0
-          - slug: v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-poordtooriista-tarvikud
-            name_en: "Rotary Tool Accessories"
-            name_et: "Pöördtööriista tarvikud"
-            tagline_en: "Versatile accessories for every rotary tool"
-            tagline_et: "Mitmekülgsed tarvikud iga pöördtööriista jaoks"
-            description_en: "Here you'll find a range of rotary tool accessories for sanding, cutting, drilling, engraving and cleaning. Suitable for both home use and craft or hobby projects involving various materials. When choosing, check the accessory type and compatibility with your rotary tool."
-            description_et: "Siit leiad pöördtööriistade tarvikute valiku lihvimiseks, lõikamiseks, puurimiseks, graveerimiseks ja puhastamiseks. Sobivad nii kodumeistrile kui ka käsitöö- ja hobitöödeks erinevatest materjalidest detailidega töötamisel. Valides jälgi tarviku tüüpi ja sobivust oma pöördtööriistaga."
-            product_count: 0
           - slug: v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-puurile-kinnitatavad-loikurid
             name_en: "Drill-Mounted Cutters"
             name_et: "Puurile kinnitatavad lõikurid"
@@ -2587,6 +2571,14 @@ l1:
             tagline_et: "Tee oma trellist täpne lõikur"
             description_en: "Drill-mounted cutters turn an ordinary power drill into a handy cutting tool for sheet metal, plasterboard and similar flat materials. They suit both DIY users and professionals who need fast, accurate finishing cuts without a separate power tool. When choosing, check that the attachment fits your drill and that the blade material and type match the material you plan to cut."
             description_et: "Puurile kinnitatavad lõikurid muudavad tavalise trelli käepärast lõiketööriistaks plekk-, kipsplaat- ja muude plaatmaterjalide lõikamiseks. Sobivad nii kodumeistrile kui ka ehitajale, kes vajab kiiret ja täpset viimistluslõiget ilma eraldi elektritööriistata. Valides tasub jälgida kinnituse sobivust oma puuriga ning lõikuri materjali ja tera tüüpi vastavalt töödeldavale materjalile."
+            product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-tooriistade-tarvikud-ja-kulumaterjalid-poordtooriista-tarvikud
+            name_en: "Rotary Tool Accessories"
+            name_et: "Pöördtööriista tarvikud"
+            tagline_en: "Versatile accessories for every rotary tool"
+            tagline_et: "Mitmekülgsed tarvikud iga pöördtööriista jaoks"
+            description_en: "Here you'll find a range of rotary tool accessories for sanding, cutting, drilling, engraving and cleaning. Suitable for both home use and craft or hobby projects involving various materials. When choosing, check the accessory type and compatibility with your rotary tool."
+            description_et: "Siit leiad pöördtööriistade tarvikute valiku lihvimiseks, lõikamiseks, puurimiseks, graveerimiseks ja puhastamiseks. Sobivad nii kodumeistrile kui ka käsitöö- ja hobitöödeks erinevatest materjalidest detailidega töötamisel. Valides jälgi tarviku tüüpi ja sobivust oma pöördtööriistaga."
             product_count: 0
       - slug: v4-tooriistad-ja-tarvikud-turva-ja-objektivarustus
         name_en: "Workplace Safety & Emergency Equipment"
@@ -5066,14 +5058,6 @@ l1:
             description_en: "Bathroom stools and benches are designed for sitting while showering or getting dressed, offering comfort for children, adults and elderly users alike. The range includes various materials and designs, so check that the style and size match your bathroom space and needs. A practical addition to daily hygiene routines, adding both comfort and stability."
             description_et: "Vannitoa istmed ja pingid sobivad dušši alla istumiseks või riietumise hõlbustamiseks, pakkudes mugavust nii lastele, täiskasvanutele kui eakatele. Valikus on erinevatest materjalidest ja disainiga mudelid – vaata, et stiil ja mõõdud sobiksid sinu vannitoa ruumi ja vajadusega. Hea abivahend igapäevasesse hügieenirutiini, lisades turvatunnet ja mugavust."
             product_count: 0
-          - slug: v4-moobel-ja-sisustus-toolid-ja-istmed-polvitustoolid
-            name_en: "Kneeling Chairs"
-            name_et: "Põlvitustoolid"
-            tagline_en: "Better posture, comfortable sitting"
-            tagline_et: "Parem rüht, mugavam istumine"
-            description_en: "Kneeling chairs are ergonomic seats that support the back and improve posture by distributing body weight between the seat and knees. They suit home offices, desks or meditation for anyone who spends long hours sitting. When choosing one, consider suitable height, material and extra features like a backrest or wheels."
-            description_et: "Põlvitustoolid on ergonoomilised istmed, mis toetavad selga ja parandavat rühti, jaotades keharaskuse istmiku ja põlvede vahel. Sobivad kodukontorisse, töölauale või meditatsiooniks neile, kes veedavad palju aega istudes. Valikul tasub jälgida sobivat kõrgust, materjali ja lisavõimalusi nagu seljatugi või rattad."
-            product_count: 0
           - slug: v4-moobel-ja-sisustus-toolid-ja-istmed-aktiivse-istumise-istmed
             name_en: "Wobble Chairs"
             name_et: "Aktiivse istumise istmed"
@@ -5081,6 +5065,14 @@ l1:
             tagline_et: "Liikumine istudes – parem rüht ja fookus"
             description_en: "Active sitting chairs, also known as wobble stools, are designed for those who want to keep moving while seated and improve their posture. Suitable for schools, offices and homes – for students, remote workers and anyone who spends long hours sitting. When choosing, pay attention to seat height, material and how flexible or wobbly the chair feels for the intended user."
             description_et: "Aktiivse istumise istmed ehk kiiktoolid-taburetid on mõeldud neile, kes soovivad istumise ajal keha pidevalt liikuma panna ja rühti parandada. Sobivad nii kooli, kontorisse kui koju – õpilastele, kaugtöötajatele ja kõigile, kes istuvad palju. Valides tasub jälgida istme kõrgust, materjali ja seda, kui paindlik või kõikuv iste konkreetse kasutaja jaoks sobib."
+            product_count: 0
+          - slug: v4-moobel-ja-sisustus-toolid-ja-istmed-polvitustoolid
+            name_en: "Kneeling Chairs"
+            name_et: "Põlvitustoolid"
+            tagline_en: "Better posture, comfortable sitting"
+            tagline_et: "Parem rüht, mugavam istumine"
+            description_en: "Kneeling chairs are ergonomic seats that support the back and improve posture by distributing body weight between the seat and knees. They suit home offices, desks or meditation for anyone who spends long hours sitting. When choosing one, consider suitable height, material and extra features like a backrest or wheels."
+            description_et: "Põlvitustoolid on ergonoomilised istmed, mis toetavad selga ja parandavat rühti, jaotades keharaskuse istmiku ja põlvede vahel. Sobivad kodukontorisse, töölauale või meditatsiooniks neile, kes veedavad palju aega istudes. Valikul tasub jälgida sobivat kõrgust, materjali ja lisavõimalusi nagu seljatugi või rattad."
             product_count: 0
       - slug: v4-moobel-ja-sisustus-lauad
         name_en: "Tables"
@@ -5244,13 +5236,13 @@ l1:
             description_en: "Headboards add a stylish finishing touch and extra comfort to any bedroom, fitting various types of bed frames. The range includes height-adjustable, padded, and storage-equipped models suitable for home bedrooms, guest rooms, or rental spaces. Before buying, consider the right size, material, and mounting method."
             description_et: "Voodipeatsid aitavad magamistoale lisada stiilset viimistlust ja mugavust, sobides erinevat tüüpi voodiraamidele. Valikus on erinevas kõrguses reguleeritavaid, pehmendatud ja hoiuvõimalusega mudeleid nii kodusele magamistoale kui ka külaliste- või külalistubadele. Enne ostu tasub jälgida sobivat suurust, materjali ja kinnitusviisi."
             product_count: 0
-          - slug: v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-raskustekid
-            name_en: "Weighted Blankets"
-            name_et: "Raskustekid"
-            tagline_en: "Soothing weight for better sleep"
-            tagline_et: "Rahustav raskus parema une jaoks"
-            description_en: "Weighted blankets are filled blankets that provide gentle, even pressure to help you relax and sleep better. Designed for adults looking for relief from stress and restless nights, they come in various sizes, fabrics, and covers. When choosing, pay attention to blanket size, fabric type, and suitability for your body weight."
-            description_et: "Raskustekid on täidisega tekid, mis loovad ühtlase ja rahustava surve, aidates lõõgastuda ning und parandada. Sobivad täiskasvanutele, kes otsivad abi pingete ja rahutu une vastu, valikus erinevad suurused, materjalid ja katted. Valides tasub jälgida teki suurust, kattematerjali ja sobivust oma kehakaalule."
+          - slug: v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kokkupandavad-kulalisvoodid
+            name_en: "Folding Guest Beds"
+            name_et: "Kokkupandavad külalisvoodid"
+            tagline_en: "Comfortable extra bed, folds away with ease"
+            tagline_et: "Mugav lisavoodi külalistele, lihtsalt kokkupandav"
+            description_en: "Folding guest beds are a practical solution for extra sleeping space when room is limited or guests arrive unexpectedly. Models with a sturdy frame and comfortable mattress suit both adults and children, and fold away easily for storage. When choosing, consider the bed's size, build quality, and how compactly it stores away."
+            description_et: "Kokkupandavad külalisvoodid on praktiline lahendus lisamagamiskohale, kui ruumi on vähe või külalisi tuleb ootamatult. Tugeva raami ja mugava madratsiga mudelid sobivad nii täiskasvanutele kui lastele ning on kergesti kokkupandavad ja hoiustatavad. Valikul tasub jälgida voodi suurust, materjali kvaliteeti ning kui lihtsalt see kokku pannes ruumi mahub."
             product_count: 0
           - slug: v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kattemadratsid
             name_en: "Mattress Toppers"
@@ -5260,13 +5252,13 @@ l1:
             description_en: "Mattress toppers make an existing bed more comfortable and help extend the mattress's lifespan. Ideal for anyone wanting a softer or more supportive sleeping surface without buying a new mattress. Choose the right size and material to match your bed and sleep preferences."
             description_et: "Kattemadratsid ehk madratsikaitsed muudavad olemasoleva voodi mugavamaks ja pikendavad madratsi eluiga. Sobivad neile, kes soovivad pehmemat või toetavamat magamispinda ilma uut madratsit ostmata. Vali sobiv suurus ja materjal vastavalt oma voodile ja unieelistustele."
             product_count: 0
-          - slug: v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kokkupandavad-kulalisvoodid
-            name_en: "Folding Guest Beds"
-            name_et: "Kokkupandavad külalisvoodid"
-            tagline_en: "Comfortable extra bed, folds away with ease"
-            tagline_et: "Mugav lisavoodi külalistele, lihtsalt kokkupandav"
-            description_en: "Folding guest beds are a practical solution for extra sleeping space when room is limited or guests arrive unexpectedly. Models with a sturdy frame and comfortable mattress suit both adults and children, and fold away easily for storage. When choosing, consider the bed's size, build quality, and how compactly it stores away."
-            description_et: "Kokkupandavad külalisvoodid on praktiline lahendus lisamagamiskohale, kui ruumi on vähe või külalisi tuleb ootamatult. Tugeva raami ja mugava madratsiga mudelid sobivad nii täiskasvanutele kui lastele ning on kergesti kokkupandavad ja hoiustatavad. Valikul tasub jälgida voodi suurust, materjali kvaliteeti ning kui lihtsalt see kokku pannes ruumi mahub."
+          - slug: v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-raskustekid
+            name_en: "Weighted Blankets"
+            name_et: "Raskustekid"
+            tagline_en: "Soothing weight for better sleep"
+            tagline_et: "Rahustav raskus parema une jaoks"
+            description_en: "Weighted blankets are filled blankets that provide gentle, even pressure to help you relax and sleep better. Designed for adults looking for relief from stress and restless nights, they come in various sizes, fabrics, and covers. When choosing, pay attention to blanket size, fabric type, and suitability for your body weight."
+            description_et: "Raskustekid on täidisega tekid, mis loovad ühtlase ja rahustava surve, aidates lõõgastuda ning und parandada. Sobivad täiskasvanutele, kes otsivad abi pingete ja rahutu une vastu, valikus erinevad suurused, materjalid ja katted. Valides tasub jälgida teki suurust, kattematerjali ja sobivust oma kehakaalule."
             product_count: 0
       - slug: v4-moobel-ja-sisustus-esikumoobel-ja-jalatsikapid
         name_en: "Hallway Furniture & Shoe Cabinets"
@@ -8071,14 +8063,6 @@ l1:
             description_en: "Racing seats for driving enthusiasts who want strong side support and durable build quality in their car or kart interior. Suitable for tuning everyday vehicles as well as upgrading sports cars and go-karts. When choosing, pay attention to compatibility with mounting points, material type and overall comfort."
             description_et: "Võidusõiduistmed sportliku sõidustiili austajatele, kes soovivad autosse või kardile paigaldada tugevat külgtuge pakkuva ja vastupidavast materjalist istme. Sobivad nii tavapäraste sõiduautode tuunimiseks kui ka spordiautode ja kardide salongi uuendamiseks. Valikul tasub jälgida istme sobivust sõiduki kinnituspunktidega, materjali tüüpi ja üldist mugavust."
             product_count: 0
-          - slug: v4-autovaruosad-ja-tarvikud-salongitarvikud-auto-konsoolid-ja-hoiukastid
-            name_en: "Center Consoles & Storage Boxes"
-            name_et: "Auto konsoolid ja hoiukastid"
-            tagline_en: "Smart storage and order for your car interior"
-            tagline_et: "Mugav kord ja hoiuruum sinu auto salongis"
-            description_en: "This category features car center consoles and storage boxes designed to keep your cabin organized and add extra storage between or behind seats. Suitable for a wide range of vehicles, from sedans to vans and SUVs. When choosing, consider fit for your seat layout and any extra features you may want, such as cup holders or phone mounts."
-            description_et: "Siit leiad auto vahekonsoolid ja hoiukastid, mis aitavad hoida salongi korras ning pakuvad lisahoiuruumi esi- ja tagaistmetele. Sobivad erinevat tüüpi sõidukitele alates sedaanidest kuni kaubikute ja maasturiteni. Valikul tasub jälgida sobivust oma auto istmerea ja salongi paigutusega ning soovitud lisafunktsioone, nagu joogitopside hoidjad või telefoni ase."
-            product_count: 0
           - slug: v4-autovaruosad-ja-tarvikud-salongitarvikud-autoroolid
             name_en: "Steering Wheels"
             name_et: "Autoroolid"
@@ -8086,6 +8070,14 @@ l1:
             tagline_et: "Uuenda oma auto rooli stiili ja mugavust"
             description_en: "Steering wheels for various vehicle models – replacement wheels designed to fit specific car makes and models. Suited for drivers looking to refresh their cabin look or improve grip and comfort. Check compatibility with your car's model and year, and consider material and finish quality."
             description_et: "Autoroolid eri mudelitele – asendusroolid, mis sobivad kindlatele automarkidele ja -mudelitele. Sobivad juhtidele, kes soovivad uuendada salongi väljanägemist või parandada roolis hoidmise mugavust. Vali sobivus oma auto mudeli ja tootmisaasta järgi ning jälgi materjali ja viimistluse kvaliteeti."
+            product_count: 0
+          - slug: v4-autovaruosad-ja-tarvikud-salongitarvikud-auto-konsoolid-ja-hoiukastid
+            name_en: "Center Consoles & Storage Boxes"
+            name_et: "Auto konsoolid ja hoiukastid"
+            tagline_en: "Smart storage and order for your car interior"
+            tagline_et: "Mugav kord ja hoiuruum sinu auto salongis"
+            description_en: "This category features car center consoles and storage boxes designed to keep your cabin organized and add extra storage between or behind seats. Suitable for a wide range of vehicles, from sedans to vans and SUVs. When choosing, consider fit for your seat layout and any extra features you may want, such as cup holders or phone mounts."
+            description_et: "Siit leiad auto vahekonsoolid ja hoiukastid, mis aitavad hoida salongi korras ning pakuvad lisahoiuruumi esi- ja tagaistmetele. Sobivad erinevat tüüpi sõidukitele alates sedaanidest kuni kaubikute ja maasturiteni. Valikul tasub jälgida sobivust oma auto istmerea ja salongi paigutusega ning soovitud lisafunktsioone, nagu joogitopside hoidjad või telefoni ase."
             product_count: 0
       - slug: v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud
         name_en: "Exterior & Tire Accessories"
@@ -8184,14 +8176,6 @@ l1:
             description_en: "This category features snow brushes, ice scrapers and combo tools for clearing windows and vehicle surfaces during winter. Suitable for cars, trucks and SUVs, helping you get on the road quickly on frosty mornings. Choose a handle, material and brush head that suit your vehicle and needs."
             description_et: "Siit leiad lumeharjad, jääkraabitsad ja nende kombinatsioonid auto klaaside ja keretarindite talviseks puhastamiseks. Sobivad nii sõiduautodele kui ka suurematele sõidukitele ning aitavad hommikuti kiiresti lume ja jää eest sõidukorda saada. Vali oma vajadustele ja sõiduki suurusele sobiv käepide, materjal ja hari."
             product_count: 0
-          - slug: v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-kaitserauad
-            name_en: "Bumpers"
-            name_et: "Kaitserauad"
-            tagline_en: "Solid protection, sharp look"
-            tagline_et: "Tugev kaitse ja korralik välimus"
-            description_en: "Bumpers for vehicles provide body protection against bumps and minor collisions while giving the car a proper finished look. They work well as replacement parts or for styling upgrades, fitting various models and model years. When choosing, pay attention to compatibility with your specific vehicle as well as material and finish that suit your needs."
-            description_et: "Kaitserauad sõidukitele pakuvad kere kaitset põrgete ja kergete kokkupõrgete eest ning annavad autole korrektse väljanägemise. Sobivad asendustoodeteks või tuunimiseks, sobivad erinevatele mudelitele ja aastakäikudele. Valides tasub jälgida sobivust konkreetse sõidukimudeliga ning materjali ja viimistluse vastavust oma vajadustele."
-            product_count: 0
           - slug: v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-vertikaalselt-avanevate-uste-komplektid-lambo-stiilis
             name_en: "Vertical Door Conversion Kits (Lambo)"
             name_et: "Vertikaalselt avanevate uste komplektid (Lambo-stiilis)"
@@ -8199,6 +8183,14 @@ l1:
             tagline_et: "Anna autole sportlik, silmatorkav ilme"
             description_en: "Here you'll find kits that let you convert your car's doors to Lambo-style vertical opening. Designed to fit a range of vehicle models, they give your car a sportier, more eye-catching look. When choosing, pay attention to fitment with your specific model and the overall build quality of the kit."
             description_et: "Siin leiad komplektid, mis võimaldavad paigaldada autole vertikaalselt avanevad uksed Lambo-stiilis. Sobivad erinevatele sõidukimudelitele ja annavad autole sportlikuma, silmapaistvama välimuse. Valides tasub jälgida sobivust konkreetse mudeliga ning komplekti kvaliteeti ja paigaldusvalmidust."
+            product_count: 0
+          - slug: v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud-kaitserauad
+            name_en: "Bumpers"
+            name_et: "Kaitserauad"
+            tagline_en: "Solid protection, sharp look"
+            tagline_et: "Tugev kaitse ja korralik välimus"
+            description_en: "Bumpers for vehicles provide body protection against bumps and minor collisions while giving the car a proper finished look. They work well as replacement parts or for styling upgrades, fitting various models and model years. When choosing, pay attention to compatibility with your specific vehicle as well as material and finish that suit your needs."
+            description_et: "Kaitserauad sõidukitele pakuvad kere kaitset põrgete ja kergete kokkupõrgete eest ning annavad autole korrektse väljanägemise. Sobivad asendustoodeteks või tuunimiseks, sobivad erinevatele mudelitele ja aastakäikudele. Valides tasub jälgida sobivust konkreetse sõidukimudeliga ning materjali ja viimistluse vastavust oma vajadustele."
             product_count: 0
       - slug: v4-autovaruosad-ja-tarvikud-veoauto-tarvikud
         name_en: "Truck Accessories"
@@ -8849,14 +8841,6 @@ l1:
             tagline_et: "Korrastatud jõusaal algab õigest hoidikust"
             description_en: "Weight plate racks and stands help keep your gym space organized by providing a convenient spot to store weight plates and bars. Suitable for both home gyms and training facilities where space needs to be used efficiently. When choosing one, consider the rack's shape, build quality, and compatibility with your plate sizes."
             description_et: "Kettaste hoidikud ja -restid aitavad hoida trenniruumi korras, pakkudes mugavat kohta kangi- ja ketaste hoiustamiseks. Sobivad nii kodusesse jõusaali kui ka treeningklubisse, kus ruumi tuleb kasutada otstarbekalt. Valides tasub jälgida hoidiku kuju, materjali tugevust ja sobivust kasutatavate ketaste suurusega."
-            product_count: 0
-          - slug: v4-jalgratta-trenazoorialused
-            name_en: "Bike Trainer Stands"
-            name_et: "Jalgratta trenažöörialused"
-            tagline_en: "Train with your bike indoors"
-            tagline_et: "Treeni oma rattaga ka kodus"
-            description_en: "Bike trainer stands let you turn your regular bicycle into an indoor training setup, perfect for staying active at home or in the garage regardless of the weather. Suitable for both mountain and road cyclists who want to maintain fitness year-round. When choosing, pay attention to frame compatibility with your bike type and wheel size, as well as how easily the stand folds for storage."
-            description_et: "Jalgratta trenažöörialused aitavad su tavalise jalgratta muuta sisetrenažööriks, et treenida mugavalt kodus või garaažis igal aastaajal. Sobivad nii maastiku- kui ka maanteeratturitele, kes soovivad hoida vormi ka halva ilmaga. Valides tasub jälgida raami sobivust oma ratta tüübi ja rattasuurusega ning kokkupandavuse mugavust hoiustamisel."
             product_count: 0
           - slug: v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-voimlemise-tasakaalupoomid-ja-talad
             name_en: "Ballet Barres"
@@ -11266,14 +11250,6 @@ l1:
             description_en: "Generator covers protect your generator from weather, dust and dirt both during use and storage. They suit various types and sizes of generators for home, worksite or outdoor use. When choosing, pay attention to the cover's size and material durability to ensure a good fit for your device."
             description_et: "Generaatori katted kaitsevad generaatorit ilmastiku, tolmu ja mustuse eest nii kasutamise ajal kui ka seisuperioodil. Sobivad erinevat tüüpi ja suurusega generaatoritele kodus, töömaal või matkal. Valides pööra tähelepanu katte suurusele ja materjali vastupidavusele, et see istuks sinu seadmele hästi."
             product_count: 0
-          - slug: v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-energiasalvestusakud
-            name_en: "Energy Storage Batteries"
-            name_et: "Energiasalvestusakud"
-            tagline_en: "Reliable power for every situation"
-            tagline_et: "Usaldusväärne energia igaks olukorraks"
-            description_en: "Energy storage batteries are designed for home use, camping, RVs, and solar power systems, providing backup power for outages and off-grid needs. The range includes various battery types, sizes, and expansion modules compatible with different devices and output options. Choose the battery type, connection options, and usage environment that best fit your needs."
-            description_et: "Energiasalvestusakud sobivad kodumajapidamisele, matkamiseks, autoelamutele ja päikeseenergia süsteemidele, pakkudes varustust elektrikatkestuste ja väljaspool võrku kasutamise jaoks. Valikus on erinevat tüüpi ja suurusega akud ning laiendusmoodulid, mis ühilduvad erinevate seadmete ja väljunditega. Vali oma vajadustele sobiv akutüüp, ühenduste arv ja kasutuskeskkond."
-            product_count: 0
           - slug: v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-paikesepaneelide-hoiu-ja-kandekotid
             name_en: "Solar Panel Storage & Carrying Bags"
             name_et: "Päikesepaneelide hoiu- ja kandekotid"
@@ -11281,6 +11257,14 @@ l1:
             tagline_et: "Hoia oma päikesepaneelid turvaliselt kaitstuna"
             description_en: "Bags and covers designed for storing and transporting foldable solar panels. Ideal for camping, road trips and everyday protection against dust, dirt and scratches. Choose a bag based on panel size and material durability."
             description_et: "Kotid ja katted kokkupandavate päikesepaneelide hoidmiseks ja transportimiseks. Sobivad matkamiseks, autoga reisimiseks ja paneelide igapäevaseks kaitsmiseks tolmu, mustuse ja kriimustuste eest. Vali kott vastavalt paneeli suurusele ja materjali vastupidavusele."
+            product_count: 0
+          - slug: v4-elektritarvikud-ja-valgustus-taastuvenergia-ja-generaatorid-energiasalvestusakud
+            name_en: "Energy Storage Batteries"
+            name_et: "Energiasalvestusakud"
+            tagline_en: "Reliable power for every situation"
+            tagline_et: "Usaldusväärne energia igaks olukorraks"
+            description_en: "Energy storage batteries are designed for home use, camping, RVs, and solar power systems, providing backup power for outages and off-grid needs. The range includes various battery types, sizes, and expansion modules compatible with different devices and output options. Choose the battery type, connection options, and usage environment that best fit your needs."
+            description_et: "Energiasalvestusakud sobivad kodumajapidamisele, matkamiseks, autoelamutele ja päikeseenergia süsteemidele, pakkudes varustust elektrikatkestuste ja väljaspool võrku kasutamise jaoks. Valikus on erinevat tüüpi ja suurusega akud ning laiendusmoodulid, mis ühilduvad erinevate seadmete ja väljunditega. Vali oma vajadustele sobiv akutüüp, ühenduste arv ja kasutuskeskkond."
             product_count: 0
       - slug: v4-elektritarvikud-ja-valgustus-mootorid-ja-osad
         name_en: "Motors & Parts"
@@ -13978,14 +13962,6 @@ l1:
             description_en: "Melting crucibles are tools used for melting metals such as gold, silver, copper and aluminum in jewelry making and small-scale casting. They suit both hobbyists and professional jewelers who need a durable container for high-temperature work. When choosing, pay attention to the crucible's material, shape and compatibility with your furnace or torch."
             description_et: "Sulatustiiglid on tööriistad metallide (nt kulla, hõbeda, vase, alumiiniumi) sulatamiseks ehte- ja metallitöös ning väikesemahulises valutöös. Sobivad nii hobitöökodadele kui professionaalsetele juveliiridele, kes vajavad vastupidavat anumat kõrgel temperatuuril töötamiseks. Valikul tasub jälgida tiigli materjali, kuju ja sobivust kasutatava ahju või põletiga."
             product_count: 0
-          - slug: v4-hobi-ehtekunst-graafikapressid
-            name_en: "Printmaking Presses"
-            name_et: "Graafikapressid"
-            tagline_en: "Precise pressure for every print"
-            tagline_et: "Täpne surve, selge jälg igale trükile"
-            description_en: "Printmaking presses are designed for etching, linocut and other print techniques, suited for hobbyists and studios needing consistent, repeatable pressure for quality prints. The range includes presses of different sizes and build types, from beginner-friendly to professional models. When choosing a press, consider the working surface size, build durability and ease of use in your workspace."
-            description_et: "Graafikapressid on mõeldud süvatrüki, linolõike ja muude trükitehnikate harrastajatele ning ateljeedele, kes vajavad ühtlast ja korduvat survet kvaliteetse jälje saamiseks. Valikus on erineva suuruse ja konstruktsiooniga pressid nii algajale kui kogenud kunstnikule. Sobiva mudeli valikul tasub jälgida töölaua suurust, materjali vastupidavust ja kasutusmugavust oma stuudios."
-            product_count: 0
           - slug: v4-hobi-ehtekunst-sormuste-suuruse-muutmise-tooriistad
             name_en: "Ring Sizing Tools"
             name_et: "Sõrmuste suuruse muutmise tööriistad"
@@ -13993,6 +13969,14 @@ l1:
             tagline_et: "Täpne sõrmuste sobitamine iga vajaduse jaoks"
             description_en: "This category features tools for resizing and shaping rings – stretchers, mandrels and related accessories for both home use and professional jewelers. They help enlarge or adjust rings for a better, more comfortable fit. Choose a tool based on material and intended use for precise, clean results."
             description_et: "Siit leiad tööriistad sõrmuste suuruse muutmiseks ja vormimiseks – venitajad, mandrelid ja abivahendid nii kodukasutajale kui ehtemeistrile. Sobivad sõrmuste laiendamiseks või kuju korrigeerimiseks, aidates ehteid mugavalt ja täpselt kohandada. Vali tööriist vastavalt materjalile ja kasutuseesmärgile, et töö tuleks puhas ja täpne."
+            product_count: 0
+          - slug: v4-hobi-ehtekunst-graafikapressid
+            name_en: "Printmaking Presses"
+            name_et: "Graafikapressid"
+            tagline_en: "Precise pressure for every print"
+            tagline_et: "Täpne surve, selge jälg igale trükile"
+            description_en: "Printmaking presses are designed for etching, linocut and other print techniques, suited for hobbyists and studios needing consistent, repeatable pressure for quality prints. The range includes presses of different sizes and build types, from beginner-friendly to professional models. When choosing a press, consider the working surface size, build durability and ease of use in your workspace."
+            description_et: "Graafikapressid on mõeldud süvatrüki, linolõike ja muude trükitehnikate harrastajatele ning ateljeedele, kes vajavad ühtlast ja korduvat survet kvaliteetse jälje saamiseks. Valikus on erineva suuruse ja konstruktsiooniga pressid nii algajale kui kogenud kunstnikule. Sobiva mudeli valikul tasub jälgida töölaua suurust, materjali vastupidavust ja kasutusmugavust oma stuudios."
             product_count: 0
       - slug: v4-hobi-keraamika-ja-pottsepatoo
         name_en: "Pottery & Ceramics"
@@ -14626,14 +14610,6 @@ l1:
             description_en: "Here you'll find playpens and enclosures for pets, suitable for both indoor and outdoor use for dogs, cats and other small animals, providing them a safe space to move and play. The selection includes various materials and designs, with foldable and easily portable options. Choose the right size and material based on your pet's needs and intended use - at home, in the yard or while traveling."
             description_et: "Siit leiad mänguplatsid ja aedikud lemmikloomadele nii kodu kui ka õue tarbeks – sobivad koertele, kassidele ja teistele väikeloomadele turvaliseks liikumiseks ja mängimiseks. Valikus on erinevast materjalist ja kujundusega lahendused, kokkupandavad ja kergesti teisaldatavad mudelid. Vali sobiv suurus ja materjal vastavalt lemmiku suurusele ning kasutuskohale – kodus, aias või reisil."
             product_count: 0
-          - slug: v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud
-            name_en: "Cat Cages & Enclosures"
-            name_et: "Kassipuurid ja aedikud"
-            tagline_en: "Safe and comfy living space for your cat"
-            tagline_et: "Turvaline ja mugav elamisruum sinu kassile"
-            description_en: "This category features multi-tier cat cages and enclosures for indoor and outdoor use, suitable for one or several cats. Products vary in size, number of tiers, and extras such as hammocks, ramps, and resting platforms. Choose the right size and material based on where it will be used and how many cats you have."
-            description_et: "Siit leiad mitmekorruselised kassipuurid ja aedikud nii sise- kui välitingimustesse, sobivad ühele või mitmele kassile. Tooted erinevad suuruse, korruste arvu ja lisavarustuse (riputusvõrgud, treppid, puhkeplatvormid) poolest. Vali sobiv suurus ja materjal vastavalt kasutuskohale ja kasside arvule."
-            product_count: 0
           - slug: v4-lemmikloomatarbed-puurid-ja-aedikud-linnupuurid
             name_en: "Bird Cages"
             name_et: "Linnupuurid"
@@ -14641,6 +14617,14 @@ l1:
             tagline_et: "Turvaline kodu su lennulinnule"
             description_en: "Bird cages are suitable for both small pet birds and larger parrots, offering a safe and comfortable living environment. The selection includes cages of various sizes, shapes, and materials, suitable for both home use and travel. Choose a cage based on the bird's species, size, and your home interior, while also considering the cage's durability and safety."
             description_et: "Linnupuurid sobivad nii väikestele lemmiklindudele kui ka suurematele papagoidele, pakkudes turvalist ja mugavat elukeskkonda. Valikus on erineva suuruse, kuju ja materjaliga puure, mis sobivad nii koju kui ka reisimiseks. Vali puur vastavalt linnu liigile, suurusele ja kodu interjöörile, jälgides ka puuri tugevust ja turvalisust."
+            product_count: 0
+          - slug: v4-lemmikloomatarbed-puurid-ja-aedikud-kassipuurid-ja-aedikud
+            name_en: "Cat Cages & Enclosures"
+            name_et: "Kassipuurid ja aedikud"
+            tagline_en: "Safe and comfy living space for your cat"
+            tagline_et: "Turvaline ja mugav elamisruum sinu kassile"
+            description_en: "This category features multi-tier cat cages and enclosures for indoor and outdoor use, suitable for one or several cats. Products vary in size, number of tiers, and extras such as hammocks, ramps, and resting platforms. Choose the right size and material based on where it will be used and how many cats you have."
+            description_et: "Siit leiad mitmekorruselised kassipuurid ja aedikud nii sise- kui välitingimustesse, sobivad ühele või mitmele kassile. Tooted erinevad suuruse, korruste arvu ja lisavarustuse (riputusvõrgud, treppid, puhkeplatvormid) poolest. Vali sobiv suurus ja materjal vastavalt kasutuskohale ja kasside arvule."
             product_count: 0
           - slug: v4-lemmikloomatarbed-puurid-ja-aedikud-narilistepuurid
             name_en: "Small Animal Cages"
