@@ -1,0 +1,81 @@
+# KIHT 2 — per-L3 rahvakeelne sõnavara (SSoT), v1 DRY
+#
+# STATUS: DRY — EI ole Meili'sse sünkitud, 0 kirjutust. Ootab Tarmo kinnitust
+#         (formaat + skoop) ENNE live't. Pärast kinnitust → kolib SSoT-asukohta
+#         (nt cms/kiht2-vocab.yaml) + backfill/hook (HARD RULE #5).
+#
+# MÕISTE: üks sõnavara per L3. "folk" = rahvakeelne termin, mida KIHT 1 (morfoloogia,
+#         täna live) EI tuleta (nt soojapuhuri rahvakeelne "torpeedo", "halupuhur").
+#         gap: true   = termin EI leia praegu siht-L3 tooteid → KIHT 2 lisaks reaalset katvust.
+#         (märketa)   = pärand-sünonüümi-graaf juba katab; KIHT 2 formaliseerib (ei lisa katvust).
+#
+# LIVE-MEHHANISM (pärast kinnitust): iga L3 folk-term → product_synonym read KÕIGILE
+#         selle L3 toodetele (deterministlik laiendus) → sync-synonyms.mjs → Meili.
+#         Asendab laialipillutatud per-toode graafi ühe korrastatud per-L3 allikaga.
+#
+# SKOOP: v1 = AINULT Tarmo nimetatud soojendi/puhasti-pered (tõestab mehhanismi).
+#        Kataloogiülene generatsioon (~1721 L3, LLM-konsensus, ~3–8 € ühekordne) =
+#        JÄRGMINE samm, eraldi kinnitusel (vt otsing-liitsonad-diagnoos-2026-11-17.md §3,§7).
+
+version: kiht2-v1-dry
+measured: 2026-11-17 (staging k33g, raw Meili)
+
+l3:
+  - id: pcat_d3_1
+    name: Autonoomsed diiselsoojendid
+    pool: 60
+    folk:
+      - diisel soojendi         # kaetud 60/60
+      - diiselsoojendi          # kaetud (KIHT 1, täna)
+      - parkla soojendi         # GAP 0/60
+      - parkla kütteseade       # GAP 0/60
+      - autonoomne soojendi     # GAP 0/60
+      - standheater             # GAP 0/60 (rahvapärane ingliskeelne)
+    gaps: [parkla soojendi, parkla kütteseade, autonoomne soojendi, standheater]
+
+  - id: pcat_d9_1
+    name: Diisli- ja petrooleumi soojapuhurid
+    pool: 10
+    folk:
+      - soojapuhur              # kaetud 10/10
+      - torpeedo                # kaetud 10/10 (rahvapärane kuju)
+      - kerosiinipuhur          # kontrolli
+      - halupuhur               # GAP 0/10
+      - diiselpuhur             # osaliselt
+    gaps: [halupuhur]
+
+  - id: pcat_7terrL3
+    name: Terrassisoojendid
+    pool: 7
+    folk:
+      - terrassisoojendaja      # GAP 0/7
+      - terrassikiirgur         # GAP 0/7
+      - patio heater            # GAP 0/7 (rahvapärane ingliskeelne)
+      - välissoojendi           # GAP 0/7
+    gaps: [terrassisoojendaja, terrassikiirgur, patio heater, välissoojendi]
+
+  - id: pcat_15ratik
+    name: Rätikusoojendid
+    pool: 11
+    folk:
+      - rätikusoojendaja        # kaetud 11/11
+      - rätikukuivati           # NB: eraldi L3 pcat_10rat "Rätikukuivatid" (12) — ÄRA sega
+    gaps: []
+
+  - id: pcat_4steam
+    name: Aurupesurid ja -puhastid
+    pool: 1
+    folk:
+      - aurupesur               # kaetud 1/1 (katalogis ongi ~2 toodet — auk näiline)
+      - aurupuhasti             # kaetud
+      - aurupuhastaja           # kaetud
+    gaps: []
+    note: laovaru-piirang, mitte otsingu-auk — vocab valmis kui lao kasvab.
+
+# --- DISAMBIGUEERIMINE (relevantsus, mitte leitavus) ---
+# q="soojendi" annab tipus Ultrahelipuhastid (pcat_t3f_14_1, 74 tk), sest nende title_et
+# sisaldab sõna "soojendi" (funktsioon). See on KIHT 2 potentsiaalne teine roll:
+# NEGATIIVNE/kaalu-vihje (soojendi-SEADE üle puhasti-funktsiooni). v1-s AINULT märgitud,
+# EI teosta — relevantsus-tuuning = Tarmo otsus (vt SOOJENDI-LEID järjestus-märkus).
+disambig_candidates:
+  - note: "'soojendi' → eelista soojendi-seadmeid (d3_1/d9_1/7terrL3/15ratik) üle Ultrahelipuhastid-funktsiooni"
