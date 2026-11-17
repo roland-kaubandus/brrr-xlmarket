@@ -113,3 +113,24 @@ L3 `description` = tüüp-profiil SSoT, mille vastu feed/klassifikaator mapib. O
 - **1 selge valesti-paigutus:** torpeedo petrooleum/diisli soojapuhurid (10) kodu-santehnika all — peaksid olema garaaži/töökoja tööstusküttes.
 - Audit ei püüdnud, sest **puudub cross-L1 pere-terviklikkuse kontroll** (judge'id vaatavad L3-sisest homogeensust, mitte L3 õiget domeeni).
 - Sihtstruktuur + piirireeglid valmis → **ootab Tarmo kinnitust (variant A vs B) enne liigutamist.**
+
+---
+
+## LÕPLIK OTSUS + TEOSTUS (Tarmo 2026-11-17 — VARIANT B)
+
+**Uus L2** `pcat_2soojapuhur` "Soojapuhurid ja kütteseadmed" (EN: Space Heaters & Heating Equipment) < pcat_v4_l2 (Garaažiseadmed ja autoremont), rank 15.
+
+**3 L3 tervik-reparent** (kõik lingid kaasa, tühja-L3 ei teki):
+
+| id | ET nimi | EN nimi | endine kodu | tooteid |
+|---|---|---|---|---|
+| pcat_d9_1 | Diisli- ja petrooleumi soojapuhurid | Diesel & Kerosene Forced-Air Heaters | Santehnika/elektriküte | 10 |
+| pcat_d3_1 | Autonoomsed diiselsoojendid | Standalone Diesel Air Heaters | Auto/sõidukiküte | 60 |
+| pcat_d3_2 | Diiselsoojendite varuosad | Diesel Heater Spare Parts | Auto/sõidukiküte | 22 |
+
+**Kasvuhoone kütteseadmed (4) JÄÄVAD** aia-domeeni (puutumata).
+**Piirireegel** L3 kirjeldustes: kütus + pinge + võimsus + paigaldus + sihtruum + "EI KUULU SIIA".
+**Sünonüümid** (Tarmo): torpeedo, soojapuhur, parkimissoojendi, webasto-tüüpi, diiselsoojendi → product_synonym + Meili.
+**301**: handle-muutus → trigger trg_product_category_slug_redirect (3 rename-redirecti, DRY-s tõestatud).
+**Migratsioon**: `v4-staging/soojendid-l2-migrate.sql` · **Undo**: `v4-staging/soojendid-l2-undo.sql`.
+**Cross-list Auto alla** = Phase-2 (pärast launch'i).
