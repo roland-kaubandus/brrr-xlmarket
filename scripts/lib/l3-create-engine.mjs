@@ -242,7 +242,7 @@ export async function createL3Batch({
     reparent: reparentPre, // [{product_id, prev_status, from_cat_ids}] — undo taastab vana kodu+staatuse
   }, null, 2));
 
-  let mainSync = "—", dbApplied = false, deployed = false;
+  let mainSync = "—", dbApplied = false, deployed = false, auditWritten = false;
   const regenSSoT = () => {
     sh(`node ${REPO}/scripts/genyM.mjs`);
     sh(`cp /opt/eumotors-tasks/v4-staging/taxonomy-music.yaml ${REPO}/backend/src/data/taxonomy.yaml`);
@@ -281,6 +281,11 @@ export async function createL3Batch({
     const restorePairs = reparentPre.filter(r => (r.from_cat_ids || []).length).flatMap(r => r.from_cat_ids.map(cid => `(${sqlStr(r.product_id)}, ${sqlStr(cid)})`));
     const pubRestore = reparentPre.filter(r => r.prev_status === "published").map(r => sqlStr(r.product_id));
     const draftRestore = reparentPre.filter(r => r.prev_status && r.prev_status !== "published").map(r => sqlStr(r.product_id));
+    // AUDIT (HARD RULE #8): kui "applied" kirjed juba kirjutatud (atomaarselt [1b/9]-s), märgi need undone —
+    //   EI kustuta (audit-rada säilib: "loodi, siis pöörati tagasi"). Sama transaktsioonis kui DB-taaste.
+    const auditUndoSql = auditWritten
+      ? `UPDATE review_decision_log SET status='undone', undone_at=now(), undone_by='l3-create-engine:rollback' WHERE meta->>'batch_id'=${sqlStr(BATCH)} AND status='applied';\n        `
+      : "";
     try {
       psqlTx(`BEGIN;
         DELETE FROM product_category_product WHERE product_id IN (${pid});
@@ -291,7 +296,7 @@ export async function createL3Batch({
         ${draftRestore.length ? `UPDATE product SET status='draft', updated_at=now() WHERE id IN (${draftRestore.join(",")});` : ""}
         ${homelessIds.length ? `UPDATE product SET status='draft', updated_at=now() WHERE id IN (${homelessIds.map(sqlStr).join(",")});
         UPDATE classification_review SET status='pending', updated_at=now() WHERE product_id IN (${homelessIds.map(sqlStr).join(",")});` : ""}
-        COMMIT;`);
+        ${auditUndoSql}COMMIT;`);
       console.error(`  ✓ DB taastatud (reparent ${reparentIds.size} → vana kodu · kodutu ${homelessIds.length} → draft)`);
     } catch (e) { console.error("  🔴 DB-rollback viga: " + String(e.message).slice(0, 200)); }
     try { sh(`docker exec ${MEDUSA} node /app/scripts/index-meilisearch.mjs 2>/dev/null || node ${REPO}/backend/scripts/index-meilisearch.mjs`); } catch {}
@@ -318,14 +323,34 @@ export async function createL3Batch({
       ? `DELETE FROM product_category_product WHERE product_id IN (${reparentList})
            AND product_category_id IN (SELECT id FROM product_category WHERE mpath LIKE 'pcat_v4_l%' AND deleted_at IS NULL);\n      `
       : "";
+    // AUDIT (HARD RULE #8) — kirjutatakse SAMAS transaktsioonis kui live-muudatus → atomaarne.
+    //   VARASEM VIGA (2026-11-18): INSERT oli [8/9]-s PEALE deploy'd; deploy recreate'is DB-konteineri →
+    //   aegunud nimi → INSERT põrkus → audit jäi TÜHJAKS, kuigi L3 oli live. Nüüd: seondus commit'ib ⇒ audit commit'ib.
+    const auditRows = [
+      ...defs.map((d, i) => {
+        const p = plans[i];
+        const aff = sqlStr(JSON.stringify(p.products.map(x => x.id)));
+        const meta = sqlStr(JSON.stringify({ batch_id: BATCH, l3_id: d.id, label, undo_file: `reports/etapp2-undo-${BATCH}.json` }));
+        return `('claude-code-test','claude-code-test','api','auto-classifier','create_l3',${sqlStr(d.handle)},${sqlStr(p.parentL2)},${sqlStr(d.name)},'applied',${aff}::jsonb,${meta}::jsonb)`;
+      }),
+      ...assigns.map(a => {
+        const aff = sqlStr(JSON.stringify(a.ids));
+        const meta = sqlStr(JSON.stringify({ batch_id: BATCH, label }));
+        return `('claude-code-test','claude-code-test','api','auto-classifier','assign_existing',${sqlStr(a.handle)},NULL,NULL,'applied',${aff}::jsonb,${meta}::jsonb)`;
+      }),
+    ];
+    const auditSql = auditRows.length
+      ? `INSERT INTO review_decision_log (actor, actor_detail, channel, bucket_type, action, target_handle, target_l2, new_l3_name, status, affected, meta) VALUES\n      ${auditRows.join(",\n      ")};\n      `
+      : "";
     psqlTx(`BEGIN;
       ${detachSql}INSERT INTO product_category_product (product_id, product_category_id) VALUES
       ${attachVals}
       ON CONFLICT DO NOTHING;
       UPDATE product SET status='published', updated_at=now() WHERE id IN (${pidList}) AND status='draft' AND deleted_at IS NULL;
       UPDATE classification_review SET status='resolved', updated_at=now() WHERE product_id IN (${pidList}) AND status='pending';
-      COMMIT;`);
+      ${auditSql}COMMIT;`);
     dbApplied = true;
+    auditWritten = true;
     const nowDistinct = +psql("SELECT count(DISTINCT product_id) FROM product_category_product;");
     const nowPending = +psql(`SELECT count(*) FROM classification_review WHERE product_id IN (${pidList}) AND status='pending';`);
     const nowPub = +psql(`SELECT count(*) FROM product WHERE id IN (${pidList}) AND status='published';`);
@@ -503,17 +528,11 @@ export async function createL3Batch({
     const unhealthy = urls.filter(h => !h.ok);
     if (unhealthy.length) { rollback(`tervisekontroll aegus: ${unhealthy.map(h => h.handle + " HTTP " + h.code).join(", ")}`); return { ok: false, batch_id: BATCH, reason: "tervisekontroll", baseline, created, health: urls }; }
 
-    // review_decision_log (HARD RULE #8)
-    for (let i = 0; i < defs.length; i++) {
-      const d = defs[i], p = plans[i];
-      psqlTx(`INSERT INTO review_decision_log (actor, actor_detail, channel, bucket_type, action, target_handle, target_l2, new_l3_name, status, affected, meta)
-        VALUES ('claude-code-test','claude-code-test','api','auto-classifier','create_l3',${sqlStr(d.handle)},${sqlStr(p.parentL2)},${sqlStr(d.name)},'applied',
-          ${sqlStr(JSON.stringify(p.products.map(x => x.id)))}::jsonb, ${sqlStr(JSON.stringify({ batch_id: BATCH, l3_id: d.id, label, undo_file: `reports/etapp2-undo-${BATCH}.json` }))}::jsonb);`);
-    }
-    for (const a of assigns) {
-      psqlTx(`INSERT INTO review_decision_log (actor, actor_detail, channel, bucket_type, action, target_handle, status, affected, meta)
-        VALUES ('claude-code-test','claude-code-test','api','auto-classifier','assign_existing',${sqlStr(a.handle)},'applied',
-          ${sqlStr(JSON.stringify(a.ids))}::jsonb, ${sqlStr(JSON.stringify({ batch_id: BATCH, label }))}::jsonb);`);
+    // review_decision_log (HARD RULE #8) — JUBA kirjutatud atomaarselt [1b/9]-s (auditWritten).
+    //   EI kirjuta siin uuesti: varem oli siin (PEALE deploy'd) → deploy-recreate aegunud DB-nimi → INSERT
+    //   põrkus → audit jäi tühjaks. Nüüd audit commit'ib koos live-muudatusega, rollback märgib need undone.
+    if (!auditWritten && (defs.length || assigns.length)) {
+      console.error("  ⚠️ HOIATUS: auditWritten=false, kuid muudatusi tehti — audit-rada PUUDUB (uuri [1b/9] transaktsiooni).");
     }
 
     // 9. NAABRITE ÜLEHINDAMINE (olemas-SSoT pipeline-neighbor-chain, MITTE re-implement) — iga loodud L3 järel.
