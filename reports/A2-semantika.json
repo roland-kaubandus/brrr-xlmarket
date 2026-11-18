@@ -1,0 +1,1091 @@
+{
+  "generated_at": "2026-11-18T11:52:16.341Z",
+  "model": "claude-opus-4-8",
+  "usage": {
+    "in": 51857,
+    "out": 6150,
+    "calls": 26
+  },
+  "results": [
+    {
+      "id": "pcat_f4_13xtex_10",
+      "name": "Nööpide ja märkide valmistamise masinad",
+      "l2id": "pcat_v4_l13_tex",
+      "THR": 5,
+      "viable": [
+        {
+          "newl3": "Nööbi- ja märgitarvikud ning toorikud",
+          "n": 17
+        },
+        {
+          "newl3": "Nööbi- ja märgipressimasinad",
+          "n": 43
+        }
+      ],
+      "keepN": 0,
+      "core": "Nööbi- ja märgipressimasinad",
+      "subs": [
+        "Nööbi- ja märgitarvikud ning toorikud"
+      ],
+      "cancel": false,
+      "rename": {
+        "name_et": "Nööbi- ja märgipressimasinad",
+        "change_handle": true,
+        "reason": "Allikas muutub põhiseadme kategooriaks, tarvikud eralduvad"
+      },
+      "reasoning": "Pressimasinad on domineeriv põhiseade ja jäävad core'iks, toorikud ning hallid tarvikud on selgelt eraldi tarvikukontseptsioon ja saavad uue L3.",
+      "_raw": {
+        "core": "Nööbi- ja märgipressimasinad",
+        "subs": [
+          "Nööbi- ja märgitarvikud ning toorikud"
+        ],
+        "rename": {
+          "name_et": "Nööbi- ja märgipressimasinad",
+          "change_handle": true,
+          "reason": "Allikas muutub põhiseadme kategooriaks, tarvikud eralduvad"
+        },
+        "cancel": false,
+        "reasoning": "Pressimasinad on domineeriv põhiseade ja jäävad core'iks, toorikud ning hallid tarvikud on selgelt eraldi tarvikukontseptsioon ja saavad uue L3."
+      }
+    },
+    {
+      "id": "pcat_el_12x2_5",
+      "name": "Ronimismänguasjad ja ronimiskomplektid",
+      "l2id": "pcat_24oue",
+      "THR": 5,
+      "viable": [
+        {
+          "newl3": "Laste mängutelgid ja tunnelid",
+          "n": 7
+        },
+        {
+          "newl3": "Ronimiskuplid",
+          "n": 10
+        },
+        {
+          "newl3": "Vahtmaterjalist ronimisklotsid",
+          "n": 7
+        }
+      ],
+      "keepN": 30,
+      "core": null,
+      "subs": [
+        "Laste mängutelgid ja tunnelid",
+        "Ronimiskuplid",
+        "Vahtmaterjalist ronimisklotsid"
+      ],
+      "cancel": false,
+      "rename": {
+        "name_et": "Ronimismänguasjad ja ronimiskomplektid",
+        "change_handle": false,
+        "reason": "Allika identiteet (jungle gym'id, ronimiskomplektid) jääb 30 KEEP-tootega samaks."
+      },
+      "reasoning": "Allikasse jäävad üldised sisemängu jungle gym'id ja ronimiskomplektid (core = praegune identiteet); mängutelgid, ronimiskuplid ja vahtklotsid on selgelt eristuvad alamkontseptsioonid, mis saavad uued L3-d.",
+      "_raw": {
+        "core": null,
+        "subs": [
+          "Laste mängutelgid ja tunnelid",
+          "Ronimiskuplid",
+          "Vahtmaterjalist ronimisklotsid"
+        ],
+        "rename": {
+          "name_et": "Ronimismänguasjad ja ronimiskomplektid",
+          "change_handle": false,
+          "reason": "Allika identiteet (jungle gym'id, ronimiskomplektid) jääb 30 KEEP-tootega samaks."
+        },
+        "cancel": false,
+        "reasoning": "Allikasse jäävad üldised sisemängu jungle gym'id ja ronimiskomplektid (core = praegune identiteet); mängutelgid, ronimiskuplid ja vahtklotsid on selgelt eristuvad alamkontseptsioonid, mis saavad uued L3-d."
+      }
+    },
+    {
+      "id": "pcat_1flift",
+      "name": "Kahveltõstuki lisaseadmed",
+      "l2id": "pcat_t3l2_10",
+      "THR": 5,
+      "viable": [
+        {
+          "newl3": "Kahvlipikendused",
+          "n": 19
+        },
+        {
+          "newl3": "Kahveltõstuki turvakorvid ja tööplatvormid",
+          "n": 8
+        }
+      ],
+      "keepN": 0,
+      "core": "Kahvlipikendused",
+      "subs": [
+        "Kahveltõstuki turvakorvid ja tööplatvormid"
+      ],
+      "cancel": false,
+      "rename": {
+        "name_et": "Kahvlipikendused",
+        "change_handle": true,
+        "reason": "Allikas on segasahtel ilma põhiseadmeta; suurim ja üldisem rühm (kahvlipikendused) jääb core'iks ja annab kategooriale selge identiteedi."
+      },
+      "reasoning": "Allikas on puhas tarvikusahtel ilma loomuliku põhiseadmeta, seega jääb suurim rühm (kahvlipikendused) core'iks, turvakorvid ja tööplatvormid on selgelt eri tooteliik eraldi kliendivajadusega ja saavad uue L3.",
+      "_raw": {
+        "core": "Kahvlipikendused",
+        "subs": [
+          "Kahveltõstuki turvakorvid ja tööplatvormid"
+        ],
+        "rename": {
+          "name_et": "Kahvlipikendused",
+          "change_handle": true,
+          "reason": "Allikas on segasahtel ilma põhiseadmeta; suurim ja üldisem rühm (kahvlipikendused) jääb core'iks ja annab kategooriale selge identiteedi."
+        },
+        "cancel": false,
+        "reasoning": "Allikas on puhas tarvikusahtel ilma loomuliku põhiseadmeta, seega jääb suurim rühm (kahvlipikendused) core'iks, turvakorvid ja tööplatvormid on selgelt eri tooteliik eraldi kliendivajadusega ja saavad uue L3."
+      }
+    },
+    {
+      "id": "pcat_el_12x2_16",
+      "name": "Tasakaalu- ja liikumismänguasjad",
+      "l2id": "pcat_24sprt",
+      "THR": 6,
+      "viable": [
+        {
+          "newl3": "Laste tasakaalupalgid ja astmekivid",
+          "n": 14
+        },
+        {
+          "newl3": "Laste võimlemiskangid (kip-kangid)",
+          "n": 6
+        }
+      ],
+      "keepN": 10,
+      "core": "Laste tasakaalupalgid ja astmekivid",
+      "subs": [
+        "Laste võimlemiskangid (kip-kangid)"
+      ],
+      "cancel": false,
+      "rename": {
+        "name_et": "Laste tasakaalupalgid ja liikumismänguasjad",
+        "change_handle": false,
+        "reason": "Täpsustab tasakaalu-fookuse, säilitab üldidentiteedi"
+      },
+      "reasoning": "Tasakaalupalgid ja astmekivid on domineeriv tasakaalu-kontseptsioon ja jäävad koos sensoorsete pöördtoolidega allikasse; võimlemiskangid on selgelt eri tooteliik (võimlemisseade) ja lahkuvad eraldi L3-na.",
+      "_raw": {
+        "core": "Laste tasakaalupalgid ja astmekivid",
+        "subs": [
+          "Laste võimlemiskangid (kip-kangid)"
+        ],
+        "rename": {
+          "name_et": "Laste tasakaalupalgid ja liikumismänguasjad",
+          "change_handle": false,
+          "reason": "Täpsustab tasakaalu-fookuse, säilitab üldidentiteedi"
+        },
+        "cancel": false,
+        "reasoning": "Tasakaalupalgid ja astmekivid on domineeriv tasakaalu-kontseptsioon ja jäävad koos sensoorsete pöördtoolidega allikasse; võimlemiskangid on selgelt eri tooteliik (võimlemisseade) ja lahkuvad eraldi L3-na."
+      }
+    },
+    {
+      "id": "pcat_t3f_7_5",
+      "name": "Punktkeevitusaparaadid ja mõlgieemaldusseadmed",
+      "l2id": "pcat_t3l2_7",
+      "THR": 5,
+      "viable": [
+        {
+          "newl3": "Autokere mõlgieemaldus-keevitusseadmed",
+          "n": 15
+        },
+        {
+          "newl3": "Patarei-punktkeevitusaparaadid",
+          "n": 6
+        }
+      ],
+      "keepN": 2,
+      "core": "Autokere mõlgieemaldus-keevitusseadmed",
+      "subs": [
+        "Patarei-punktkeevitusaparaadid"
+      ],
+      "cancel": false,
+      "rename": {
+        "name_et": "Punktkeevitusaparaadid ja mõlgieemaldusseadmed",
+        "change_handle": false,
+        "reason": "Allika identiteet jääb samaks, põhiseade on mõlgieemaldus-/stud-keevitajad"
+      },
+      "reasoning": "Autokere mõlgieemaldus-keevitusseadmed ja üldised punktkeevitajad on allika põhiidentiteet ja jäävad (sh KEEP-tooted), samas kui patarei-/kondensaator-punktkeevitajad on eraldi tooteliik eri kliendivajadusega ja saavad uue L3.",
+      "_raw": {
+        "core": "Autokere mõlgieemaldus-keevitusseadmed",
+        "subs": [
+          "Patarei-punktkeevitusaparaadid"
+        ],
+        "rename": {
+          "name_et": "Punktkeevitusaparaadid ja mõlgieemaldusseadmed",
+          "change_handle": false,
+          "reason": "Allika identiteet jääb samaks, põhiseade on mõlgieemaldus-/stud-keevitajad"
+        },
+        "cancel": false,
+        "reasoning": "Autokere mõlgieemaldus-keevitusseadmed ja üldised punktkeevitajad on allika põhiidentiteet ja jäävad (sh KEEP-tooted), samas kui patarei-/kondensaator-punktkeevitajad on eraldi tooteliik eri kliendivajadusega ja saavad uue L3."
+      }
+    },
+    {
+      "id": "pcat_ag_2_5",
+      "name": "Tarad ja võrgud",
+      "l2id": "pcat_v4_l18_2",
+      "THR": 5,
+      "viable": [
+        {
+          "newl3": "Elektrikarjuse võrkaiad",
+          "n": 6
+        },
+        {
+          "newl3": "Tsingitud peenvõrk (hardware cloth)",
+          "n": 13
+        }
+      ],
+      "keepN": 4,
+      "core": null,
+      "subs": [
+        "Elektrikarjuse võrkaiad",
+        "Tsingitud peenvõrk (hardware cloth)"
+      ],
+      "cancel": false,
+      "rename": {
+        "name_et": "Aiavõrgud ja tarad",
+        "change_handle": false,
+        "reason": "Allikasse jäävad üldised farmi-tarravõrgud, mis moodustavad kategooria identiteedi"
+      },
+      "reasoning": "Allika identiteediks jäävad üldised galvaniseeritud tarravõrgud (Farm Fence), samas kui elektrikarjuse võrkaiad ja peenvõrk on selgelt eristuvad alamkontseptsioonid eri kliendivajadustega.",
+      "_raw": {
+        "core": null,
+        "subs": [
+          "Elektrikarjuse võrkaiad",
+          "Tsingitud peenvõrk (hardware cloth)"
+        ],
+        "rename": {
+          "name_et": "Aiavõrgud ja tarad",
+          "change_handle": false,
+          "reason": "Allikasse jäävad üldised farmi-tarravõrgud, mis moodustavad kategooria identiteedi"
+        },
+        "cancel": false,
+        "reasoning": "Allika identiteediks jäävad üldised galvaniseeritud tarravõrgud (Farm Fence), samas kui elektrikarjuse võrkaiad ja peenvõrk on selgelt eristuvad alamkontseptsioonid eri kliendivajadustega."
+      }
+    },
+    {
+      "id": "pcat_ag2_3x2_3",
+      "name": "Koormakatted ja presendid",
+      "l2id": "pcat_v4_l3_2",
+      "THR": 5,
+      "viable": [
+        {
+          "newl3": "Presendid ja koormakatte võrgud",
+          "n": 12
+        },
+        {
+          "newl3": "Pikapi kastikatted (tonneau)",
+          "n": 9
+        }
+      ],
+      "keepN": 0,
+      "core": "Presendid ja koormakatte võrgud",
+      "subs": [
+        "Pikapi kastikatted (tonneau)"
+      ],
+      "cancel": false,
+      "rename": {
+        "name_et": "Presendid ja koormakatte võrgud",
+        "change_handle": true,
+        "reason": "Allikas kitseneb üldisteks presentideks ja kattevõrkudeks"
+      },
+      "reasoning": "Üldised presendid ja koormakatte võrgud on kategooria domineeriv identiteet ja jäävad allikasse; pikapi kastikatted (tonneau) on selgelt eri tooteliik eri kliendivajadusega ja lahkub uue L3-na.",
+      "_raw": {
+        "core": "Presendid ja koormakatte võrgud",
+        "subs": [
+          "Pikapi kastikatted (tonneau)"
+        ],
+        "rename": {
+          "name_et": "Presendid ja koormakatte võrgud",
+          "change_handle": true,
+          "reason": "Allikas kitseneb üldisteks presentideks ja kattevõrkudeks"
+        },
+        "cancel": false,
+        "reasoning": "Üldised presendid ja koormakatte võrgud on kategooria domineeriv identiteet ja jäävad allikasse; pikapi kastikatted (tonneau) on selgelt eri tooteliik eri kliendivajadusega ja lahkub uue L3-na."
+      }
+    },
+    {
+      "id": "pcat_f4_15x1_2",
+      "name": "Infrapuna- ja soojendusseadmed",
+      "l2id": "pcat_v4_l15_1",
+      "THR": 5,
+      "viable": [
+        {
+          "newl3": "Infrapuna soojenduspadjad",
+          "n": 13
+        },
+        {
+          "newl3": "Infrapuna saunatekid",
+          "n": 5
+        }
+      ],
+      "keepN": 2,
+      "core": "Infrapuna soojenduspadjad",
+      "subs": [
+        "Infrapuna saunatekid"
+      ],
+      "cancel": false,
+      "rename": {
+        "name_et": "Infrapuna soojenduspadjad",
+        "change_handle": true,
+        "reason": "Allikas on segasahtel; suurim ja domineeriv rühm (soojenduspadjad) muutub kategooria identiteediks."
+      },
+      "reasoning": "Soojenduspadjad on domineeriv ja üldisim infrapuna-soojendustoode, seega jäävad allikasse; saunatekid on selgelt eristuv tooteliik (eri kliendivajadus) ja lahkuvad uue L3-na.",
+      "_raw": {
+        "core": "Infrapuna soojenduspadjad",
+        "subs": [
+          "Infrapuna saunatekid"
+        ],
+        "rename": {
+          "name_et": "Infrapuna soojenduspadjad",
+          "change_handle": true,
+          "reason": "Allikas on segasahtel; suurim ja domineeriv rühm (soojenduspadjad) muutub kategooria identiteediks."
+        },
+        "cancel": false,
+        "reasoning": "Soojenduspadjad on domineeriv ja üldisim infrapuna-soojendustoode, seega jäävad allikasse; saunatekid on selgelt eristuv tooteliik (eri kliendivajadus) ja lahkuvad uue L3-na."
+      }
+    },
+    {
+      "id": "pcat_13roll",
+      "name": "Ehte-rullpressid",
+      "l2id": "pcat_25ehte",
+      "THR": 5,
+      "viable": [
+        {
+          "newl3": "Ehte-rullpressid (masinad)",
+          "n": 13
+        },
+        {
+          "newl3": "Ehte-rullpressi varuvaltsid",
+          "n": 7
+        }
+      ],
+      "keepN": 0,
+      "core": "Ehte-rullpressid (masinad)",
+      "subs": [
+        "Ehte-rullpressi varuvaltsid"
+      ],
+      "cancel": false,
+      "rename": {
+        "name_et": "Ehte-rullpressid",
+        "change_handle": false,
+        "reason": "Põhimasinad jäävad, nimi juba sobiv"
+      },
+      "reasoning": "Rullpressid ise on kategooria identiteet ja jäävad allikasse; varuvaltsid on selgelt eraldi varuosade alamkontseptsioon, mis saab uue L3.",
+      "_raw": {
+        "core": "Ehte-rullpressid (masinad)",
+        "subs": [
+          "Ehte-rullpressi varuvaltsid"
+        ],
+        "rename": {
+          "name_et": "Ehte-rullpressid",
+          "change_handle": false,
+          "reason": "Põhimasinad jäävad, nimi juba sobiv"
+        },
+        "cancel": false,
+        "reasoning": "Rullpressid ise on kategooria identiteet ja jäävad allikasse; varuvaltsid on selgelt eraldi varuosade alamkontseptsioon, mis saab uue L3."
+      }
+    },
+    {
+      "id": "pcat_ag2_2x1_15",
+      "name": "Piduri õhutus- ja remonditööriistad",
+      "l2id": "pcat_md3",
+      "THR": 7,
+      "viable": [
+        {
+          "newl3": "Piduri õhutuskomplektid",
+          "n": 9
+        },
+        {
+          "newl3": "Piduritoru flaari- ja painutustööriistad",
+          "n": 7
+        }
+      ],
+      "keepN": 0,
+      "core": "Piduri õhutuskomplektid",
+      "subs": [
+        "Piduritoru flaari- ja painutustööriistad"
+      ],
+      "cancel": false,
+      "rename": {
+        "name_et": "Piduri õhutustööriistad",
+        "change_handle": false,
+        "reason": "Allikasse jääb õhutamise põhikontseptsioon"
+      },
+      "reasoning": "Piduri õhutuskomplektid on kategooria domineeriv põhikontseptsioon ja jääb allikasse, samas kui piduritoru flaari- ja painutustööriistad on eraldi tooteliik (toruremont) ning saavad uue L3.",
+      "_raw": {
+        "core": "Piduri õhutuskomplektid",
+        "subs": [
+          "Piduritoru flaari- ja painutustööriistad"
+        ],
+        "rename": {
+          "name_et": "Piduri õhutustööriistad",
+          "change_handle": false,
+          "reason": "Allikasse jääb õhutamise põhikontseptsioon"
+        },
+        "cancel": false,
+        "reasoning": "Piduri õhutuskomplektid on kategooria domineeriv põhikontseptsioon ja jääb allikasse, samas kui piduritoru flaari- ja painutustööriistad on eraldi tooteliik (toruremont) ning saavad uue L3."
+      }
+    },
+    {
+      "id": "pcat_es_9x3_10",
+      "name": "Revisiooni- ja juurdepääsuluugid",
+      "l2id": "pcat_v4_l9_3",
+      "THR": 6,
+      "viable": [
+        {
+          "newl3": "Revisiooni- ja hooldusluugid",
+          "n": 10
+        },
+        {
+          "newl3": "Kaevuluugid ja kanalisatsioonikaaned",
+          "n": 6
+        }
+      ],
+      "keepN": 0,
+      "core": "Revisiooni- ja hooldusluugid",
+      "subs": [
+        "Kaevuluugid ja kanalisatsioonikaaned"
+      ],
+      "cancel": false,
+      "rename": {
+        "name_et": "Revisiooni- ja hooldusluugid",
+        "change_handle": true,
+        "reason": "Allikas kitseneb seinaluukideks, kaevuluugid eralduvad"
+      },
+      "reasoning": "Revisiooni- ja hooldusluugid on allika domineeriv kontseptsioon ja jäävad core'iks; kaevuluugid ja kanalisatsioonikaaned on eri tooteliik (välis-/maapinna juurdepääs), mis väärib oma L3-d.",
+      "_raw": {
+        "core": "Revisiooni- ja hooldusluugid",
+        "subs": [
+          "Kaevuluugid ja kanalisatsioonikaaned"
+        ],
+        "rename": {
+          "name_et": "Revisiooni- ja hooldusluugid",
+          "change_handle": true,
+          "reason": "Allikas kitseneb seinaluukideks, kaevuluugid eralduvad"
+        },
+        "cancel": false,
+        "reasoning": "Revisiooni- ja hooldusluugid on allika domineeriv kontseptsioon ja jäävad core'iks; kaevuluugid ja kanalisatsioonikaaned on eri tooteliik (välis-/maapinna juurdepääs), mis väärib oma L3-d."
+      }
+    },
+    {
+      "id": "pcat_el_12x1_24",
+      "name": "Tennise pallimasinad ja -korvid",
+      "l2id": "pcat_12pall",
+      "THR": 6,
+      "viable": [
+        {
+          "newl3": "Tennisepallikorvid ja -kärud",
+          "n": 9
+        },
+        {
+          "newl3": "Tennise pallimasinad",
+          "n": 7
+        }
+      ],
+      "keepN": 0,
+      "core": "Tennise pallimasinad",
+      "subs": [
+        "Tennisepallikorvid ja -kärud"
+      ],
+      "cancel": false,
+      "rename": {
+        "name_et": "Tennise pallimasinad",
+        "change_handle": true,
+        "reason": "Allikasse jäävad vaid pallimasinad, korvid lahkuvad eraldi L3-ks"
+      },
+      "reasoning": "Pallimasin on domineeriv põhiseade ja jääb allikasse; pallikorvid/-kärud on eraldi tooteliik (ja masinate tarvik), mis saab oma L3.",
+      "_raw": {
+        "core": "Tennise pallimasinad",
+        "subs": [
+          "Tennisepallikorvid ja -kärud"
+        ],
+        "rename": {
+          "name_et": "Tennise pallimasinad",
+          "change_handle": true,
+          "reason": "Allikasse jäävad vaid pallimasinad, korvid lahkuvad eraldi L3-ks"
+        },
+        "cancel": false,
+        "reasoning": "Pallimasin on domineeriv põhiseade ja jääb allikasse; pallikorvid/-kärud on eraldi tooteliik (ja masinate tarvik), mis saab oma L3."
+      }
+    },
+    {
+      "id": "pcat_el_12x2_10",
+      "name": "Mängumajad ja telgid",
+      "l2id": "pcat_24oue",
+      "THR": 5,
+      "viable": [
+        {
+          "newl3": "Laste mängutelgid",
+          "n": 10
+        },
+        {
+          "newl3": "Laste mängumajad",
+          "n": 5
+        }
+      ],
+      "keepN": 0,
+      "core": "Laste mängumajad",
+      "subs": [
+        "Laste mängutelgid"
+      ],
+      "cancel": false,
+      "rename": {
+        "name_et": "Laste mängumajad",
+        "change_handle": true,
+        "reason": "Allikas jääb mängumajade kategooriaks, telgid eralduvad"
+      },
+      "reasoning": "Allikas oli segakategooria; mängumajad ja mängutelgid on kaks selgelt erinevat tooteliiki, seega üks jääb core'iks ja teine lahkub eraldi L3-na.",
+      "_raw": {
+        "core": "Laste mängumajad",
+        "subs": [
+          "Laste mängutelgid"
+        ],
+        "rename": {
+          "name_et": "Laste mängumajad",
+          "change_handle": true,
+          "reason": "Allikas jääb mängumajade kategooriaks, telgid eralduvad"
+        },
+        "cancel": false,
+        "reasoning": "Allikas oli segakategooria; mängumajad ja mängutelgid on kaks selgelt erinevat tooteliiki, seega üks jääb core'iks ja teine lahkub eraldi L3-na."
+      }
+    },
+    {
+      "id": "pcat_15keha",
+      "name": "Keha-massöörid",
+      "l2id": "pcat_v4_l15_1",
+      "THR": 5,
+      "viable": [
+        {
+          "newl3": "Silmamassöörid",
+          "n": 5
+        },
+        {
+          "newl3": "Jalamassöörid",
+          "n": 8
+        }
+      ],
+      "keepN": 3,
+      "core": null,
+      "subs": [
+        "Silmamassöörid",
+        "Jalamassöörid"
+      ],
+      "cancel": false,
+      "rename": {
+        "name_et": "Keha- ja peamassöörid",
+        "change_handle": false,
+        "reason": "Allikasse jäävad keha- ja peapiirkonna üldmassöörid (keha, peanahk)."
+      },
+      "reasoning": "Silma- ja jalamassöörid on selgelt eraldi kehapiirkonna tooteliigid eri kliendivajadusega, seega lahkuvad omaette L3-deks; allikasse jäävad üldised keha- ja peanahamassöörid.",
+      "_raw": {
+        "core": null,
+        "subs": [
+          "Silmamassöörid",
+          "Jalamassöörid"
+        ],
+        "rename": {
+          "name_et": "Keha- ja peamassöörid",
+          "change_handle": false,
+          "reason": "Allikasse jäävad keha- ja peapiirkonna üldmassöörid (keha, peanahk)."
+        },
+        "cancel": false,
+        "reasoning": "Silma- ja jalamassöörid on selgelt eraldi kehapiirkonna tooteliigid eri kliendivajadusega, seega lahkuvad omaette L3-deks; allikasse jäävad üldised keha- ja peanahamassöörid."
+      }
+    },
+    {
+      "id": "pcat_ag2_3x4_13",
+      "name": "Golfikäru ja go-kart osad",
+      "l2id": "pcat_v4_l3_4",
+      "THR": 5,
+      "viable": [
+        {
+          "newl3": "Golfiauto ja go-kart sidurid",
+          "n": 8
+        },
+        {
+          "newl3": "Golfiauto kiirusekontrollerid",
+          "n": 5
+        }
+      ],
+      "keepN": 1,
+      "core": null,
+      "subs": [
+        "Golfiauto ja go-kart sidurid",
+        "Golfiauto kiirusekontrollerid"
+      ],
+      "cancel": false,
+      "rename": {
+        "name_et": "Golfikäru ja go-kart osad",
+        "change_handle": false,
+        "reason": "Allikas jääb üldiste osade kategooriaks (sh pidurdusosad)"
+      },
+      "reasoning": "Allikas on üldine varuosade kategooria; sidurid ja kiirusekontrollerid on selged eraldi alamkontseptsioonid, mis saavad uued L3-d, üldised osad jäävad allikasse.",
+      "_raw": {
+        "core": null,
+        "subs": [
+          "Golfiauto ja go-kart sidurid",
+          "Golfiauto kiirusekontrollerid"
+        ],
+        "rename": {
+          "name_et": "Golfikäru ja go-kart osad",
+          "change_handle": false,
+          "reason": "Allikas jääb üldiste osade kategooriaks (sh pidurdusosad)"
+        },
+        "cancel": false,
+        "reasoning": "Allikas on üldine varuosade kategooria; sidurid ja kiirusekontrollerid on selged eraldi alamkontseptsioonid, mis saavad uued L3-d, üldised osad jäävad allikasse."
+      }
+    },
+    {
+      "id": "pcat_ag2_3x1_13",
+      "name": "Vintsi trossid ja taasteplokid",
+      "l2id": "pcat_v4_l3_1",
+      "THR": 6,
+      "viable": [
+        {
+          "newl3": "Vintsi taasteplokid (snatch-plokid)",
+          "n": 6
+        },
+        {
+          "newl3": "Vintsi trossid ja köied",
+          "n": 8
+        }
+      ],
+      "keepN": 0,
+      "core": "Vintsi trossid ja köied",
+      "subs": [
+        "Vintsi taasteplokid (snatch-plokid)"
+      ],
+      "cancel": false,
+      "rename": {
+        "name_et": "Vintsi trossid ja köied",
+        "change_handle": true,
+        "reason": "Allikas jääb trosside/köite kategooriaks; taasteplokid on eraldi tarvikukontseptsioon."
+      },
+      "reasoning": "Trossid ja köied on domineeriv tooteliik, mis jääb allikasse; snatch-plokid on eraldiseisev tarvik, mis väärib oma L3-d.",
+      "_raw": {
+        "core": "Vintsi trossid ja köied",
+        "subs": [
+          "Vintsi taasteplokid (snatch-plokid)"
+        ],
+        "rename": {
+          "name_et": "Vintsi trossid ja köied",
+          "change_handle": true,
+          "reason": "Allikas jääb trosside/köite kategooriaks; taasteplokid on eraldi tarvikukontseptsioon."
+        },
+        "cancel": false,
+        "reasoning": "Trossid ja köied on domineeriv tooteliik, mis jääb allikasse; snatch-plokid on eraldiseisev tarvik, mis väärib oma L3-d."
+      }
+    },
+    {
+      "id": "pcat_el_11x6_5",
+      "name": "Fotostuudio valgustid",
+      "l2id": "pcat_23foto",
+      "THR": 5,
+      "viable": [
+        {
+          "newl3": "Foto valguskastid (lightboxid)",
+          "n": 7
+        },
+        {
+          "newl3": "Softbox-valgustuskomplektid",
+          "n": 6
+        }
+      ],
+      "keepN": 1,
+      "core": "Softbox-valgustuskomplektid",
+      "subs": [
+        "Foto valguskastid (lightboxid)"
+      ],
+      "cancel": false,
+      "rename": {
+        "name_et": "Fotostuudio valgustuskomplektid ja tarvikud",
+        "change_handle": false,
+        "reason": "Softbox-komplektid ja üldised valgustustarvikud jäävad põhiidentiteedina"
+      },
+      "reasoning": "Softbox-valgustuskomplektid on fotostuudio valgustite põhiseade ja jäävad allikasse koos üldise valgustustarvikuga; valguskastid on selgelt eraldi tooteliik, mis saab uue L3.",
+      "_raw": {
+        "core": "Softbox-valgustuskomplektid",
+        "subs": [
+          "Foto valguskastid (lightboxid)"
+        ],
+        "rename": {
+          "name_et": "Fotostuudio valgustuskomplektid ja tarvikud",
+          "change_handle": false,
+          "reason": "Softbox-komplektid ja üldised valgustustarvikud jäävad põhiidentiteedina"
+        },
+        "cancel": false,
+        "reasoning": "Softbox-valgustuskomplektid on fotostuudio valgustite põhiseade ja jäävad allikasse koos üldise valgustustarvikuga; valguskastid on selgelt eraldi tooteliik, mis saab uue L3."
+      }
+    },
+    {
+      "id": "pcat_el_12x1_38",
+      "name": "Barjääri- ja praktikavõrgud",
+      "l2id": "pcat_12pall",
+      "THR": 6,
+      "viable": [
+        {
+          "newl3": "Spordi tõkke- ja barjäärivõrgud",
+          "n": 6
+        },
+        {
+          "newl3": "Jalgpalli tagasipõrkelauad (rebounder)",
+          "n": 7
+        }
+      ],
+      "keepN": 0,
+      "core": "Spordi tõkke- ja barjäärivõrgud",
+      "subs": [
+        "Jalgpalli tagasipõrkelauad (rebounder)"
+      ],
+      "cancel": false,
+      "rename": {
+        "name_et": "Spordi tõkke- ja barjäärivõrgud",
+        "change_handle": true,
+        "reason": "Kategooria identiteet on barjäärivõrgud; tagasipõrkelauad on eraldi tooteliik."
+      },
+      "reasoning": "Allika põhiidentiteet on barjääri- ja praktikavõrgud, mis jääb core'iks; jalgpalli tagasipõrkelauad on selgelt eri tooteliik (kõvad lauad, mitte võrgud) ja lahkuvad uue L3-na.",
+      "_raw": {
+        "core": "Spordi tõkke- ja barjäärivõrgud",
+        "subs": [
+          "Jalgpalli tagasipõrkelauad (rebounder)"
+        ],
+        "rename": {
+          "name_et": "Spordi tõkke- ja barjäärivõrgud",
+          "change_handle": true,
+          "reason": "Kategooria identiteet on barjäärivõrgud; tagasipõrkelauad on eraldi tooteliik."
+        },
+        "cancel": false,
+        "reasoning": "Allika põhiidentiteet on barjääri- ja praktikavõrgud, mis jääb core'iks; jalgpalli tagasipõrkelauad on selgelt eri tooteliik (kõvad lauad, mitte võrgud) ja lahkuvad uue L3-na."
+      }
+    },
+    {
+      "id": "pcat_el_12x3_17",
+      "name": "Velotrenažöörid",
+      "l2id": "pcat_v4_l12_3",
+      "THR": 5,
+      "viable": [
+        {
+          "newl3": "Jalgratta trenažööri-alused",
+          "n": 7
+        },
+        {
+          "newl3": "Velotrenažöörid ja toajalgrattad",
+          "n": 7
+        }
+      ],
+      "keepN": 0,
+      "core": "Velotrenažöörid ja toajalgrattad",
+      "subs": [
+        "Jalgratta trenažööri-alused"
+      ],
+      "cancel": false,
+      "rename": {
+        "name_et": "Velotrenažöörid",
+        "change_handle": false,
+        "reason": "Põhiseade jääb samaks, nimi sobib."
+      },
+      "reasoning": "Velotrenažöörid on kategooria põhiseade ja jäävad allikasse; jalgratta trenažööri-alused on eraldi tooteliik (tarvik tavalise jalgratta jaoks), mis saab oma L3.",
+      "_raw": {
+        "core": "Velotrenažöörid ja toajalgrattad",
+        "subs": [
+          "Jalgratta trenažööri-alused"
+        ],
+        "rename": {
+          "name_et": "Velotrenažöörid",
+          "change_handle": false,
+          "reason": "Põhiseade jääb samaks, nimi sobib."
+        },
+        "cancel": false,
+        "reasoning": "Velotrenažöörid on kategooria põhiseade ja jäävad allikasse; jalgratta trenažööri-alused on eraldi tooteliik (tarvik tavalise jalgratta jaoks), mis saab oma L3."
+      }
+    },
+    {
+      "id": "pcat_f4_13x1_2",
+      "name": "Lasertorud ja toiteplokid",
+      "l2id": "pcat_v4_l13_1",
+      "THR": 5,
+      "viable": [
+        {
+          "newl3": "CO2 lasertorud",
+          "n": 6
+        },
+        {
+          "newl3": "CO2 laseri toiteplokid",
+          "n": 7
+        }
+      ],
+      "keepN": 0,
+      "core": "CO2 lasertorud",
+      "subs": [
+        "CO2 laseri toiteplokid"
+      ],
+      "cancel": false,
+      "rename": {
+        "name_et": "CO2 lasertorud",
+        "change_handle": true,
+        "reason": "Kategooria jääb lasertorude identiteediga, toiteplokid eralduvad"
+      },
+      "reasoning": "Lasertoru on põhiseade/kulumaterjal, mis jääb allikasse; toiteplokid on eraldi alamkontseptsioon (eri varuosa/tarvik), mis saab uue L3.",
+      "_raw": {
+        "core": "CO2 lasertorud",
+        "subs": [
+          "CO2 laseri toiteplokid"
+        ],
+        "rename": {
+          "name_et": "CO2 lasertorud",
+          "change_handle": true,
+          "reason": "Kategooria jääb lasertorude identiteediga, toiteplokid eralduvad"
+        },
+        "cancel": false,
+        "reasoning": "Lasertoru on põhiseade/kulumaterjal, mis jääb allikasse; toiteplokid on eraldi alamkontseptsioon (eri varuosa/tarvik), mis saab uue L3."
+      }
+    },
+    {
+      "id": "pcat_ks_4x1_4",
+      "name": "Toidukuivatid ja külmkuivatid",
+      "l2id": "pcat_v4_l4_1",
+      "THR": 5,
+      "viable": [
+        {
+          "newl3": "Toidukuivatid ja dehüdraatorid",
+          "n": 6
+        },
+        {
+          "newl3": "Vaakum-külmkuivatid",
+          "n": 7
+        }
+      ],
+      "keepN": 0,
+      "core": "Toidukuivatid ja dehüdraatorid",
+      "subs": [
+        "Vaakum-külmkuivatid"
+      ],
+      "cancel": false,
+      "rename": {
+        "name_et": "Toidukuivatid ja dehüdraatorid",
+        "change_handle": true,
+        "reason": "Allikasse jääb vaid toidukuivatite osa, külmkuivatid lahkuvad"
+      },
+      "reasoning": "Toidukuivatid on domineeriv põhiseade ja jäävad allikasse; vaakum-külmkuivatid on eraldi tooteliik eri kliendivajadusega ja saavad uue L3.",
+      "_raw": {
+        "core": "Toidukuivatid ja dehüdraatorid",
+        "subs": [
+          "Vaakum-külmkuivatid"
+        ],
+        "rename": {
+          "name_et": "Toidukuivatid ja dehüdraatorid",
+          "change_handle": true,
+          "reason": "Allikasse jääb vaid toidukuivatite osa, külmkuivatid lahkuvad"
+        },
+        "cancel": false,
+        "reasoning": "Toidukuivatid on domineeriv põhiseade ja jäävad allikasse; vaakum-külmkuivatid on eraldi tooteliik eri kliendivajadusega ja saavad uue L3."
+      }
+    },
+    {
+      "id": "pcat_el_12x1_31",
+      "name": "Lauamängud ja malekomplektid",
+      "l2id": "pcat_12mang",
+      "THR": 5,
+      "viable": [
+        {
+          "newl3": "Male- ja kabekomplektid",
+          "n": 5
+        },
+        {
+          "newl3": "Mahjongilauad",
+          "n": 5
+        }
+      ],
+      "keepN": 2,
+      "core": "Male- ja kabekomplektid",
+      "subs": [
+        "Mahjongilauad"
+      ],
+      "cancel": false,
+      "rename": {
+        "name_et": "Lauamängud ja malekomplektid",
+        "change_handle": false,
+        "reason": "Male/kabe ja üldised lauamängulauad jäävad kategooria identiteediks"
+      },
+      "reasoning": "Male- ja kabekomplektid koos üldiste lauamängulaudadega moodustavad kategooria põhiidentiteedi; mahjongilauad on selgelt eri tooteliik (eri mäng, eri kliendivajadus) ja lahkuvad uue L3-na.",
+      "_raw": {
+        "core": "Male- ja kabekomplektid",
+        "subs": [
+          "Mahjongilauad"
+        ],
+        "rename": {
+          "name_et": "Lauamängud ja malekomplektid",
+          "change_handle": false,
+          "reason": "Male/kabe ja üldised lauamängulauad jäävad kategooria identiteediks"
+        },
+        "cancel": false,
+        "reasoning": "Male- ja kabekomplektid koos üldiste lauamängulaudadega moodustavad kategooria põhiidentiteedi; mahjongilauad on selgelt eri tooteliik (eri mäng, eri kliendivajadus) ja lahkuvad uue L3-na."
+      }
+    },
+    {
+      "id": "pcat_t3f_7_7",
+      "name": "Keevitusmaskid ja filtrid",
+      "l2id": "pcat_t3l2_7",
+      "THR": 5,
+      "viable": [
+        {
+          "newl3": "Keevitusläätsed ja kaitseklaasid",
+          "n": 5
+        },
+        {
+          "newl3": "Keevitusmaskid ja -kiivrid",
+          "n": 7
+        }
+      ],
+      "keepN": 0,
+      "core": "Keevitusmaskid ja -kiivrid",
+      "subs": [
+        "Keevitusläätsed ja kaitseklaasid"
+      ],
+      "cancel": false,
+      "rename": {
+        "name_et": "Keevitusmaskid ja -kiivrid",
+        "change_handle": true,
+        "reason": "Allikas kitseneb põhiseadmele (maskid/kiivrid), läätsed ja filtrid lahkuvad tarvikutena."
+      },
+      "reasoning": "Keevitusmaskid on põhiseade ja jäävad allikasse; läätsed ja kaitseklaasid on selgelt eraldi tarvikud/kulumaterjal, mis saavad uue L3.",
+      "_raw": {
+        "core": "Keevitusmaskid ja -kiivrid",
+        "subs": [
+          "Keevitusläätsed ja kaitseklaasid"
+        ],
+        "rename": {
+          "name_et": "Keevitusmaskid ja -kiivrid",
+          "change_handle": true,
+          "reason": "Allikas kitseneb põhiseadmele (maskid/kiivrid), läätsed ja filtrid lahkuvad tarvikutena."
+        },
+        "cancel": false,
+        "reasoning": "Keevitusmaskid on põhiseade ja jäävad allikasse; läätsed ja kaitseklaasid on selgelt eraldi tarvikud/kulumaterjal, mis saavad uue L3."
+      }
+    },
+    {
+      "id": "pcat_t3a_2_17",
+      "name": "Infrapunasaunad",
+      "l2id": "pcat_saun",
+      "THR": 5,
+      "viable": [
+        {
+          "newl3": "Infrapunasaunad (kabiinid)",
+          "n": 7
+        },
+        {
+          "newl3": "Infrapuna-saunatekid",
+          "n": 5
+        }
+      ],
+      "keepN": 0,
+      "core": "Infrapunasaunad (kabiinid)",
+      "subs": [
+        "Infrapuna-saunatekid"
+      ],
+      "cancel": false,
+      "rename": {
+        "name_et": "Infrapunasaunad",
+        "change_handle": false,
+        "reason": "Kabiinid on kategooria põhiidentiteet, nimi jääb samaks"
+      },
+      "reasoning": "Infrapunasaunakabiinid on allika domineeriv põhiseade ja jäävad core'iks; saunatekid on selgelt eraldi tooteliik (kaasaskantav tekk, erinev kliendivajadus) ja lahkuvad uue L3-na.",
+      "_raw": {
+        "core": "Infrapunasaunad (kabiinid)",
+        "subs": [
+          "Infrapuna-saunatekid"
+        ],
+        "rename": {
+          "name_et": "Infrapunasaunad",
+          "change_handle": false,
+          "reason": "Kabiinid on kategooria põhiidentiteet, nimi jääb samaks"
+        },
+        "cancel": false,
+        "reasoning": "Infrapunasaunakabiinid on allika domineeriv põhiseade ja jäävad core'iks; saunatekid on selgelt eraldi tooteliik (kaasaskantav tekk, erinev kliendivajadus) ja lahkuvad uue L3-na."
+      }
+    },
+    {
+      "id": "pcat_f4_16x2_4",
+      "name": "Inkontinentsitooted",
+      "l2id": "pcat_v4_l16_2",
+      "THR": 5,
+      "viable": [
+        {
+          "newl3": "Täiskasvanute mähkmed ja aluspüksid",
+          "n": 6
+        },
+        {
+          "newl3": "Imavad voodialused",
+          "n": 6
+        }
+      ],
+      "keepN": 0,
+      "core": "Täiskasvanute mähkmed ja aluspüksid",
+      "subs": [
+        "Imavad voodialused"
+      ],
+      "cancel": false,
+      "rename": {
+        "name_et": "Täiskasvanute mähkmed ja aluspüksid",
+        "change_handle": true,
+        "reason": "Põhiseade on kehale kantavad inkontinentsitooted; täpsustatud nimi"
+      },
+      "reasoning": "Kehal kantavad mähkmed/aluspüksid on inkontinentsikategooria domineeriv põhitoode ja jäävad allikasse; imavad voodialused on eraldi tootetüüp (voodikaitse), mis saab oma L3.",
+      "_raw": {
+        "core": "Täiskasvanute mähkmed ja aluspüksid",
+        "subs": [
+          "Imavad voodialused"
+        ],
+        "rename": {
+          "name_et": "Täiskasvanute mähkmed ja aluspüksid",
+          "change_handle": true,
+          "reason": "Põhiseade on kehale kantavad inkontinentsitooted; täpsustatud nimi"
+        },
+        "cancel": false,
+        "reasoning": "Kehal kantavad mähkmed/aluspüksid on inkontinentsikategooria domineeriv põhitoode ja jäävad allikasse; imavad voodialused on eraldi tootetüüp (voodikaitse), mis saab oma L3."
+      }
+    },
+    {
+      "id": "pcat_24hobu",
+      "name": "Kiikhobud",
+      "l2id": "pcat_24oue",
+      "THR": 5,
+      "viable": [
+        {
+          "newl3": "Kiikhobud",
+          "n": 5
+        },
+        {
+          "newl3": "Ratastel ratsutusmänguasjad",
+          "n": 5
+        }
+      ],
+      "keepN": 0,
+      "core": "Kiikhobud",
+      "subs": [
+        "Ratastel ratsutusmänguasjad"
+      ],
+      "cancel": false,
+      "rename": {
+        "name_et": "Kiikhobud",
+        "change_handle": false,
+        "reason": "Allika identiteet säilib"
+      },
+      "reasoning": "Kiikhobud on kategooria põhiidentiteet ja jääb allikasse; ratastel ratsutusmänguasjad on eraldi tooteliik (rataste peal sõidetavad, mitte kiikuvad) ja lahkub uue L3-na.",
+      "_raw": {
+        "core": "Kiikhobud",
+        "subs": [
+          "Ratastel ratsutusmänguasjad"
+        ],
+        "rename": {
+          "name_et": "Kiikhobud",
+          "change_handle": false,
+          "reason": "Allika identiteet säilib"
+        },
+        "cancel": false,
+        "reasoning": "Kiikhobud on kategooria põhiidentiteet ja jääb allikasse; ratastel ratsutusmänguasjad on eraldi tooteliik (rataste peal sõidetavad, mitte kiikuvad) ja lahkub uue L3-na."
+      }
+    }
+  ]
+}

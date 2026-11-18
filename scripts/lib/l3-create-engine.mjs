@@ -133,8 +133,19 @@ export async function createL3Batch({
   }
 
   // ---- defs (description = TÜÜBIPROFIIL internal väli, MITTE SEO) ----
+  // id-de UNIKAALSUS partii-siseselt + DB vastu (HARD RULE #5 — iganädalane masin ei tohi dup-key'da).
+  // slugId on name_en-põhine → kaks ERI allikat/plaani võivad anda SAMA id (nt "Infrared Sauna Blankets" ×2
+  // kahest grab-bag'ist). create-l3.mjs kontrollib ainult DB vastu, mitte partii-siseselt → teine INSERT kukkus
+  // "already exists". uniqId kontrollib ka DB-d igal kutsel → robustne ka ebatäieliku rollback'i/retry vastu.
+  const usedIds = new Set();
+  const dbHasId = (id) => !!psql(`SELECT 1 FROM product_category WHERE id=${sqlStr(id)};`);
+  const uniqId = (base) => {
+    let id = base;
+    for (let k = 2; usedIds.has(id) || dbHasId(id); k++) { const sfx = `-${k}`; id = base.slice(0, Math.max(1, 24 - sfx.length)) + sfx; }
+    usedIds.add(id); return id;
+  };
   const defs = plans.map(p => ({
-    id: slugId(p.name_en || p.name_et), name: p.name_et,
+    id: uniqId(slugId(p.name_en || p.name_et)), name: p.name_et,
     description: (p.type_profile && p.type_profile.ok && p.type_profile.description) ? p.type_profile.description : "",
     handle: p.handle, parent_id: parentIdOf[p.parentL2], rank: 900,
   }));
