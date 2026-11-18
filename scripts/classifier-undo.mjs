@@ -29,7 +29,8 @@ if (!DRY) {
   catch (e) { console.error(`🔴 ${e.message}\n   → deploy käib? proovi uuesti kui stack healthy.`); process.exit(3); }
 }
 const DEPLOY = argv.includes("--deploy");
-const fileArg = argv[argv.indexOf("--file") + 1];
+const fileIdx = argv.indexOf("--file");
+const fileArg = fileIdx >= 0 ? argv[fileIdx + 1] : undefined; // BUG-fix: indexOf=-1 → +1=0 → fileArg=argv[0] (=batch_id) → batchId undefined
 const batchId = argv.find(a => !a.startsWith("--") && a !== fileArg);
 const undoFile = (argv.includes("--file") && fileArg) ? fileArg : `${REPO}/reports/etapp2-undo-${batchId}.json`;
 if (!fs.existsSync(undoFile)) { console.error(`🔴 undo-fail puudub: ${undoFile}`); process.exit(1); }
