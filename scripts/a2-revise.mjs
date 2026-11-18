@@ -64,7 +64,8 @@ function main() {
     FROM grab g;
   `).split("\n").filter(Boolean);
   const sibMap = new Map();
-  for (const line of rows) { const [id, l2id, counts] = line.split("\t"); sibMap.set(id, (counts || "").split(",").filter(Boolean).map(Number)); }
+  const l2Map = new Map();
+  for (const line of rows) { const [id, l2id, counts] = line.split("\t"); sibMap.set(id, (counts || "").split(",").filter(Boolean).map(Number)); l2Map.set(id, l2id); }
 
   const exec = [], dropped = [];
   for (const b of blocks) {
@@ -80,7 +81,7 @@ function main() {
       if (isAcc && r.est_n < Math.max(8, Math.round(0.5 * med))) { folded.push(r); continue; }
       if (r.est_n >= THR) kept.push(r); else tooSmall.push(r);
     }
-    const rec = { ...b, med, THR, kept, folded, tooSmall, device: device?.newl3 };
+    const rec = { ...b, l2id: l2Map.get(b.id), med, THR, kept, folded, tooSmall, device: device?.newl3 };
     if (kept.length >= 2) exec.push(rec); else dropped.push(rec);
   }
 
@@ -104,7 +105,16 @@ function main() {
     L.push(`- **${r.name}** (${r.n}t, mediaan ${r.med}): ${reason}${r.folded.length ? ` · tarvikud sulatatud` : ""}`);
   }
   fs.writeFileSync(OUT, L.join("\n"));
-  console.error(`✅ A2-revize: EXECUTE ${exec.length} · EI JAGATA ${dropped.length} → ${OUT}`);
+  // masinloetav sidecar assignment-skriptile: ainult execute-kandidaadid, säilitatud uued L3-d
+  const JOUT = path.join(ROOT, "reports", "a2-revised.json");
+  fs.writeFileSync(JOUT, JSON.stringify(exec.map(r => ({
+    id: r.id, name: r.name, l2id: r.l2id, n: r.n, med: r.med, THR: r.THR,
+    device: r.device,
+    kept: r.kept.map(k => ({ newl3: k.newl3, est_n: k.est_n })),
+    folded: r.folded.map(f => ({ newl3: f.newl3, est_n: f.est_n })),
+    tooSmall: r.tooSmall.map(t => ({ newl3: t.newl3, est_n: t.est_n })),
+  })), null, 2));
+  console.error(`✅ A2-revize: EXECUTE ${exec.length} · EI JAGATA ${dropped.length} → ${OUT} + ${JOUT}`);
   console.log(JSON.stringify({ exec: exec.length, dropped: dropped.length }));
 }
 main();

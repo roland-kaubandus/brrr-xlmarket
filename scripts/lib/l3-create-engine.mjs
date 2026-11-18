@@ -31,6 +31,7 @@ import { makeCaller } from "./l3-desc.mjs";
 import { granularityGate } from "./granularity-gate.mjs";
 import { ensureShadowSchema, recordShadowProposal } from "./shadow-ledger.mjs";
 import { acquireStackLock } from "./stack-lock.mjs";
+import { carryRenamedThumbs, parseRenameRows } from "./carry-renamed-thumbs.mjs";
 
 const REPO = "/opt/xlmarket-github";
 const sh = (cmd, opts = {}) => execSync(cmd, { encoding: "utf8", stdio: opts.capture ? "pipe" : "inherit", ...opts });
@@ -133,10 +134,40 @@ export async function createL3Batch({
   }
 
   // ---- defs (description = TÜÜBIPROFIIL internal väli, MITTE SEO) ----
-  // id-de UNIKAALSUS partii-siseselt + DB vastu (HARD RULE #5 — iganädalane masin ei tohi dup-key'da).
-  // slugId on name_en-põhine → kaks ERI allikat/plaani võivad anda SAMA id (nt "Infrared Sauna Blankets" ×2
-  // kahest grab-bag'ist). create-l3.mjs kontrollib ainult DB vastu, mitte partii-siseselt → teine INSERT kukkus
-  // "already exists". uniqId kontrollib ka DB-d igal kutsel → robustne ka ebatäieliku rollback'i/retry vastu.
+  // ═══ HARD RULE #5 — KONTSEPTSIOONI-DUP VÄRAV (partii-sisene MERGE + olemas-live marsruut + trunkeeri-suffiks) ═══
+  // Iganädalane masin EI tohi (a) dup-key'da ega (b) luua kontseptsiooni, mis juba live. slugId on name_en-põhine.
+  //   (1) MERGE: kaks plaani SAMA normaliseeritud nimega → ÜHENDA tooted ühte L3-sse (EI loo kahte, EI suffiksi),
+  //       nt "Infrared Sauna Blankets" ×2 grab-bag'ist. (A2-s juba kandidaadi-kihis ühendatud → siin no-op/kaitse.)
+  //   (2) OLEMAS-LIVE: sama kontseptsiooni L3 (sama id, non-deleted, mpath=L3) juba olemas → EI loo, marsruudi
+  //       tooted olemasolevasse (attach). Tarmo: "kas juba olemas? jah → tooted sinna, uut ei looda."
+  //   (3) TRUNKEERI-KOLLISIOON: ERI name_en, mis trunkeeruvad samaks 24-char id-ks (VÕI soft-deleted id blokeeriks
+  //       create-l3 INSERT-i, sest see kontrollib id-d ilma deleted_at-filtrita) → suffiks (disambig).
+  const normNm = (s) => String(s || "").trim().toLowerCase();
+  // (1) MERGE sama normaliseeritud nimega plaanid — tooted liidetakse (dedup product_id)
+  const mByName = new Map(); const nameOrder = [];
+  for (const p of plans) {
+    const nk = normNm(p.name_en || p.name_et);
+    if (mByName.has(nk)) {
+      const m = mByName.get(nk); const seen = new Set(m.products.map(x => x.id));
+      for (const pr of (p.products || [])) if (!seen.has(pr.id)) { m.products.push(pr); seen.add(pr.id); }
+      m._mergedFrom.push(p.ck || p.name_et); m.n = m.products.length;
+    } else { const m = { ...p, products: [...(p.products || [])], _mergedFrom: [p.ck || p.name_et] }; m.n = m.products.length; mByName.set(nk, m); nameOrder.push(nk); }
+  }
+  let mergedPlans = nameOrder.map(k => mByName.get(k));
+  const concMerges = mergedPlans.filter(m => m._mergedFrom.length > 1);
+  if (concMerges.length && !dryRun) telegram(`🔗 XL ${label} — kontseptsiooni-dup MERGE (partii-sisene): ${concMerges.map(m => `«${m.name_et}» (${m._mergedFrom.length} allikat → ${m.n} toodet)`).join(", ")}`);
+  // (2) olemas-live L3 marsruut (sama id = sama kontseptsioon; L3 = mpath 2 punkti)
+  const routedAttach = []; const toCreate = [];
+  for (const m of mergedPlans) {
+    const baseId = slugId(m.name_en || m.name_et);
+    const liveId = psql(`SELECT id FROM product_category WHERE id=${sqlStr(baseId)} AND deleted_at IS NULL AND (char_length(COALESCE(mpath,''))-char_length(replace(COALESCE(mpath,''),'.','')))=2;`);
+    if (liveId) { for (const pr of (m.products || [])) routedAttach.push({ product_id: pr.id, cat_id: liveId }); m._routedTo = liveId; }
+    else toCreate.push(m);
+  }
+  const routedPlans = mergedPlans.filter(m => m._routedTo);
+  if (routedPlans.length && !dryRun) telegram(`➡️ XL ${label} — ${routedPlans.length} kontseptsiooni juba live → tooted olemasolevasse (uut EI loodud): ${routedPlans.map(m => `«${m.name_et}»→${m._routedTo}`).join(", ")}`);
+  plans = toCreate; // edasine (thumbs/health/log/counts) käib LOODAVATE L3-de peal → defs[i] ↔ plans[i]
+  // (3) id-unikaalsus: trunkeeri-kollisioon + soft-deleted id blokeeriks INSERT-i (dbHasId näeb KÕIKI ridu).
   const usedIds = new Set();
   const dbHasId = (id) => !!psql(`SELECT 1 FROM product_category WHERE id=${sqlStr(id)};`);
   const uniqId = (base) => {
@@ -151,7 +182,8 @@ export async function createL3Batch({
   }));
   const newL3Attach = plans.flatMap((p, i) => p.products.map(pr => ({ product_id: pr.id, cat_id: defs[i].id })));
   const assignAttach = assigns.flatMap(a => a.ids.map(id => ({ product_id: id, cat_id: assignIdOf[a.handle] })));
-  const allAttach = [...newL3Attach, ...assignAttach];
+  const reparentAttach = [...newL3Attach, ...routedAttach]; // mõlemad = v4-L3 liigutus (detach vanast koju)
+  const allAttach = [...newL3Attach, ...routedAttach, ...assignAttach];
   const allProductIds = [...new Set(allAttach.map(x => x.product_id))];
 
   // ---- baseline + DÜNAAMILINE oodatud (asendab fikseeritud 40) ----
@@ -175,6 +207,7 @@ export async function createL3Batch({
       ok: true, dryRun: true, batch_id: BATCH, created, baseline,
       planned: {
         new_l3: defs.length, attach_new: newL3Attach.length, attach_assign: assignAttach.length,
+        attach_routed: routedAttach.length, concept_merged: concMerges.length, routed_existing: routedPlans.length,
         distinct_products: allProductIds.length,
         expect: { distinct: `${baseDistinct}→${expectDistinct}`, l3: `${baseL3}→${expectL3}`, published: expectPub, draft_remaining: 0 },
       },
@@ -184,7 +217,7 @@ export async function createL3Batch({
   // ===== EXECUTE =====
   // REPARENT UNDO pre-state: iga uude L3-sse pandava toote senine v4-L3 kodu + staatus → undo taastab
   // vana kodu (EI draft'i, muidu juba-avaldatud toode kaoks poest). Kodutu toode → tühi from-list.
-  const reparentPidsPre = detachV4L3 ? [...new Set(newL3Attach.map(x => x.product_id))] : [];
+  const reparentPidsPre = detachV4L3 ? [...new Set(reparentAttach.map(x => x.product_id))] : [];
   let reparentPre = [];
   if (reparentPidsPre.length) {
     const rows = psql(`SELECT p.id, p.status,
@@ -264,17 +297,19 @@ export async function createL3Batch({
   };
 
   try {
-    // 1. DB create-l3
-    console.log(`\n[1/9] ${BATCH} — DB create-l3 (${defs.length} L3)`);
-    const defsFile = `/tmp/l3eng-defs-${BATCH}.json`;
-    fs.writeFileSync(defsFile, JSON.stringify(defs, null, 2));
-    sh(`node ${REPO}/scripts/create-l3.mjs --defs ${defsFile}`);
+    // 1. DB create-l3 (serva-juht: KÕIK kontseptsioonid marsruuditud olemasolevatesse → 0 loodavat L3 → vahele)
+    console.log(`\n[1/9] ${BATCH} — DB create-l3 (${defs.length} L3${routedAttach.length ? `, +${routedAttach.length} toodet olemas-live L3-desse` : ""})`);
+    if (defs.length) {
+      const defsFile = `/tmp/l3eng-defs-${BATCH}.json`;
+      fs.writeFileSync(defsFile, JSON.stringify(defs, null, 2));
+      sh(`node ${REPO}/scripts/create-l3.mjs --defs ${defsFile}`);
+    } else { console.log("    (0 loodavat L3 — ainult marsruutimine olemasolevatesse)"); }
 
     // 1b. (reparent: detach senistest v4-L3-dest) + attach + publish + review-resolve
     console.log(`[1b/9] DB — ${detachV4L3 ? "reparent (detach v4-L3) + " : ""}seo ${allProductIds.length} toodet + publish + review-resolve`);
     const attachVals = allAttach.map(x => `(${sqlStr(x.product_id)}, ${sqlStr(x.cat_id)})`).join(",\n    ");
-    // detach AINULT uude L3-sse pandavad tooted (newL3Attach) senistest v4-L3-dest — assign-tooteid EI puutu
-    const reparentPids = [...new Set(newL3Attach.map(x => x.product_id))];
+    // detach uude L3-sse pandavad + olemas-live marsruuditud tooted (reparentAttach) senistest v4-L3-dest — assign-tooteid EI puutu
+    const reparentPids = [...new Set(reparentAttach.map(x => x.product_id))];
     const reparentList = reparentPids.map(sqlStr).join(",");
     const detachSql = (detachV4L3 && reparentPids.length)
       ? `DELETE FROM product_category_product WHERE product_id IN (${reparentList})
@@ -322,6 +357,21 @@ export async function createL3Batch({
     //    Kogu partii rollback AINULT süsteemse vea korral (thumb-build/mõõt kukub kõigil — allpool catch).
     console.log("[3/9] Pildid — build-cat-thumbs-l3 + heledus-kontroll (taust-mediaan)");
     const CAT_THUMBS_HOST = `${REPO}/storefront/public/cat-thumbs`;
+    // 3.0 — PILDI-KAASKANDMINE RENAME'IL (HARD RULE #5, Tarmo 2026-11-18, juurpõhjus-fix):
+    //   kategooria handle-muutus (A1 scatter / FAAS 2 / naabri-reparent / iganädalane masin) jätab
+    //   cat-thumbs/${vana}.webp orvuks → uus handle pildita → INV-20/26 FAIL → blokeerib KÕIK L3-loome.
+    //   FS-poolel "üks mehhanism" (analoog migration 010 DB-triggerile): loeb slug_redirect reason='rename'
+    //   ja liigutab orvu uue handle alla. Idempotentne + lossless. Jookseb IGA partii alguses (ka see, mis
+    //   ise ei nimeta ümber → heelib varasemate kutsujate, nt A1, tekitatud orvud).
+    try {
+      const renames = parseRenameRows(psql(`SELECT from_slug || E'\\t' || to_slug FROM slug_redirect WHERE reason='rename'`));
+      const { carried } = carryRenamedThumbs(renames, CAT_THUMBS_HOST, (from, to) => {
+        try { sh(`cd ${REPO} && git add -A -- storefront/public/cat-thumbs/${from}.webp storefront/public/cat-thumbs/${to}.webp`); } catch {}
+        try { if (fs.existsSync(`${CAT_THUMBS_HOST}/${to}.webp`)) sh(`docker cp ${CAT_THUMBS_HOST}/${to}.webp ${SF}:/app/public/cat-thumbs/${to}.webp`); } catch {}
+        extraGitPaths.push(`storefront/public/cat-thumbs/${to}.webp`);
+      });
+      if (carried.length) console.log(`    🖼  pilt-kaaskandmine (rename→handle): ${carried.length} — ${carried.slice(0, 6).join(" · ")}${carried.length > 6 ? " …" : ""}`);
+    } catch (e) { console.log(`    ⚠️ pilt-kaaskandmine vahele (ei blokeeri): ${String(e.message).slice(0, 120)}`); }
     const buildThumbs = (handles) => {
       const mt = { nodes: Object.fromEntries(handles.map(h => { const p = plans.find(x => x.handle === h); return [h, { handle: h, name_et: p?.name_et || p?.name, name_en: p?.name_en || p?.assets?.name_en || p?.name, level: 3 }]; })) };
       const mf = `/tmp/l3eng-minitree-${BATCH}.json`;
@@ -365,33 +415,35 @@ export async function createL3Batch({
       finally { try { if (treeBak != null) fs.writeFileSync(TREE, treeBak); } catch {} try { if (missBak != null) fs.writeFileSync(MISSING, missBak); } catch {} }
     };
 
-    buildThumbs(defs.map(d => d.handle));
-    let brightOut = measureBright(defs.map(d => d.handle));
-    console.log("    heledus(taust-mediaan): " + brightOut.map(b => b.missing ? `${b.h}:PUUDU` : `${b.h}:${b.luma}`).join(" · "));
-    const REGEN_MAX = 3;
-    let stillBad = brightOut.filter(b => b.missing || b.luma < IMG_BRIGHT_MIN).map(b => b.h);
-    for (let attempt = 1; attempt <= REGEN_MAX && stillBad.length; attempt++) {
-      console.log(`    🎨 Gemini valge-taust regen (katse ${attempt}/${REGEN_MAX}): ${stillBad.join(", ")}`);
-      for (const h of stillBad) regenWhiteBg(h);
-      const re = measureBright(stillBad);
-      console.log("    heledus(regen): " + re.map(b => b.missing ? `${b.h}:PUUDU` : `${b.h}:${b.luma}`).join(" · "));
-      stillBad = re.filter(b => b.missing || b.luma < IMG_BRIGHT_MIN).map(b => b.h);
-    }
-    // stillBad peale regen'i → SKIP just need L3 (shadow). Rollback (atomaarne) + runL3Batches loob ÜLEJÄÄNUD
-    // uuesti ilma skipituteta (per-L3 semantika, taaskasutab testitud atomaarset rollback'i). MITTE süsteemne stopp.
-    if (stillBad.length) {
-      try {
-        const q = (sql) => execSync(`docker exec -i ${DB} psql -U xlmarket -d xlmarket -tA -v ON_ERROR_STOP=1 -f -`, { input: sql, encoding: "utf8" });
-        ensureShadowSchema(q);
-        for (const h of stillBad) {
-          const p = plans.find(x => x.handle === h);
-          recordShadowProposal(q, { batch_id: `${BATCH}-img-skip`, cluster_key: p?.ck || h, proposed_name: p?.name_et || h, parent_l2_handle: p?.parentL2, origin: "image-dark-bg", n_products: p?.n || 0, all_gates_pass: false, gates: { image: { pass: false, reason: `tume taust peale ${REGEN_MAX}× regen` } } });
-        }
-      } catch (e) { console.log(`    ⚠ pildi-skip shadow vahele: ${String(e.message).slice(0, 120)}`); }
-      rollback(`pildi-skip: ${stillBad.length} L3 tume taust peale ${REGEN_MAX}× regen (${stillBad.join(", ")}) → shadow; ülejäänud luuakse uuesti`);
-      return { ok: false, batch_id: BATCH, reason: "pildi-skip", skipHandles: stillBad, baseline, created };
-    }
-    for (const d of defs) sh(`docker cp ${SF}:/app/public/cat-thumbs/${d.handle}.webp ${REPO}/storefront/public/cat-thumbs/${d.handle}.webp`);
+    if (defs.length) {
+      buildThumbs(defs.map(d => d.handle));
+      let brightOut = measureBright(defs.map(d => d.handle));
+      console.log("    heledus(taust-mediaan): " + brightOut.map(b => b.missing ? `${b.h}:PUUDU` : `${b.h}:${b.luma}`).join(" · "));
+      const REGEN_MAX = 3;
+      let stillBad = brightOut.filter(b => b.missing || b.luma < IMG_BRIGHT_MIN).map(b => b.h);
+      for (let attempt = 1; attempt <= REGEN_MAX && stillBad.length; attempt++) {
+        console.log(`    🎨 Gemini valge-taust regen (katse ${attempt}/${REGEN_MAX}): ${stillBad.join(", ")}`);
+        for (const h of stillBad) regenWhiteBg(h);
+        const re = measureBright(stillBad);
+        console.log("    heledus(regen): " + re.map(b => b.missing ? `${b.h}:PUUDU` : `${b.h}:${b.luma}`).join(" · "));
+        stillBad = re.filter(b => b.missing || b.luma < IMG_BRIGHT_MIN).map(b => b.h);
+      }
+      // stillBad peale regen'i → SKIP just need L3 (shadow). Rollback (atomaarne) + runL3Batches loob ÜLEJÄÄNUD
+      // uuesti ilma skipituteta (per-L3 semantika, taaskasutab testitud atomaarset rollback'i). MITTE süsteemne stopp.
+      if (stillBad.length) {
+        try {
+          const q = (sql) => execSync(`docker exec -i ${DB} psql -U xlmarket -d xlmarket -tA -v ON_ERROR_STOP=1 -f -`, { input: sql, encoding: "utf8" });
+          ensureShadowSchema(q);
+          for (const h of stillBad) {
+            const p = plans.find(x => x.handle === h);
+            recordShadowProposal(q, { batch_id: `${BATCH}-img-skip`, cluster_key: p?.ck || h, proposed_name: p?.name_et || h, parent_l2_handle: p?.parentL2, origin: "image-dark-bg", n_products: p?.n || 0, all_gates_pass: false, gates: { image: { pass: false, reason: `tume taust peale ${REGEN_MAX}× regen` } } });
+          }
+        } catch (e) { console.log(`    ⚠ pildi-skip shadow vahele: ${String(e.message).slice(0, 120)}`); }
+        rollback(`pildi-skip: ${stillBad.length} L3 tume taust peale ${REGEN_MAX}× regen (${stillBad.join(", ")}) → shadow; ülejäänud luuakse uuesti`);
+        return { ok: false, batch_id: BATCH, reason: "pildi-skip", skipHandles: stillBad, baseline, created };
+      }
+      for (const d of defs) sh(`docker cp ${SF}:/app/public/cat-thumbs/${d.handle}.webp ${REPO}/storefront/public/cat-thumbs/${d.handle}.webp`);
+    } else { console.log("    (0 loodavat L3 → pildi-värav vahele)"); }
 
     // 4. SSoT regen
     console.log("[4/9] SSoT regen"); regenSSoT();
