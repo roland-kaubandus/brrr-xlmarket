@@ -1,0 +1,158 @@
+{
+  "batch_id": "a2-b1-2026-11-18T1927",
+  "created_at": "2026-11-18T19:27:19.408Z",
+  "actor": "claude-code-test",
+  "label": "A2-split p1/1",
+  "new_l3": [
+    {
+      "id": "pcat_e2_batteryspotwelders",
+      "handle": "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-patarei-punktkeevitusaparaadid",
+      "name": "Patarei-punktkeevitusaparaadid",
+      "parent_id": "pcat_t3l2_7"
+    },
+    {
+      "id": "pcat_e2_golfcartspeedcontrollers",
+      "handle": "v4-autovaruosad-ja-tarvikud-autovaruosad-golfiauto-kiirusekontrollerid",
+      "name": "Golfiauto kiirusekontrollerid",
+      "parent_id": "pcat_v4_l3_4"
+    }
+  ],
+  "attach": [
+    {
+      "product_id": "prod_01M6SVVWN4W8GX0Z8GGF9978WK",
+      "cat_id": "pcat_e2_batteryspotwelders"
+    },
+    {
+      "product_id": "prod_01M6Z0N9PHFMS7RMVETCZD9AG5",
+      "cat_id": "pcat_e2_batteryspotwelders"
+    },
+    {
+      "product_id": "prod_01M6Z0N9PHXC9KKX79QGH4FBYE",
+      "cat_id": "pcat_e2_batteryspotwelders"
+    },
+    {
+      "product_id": "prod_01KNXXBDG2VW0JQSEW3APJNT1G",
+      "cat_id": "pcat_e2_batteryspotwelders"
+    },
+    {
+      "product_id": "prod_01KNXXBCH58BXBDD3BQ7CQVWAA",
+      "cat_id": "pcat_e2_batteryspotwelders"
+    },
+    {
+      "product_id": "prod_01KNXXBBMV52F8XAY4WP0PXN9H",
+      "cat_id": "pcat_e2_batteryspotwelders"
+    },
+    {
+      "product_id": "prod_01KNXXMJWHG1WKT7P8XTN2CDNC",
+      "cat_id": "pcat_e2_golfcartspeedcontrollers"
+    },
+    {
+      "product_id": "prod_01KNXXMNKE9M07W6PWM776EGP5",
+      "cat_id": "pcat_e2_golfcartspeedcontrollers"
+    },
+    {
+      "product_id": "prod_01KNXXMKTCXQFPF05675QBCRW4",
+      "cat_id": "pcat_e2_golfcartspeedcontrollers"
+    },
+    {
+      "product_id": "prod_01KNXXMMQJBQD1SAQPN8T67XWR",
+      "cat_id": "pcat_e2_golfcartspeedcontrollers"
+    },
+    {
+      "product_id": "prod_01KNXXMJVB3JHXWFVBEXVAZ5D2",
+      "cat_id": "pcat_e2_golfcartspeedcontrollers"
+    }
+  ],
+  "product_ids": [
+    "prod_01M6SVVWN4W8GX0Z8GGF9978WK",
+    "prod_01M6Z0N9PHFMS7RMVETCZD9AG5",
+    "prod_01M6Z0N9PHXC9KKX79QGH4FBYE",
+    "prod_01KNXXBDG2VW0JQSEW3APJNT1G",
+    "prod_01KNXXBCH58BXBDD3BQ7CQVWAA",
+    "prod_01KNXXBBMV52F8XAY4WP0PXN9H",
+    "prod_01KNXXMJWHG1WKT7P8XTN2CDNC",
+    "prod_01KNXXMNKE9M07W6PWM776EGP5",
+    "prod_01KNXXMKTCXQFPF05675QBCRW4",
+    "prod_01KNXXMMQJBQD1SAQPN8T67XWR",
+    "prod_01KNXXMJVB3JHXWFVBEXVAZ5D2"
+  ],
+  "reparent": [
+    {
+      "product_id": "prod_01KNXXBBMV52F8XAY4WP0PXN9H",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_t3f_7_5"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXBCH58BXBDD3BQ7CQVWAA",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_t3f_7_5"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXBDG2VW0JQSEW3APJNT1G",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_t3f_7_5"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXMJVB3JHXWFVBEXVAZ5D2",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_ag2_3x4_13"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXMJWHG1WKT7P8XTN2CDNC",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_ag2_3x4_13"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXMKTCXQFPF05675QBCRW4",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_ag2_3x4_13"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXMMQJBQD1SAQPN8T67XWR",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_ag2_3x4_13"
+      ]
+    },
+    {
+      "product_id": "prod_01KNXXMNKE9M07W6PWM776EGP5",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_ag2_3x4_13"
+      ]
+    },
+    {
+      "product_id": "prod_01M6SVVWN4W8GX0Z8GGF9978WK",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_t3f_7_5"
+      ]
+    },
+    {
+      "product_id": "prod_01M6Z0N9PHFMS7RMVETCZD9AG5",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_t3f_7_5"
+      ]
+    },
+    {
+      "product_id": "prod_01M6Z0N9PHXC9KKX79QGH4FBYE",
+      "prev_status": "published",
+      "from_cat_ids": [
+        "pcat_t3f_7_5"
+      ]
+    }
+  ]
+}
