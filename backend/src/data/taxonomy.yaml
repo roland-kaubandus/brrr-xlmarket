@@ -891,6 +891,14 @@ l1:
             description_en: "Welding carts help keep your welding machine, gas cylinders and accessories organized and easy to move around the workshop or garage. They suit various types of welding equipment and cutting machines. When choosing, consider the cart's build quality, wheel type and storage options to match your gear."
             description_et: "Keevituskärud aitavad hoida keevitusseadme, gaasiballoonid ja tarvikud korras ning mugavalt liigutatavad. Sobivad nii töökotta kui garaaži erinevat tüüpi keevitusmasinate ja -aparaatide jaoks. Valides tasu tähelepanu käru materjalile, rataste tüübile ja hoiustamisvõimalustele vastavalt oma seadmetele."
             product_count: 0
+          - slug: v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-patarei-punktkeevitusaparaadid
+            name_en: "Patarei-punktkeevitusaparaadid"
+            name_et: "Patarei-punktkeevitusaparaadid"
+            tagline_en: "Patarei-punktkeevitusaparaadid"
+            tagline_et: "Patarei-punktkeevitusaparaadid"
+            description_en: "Patarei-punktkeevitusaparaadid — products."
+            description_et: "Patarei-punktkeevitusaparaadid — tooted."
+            product_count: 0
       - slug: v4-tooriistad-ja-tarvikud-metallitoo-ja-sepatoo
         name_en: "Metalworking & Blacksmithing"
         name_et: "Metallitöö ja sepatöö"
@@ -2112,9 +2120,9 @@ l1:
             description_en: "Here you'll find replacement pressure washer pumps for various models and brands. Suitable for both home and professional use, helping restore your equipment's performance without buying a new unit. When choosing, pay attention to shaft type and size, as well as compatibility with your pressure washer model."
             description_et: "Siit leiad survepesurite asenduspumbad erinevatele mudelitele ja tootjatele. Sobivad nii kodusele kui ka professionaalsele kasutusele, aidates taastada seadme töövõime ilma uut survepesurit ostmata. Valikul tasub jälgida võlli tüüpi ja mõõtu ning ühilduvust oma survepesuri mudeliga."
             product_count: 0
-          - slug: v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud-tolmuimejad
+          - slug: v4-tooriistad-ja-tarvikud-puhastustehnika-ja-tarvikud-toostus-ja-ehitustolmuimejad
             name_en: "Vacuum Cleaners"
-            name_et: "Tolmuimejad"
+            name_et: "Tööstus- ja ehitustolmuimejad"
             tagline_en: "Powerful cleaning for every need"
             tagline_et: "Tugev puhastusjõud igaks vajaduseks"
             description_en: "This category features vacuum cleaners for home, workshop and vehicle use, including backpack, wet/dry and commercial models. They suit everyday cleaning as well as heavier-duty debris and liquid pickup tasks. Choose the right type and attachments based on where and what you need to clean."
@@ -3188,14 +3196,6 @@ l1:
             description_en: "This category features wheeled fuel tanks and containers for storing and transporting fuel, suitable for both home and professional use. The range includes models with various sizes and pump solutions for refueling vehicles, machinery and equipment. Choose the right size, material and pump type for your needs."
             description_et: "Siit leiad ratastega kütusemahutid ja -konteinerid kütuse hoiustamiseks ja transportimiseks, sobivad nii kodu- kui töökasutuseks. Valikus on erinevate mahtude ja pumbalahendustega mudelid, mis sobivad masinate, sõidukite ja tehnika tankimiseks. Vali oma vajadusele vastav suurus, materjal ja pumba tüüp."
             product_count: 0
-          - slug: v4-garaaziseadmed-kutus-bensiinikanistrid
-            name_en: "Gas Cans & Safety Cans"
-            name_et: "Bensiinikanistrid ja ohutuskanistrid"
-            tagline_en: "Safe fuel storage and transport"
-            tagline_et: "Turvaline kütuse hoiustamine ja transport"
-            description_en: "This category includes cans and safety containers for storing and transporting gasoline and other fuels. Suitable for home use as well as workshops where fuel needs to be stored and handled safely. Choose material, size and closure type based on your intended use and safety requirements."
-            description_et: "Siit leiad kanistrid ja ohutusmahutid bensiini ning teiste kütuste hoidmiseks ja transportimiseks. Sobivad nii kodukasutajale kui ka töökodadele, kus on vaja kütust turvaliselt säilitada ja käidelda. Vali materjal, suurus ja sulgurmehhanism vastavalt kasutuskohale ning ohutusnõuetele."
-            product_count: 0
           - slug: v4-garaaziseadmed-olivahetus-ja-hooldus-kutusevooliku-rullid
             name_en: "Fuel Hose Reels"
             name_et: "Kütusevooliku rullid"
@@ -3405,9 +3405,9 @@ l1:
             description_en: "Meat bandsaws are designed for cutting meat, bone-in pieces and frozen products, suitable for both catering businesses and larger households. The range suits butchers, restaurants and processors who need fast and precise cutting. When choosing a machine, pay attention to suitable size, worktable dimensions and material durability based on usage volume."
             description_et: "Lihasaed on mõeldud liha, kondiga tükkide ja külmutatud toodete lõikamiseks nii toitlustusettevõtetes kui ka suuremates kodumajapidamistes. Valik sobib lihunikele, restoranidele ja töötlejatele, kes vajavad kiiret ja täpset lõikust. Masina valikul tasub jälgida sobivat suurust, töölaua mõõtmeid ja materjali vastupidavust vastavalt kasutusmahule."
             product_count: 0
-          - slug: v4-suurkook-koogi-taignamikserid
+          - slug: v4-suurkook-professionaalsed-koogi-ja-taignamikserid
             name_en: "Stand Mixers"
-            name_et: "Köögi- ja taignamikserid"
+            name_et: "Professionaalsed köögi- ja taignamikserid"
             tagline_en: "Smooth dough and mixes, effortlessly"
             tagline_et: "Tainas ja segud ühtlaselt, vaevata"
             description_en: "Kitchen and dough mixers suit both home cooks and bakery or catering businesses, helping to knead dough, whip cream and blend various mixtures smoothly. Choose a machine based on how much and how often you'll use it, paying attention to bowl material, included attachments and overall build quality. The right mixer saves time and effort when preparing larger quantities of food."
@@ -4827,9 +4827,9 @@ l1:
             description_en: "Find irons, steamers and ironing boards here for everyday fabric care at home or on the go. The selection includes compact tabletop models for small spaces as well as larger floor-standing boards with storage options. Choose the right size, material and features to suit your home and garment needs."
             description_et: "Siit leiad triikrauad, aurutid ja triikimislauad igapäevaseks riidehoolduseks nii kodus kui reisil. Valikus on nii kompaktsed lauamudelid väikestele pindadele kui ka suuremad põrandamudelid koos hoiuvõimalustega. Vali endale sobiv suurus, materjal ja kasutusmugavus vastavalt oma kodu ja riiete vajadustele."
             product_count: 0
-          - slug: v4-kodumasinad-ja-kodutehnika-puhastus-ja-koristustehnika-tolmuimejad
+          - slug: v4-kodumasinad-ja-kodutehnika-puhastus-ja-koristustehnika-kodutolmuimejad
             name_en: "Vacuum Cleaners"
-            name_et: "Tolmuimejad"
+            name_et: "Kodutolmuimejad"
             tagline_en: "Effortless cleaning for every home"
             tagline_et: "Puhtus kodus, lihtsalt ja mugavalt"
             description_en: "Browse a variety of vacuum cleaners for home cleaning – corded and cordless models, handheld and mattress vacuums. Suitable for everyday cleaning as well as sofas, mattresses and car interiors. Choose a model that fits your surface type and comfort needs, and check included accessories."
@@ -5236,13 +5236,13 @@ l1:
             description_en: "Headboards add a stylish finishing touch and extra comfort to any bedroom, fitting various types of bed frames. The range includes height-adjustable, padded, and storage-equipped models suitable for home bedrooms, guest rooms, or rental spaces. Before buying, consider the right size, material, and mounting method."
             description_et: "Voodipeatsid aitavad magamistoale lisada stiilset viimistlust ja mugavust, sobides erinevat tüüpi voodiraamidele. Valikus on erinevas kõrguses reguleeritavaid, pehmendatud ja hoiuvõimalusega mudeleid nii kodusele magamistoale kui ka külaliste- või külalistubadele. Enne ostu tasub jälgida sobivat suurust, materjali ja kinnitusviisi."
             product_count: 0
-          - slug: v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kokkupandavad-kulalisvoodid
-            name_en: "Folding Guest Beds"
-            name_et: "Kokkupandavad külalisvoodid"
-            tagline_en: "Comfortable extra bed, folds away with ease"
-            tagline_et: "Mugav lisavoodi külalistele, lihtsalt kokkupandav"
-            description_en: "Folding guest beds are a practical solution for extra sleeping space when room is limited or guests arrive unexpectedly. Models with a sturdy frame and comfortable mattress suit both adults and children, and fold away easily for storage. When choosing, consider the bed's size, build quality, and how compactly it stores away."
-            description_et: "Kokkupandavad külalisvoodid on praktiline lahendus lisamagamiskohale, kui ruumi on vähe või külalisi tuleb ootamatult. Tugeva raami ja mugava madratsiga mudelid sobivad nii täiskasvanutele kui lastele ning on kergesti kokkupandavad ja hoiustatavad. Valikul tasub jälgida voodi suurust, materjali kvaliteeti ning kui lihtsalt see kokku pannes ruumi mahub."
+          - slug: v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-raskustekid
+            name_en: "Weighted Blankets"
+            name_et: "Raskustekid"
+            tagline_en: "Soothing weight for better sleep"
+            tagline_et: "Rahustav raskus parema une jaoks"
+            description_en: "Weighted blankets are filled blankets that provide gentle, even pressure to help you relax and sleep better. Designed for adults looking for relief from stress and restless nights, they come in various sizes, fabrics, and covers. When choosing, pay attention to blanket size, fabric type, and suitability for your body weight."
+            description_et: "Raskustekid on täidisega tekid, mis loovad ühtlase ja rahustava surve, aidates lõõgastuda ning und parandada. Sobivad täiskasvanutele, kes otsivad abi pingete ja rahutu une vastu, valikus erinevad suurused, materjalid ja katted. Valides tasub jälgida teki suurust, kattematerjali ja sobivust oma kehakaalule."
             product_count: 0
           - slug: v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kattemadratsid
             name_en: "Mattress Toppers"
@@ -5252,13 +5252,13 @@ l1:
             description_en: "Mattress toppers make an existing bed more comfortable and help extend the mattress's lifespan. Ideal for anyone wanting a softer or more supportive sleeping surface without buying a new mattress. Choose the right size and material to match your bed and sleep preferences."
             description_et: "Kattemadratsid ehk madratsikaitsed muudavad olemasoleva voodi mugavamaks ja pikendavad madratsi eluiga. Sobivad neile, kes soovivad pehmemat või toetavamat magamispinda ilma uut madratsit ostmata. Vali sobiv suurus ja materjal vastavalt oma voodile ja unieelistustele."
             product_count: 0
-          - slug: v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-raskustekid
-            name_en: "Weighted Blankets"
-            name_et: "Raskustekid"
-            tagline_en: "Soothing weight for better sleep"
-            tagline_et: "Rahustav raskus parema une jaoks"
-            description_en: "Weighted blankets are filled blankets that provide gentle, even pressure to help you relax and sleep better. Designed for adults looking for relief from stress and restless nights, they come in various sizes, fabrics, and covers. When choosing, pay attention to blanket size, fabric type, and suitability for your body weight."
-            description_et: "Raskustekid on täidisega tekid, mis loovad ühtlase ja rahustava surve, aidates lõõgastuda ning und parandada. Sobivad täiskasvanutele, kes otsivad abi pingete ja rahutu une vastu, valikus erinevad suurused, materjalid ja katted. Valides tasub jälgida teki suurust, kattematerjali ja sobivust oma kehakaalule."
+          - slug: v4-moobel-ja-sisustus-magamistoamoobel-ja-voodipesu-kokkupandavad-kulalisvoodid
+            name_en: "Folding Guest Beds"
+            name_et: "Kokkupandavad külalisvoodid"
+            tagline_en: "Comfortable extra bed, folds away with ease"
+            tagline_et: "Mugav lisavoodi külalistele, lihtsalt kokkupandav"
+            description_en: "Folding guest beds are a practical solution for extra sleeping space when room is limited or guests arrive unexpectedly. Models with a sturdy frame and comfortable mattress suit both adults and children, and fold away easily for storage. When choosing, consider the bed's size, build quality, and how compactly it stores away."
+            description_et: "Kokkupandavad külalisvoodid on praktiline lahendus lisamagamiskohale, kui ruumi on vähe või külalisi tuleb ootamatult. Tugeva raami ja mugava madratsiga mudelid sobivad nii täiskasvanutele kui lastele ning on kergesti kokkupandavad ja hoiustatavad. Valikul tasub jälgida voodi suurust, materjali kvaliteeti ning kui lihtsalt see kokku pannes ruumi mahub."
             product_count: 0
       - slug: v4-moobel-ja-sisustus-esikumoobel-ja-jalatsikapid
         name_en: "Hallway Furniture & Shoe Cabinets"
@@ -5505,9 +5505,9 @@ l1:
             description_en: "Bookshelves are designed for storing and displaying books, plants and decorative items at home or in the office. The range includes both wall-mounted and freestanding models in various materials and styles. Choose a shape, material and mounting style that suits your space and interior."
             description_et: "Raamaturiiulid sobivad raamatute, taimede ja dekoorelementide hoiustamiseks ning eksponeerimiseks kodus või kontoris. Valikus on nii seinale kinnitatavaid kui ka vabalt seisvaid mudeleid erinevatest materjalidest ja stiilides. Vali ruumi ja sisustusega sobiv kuju, materjal ning paigaldusviis."
             product_count: 0
-          - slug: v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-seinariiulid
+          - slug: v4-moobel-ja-sisustus-riiulid-ja-hoiustamine-dekoratiivsed-seinariiulid
             name_en: "Wall Shelves"
-            name_et: "Seinariiulid"
+            name_et: "Dekoratiivsed seinariiulid"
             tagline_en: "Smart storage for every wall"
             tagline_et: "Nutikas ruumilahendus igale seinale"
             description_en: "Wall shelves are a practical way to display books, décor, plants or entertainment gear while making smart use of vertical space. The range includes various materials, designs and mounting styles suited for living rooms, bedrooms, kitchens and bathrooms. Choose the right style and mounting type based on your wall and interior design."
@@ -6389,14 +6389,6 @@ l1:
             tagline_et: "Ühtlane kastmine kogu aiale"
             description_en: "Sprinklers designed for watering lawns, gardens and flower beds across different area sizes. Suitable for home gardeners and anyone looking to make watering more even and convenient. When choosing, pay attention to the sprinkler type, mounting style and hose connector compatibility."
             description_et: "Sprinklerid aiamaa, muru ja taimede kastmiseks suurtel või väiksematel aladel. Sobivad nii koduaeda kui suuremat haljasala omavatele kasutajatele, kes soovivad kastmist mugavamaks ja ühtlasemaks muuta. Valikul tasub jälgida sprinkleri tüüpi, kinnitusviisi ja sobivust oma vooliku liitmikuga."
-            product_count: 0
-          - slug: v4-aed-ja-aiatehnika-l8-taimede-kasvulambid
-            name_en: "Grow Lights"
-            name_et: "Taimede kasvulambid"
-            tagline_en: "Light that helps plants thrive"
-            tagline_et: "Valgus, mis aitab taimedel kasvada"
-            description_en: "Grow lights are designed to supplement natural sunlight for indoor plants, seedlings and greenhouse growing. They suit both hobby growers and more dedicated indoor gardeners who want healthy plant growth year-round. When choosing, pay attention to the light spectrum, suitability for your space and mounting options."
-            description_et: "Taimede kasvulambid sobivad siseruumides taimede, taimede idude ja kasvuhoone taimede valgustamiseks, kui päikesevalgust napib. Need sobivad nii harrastajatele kui ka aktiivsematele kasvatajatele ning aitavad taimedel areneda terve aasta ringi. Valimisel tasub jälgida lambi spektrit, sobivust ruumi suurusega ja kinnitusvõimalusi."
             product_count: 0
       - slug: v4-aed-ja-aiatehnika-peenrakastid-ja-istutuskastid
         name_en: "Raised Garden Beds & Planters"
@@ -7793,6 +7785,14 @@ l1:
             description_en: "This category features catalytic converters and related exhaust system parts for various vehicle models. Suitable for repairs or replacements when the original part is worn or damaged. When choosing, pay attention to engine type and model compatibility to ensure proper fit and smooth vehicle operation."
             description_et: "Siit leiad katalüsaatorid ja nendega seotud heitgaasisüsteemi osad erinevatele sõidukimudelitele. Sobivad nii remondiks kui ka vahetustöödeks, kui originaalosa on kulunud või kahjustunud. Valikul tasub jälgida mootori tüüpi ja mudelile sobivust, et tagada õige paigaldus ja sõiduki normaalne töö."
             product_count: 0
+          - slug: v4-autovaruosad-ja-tarvikud-autovaruosad-golfiauto-kiirusekontrollerid
+            name_en: "Golfiauto kiirusekontrollerid"
+            name_et: "Golfiauto kiirusekontrollerid"
+            tagline_en: "Golfiauto kiirusekontrollerid"
+            tagline_et: "Golfiauto kiirusekontrollerid"
+            description_en: "Golfiauto kiirusekontrollerid — products."
+            description_et: "Golfiauto kiirusekontrollerid — tooted."
+            product_count: 0
       - slug: v4-autovaruosad-ja-tarvikud-hudraulika
         name_en: "Hydraulics"
         name_et: "Hüdraulika"
@@ -8063,14 +8063,6 @@ l1:
             description_en: "Racing seats for driving enthusiasts who want strong side support and durable build quality in their car or kart interior. Suitable for tuning everyday vehicles as well as upgrading sports cars and go-karts. When choosing, pay attention to compatibility with mounting points, material type and overall comfort."
             description_et: "Võidusõiduistmed sportliku sõidustiili austajatele, kes soovivad autosse või kardile paigaldada tugevat külgtuge pakkuva ja vastupidavast materjalist istme. Sobivad nii tavapäraste sõiduautode tuunimiseks kui ka spordiautode ja kardide salongi uuendamiseks. Valikul tasub jälgida istme sobivust sõiduki kinnituspunktidega, materjali tüüpi ja üldist mugavust."
             product_count: 0
-          - slug: v4-autovaruosad-ja-tarvikud-salongitarvikud-autoroolid
-            name_en: "Steering Wheels"
-            name_et: "Autoroolid"
-            tagline_en: "Upgrade your car's steering style and comfort"
-            tagline_et: "Uuenda oma auto rooli stiili ja mugavust"
-            description_en: "Steering wheels for various vehicle models – replacement wheels designed to fit specific car makes and models. Suited for drivers looking to refresh their cabin look or improve grip and comfort. Check compatibility with your car's model and year, and consider material and finish quality."
-            description_et: "Autoroolid eri mudelitele – asendusroolid, mis sobivad kindlatele automarkidele ja -mudelitele. Sobivad juhtidele, kes soovivad uuendada salongi väljanägemist või parandada roolis hoidmise mugavust. Vali sobivus oma auto mudeli ja tootmisaasta järgi ning jälgi materjali ja viimistluse kvaliteeti."
-            product_count: 0
           - slug: v4-autovaruosad-ja-tarvikud-salongitarvikud-auto-konsoolid-ja-hoiukastid
             name_en: "Center Consoles & Storage Boxes"
             name_et: "Auto konsoolid ja hoiukastid"
@@ -8078,6 +8070,14 @@ l1:
             tagline_et: "Mugav kord ja hoiuruum sinu auto salongis"
             description_en: "This category features car center consoles and storage boxes designed to keep your cabin organized and add extra storage between or behind seats. Suitable for a wide range of vehicles, from sedans to vans and SUVs. When choosing, consider fit for your seat layout and any extra features you may want, such as cup holders or phone mounts."
             description_et: "Siit leiad auto vahekonsoolid ja hoiukastid, mis aitavad hoida salongi korras ning pakuvad lisahoiuruumi esi- ja tagaistmetele. Sobivad erinevat tüüpi sõidukitele alates sedaanidest kuni kaubikute ja maasturiteni. Valikul tasub jälgida sobivust oma auto istmerea ja salongi paigutusega ning soovitud lisafunktsioone, nagu joogitopside hoidjad või telefoni ase."
+            product_count: 0
+          - slug: v4-autovaruosad-ja-tarvikud-salongitarvikud-autoroolid
+            name_en: "Steering Wheels"
+            name_et: "Autoroolid"
+            tagline_en: "Upgrade your car's steering style and comfort"
+            tagline_et: "Uuenda oma auto rooli stiili ja mugavust"
+            description_en: "Steering wheels for various vehicle models – replacement wheels designed to fit specific car makes and models. Suited for drivers looking to refresh their cabin look or improve grip and comfort. Check compatibility with your car's model and year, and consider material and finish quality."
+            description_et: "Autoroolid eri mudelitele – asendusroolid, mis sobivad kindlatele automarkidele ja -mudelitele. Sobivad juhtidele, kes soovivad uuendada salongi väljanägemist või parandada roolis hoidmise mugavust. Vali sobivus oma auto mudeli ja tootmisaasta järgi ning jälgi materjali ja viimistluse kvaliteeti."
             product_count: 0
       - slug: v4-autovaruosad-ja-tarvikud-valistarvikud-ja-rehvitarvikud
         name_en: "Exterior & Tire Accessories"
@@ -9189,14 +9189,6 @@ l1:
             description_en: "Bell and glamping tents are a great fit for families and groups looking for a comfortable, spacious camping solution. Typically round canvas tents designed for extended use in varying weather conditions. Choose the size and material based on your group size and intended use."
             description_et: "Bell- ja glämpingtelgid sobivad peredele ja seltskondadele, kes otsivad mugavat ning avarat telkimislahendust. Enamasti kangast ümarapõhjalised telgid, mis sobivad pikemaks kasutuseks ja erinevateks ilmaoludeks. Vali suurus ja materjal vastavalt seltskonna suurusele ja kasutuskohale."
             product_count: 0
-          - slug: v4-sport-mull-sporditelgid
-            name_en: "Bubble & Sports Tents"
-            name_et: "Mull- ja sporditelgid"
-            tagline_en: "Quick shelter for every sports moment"
-            tagline_et: "Kiire varjualune igale spordielamusele"
-            description_en: "Bubble and sports tents offer a quickly assembled, transparent shelter for sporting events, spectating, and outdoor activities. Suitable for families, spectators, and teams seeking protection from the elements. Choose the size and shape based on the number of users and intended purpose, considering material and ease of use."
-            description_et: "Mull- ja sporditelgid pakuvad kiirelt püstitatavat läbipaistvat varjualust spordisündmusteks, pealtvaatamiseks ja välitegevusteks. Sobivad nii perele, pealtvaatajatele kui ka meeskondadele ilmastiku eest varju otsides. Vali suurus ja kuju vastavalt kasutajate arvule ning otstarbele, arvestades materjali ja kasutusmugavust."
-            product_count: 0
           - slug: v4-sport-ja-vaba-aeg-matkavarustus-ja-telkimine-privaatsus-ja-dusitelgid
             name_en: "Privacy & Shower Tents"
             name_et: "Privaatsus- ja dušitelgid"
@@ -9429,14 +9421,6 @@ l1:
             tagline_et: "Mugavus tribüünile ja väljakule"
             description_en: "Stadium seats are made for spectators at sporting events, concerts and outdoor gatherings who want extra comfort on hard bleachers. The range includes models with different backrests, padding and heating options, some featuring pockets and cup holders. Choose the right size, material and carrying style for your needs."
             description_et: "Staadionitoolid sobivad spordivõistluste, kontsertide ja matkade vaatajatele, kes soovivad kõval pingil istuda mugavamalt. Valikus on erineva seljatoe, polsterduse ja soojendusega mudeleid, mõned kaasas taskute ja joogihoidjaga. Vali endale sobiv suurus, materjal ja kandmisviis vastavalt kasutuskohale."
-            product_count: 0
-          - slug: v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-taispuhutavad-projektsiooniekraanid
-            name_en: "Inflatable Movie Screens"
-            name_et: "Täispuhutavad projektsiooniekraanid"
-            tagline_en: "Big screen, easy outdoor cinema"
-            tagline_et: "Suur ekraan, lihtne õuekino"
-            description_en: "This category features inflatable projector screens designed for outdoor movie nights in backyards, parks or event venues. They suit families as well as event organizers looking for a large, quickly set-up screen. Consider fabric quality, whether a blower is included, and the right size for your space."
-            description_et: "Siit leiad täispuhutavad projektsiooniekraanid õuesfilmide vaatamiseks aias, õuel või peoruumis. Sobivad nii perekoosviibimisteks kui ka sündmuste korraldajatele, kes soovivad kiiresti üles seatavat suurt ekraani. Vali materjali kvaliteet, pumba olemasolu ja sobiv suurus vastavalt kasutuskohale."
             product_count: 0
           - slug: v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-kirve-ja-noaviskekomplektid
             name_en: "Axe & Knife Throwing Sets"
@@ -10324,14 +10308,6 @@ l1:
             description_en: "PVC strip curtains and door screens are designed to cover warehouse, cold room, shop and garage doorways, helping maintain indoor temperature and keep out dust, insects and drafts. The range includes strips and bulk rolls of varying width, thickness and surface finish that can be cut to fit the required opening. When choosing, consider the doorway size, intended use (cold, warm or dusty environment) and the material's clarity and durability."
             description_et: "PVC ribakardinad ja -eesriided sobivad lao-, külmkambri-, poe- ja garaažiuste katmiseks, aidates hoida sees temperatuuri ning tõkestada tolmu, putukaid ja tuuletõmbust. Valikus on erineva laiuse, paksuse ja pinnaviimistlusega ribasid ning rulle, mida saab vajadusel ise sobiva ava mõõtu lõigata. Valides tasub jälgida ava suurust, kasutuskohta (külm, soe, tolmune keskkond) ja materjali läbipaistvust ning vastupidavust."
             product_count: 0
-          - slug: v4-ehitus-remont-ja-varvid-uksed-aknad-ja-luugid-garaaziuste-tihendid-ja-vedrud
-            name_en: "Garage Door Seals & Springs"
-            name_et: "Garaažiuste tihendid ja vedrud"
-            tagline_en: "A warm, dry garage all year round"
-            tagline_et: "Soe ja kuiv garaaž aastaringselt"
-            description_en: "Browse garage door seals and springs designed to keep your garage warm, dry and dust-free while ensuring smooth door operation. Suitable for routine maintenance or replacing worn and damaged parts. When choosing, pay attention to door type, fit and material durability."
-            description_et: "Siit leiad garaažiukse tihendid ja vedrud, mis aitavad hoida garaaži sooja, kuiva ja tolmuvaba ning tagavad ukse sujuva liikumise. Sobivad nii tavapärasele hooldusele kui vananenud või kahjustatud osade asendamiseks. Valikul tasub jälgida ukse tüüpi ja mõõtmeid ning materjali vastupidavust."
-            product_count: 0
           - slug: v4-ehitus-remont-ja-varvid-uksed-aknad-ja-luugid-revisiooni-ja-juurdepaasuluugid
             name_en: "Access Panels & Doors"
             name_et: "Revisiooni- ja juurdepääsuluugid"
@@ -10896,14 +10872,6 @@ l1:
             tagline_et: "Paindlik ala piiramine igaks vajaduseks"
             description_en: "Expandable barricades are designed for temporary area separation both indoors and outdoors — for example on driveways, in warehouses, near elevators or in gardens. They are movable and foldable, making them suitable for both short-term and recurring use. When choosing one, consider the length, material and caster mobility to match your specific location."
             description_et: "Laiendatavad tõkkepuud sobivad ajutiseks ala piiramiseks siseruumides ja õues — näiteks sõiduteedel, laohoonetes, liftide juures või aedades. Need on liigutatavad ja kokkupandavad, mistõttu sobivad nii lühiajaliseks kui korduvaks kasutuseks. Valiku tegemisel tasub jälgida tõkkepuu pikkust, materjali ja ratastega liikuvust, et see sobiks just sinu kasutuskohaga."
-            product_count: 0
-          - slug: v4-kaariturvavaravad
-            name_en: "Scissor Security Gates"
-            name_et: "Kääriturvaväravad"
-            tagline_en: "Flexible security for every entrance"
-            tagline_et: "Paindlik turvalahendus sissepääsude kaitseks"
-            description_en: "Scissor security gates are foldable metal barriers designed to secure entrances, garages, warehouses and similar spaces. They offer a flexible solution that can be collapsed when not in use and extended when needed. When choosing one, consider the gate's size, movement style and fit for the specific opening."
-            description_et: "Kääriturvaväravad on kokkuklapitavad metallväravad, mis sobivad sissepääsude, garaažide, laoruumide ja muude alade turvamiseks. Need pakuvad paindlikku lahendust, mida saab vajadusel kokku lükata ja hiljem uuesti avada. Valides tasub jälgida värava suurust, liikumisviisi ja sobivust konkreetsesse avasse."
             product_count: 0
           - slug: v4-aed-ja-aiatehnika-l6-tee-ja-soidutee-margistused
             name_en: "Driveway & Road Markers"
@@ -11880,9 +11848,9 @@ l1:
             description_en: "This category features submersible pumps designed for boreholes and deep water sources, suitable for home, irrigation, and industrial use. The range includes stainless steel pumps of varying power and diameter to match different well sizes and water needs. When choosing, consider the pump's fit for your well diameter, intended use, and included accessories such as cables or control units."
             description_et: "Siit leiad süvaveepumbad puurkaevudele ja sügavatele veeallikatele, mis sobivad nii kodumajapidamisse, niisutamiseks kui tööstuslikuks kasutuseks. Valikus on erineva võimsuse ja läbimõõduga roostevabast terasest pumbad, mis sobivad erinevatele kaevudiameetritele ja veevajadusele. Valides tasub jälgida pumba sobivust kaevu suurusega, kasutusotstarvet ning kaasasolevaid lisatarvikuid nagu kaabel või juhtkilp."
             product_count: 0
-          - slug: v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-membraanpumbad
+          - slug: v4-santehnika-kute-ja-ventilatsioon-veepumbad-ja-vaakumpumbad-12v-membraan-veepumbad
             name_en: "Diaphragm Pumps"
-            name_et: "Membraanpumbad"
+            name_et: "12V membraan-veepumbad"
             tagline_en: "Reliable water pumping for every vehicle and garden"
             tagline_et: "Töökindel veepumpamine igale sõidukile ja aiale"
             description_en: "Diaphragm pumps are designed for pumping water and other liquids in caravans, boats, gardens, and various mobile or stationary systems. They are self-priming and reliable across different conditions, suitable for fresh water, washdown, or irrigation setups. When choosing, consider the pump type, material, connection size, and intended use to find the best fit for your application."
@@ -12307,9 +12275,9 @@ l1:
             description_en: "Metal shelving units are durable storage solutions for garages, homes, kitchens, or warehouses where items need to be organized across multiple levels. They suit a range of storage needs, from lighter household items to bulkier goods, with many models offering adjustable height. When choosing one, consider the intended space, required size, and material durability."
             description_et: "Metallriiulid on vastupidavad hoiustamislahendused garaaži, kodu, köögi või lao jaoks, kus on vaja korrastada esemeid mitmel tasandil. Sobivad nii raskemate kui kergemate asjade hoiustamiseks ning paljusid mudeleid saab vastavalt vajadusele kõrguse osas reguleerida. Valides tasub mõelda kasutuskoha, sobiva suuruse ja materjali vastupidavuse peale."
             product_count: 0
-          - slug: v4-ladu-seinariiulid
+          - slug: v4-ladu-metall-seinariiulid-ja-restid
             name_en: "Wall-Mounted Garage Shelving"
-            name_et: "Seinariiulid"
+            name_et: "Metall-seinariiulid ja -restid"
             tagline_en: "Smart storage for garage and workshop"
             tagline_et: "Nutikas hoiulahendus garaaži ja töötuppa"
             description_en: "Wall shelves help organise garages, sheds and workshops by adding extra storage space for tools, boxes and other equipment. The range includes shelving units and wall-mounted racks of various sizes and designs that free up floor space. When choosing, consider the shelf's material, dimensions and mounting type to suit your space and needs."
@@ -13216,6 +13184,14 @@ l1:
             description_en: "Portable DVD players are a great fit for travel, car trips and everyday entertainment at home. The range includes models with different screen sizes and designs, supporting various media formats and connection options. Choose a device based on where you'll use it, the screen size and the interfaces you need."
             description_et: "Kaasaskantavad DVD-mängijad sobivad reisimiseks, autosõitudeks ja igapäevaseks meelelahutuseks kodus. Valikus on erineva ekraanisuuruse ja disainiga mudelid, mis toetavad mitmeid meediaformaate ja ühendusvõimalusi. Vali seade lähtuvalt kasutuskohast, ekraani suurusest ja vajalikest liidestest."
             product_count: 0
+          - slug: v4-elektroonika-projektsioon-taispuhutavad-projektsiooniekraanid
+            name_en: "Inflatable Movie Screens"
+            name_et: "Täispuhutavad projektsiooniekraanid"
+            tagline_en: "Big screen, easy outdoor cinema"
+            tagline_et: "Suur ekraan, lihtne õuekino"
+            description_en: "This category features inflatable projector screens designed for outdoor movie nights in backyards, parks or event venues. They suit families as well as event organizers looking for a large, quickly set-up screen. Consider fabric quality, whether a blower is included, and the right size for your space."
+            description_et: "Siit leiad täispuhutavad projektsiooniekraanid õuesfilmide vaatamiseks aias, õuel või peoruumis. Sobivad nii perekoosviibimisteks kui ka sündmuste korraldajatele, kes soovivad kiiresti üles seatavat suurt ekraani. Vali materjali kvaliteet, pumba olemasolu ja sobiv suurus vastavalt kasutuskohale."
+            product_count: 0
       - slug: v4-elektroonika-heli
         name_en: "Audio & Speakers"
         name_et: "Heli ja kõlarid"
@@ -13962,14 +13938,6 @@ l1:
             description_en: "Melting crucibles are tools used for melting metals such as gold, silver, copper and aluminum in jewelry making and small-scale casting. They suit both hobbyists and professional jewelers who need a durable container for high-temperature work. When choosing, pay attention to the crucible's material, shape and compatibility with your furnace or torch."
             description_et: "Sulatustiiglid on tööriistad metallide (nt kulla, hõbeda, vase, alumiiniumi) sulatamiseks ehte- ja metallitöös ning väikesemahulises valutöös. Sobivad nii hobitöökodadele kui professionaalsetele juveliiridele, kes vajavad vastupidavat anumat kõrgel temperatuuril töötamiseks. Valikul tasub jälgida tiigli materjali, kuju ja sobivust kasutatava ahju või põletiga."
             product_count: 0
-          - slug: v4-hobi-ehtekunst-sormuste-suuruse-muutmise-tooriistad
-            name_en: "Ring Sizing Tools"
-            name_et: "Sõrmuste suuruse muutmise tööriistad"
-            tagline_en: "Precise ring fitting for every need"
-            tagline_et: "Täpne sõrmuste sobitamine iga vajaduse jaoks"
-            description_en: "This category features tools for resizing and shaping rings – stretchers, mandrels and related accessories for both home use and professional jewelers. They help enlarge or adjust rings for a better, more comfortable fit. Choose a tool based on material and intended use for precise, clean results."
-            description_et: "Siit leiad tööriistad sõrmuste suuruse muutmiseks ja vormimiseks – venitajad, mandrelid ja abivahendid nii kodukasutajale kui ehtemeistrile. Sobivad sõrmuste laiendamiseks või kuju korrigeerimiseks, aidates ehteid mugavalt ja täpselt kohandada. Vali tööriist vastavalt materjalile ja kasutuseesmärgile, et töö tuleks puhas ja täpne."
-            product_count: 0
           - slug: v4-hobi-ehtekunst-graafikapressid
             name_en: "Printmaking Presses"
             name_et: "Graafikapressid"
@@ -13977,6 +13945,14 @@ l1:
             tagline_et: "Täpne surve, selge jälg igale trükile"
             description_en: "Printmaking presses are designed for etching, linocut and other print techniques, suited for hobbyists and studios needing consistent, repeatable pressure for quality prints. The range includes presses of different sizes and build types, from beginner-friendly to professional models. When choosing a press, consider the working surface size, build durability and ease of use in your workspace."
             description_et: "Graafikapressid on mõeldud süvatrüki, linolõike ja muude trükitehnikate harrastajatele ning ateljeedele, kes vajavad ühtlast ja korduvat survet kvaliteetse jälje saamiseks. Valikus on erineva suuruse ja konstruktsiooniga pressid nii algajale kui kogenud kunstnikule. Sobiva mudeli valikul tasub jälgida töölaua suurust, materjali vastupidavust ja kasutusmugavust oma stuudios."
+            product_count: 0
+          - slug: v4-hobi-ehtekunst-sormuste-suuruse-muutmise-tooriistad
+            name_en: "Ring Sizing Tools"
+            name_et: "Sõrmuste suuruse muutmise tööriistad"
+            tagline_en: "Precise ring fitting for every need"
+            tagline_et: "Täpne sõrmuste sobitamine iga vajaduse jaoks"
+            description_en: "This category features tools for resizing and shaping rings – stretchers, mandrels and related accessories for both home use and professional jewelers. They help enlarge or adjust rings for a better, more comfortable fit. Choose a tool based on material and intended use for precise, clean results."
+            description_et: "Siit leiad tööriistad sõrmuste suuruse muutmiseks ja vormimiseks – venitajad, mandrelid ja abivahendid nii kodukasutajale kui ehtemeistrile. Sobivad sõrmuste laiendamiseks või kuju korrigeerimiseks, aidates ehteid mugavalt ja täpselt kohandada. Vali tööriist vastavalt materjalile ja kasutuseesmärgile, et töö tuleks puhas ja täpne."
             product_count: 0
       - slug: v4-hobi-keraamika-ja-pottsepatoo
         name_en: "Pottery & Ceramics"

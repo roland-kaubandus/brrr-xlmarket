@@ -1,0 +1,3918 @@
+{
+  "generated_at": "2026-11-18T12:32:54.491Z",
+  "mode": "plan",
+  "batch_size": 60,
+  "usage": {
+    "input": 46030,
+    "output": 14497,
+    "calls": 31
+  },
+  "tpUsage": {
+    "claude-opus-4-8": {
+      "in": 91064,
+      "out": 10243
+    },
+    "claude-sonnet-5": {
+      "in": 43749,
+      "out": 792
+    },
+    "claude-fable-5": {
+      "in": 0,
+      "out": 0
+    }
+  },
+  "warn": [],
+  "plans": [
+    {
+      "ck": "a2:pcat_f4_13xtex_10:pcat_e2_noobijamargitarvikudning",
+      "foldedCks": [
+        "a2:pcat_f4_13xtex_10:pcat_e2_noobijamargitarvikudning"
+      ],
+      "name_et": "Nööbi- ja märgitarvikud ning toorikud",
+      "name_en": "Button & Badge Supplies and Blanks",
+      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-noobi-ja-margitarvikud-ning-toorikud",
+      "handleCollisionResolved": false,
+      "parentL2": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk",
+      "parentL2_name": "Tekstiili- ja rõivatrükk",
+      "n": 17,
+      "currentL3": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-noopide-ja-markide-valmistamise-masinad",
+      "srcId": "pcat_f4_13xtex_10",
+      "srcName": "Nööpide ja märkide valmistamise masinad",
+      "path": "Reklaami-, trüki- ja graveerimisseadmed/Tekstiili- ja rõivatrükk/Nööbi- ja märgitarvikud ning toorikud",
+      "cert": {
+        "mode": "a2-concept",
+        "detail": "kontseptsioonitest live-DB (17/60), THR 5"
+      },
+      "products": [
+        {
+          "id": "prod_01KNXX7Y2ATQJ1D1DA8Q9XSTEG",
+          "title": "200 Sets 3 inch 75mm Pin Back Button Parts, DIY Round Button Badge Parts, Set Includes Metal Top, Plastic/Metal Button, Clear Film, and Blank Paper For Gifts Presents, Machine NOT Included"
+        },
+        {
+          "id": "prod_01KNXX7Y1G750BY6XR88A2QDF4",
+          "title": "500 Sets 1 inch 25mm Pin Back Button Parts, DIY Round Button Badge Parts, Set Includes Metal Top, Plastic/Metal Button, Clear Film, and Blank Paper For Gifts Presents, Machine NOT Included"
+        },
+        {
+          "id": "prod_01KNXX7Y2D2BVP7MYP389N83SX",
+          "title": "500 Sets 1.25 inch 32mm Pin Back Button Parts, DIY Round Button Badge Parts, Set Includes Metal Top, Plastic/Metal Button, Clear Film, and Blank Paper For Gifts Presents, Machine NOT Included"
+        },
+        {
+          "id": "prod_01KNXX7Y2C36PJSTE1RR3RPW1J",
+          "title": "500 Sets 2.25 inch 58mm Pin Back Button Parts, DIY Round Button Badge Parts, Set Includes Metal Top, Plastic/Metal Button, Clear Film, and Blank Paper For Gifts Presents, Machine NOT Included"
+        },
+        {
+          "id": "prod_01M62PDH2ZCW9JNKDZMMNG7Q8H",
+          "title": "Button Maker Mold with Supplies 0.98 in / 25 mm Interchangeable Mold, for VEVOR Magnetic Fast-Change Button Maker Machine, with 100 Backs, Shells, Clear Films, and 20 Blank Circle Papers"
+        },
+        {
+          "id": "prod_01M62PDH2ZJGDV36KSKBN5DWHE",
+          "title": "Button Maker Mold with Supplies 1.26 in / 32 mm Interchangeable Mold, for VEVOR Magnetic Fast-Change Button Maker Machine, with 100 Backs, Shells, Clear Films, and 20 Blank Circle Papers"
+        },
+        {
+          "id": "prod_01M62PDH2ZVX0V0MXSTPM4TADQ",
+          "title": "Button Maker Mold with Supplies 2.28 in/58 mm Interchangeable Mold, for VEVOR Magnetic Fast-Change Button Maker Machine, with 100 Backs, Shells, Clear Films, and 20 Blank Circle Papers"
+        },
+        {
+          "id": "prod_01M62PDH303V2KY7SNGJTF03Y4",
+          "title": "Button Maker Mold with Supplies 2.95 in / 75 mm Interchangeable Mold, for VEVOR Magnetic Fast-Change Button Maker Machine, with 100 Backs, Shells, Clear Films, and 20 Blank Circle Papers"
+        },
+        {
+          "id": "prod_01KZWA76FET80KP9WY1PNG5E9C",
+          "title": "Button Maker Supplies 100 Sets 2.95 in / 75 mm Pin Back Button Parts, with Metal Backs, Metal Shells, Clear Mylar Films, and Blank Circle Papers, for Home DIY, School Events, and Custom Studio"
+        },
+        {
+          "id": "prod_01KZ7Q1DXY81M74T7P4DS79YGF",
+          "title": "Button Maker Supplies 200 Sets 0.98 in / 25 mm Pin Back Button Parts, with Metal Backs, Metal Shells, Clear Mylar Films, and Blank Circle Papers, for Home DIY, School Events, and Custom Studio"
+        },
+        {
+          "id": "prod_01KZ7Q1DZQER2YAZ6AYS22KEKM",
+          "title": "Button Maker Supplies 200 Sets 1.26 in / 32 mm Pin Back Button Parts, with Metal Backs, Metal Shells, Clear Mylar Films, and Blank Circle Papers, for Home DIY, School Events, and Custom Studio"
+        },
+        {
+          "id": "prod_01KZSQTH90EY85QHR8P336BC2S",
+          "title": "Button Maker Supplies 200 Sets 2.28 in / 58 mm Pin Back Button Parts, with Metal Backs, Metal Shells, Clear Mylar Films, and Blank Circle Papers, for Home DIY, School Events, and Custom Studio"
+        },
+        {
+          "id": "prod_01KZ54MRXQMYXWXHVMB1HXT46R",
+          "title": "Button Maker Supplies 50 Sets 0.98 in / 25 mm Refrigerator Magnets, Button Parts with Magnetic Backs, Metal Shells, Clear Mylar Films, and Blank Circle Papers, for Home DIY and Kitchen Decor"
+        },
+        {
+          "id": "prod_01KZ54MRZD9811WSZWD11NWTXQ",
+          "title": "Button Maker Supplies 50 Sets 1.26 in / 32 mm Refrigerator Magnets, Button Parts with Magnetic Backs, Metal Shells, Clear Mylar Films, and Blank Circle Papers, for Home DIY and Kitchen Decor"
+        },
+        {
+          "id": "prod_01KZ7Q1E373B0ZBYZ0H8PA8P1W",
+          "title": "Button Maker Supplies 50 Sets 2.28 in / 58 mm Magnet Button Parts, with Magnetic and Bottle Opener Backs, Metal Shells, Clear Mylar Films, and Blank Circle Papers, for Home DIY, Kitchen Decor"
+        },
+        {
+          "id": "prod_01KZ7Q1E1GVVWSR2C2JKR9C6QW",
+          "title": "Button Maker Supplies 50 Sets 2.28 in / 58 mm Refrigerator Magnets, Bottle Openers, and Keychains Button Parts with Backs, Shells, Clear Mylar Films, and Blank Circle Papers, for Home DIY"
+        },
+        {
+          "id": "prod_01KYK3VS6WB51QVR40WR5Z2MF2",
+          "title": "Button Maker Supplies 50 Sets 2.95 in / 75 mm Magnet Button Parts, with Magnetic and Bottle Opener Backs, Metal Shells, Clear Mylar Films, and Blank Circle Papers, for Home DIY, Kitchen Decor"
+        }
+      ],
+      "assets": {
+        "name_en": "Button & Badge Supplies and Blanks",
+        "description_et": "Siit leiad toorikud ja tarvikud rinnamärkide ning nööpmärkide valmistamiseks – komplektid metallist pealiskestade, tagaosade, kaitsekilede ja trükipaberitega, samuti vahetatavad vormid märgimasinatele. Sobivad ideaalselt üritusturunduseks, kingituste personaliseerimiseks ja väiketootmiseks. Vali oma masinale ja soovitud märgisuurusele sobivad komplektid.",
+        "description_en": "Here you will find blanks and supplies for making pin-back buttons and badges – sets with metal shells, backs, clear films and printable papers, as well as interchangeable moulds for button maker machines. Ideal for event marketing, personalised gifts and small-scale production. Choose sets that match your machine and desired badge size.",
+        "tagline_et": "Kõik vajalik oma märkide valmistamiseks!",
+        "tagline_en": "Everything you need to make your own badges!",
+        "image_desc_et": "Heledal valgel taustal komplekt ümmargusi märgitoorikuid – metallkestad, nõelaga tagaosad ja läbipaistvad kiled kuhjakestena.",
+        "_seoGate": {
+          "pass": true,
+          "offenders": [],
+          "attempts": 1
+        }
+      },
+      "type_profile": {
+        "description": "Nööpide ja märkide valmistamise toorikud ja tarvikud nööbimärkide koostamiseks: toorikukomplektid (button badge parts/supplies) metallkaante, kestade, kiledega ja tühjade paberiketastega; vahetatavad vormid (interchangeable button maker mold); magnet-, pudeliavaja- ja võtmehoidja-tagused. EI sisalda valmistamise masinaid ennast (need: Nööpide ja märkide valmistamise masinad).",
+        "ok": true,
+        "consensus": "OK",
+        "attempts": 3
+      },
+      "completeness": {
+        "checks": [
+          {
+            "n": "1 handle unikaalne",
+            "pass": true,
+            "note": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-noobi-ja-margitarvikud-ning-toorikud"
+          },
+          {
+            "n": "2 name_et (nimevärav)",
+            "pass": true,
+            "note": "Nööbi- ja märgitarvikud ning toorikud"
+          },
+          {
+            "n": "3 name_en (Fable)",
+            "pass": true,
+            "note": "Button & Badge Supplies and Blanks"
+          },
+          {
+            "n": "4 nav parent-L2 kehtiv",
+            "pass": true,
+            "note": "v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk"
+          },
+          {
+            "n": "5 pilt (CDN primaar / Gemini fallback)",
+            "pass": true,
+            "note": "17 toodet → top-toote CDN-pilt → webp valge taust"
+          },
+          {
+            "n": "6 webp genereeritav",
+            "pass": true,
+            "note": "cat-thumbs/v4-reklaami-truki-ja-graveerimisseadmed-tekstiili-ja-roivatrukk-noobi-ja-margitarvikud-ning-toorikud.webp (build-cat-thumbs-l3.mjs)"
+          },
+          {
+            "n": "7 SEO (ET+EN kirj.+tagline, kategooria-tasand, 0 numbrit/lubadust)",
+            "pass": true,
+            "note": "4/4 täidetud · SEO-värav läbib"
+          },
+          {
+            "n": "8 Meili facet",
+            "pass": true,
+            "note": "tooted bind → reindeks → facet"
+          },
+          {
+            "n": "9 DB product_category rida",
+            "pass": true,
+            "note": "seed/INSERT transaktsioonis (gate #4)"
+          },
+          {
+            "n": "10 tooted seotud (≥1)",
+            "pass": true,
+            "note": "17 toodet"
+          },
+          {
+            "n": "11 täis-deploy",
+            "pass": true,
+            "note": "genyM → Meili → push mõlemad → redeploy (§4b)"
+          }
+        ],
+        "pass": true,
+        "fails": []
+      }
+    },
+    {
+      "ck": "a2:pcat_el_12x2_5:pcat_e2_ronimiskuplid",
+      "foldedCks": [
+        "a2:pcat_el_12x2_5:pcat_e2_ronimiskuplid"
+      ],
+      "name_et": "Ronimiskuplid",
+      "name_en": "Climbing Domes",
+      "handle": "v4-lastekaubad-ouemanguasjad-ronimiskuplid",
+      "handleCollisionResolved": false,
+      "parentL2": "v4-lastekaubad-ouemanguasjad",
+      "parentL2_name": "Õuemänguasjad ja mänguväljak",
+      "n": 10,
+      "currentL3": "v4-sport-ja-vaba-aeg-manguasjad-lastele-ronimismanguasjad-ja-ronimiskomplektid",
+      "srcId": "pcat_el_12x2_5",
+      "srcName": "Ronimismänguasjad ja ronimiskomplektid",
+      "path": "Lastekaubad ja mänguasjad/Õuemänguasjad ja mänguväljak/Ronimiskuplid",
+      "cert": {
+        "mode": "a2-concept",
+        "detail": "kontseptsioonitest live-DB (10/54), THR 5"
+      },
+      "products": [
+        {
+          "id": "prod_01KNXXCSPH8B1PQYRCYESDZJ73",
+          "title": "Climbing Dome, 10FT Geometric Dome Climber Play Center for Kids 3 to 10 Years Old, Jungle Gym Supports 750LBS and Easy Assembly, with Climbing Grip, Outdoor Backyard Play Equipment for Kids"
+        },
+        {
+          "id": "prod_01KNXXCVEZS0D546CCSK1E1V7H",
+          "title": "Climbing Dome, 10FT Geometric Dome Climber with Hammock and Swing, for Kids 3 to 10 Years Old, Jungle Gym Supports 750LBS and Easy Assembly, with Climbing Grip, Outdoor Backyard Play Equipment"
+        },
+        {
+          "id": "prod_01KNXXCX7A0AB158SH85G5Q664",
+          "title": "Climbing Dome, 12FT Geometric Dome Climber Play Center for Kids 3 to 10 Years Old, Jungle Gym Supports 750LBS and Easy Assembly, with Climbing Grip, Outdoor Backyard Play Equipment for Kids"
+        },
+        {
+          "id": "prod_01KNXXRERY7DYG7FGT4VNSBQQ7",
+          "title": "Climbing Dome, 183cm Geometric Dome Climber for Kids, 270kg Loading Indoor/Outdoor Jungle Gym Playground, Easy-Assembly Backyard Climbing Play Equipment for Boys Girls 3 to 10 Years Old"
+        },
+        {
+          "id": "prod_01KNXXRDW7VKSDS8PPCMA7VNMA",
+          "title": "Climbing Dome, 305cm Geometric Dome Climber for Kids, 453kg Loading Jungle Gym Playground with Octopus Net & 2 Basketballs, Easy-Assembly Outdoor Backyard Climbing Toys - Gift for Boys Girls"
+        },
+        {
+          "id": "prod_01KNXXRERZKK7HMEGJWBHB98KR",
+          "title": "Climbing Dome, 305cm Geometric Dome Climber with Saucer Swing, 453kg Loading Kid's Jungle Gym Playground, Easy-Assembly Outdoor Backyard Climbing Equipment for Boys Girls 3 to 10 Years Old"
+        },
+        {
+          "id": "prod_01KNXXRDV98ZSD8N7H9WYGAGCN",
+          "title": "Climbing Dome, 305cm Geometric Dome Climber with Swing & Hammock, 453kg Loading Kid's Jungle Gym Playground, Easy-Assembly Outdoor Backyard Climbing Equipment for Boys Girls 3 to 10 Years Old"
+        },
+        {
+          "id": "prod_01KNXXRCXWN0XP6HE1HBDZVFQB",
+          "title": "Climbing Dome, 305cm Geometric Dome Climber, 453kg Loading Jungle Gym Playground with 2 Basketballs & Octopus Net, Easy-Assembly Outdoor Backyard Climbing Equipment for Kids 3 to 10 Years Old"
+        },
+        {
+          "id": "prod_01KNXXCTJ1PD5WYCP6C6F9REYC",
+          "title": "Climbing Dome, 6FT Geometric Dome Climber Play Center for Kids 3 to 9 Years Old, Jungle Gym Supports 600LBS and Easy Assembly, with Climbing Grip, Outdoor and Indoor Play Equipment for Kids"
+        },
+        {
+          "id": "prod_01KNXXCWB2PJJZPJ3F13FZM9CJ",
+          "title": "Climbing Dome, 8FT Geometric Dome Climber with Slide, for Kids 3 to 9 Years Old, Jungle Gym Supports 600LBS and Easy Assembly, with Climbing Grip, Outdoor and Indoor Play Equipment for Kids"
+        }
+      ],
+      "assets": {
+        "name_en": "Climbing Domes",
+        "description_et": "Ronimiskuplid on geomeetrilised ronimisraamid, mis muudavad koduaia laste lemmikmänguväljakuks. Need arendavad lapse tasakaalu, jõudu ja julgust ning pakuvad aktiivset tegevust värskes õhus. Valikul tasub arvestada kupli suurust, laste vanust ja saadaolevaid lisasid, nagu kiiged või ronimisvõrgud.",
+        "description_en": "Climbing domes are geometric climbing frames that turn your backyard into kids' favourite playground. They develop balance, strength and confidence while offering active outdoor fun. When choosing, consider the dome size, children's age and available add-ons such as swings or climbing nets.",
+        "tagline_et": "Aktiivne ronimislõbu otse koduaeda!",
+        "tagline_en": "Active climbing fun for your backyard!",
+        "image_desc_et": "Heledal valgel taustal värviline geomeetriline ronimiskuppel, mille metalltorudest raam moodustab poolkerakujulise laste ronimisatraktsiooni.",
+        "_seoGate": {
+          "pass": true,
+          "offenders": [],
+          "attempts": 1
+        }
+      },
+      "type_profile": {
+        "description": "Poolkerakujulised ronimiskuplid lastele õue/sisetingimustesse: geomeetrilised kuplid (climbing dome / dome climber), džunglivõre-ronimiskeskused (jungle gym), lisatarvikutega mudelid nagu kiik, võrkkiik, liumägi või korvpallirõngas. EI sisalda eraldiseisvaid kiikesid ega ronimisseinu/raame (need: Kiiged, Ronimismänguasjad ja ronimiskomplektid).",
+        "ok": true,
+        "consensus": "OK",
+        "attempts": 1
+      },
+      "completeness": {
+        "checks": [
+          {
+            "n": "1 handle unikaalne",
+            "pass": true,
+            "note": "v4-lastekaubad-ouemanguasjad-ronimiskuplid"
+          },
+          {
+            "n": "2 name_et (nimevärav)",
+            "pass": true,
+            "note": "Ronimiskuplid"
+          },
+          {
+            "n": "3 name_en (Fable)",
+            "pass": true,
+            "note": "Climbing Domes"
+          },
+          {
+            "n": "4 nav parent-L2 kehtiv",
+            "pass": true,
+            "note": "v4-lastekaubad-ouemanguasjad"
+          },
+          {
+            "n": "5 pilt (CDN primaar / Gemini fallback)",
+            "pass": true,
+            "note": "10 toodet → top-toote CDN-pilt → webp valge taust"
+          },
+          {
+            "n": "6 webp genereeritav",
+            "pass": true,
+            "note": "cat-thumbs/v4-lastekaubad-ouemanguasjad-ronimiskuplid.webp (build-cat-thumbs-l3.mjs)"
+          },
+          {
+            "n": "7 SEO (ET+EN kirj.+tagline, kategooria-tasand, 0 numbrit/lubadust)",
+            "pass": true,
+            "note": "4/4 täidetud · SEO-värav läbib"
+          },
+          {
+            "n": "8 Meili facet",
+            "pass": true,
+            "note": "tooted bind → reindeks → facet"
+          },
+          {
+            "n": "9 DB product_category rida",
+            "pass": true,
+            "note": "seed/INSERT transaktsioonis (gate #4)"
+          },
+          {
+            "n": "10 tooted seotud (≥1)",
+            "pass": true,
+            "note": "10 toodet"
+          },
+          {
+            "n": "11 täis-deploy",
+            "pass": true,
+            "note": "genyM → Meili → push mõlemad → redeploy (§4b)"
+          }
+        ],
+        "pass": true,
+        "fails": []
+      }
+    },
+    {
+      "ck": "a2:pcat_el_12x2_5:pcat_e2_vahtmaterjalistronimiskl",
+      "foldedCks": [
+        "a2:pcat_el_12x2_5:pcat_e2_vahtmaterjalistronimiskl"
+      ],
+      "name_et": "Vahtmaterjalist ronimisklotsid",
+      "name_en": "Foam Climbing Blocks",
+      "handle": "v4-lastekaubad-ouemanguasjad-vahtmaterjalist-ronimisklotsid",
+      "handleCollisionResolved": false,
+      "parentL2": "v4-lastekaubad-ouemanguasjad",
+      "parentL2_name": "Õuemänguasjad ja mänguväljak",
+      "n": 7,
+      "currentL3": "v4-sport-ja-vaba-aeg-manguasjad-lastele-ronimismanguasjad-ja-ronimiskomplektid",
+      "srcId": "pcat_el_12x2_5",
+      "srcName": "Ronimismänguasjad ja ronimiskomplektid",
+      "path": "Lastekaubad ja mänguasjad/Õuemänguasjad ja mänguväljak/Vahtmaterjalist ronimisklotsid",
+      "cert": {
+        "mode": "a2-concept",
+        "detail": "kontseptsioonitest live-DB (7/54), THR 5"
+      },
+      "products": [
+        {
+          "id": "prod_01KNXXMQB195KM8203WD9K1YEH",
+          "title": "Climbing Toys, 4-Piece Set, Foam Climbing Toys for Toddlers 6 Months to 3 Years Old, PU Leather Climbing Blocks, Indoor Climb and Crawl Activity Playset for Crawling & Sliding, Easy to Clean"
+        },
+        {
+          "id": "prod_01KNXXMQC83ZA08DF30EK533M6",
+          "title": "Climbing Toys, 5-Piece Set, Foam Climbing Blocks for Toddlers 6 Months to 3 Years, Baby Climbing Blocks with Ball Pit (Balls Not Included), Indoor Climb and Crawl Activity Playset for Crawling"
+        },
+        {
+          "id": "prod_01KNXXMNM9PTRFD4AKD5PX0BYF",
+          "title": "Climbing Toys, 5-Piece Set, Foam Climbing Toys for Toddlers 6 Months to 3 Years Old, PU Leather Climbing Blocks, Indoor Climb and Crawl Activity Playset for Crawling & Sliding, Easy to Clean"
+        },
+        {
+          "id": "prod_01KNXXMPFGWKPTST2GQQ6DMVVZ",
+          "title": "Climbing Toys, 6-Piece Set, Foam Climbing Toys for Toddlers 6 Months to 3 Years Old, PU Leather Climbing Blocks, Indoor Climb and Crawl Activity Playset for Crawling & Sliding, Easy to Clean"
+        },
+        {
+          "id": "prod_01KNXXMMPRECAEA30GA3CYB8G3",
+          "title": "Climbing Toys, 7-Piece Set, Foam Climbing Toys for Toddlers 6 Months to 3 Years Old, PU Leather Climbing Blocks, Indoor Climb and Crawl Activity Playset for Crawling & Sliding, Easy to Clean"
+        },
+        {
+          "id": "prod_01KNXXBJTSG8X3YM1PQ1C883HJ",
+          "title": "Single Tunnel Climber, Toddler Playset, Foam Climbing Blocks for Toddlers, Kids Tunnel Maze with Stairs and Ramp, Indoor for Toddlers and Preschoolers Easy to Clean, 3 pcs (Assorted)"
+        },
+        {
+          "id": "prod_01KNXXBKRRGW0C8XZ1MMHBDQ19",
+          "title": "Toddler Climbing Toys Indoor, 5 Piece Climb, Crawl and Tunnel Soft Play Equipment, Foam Climbing Toys, Kids Tunnel Maze with Stairs and Ramp,Indoor for Preschoolers Easy to Clean (Assorted)"
+        }
+      ],
+      "assets": {
+        "name_en": "Foam Climbing Blocks",
+        "description_et": "Pehmed vahtmaterjalist ronimisklotsid ja -komplektid väikelastele, mis muudavad ronimise, roomamise ja liugumise turvaliseks toas mängimiseks. Sobivad suurepäraselt motoorika, tasakaalu ja liikumisjulguse arendamiseks. Valikul tasub jälgida komplekti sobivust lapse vanusele, kuju mitmekesisust ja katte puhastatavust.",
+        "description_en": "Soft foam climbing blocks and playsets for little ones, turning climbing, crawling and sliding into safe indoor play. Great for developing motor skills, balance and confidence in movement. When choosing, consider the set's suitability for your child's age, the variety of shapes and how easy the cover is to clean.",
+        "tagline_et": "Turvaline ronimisrõõm kõige pisematele",
+        "tagline_en": "Safe climbing fun for the littlest ones",
+        "image_desc_et": "Heledal valgel taustal värviline pehmetest vahtklotsidest ronimiskomplekt trepi ja kaldteega.",
+        "_seoGate": {
+          "pass": true,
+          "offenders": [],
+          "attempts": 1
+        }
+      },
+      "type_profile": {
+        "description": "Pehmest vahtmaterjalist siseruumi ronimis- ja roomamiskomplektid väikelastele: vahtronimisklotsid (foam climbing blocks), ronimiskomplektid trepi ja kaldteega (climb and crawl playset), pehmed tunnelid (tunnel climber), PU-kattega ronimismoodulid. EI sisalda õue- või raammaterjalist ronimisraame (need: Ronimismänguasjad ja ronimiskomplektid).",
+        "ok": true,
+        "consensus": "OK",
+        "attempts": 1
+      },
+      "completeness": {
+        "checks": [
+          {
+            "n": "1 handle unikaalne",
+            "pass": true,
+            "note": "v4-lastekaubad-ouemanguasjad-vahtmaterjalist-ronimisklotsid"
+          },
+          {
+            "n": "2 name_et (nimevärav)",
+            "pass": true,
+            "note": "Vahtmaterjalist ronimisklotsid"
+          },
+          {
+            "n": "3 name_en (Fable)",
+            "pass": true,
+            "note": "Foam Climbing Blocks"
+          },
+          {
+            "n": "4 nav parent-L2 kehtiv",
+            "pass": true,
+            "note": "v4-lastekaubad-ouemanguasjad"
+          },
+          {
+            "n": "5 pilt (CDN primaar / Gemini fallback)",
+            "pass": true,
+            "note": "7 toodet → top-toote CDN-pilt → webp valge taust"
+          },
+          {
+            "n": "6 webp genereeritav",
+            "pass": true,
+            "note": "cat-thumbs/v4-lastekaubad-ouemanguasjad-vahtmaterjalist-ronimisklotsid.webp (build-cat-thumbs-l3.mjs)"
+          },
+          {
+            "n": "7 SEO (ET+EN kirj.+tagline, kategooria-tasand, 0 numbrit/lubadust)",
+            "pass": true,
+            "note": "4/4 täidetud · SEO-värav läbib"
+          },
+          {
+            "n": "8 Meili facet",
+            "pass": true,
+            "note": "tooted bind → reindeks → facet"
+          },
+          {
+            "n": "9 DB product_category rida",
+            "pass": true,
+            "note": "seed/INSERT transaktsioonis (gate #4)"
+          },
+          {
+            "n": "10 tooted seotud (≥1)",
+            "pass": true,
+            "note": "7 toodet"
+          },
+          {
+            "n": "11 täis-deploy",
+            "pass": true,
+            "note": "genyM → Meili → push mõlemad → redeploy (§4b)"
+          }
+        ],
+        "pass": true,
+        "fails": []
+      }
+    },
+    {
+      "ck": "a2:pcat_1flift:pcat_e2_kahveltostukiturvakorvid",
+      "foldedCks": [
+        "a2:pcat_1flift:pcat_e2_kahveltostukiturvakorvid"
+      ],
+      "name_et": "Kahveltõstuki turvakorvid ja tööplatvormid",
+      "name_en": "Forklift Safety Cages",
+      "handle": "v4-tooriistad-ja-tarvikud-tosteseadmed-ja-talid-kahveltostuki-turvakorvid-ja-tooplatvormid",
+      "handleCollisionResolved": false,
+      "parentL2": "v4-tooriistad-ja-tarvikud-tosteseadmed-ja-talid",
+      "parentL2_name": "Tõsteseadmed ja talid",
+      "n": 8,
+      "currentL3": "v4-tooriistad-ja-tarvikud-tosteseadmed-ja-talid-kahveltostuki-lisaseadmed",
+      "srcId": "pcat_1flift",
+      "srcName": "Kahveltõstuki lisaseadmed",
+      "path": "Tööriistad ja tarvikud/Tõsteseadmed ja talid/Kahveltõstuki turvakorvid ja tööplatvormid",
+      "cert": {
+        "mode": "a2-concept",
+        "detail": "kontseptsioonitest live-DB (8/31), THR 5"
+      },
+      "products": [
+        {
+          "id": "prod_01KNXX7YZYPE3JPTS3W30YYVFZ",
+          "title": "Forklift Safety Cage Work Platform 109 x 114.3 cm 635 kg w/ Wheels for Aerial"
+        },
+        {
+          "id": "prod_01KY5F2JJRQBZT64FWTM44FRNT",
+          "title": "Forklift Safety Cage, 1225 x 1148 mm, Heavy Duty Forklift Man Basket, 635.03 kg Capacity Collapsible Work Platform Lift Basket with 4 Wheels, Lock, Drain Hole, for Aerial Work Lifting Loader"
+        },
+        {
+          "id": "prod_01KZA9E691PWZB6X85P0RBJRRR",
+          "title": "Forklift Safety Cage, 1225 x 1148 mm, Heavy Duty Forklift Man Basket, 635.03 kg Capacity Collapsible Work Platform Lift Basket with Safety Harness & Lock, for Most Aerial Jobs Lifting Loader"
+        },
+        {
+          "id": "prod_01KY5F2QEDSDQP4DV30NNAFG7N",
+          "title": "Forklift Safety Cage, 1225 x 1148 mm, Heavy Duty Forklift Man Basket, 635.03 kg Load Capacity, Collapsible Work Platform Lift Basket with Drain Hole & Lock, for Most Aerial Jobs Lifting Loader"
+        },
+        {
+          "id": "prod_01KNXX94ZBPX3RJTEAXTT2Y9WY",
+          "title": "Forklift Safety Cage, 544.3 kg Load Capacity, 91.4 x 91.4 cm, Folding Forklift Work Platform with Lockable Swivel Wheels, Drain Hole & Device Chain, Holds 1 to 2 Adults, Perfect for Aerial Work"
+        },
+        {
+          "id": "prod_01KYK3VQXPR2SVZX6GB9G62PVM",
+          "title": "Forklift Safety Cage, 920 x 1045 mm, Forklift Man Basket with 4 Wheels, 544.31 kg Load Capacity, Heavy Duty Work Platform Collapsible Lift Basket, Safety Harness, for Aerial Work Lifting Loader"
+        },
+        {
+          "id": "prod_01KY5F2FTVCMHSQYS0K3NJFFNT",
+          "title": "Forklift Safety Cage, 920 x 1045 mm, Forklift Man Basket with 4 Wheels, 544.31 kg Load Capacity, Heavy Duty Work Platform, Collapsible Lift Basket Safety Set, for Most Aerial Jobs Lifting Loader"
+        },
+        {
+          "id": "prod_01KY5F20GSVVRE5Y371814QTS9",
+          "title": "Mesh Telehandler Work Platform, 1817 x 1220 mm, Man Safety Basket, 907.18 kg Capacity, Forklift Telehandler Attachment, Safety Cage, Heavy Duty Carbon Steel, for Most Aerial Jobs Lifting Loader"
+        }
+      ],
+      "assets": {
+        "name_en": "Forklift Safety Cages",
+        "description_et": "Kahveltõstuki turvakorvid ja tööplatvormid võimaldavad teostada kõrgtöid ohutult ja mugavalt. Sobivad ladudesse, tootmishoonetesse ja ehitusplatsidele, kus on vaja töötajaid turvaliselt kõrgustesse tõsta. Valikul jälgi platvormi mõõtmeid, kokkupandavust ja sobivust oma tõstukiga.",
+        "description_en": "Forklift safety cages and work platforms allow aerial work to be carried out safely and conveniently. Ideal for warehouses, production facilities and construction sites where workers need to be lifted securely. When choosing, consider the platform dimensions, foldability and compatibility with your forklift.",
+        "tagline_et": "Turvaline kõrgtöö kahveltõstukiga – kindel ja mugav",
+        "tagline_en": "Safe aerial work with your forklift",
+        "image_desc_et": "Heledal valgel taustal metallist kahveltõstuki turvakorv kaitsepiirete ja ratastega, valmis kõrgtöödeks.",
+        "_seoGate": {
+          "pass": true,
+          "offenders": [],
+          "attempts": 1
+        }
+      },
+      "type_profile": {
+        "description": "Kahveltõstukile või teleskooplaadurile paigaldatavad turvakorvid ja tööplatvormid inimeste tõstmiseks kõrgtöödel: kahveltõstuki turvakorvid (forklift safety cage), töömehe korvid (forklift man basket), kokkupandavad tööplatvormid ratastega (collapsible work platform), teleskooplaaduri korvid (telehandler work platform). EI sisalda kaubakäärtõstukeid (need: Käärtõstelauad ja -tõstukid).",
+        "ok": true,
+        "consensus": "OK",
+        "attempts": 1
+      },
+      "completeness": {
+        "checks": [
+          {
+            "n": "1 handle unikaalne",
+            "pass": true,
+            "note": "v4-tooriistad-ja-tarvikud-tosteseadmed-ja-talid-kahveltostuki-turvakorvid-ja-tooplatvormid"
+          },
+          {
+            "n": "2 name_et (nimevärav)",
+            "pass": true,
+            "note": "Kahveltõstuki turvakorvid ja tööplatvormid"
+          },
+          {
+            "n": "3 name_en (Fable)",
+            "pass": true,
+            "note": "Forklift Safety Cages"
+          },
+          {
+            "n": "4 nav parent-L2 kehtiv",
+            "pass": true,
+            "note": "v4-tooriistad-ja-tarvikud-tosteseadmed-ja-talid"
+          },
+          {
+            "n": "5 pilt (CDN primaar / Gemini fallback)",
+            "pass": true,
+            "note": "8 toodet → top-toote CDN-pilt → webp valge taust"
+          },
+          {
+            "n": "6 webp genereeritav",
+            "pass": true,
+            "note": "cat-thumbs/v4-tooriistad-ja-tarvikud-tosteseadmed-ja-talid-kahveltostuki-turvakorvid-ja-tooplatvormid.webp (build-cat-thumbs-l3.mjs)"
+          },
+          {
+            "n": "7 SEO (ET+EN kirj.+tagline, kategooria-tasand, 0 numbrit/lubadust)",
+            "pass": true,
+            "note": "4/4 täidetud · SEO-värav läbib"
+          },
+          {
+            "n": "8 Meili facet",
+            "pass": true,
+            "note": "tooted bind → reindeks → facet"
+          },
+          {
+            "n": "9 DB product_category rida",
+            "pass": true,
+            "note": "seed/INSERT transaktsioonis (gate #4)"
+          },
+          {
+            "n": "10 tooted seotud (≥1)",
+            "pass": true,
+            "note": "8 toodet"
+          },
+          {
+            "n": "11 täis-deploy",
+            "pass": true,
+            "note": "genyM → Meili → push mõlemad → redeploy (§4b)"
+          }
+        ],
+        "pass": true,
+        "fails": []
+      }
+    },
+    {
+      "ck": "a2:pcat_el_12x2_16:pcat_e2_lastevoimlemiskangidkipk",
+      "foldedCks": [
+        "a2:pcat_el_12x2_16:pcat_e2_lastevoimlemiskangidkipk"
+      ],
+      "name_et": "Laste võimlemiskangid (kip-kangid)",
+      "name_en": "Kids Gymnastic Kip Bars",
+      "handle": "v4-lastekaubad-lastesport-laste-voimlemiskangid-kip-kangid",
+      "handleCollisionResolved": false,
+      "parentL2": "v4-lastekaubad-lastesport",
+      "parentL2_name": "Laste sport ja aktiiv",
+      "n": 6,
+      "currentL3": "v4-sport-ja-vaba-aeg-manguasjad-lastele-tasakaalu-ja-liikumismanguasjad",
+      "srcId": "pcat_el_12x2_16",
+      "srcName": "Tasakaalu- ja liikumismänguasjad",
+      "path": "Lastekaubad ja mänguasjad/Laste sport ja aktiiv/Laste võimlemiskangid (kip-kangid)",
+      "cert": {
+        "mode": "a2-concept",
+        "detail": "kontseptsioonitest live-DB (6/30), THR 6"
+      },
+      "products": [
+        {
+          "id": "prod_01KY5F1M52JF74FEQH562GQSVF",
+          "title": "Gymnastic Bars for Kids, 63.5 kg Capacity Folding Training Kip Bar with Mat, Adjustable Height Gymnastic Horizontal Bar for Home, Training Equipment for Indoor Outdoor, Easy to Assemble, Blue"
+        },
+        {
+          "id": "prod_01KY5F1KK42A40ENSR7P35HV8X",
+          "title": "Gymnastic Bars for Kids, 63.5 kg Capacity Folding Training Kip Bar with Mat, Adjustable Height Gymnastic Horizontal Bar for Home, Training Equipment for Indoor Outdoor, Easy to Assemble, Pink"
+        },
+        {
+          "id": "prod_01KY5F1K089Y5CNCVA88JPFXHE",
+          "title": "Gymnastic Bars for Kids, 63.5 kg Capacity Folding Training Kip Bar with Mat, Adjustable Height Gymnastic Horizontal Bar for Home, Training Equipment for Indoor Outdoor, Easy to Assemble, Purple"
+        },
+        {
+          "id": "prod_01KY5F1MHH97YKE35GGYRBYED8",
+          "title": "Gymnastic Bars for Kids, 63.5 kg Capacity Folding Training Kip Bar, Adjustable Height Gymnastic Horizontal Bar for Home, Training Equipment for Indoor and Outdoor, Easy to Assemble, Blue"
+        },
+        {
+          "id": "prod_01KY5F1NQCAKRRNY0YJP6SS22W",
+          "title": "Gymnastic Bars for Kids, 63.5 kg Capacity Folding Training Kip Bar, Adjustable Height Gymnastic Horizontal Bar for Home, Training Equipment for Indoor and Outdoor, Easy to Assemble, Pink"
+        },
+        {
+          "id": "prod_01KY5F1MYDV6GN3R46704BTE4G",
+          "title": "Gymnastic Bars for Kids, 63.5 kg Capacity Folding Training Kip Bar, Adjustable Height Gymnastic Horizontal Bar for Home, Training Equipment for Indoor and Outdoor, Easy to Assemble, Purple"
+        }
+      ],
+      "assets": {
+        "name_en": "Kids Gymnastic Kip Bars",
+        "description_et": "Siit leiad lastele mõeldud võimlemiskangid ehk kip-kangid, mis sobivad suurepäraselt võimlemisharjutuste harjutamiseks kodus nii toas kui ka õues. Reguleeritava kõrgusega ja kokkupandavad kangid kasvavad koos lapsega ning on lihtne pärast treeningut hoiule panna. Valides jälgi lapse pikkusele sobivat reguleerimisvahemikku, stabiilset alust ja seda, kas komplekti kuulub pehmendav matt.",
+        "description_en": "Here you will find gymnastic kip bars designed for children, perfect for practising gymnastics moves at home, both indoors and outdoors. Height-adjustable and foldable bars grow with your child and are easy to store away after training. When choosing, consider a suitable adjustment range for your child's height, a stable base and whether a protective mat is included.",
+        "tagline_et": "Võimlemisrõõm koju – turvaliselt ja mugavalt!",
+        "tagline_en": "Gymnastics fun at home – safe and easy!",
+        "image_desc_et": "Heledal valgel taustal värviline reguleeritava kõrgusega laste võimlemiskang koos pehme matiga selle all.",
+        "_seoGate": {
+          "pass": true,
+          "offenders": [],
+          "attempts": 1
+        }
+      },
+      "type_profile": {
+        "description": "Lastele mõeldud võimlemiskangid rippumis- ja pöörlemisharjutusteks: reguleeritava kõrgusega kokkupandavad kip-kangid (kip bar), horisontaalkangid (gymnastic horizontal bar), sageli kaasas harjutusmatt. Sise- ja välitingimustesse. EI sisalda tasakaalupoome ega liikumismänguasju (need: Tasakaalu- ja liikumismänguasjad) ega trampoliine (need: Trampoliinid ja batuudid).",
+        "ok": true,
+        "consensus": "OK",
+        "attempts": 1
+      },
+      "completeness": {
+        "checks": [
+          {
+            "n": "1 handle unikaalne",
+            "pass": true,
+            "note": "v4-lastekaubad-lastesport-laste-voimlemiskangid-kip-kangid"
+          },
+          {
+            "n": "2 name_et (nimevärav)",
+            "pass": true,
+            "note": "Laste võimlemiskangid (kip-kangid)"
+          },
+          {
+            "n": "3 name_en (Fable)",
+            "pass": true,
+            "note": "Kids Gymnastic Kip Bars"
+          },
+          {
+            "n": "4 nav parent-L2 kehtiv",
+            "pass": true,
+            "note": "v4-lastekaubad-lastesport"
+          },
+          {
+            "n": "5 pilt (CDN primaar / Gemini fallback)",
+            "pass": true,
+            "note": "6 toodet → top-toote CDN-pilt → webp valge taust"
+          },
+          {
+            "n": "6 webp genereeritav",
+            "pass": true,
+            "note": "cat-thumbs/v4-lastekaubad-lastesport-laste-voimlemiskangid-kip-kangid.webp (build-cat-thumbs-l3.mjs)"
+          },
+          {
+            "n": "7 SEO (ET+EN kirj.+tagline, kategooria-tasand, 0 numbrit/lubadust)",
+            "pass": true,
+            "note": "4/4 täidetud · SEO-värav läbib"
+          },
+          {
+            "n": "8 Meili facet",
+            "pass": true,
+            "note": "tooted bind → reindeks → facet"
+          },
+          {
+            "n": "9 DB product_category rida",
+            "pass": true,
+            "note": "seed/INSERT transaktsioonis (gate #4)"
+          },
+          {
+            "n": "10 tooted seotud (≥1)",
+            "pass": true,
+            "note": "6 toodet"
+          },
+          {
+            "n": "11 täis-deploy",
+            "pass": true,
+            "note": "genyM → Meili → push mõlemad → redeploy (§4b)"
+          }
+        ],
+        "pass": true,
+        "fails": []
+      }
+    },
+    {
+      "ck": "a2:pcat_t3f_7_5:pcat_e2_patareipunktkeevitusapar",
+      "foldedCks": [
+        "a2:pcat_t3f_7_5:pcat_e2_patareipunktkeevitusapar"
+      ],
+      "name_et": "Patarei-punktkeevitusaparaadid",
+      "name_en": "Battery Spot Welders",
+      "handle": "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-patarei-punktkeevitusaparaadid",
+      "handleCollisionResolved": false,
+      "parentL2": "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine",
+      "parentL2_name": "Keevitus ja jootmine",
+      "n": 6,
+      "currentL3": "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-punktkeevitusaparaadid-ja-molgieemaldusseadmed",
+      "srcId": "pcat_t3f_7_5",
+      "srcName": "Punktkeevitusaparaadid ja mõlgieemaldusseadmed",
+      "path": "Tööriistad ja tarvikud/Keevitus ja jootmine/Patarei-punktkeevitusaparaadid",
+      "cert": {
+        "mode": "a2-concept",
+        "detail": "kontseptsioonitest live-DB (6/23), THR 5"
+      },
+      "products": [
+        {
+          "id": "prod_01M6SVVWN4W8GX0Z8GGF9978WK",
+          "title": "Battery Spot Welder 11.6KW Capacitor Energy Storage Pulse Spot Welder, Welding Pen & Fixed Head, AT/MT Modes, 116J Energy, 1–99T Adjustable, 2 x 3000F Supercapacitors, Support Foot Pedal Control"
+        },
+        {
+          "id": "prod_01M6Z0N9PHFMS7RMVETCZD9AG5",
+          "title": "Battery Spot Welder 36KW Capacitor Energy Storage Pulse Spot Welder, 75B Split Welding Pen, AT/MT Modes, 720J Max Energy, 1–99T Adjustable, Support Foot Pedal Control, 6 x 3000F Supercapacitors"
+        },
+        {
+          "id": "prod_01M6Z0N9PHXC9KKX79QGH4FBYE",
+          "title": "Battery Spot Welder 42KW Capacitor Energy Storage Pulse Spot Welder, 75B Split Welding Pen, AT/MT Modes, 840J Max Energy, 1–99T Adjustable, Support Foot Pedal Control, 6 x 3000F Supercapacitors"
+        },
+        {
+          "id": "prod_01KNXXBDG2VW0JQSEW3APJNT1G",
+          "title": "Battery Spot Welder, 14.5KW Capacitor Energy Storage Pulse Battery Spot Welder with 73B Welding Pen, 801D High Power Spot Welding Equipment & 2 Welding Modes for 0.1-0.3mm Pure Nickel, Batteries"
+        },
+        {
+          "id": "prod_01KNXXBCH58BXBDD3BQ7CQVWAA",
+          "title": "Battery Spot Welder, 737G Pulse Spot Welder, Portable High-Power Battery Welding Machine Soldering Station with 2 Welding Modes and LED Lighting for 0.12mm Pure Nickel, 18650 14500 Battery Pack"
+        },
+        {
+          "id": "prod_01KNXXBBMV52F8XAY4WP0PXN9H",
+          "title": "Battery Spot Welder, 788H Pulse Spot Welder & Battery Charger, Portable High-Power Battery Welding Machine with 2 Welding Modes and LED Lighting for 0.15mm Pure Nickel, 18650 14500 Battery Packs"
+        }
+      ],
+      "assets": {
+        "name_en": "Battery Spot Welders",
+        "description_et": "Patarei-punktkeevitusaparaadid on mõeldud akuelementide ja nikkelribade kiireks ning täpseks ühendamiseks ilma elemente üle kuumutamata. Sobivad nii hobikorras akupakkide ehitajatele kui ka töökodadele, kes tegelevad akude remondi ja koostamisega. Valikul tasub jälgida seadme võimsusklassi, keevituspea tüüpi ja reguleerimisvõimalusi vastavalt oma töödele.",
+        "description_en": "Battery spot welders are designed for fast and precise joining of battery cells and nickel strips without overheating the cells. They suit both hobbyists building battery packs and workshops handling battery repair and assembly. When choosing, consider the power class, welding pen type and adjustment options to match your projects.",
+        "tagline_et": "Täpne punktkeevitus akupakkide ehitamiseks ja remondiks",
+        "tagline_en": "Precise spot welding for battery pack building",
+        "image_desc_et": "Heledal valgel taustal kompaktne punktkeevitusaparaat koos keevituspliiatsi ja akuelementidega.",
+        "_seoGate": {
+          "pass": true,
+          "offenders": [],
+          "attempts": 1
+        }
+      },
+      "type_profile": {
+        "description": "Kondensaator- ja impulss-punktkeevitusseadmed akuplokkide ühendamiseks: patarei-punktkeevitajad (battery spot welder), kondensaatorenergia-salvestiga impulssseadmed (capacitor energy storage pulse welder) niklilindi/akuelementide (18650) keevitamiseks keevituspliiatsi ja jalgpedaaliga. EI sisalda üldisi kere-punktkeevitajaid ega mõlgieemaldust (need: Punktkeevitusaparaadid ja mõlgieemaldusseadmed).",
+        "ok": false,
+        "consensus": "GATE_FAIL",
+        "attempts": 4
+      },
+      "completeness": {
+        "checks": [
+          {
+            "n": "1 handle unikaalne",
+            "pass": true,
+            "note": "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-patarei-punktkeevitusaparaadid"
+          },
+          {
+            "n": "2 name_et (nimevärav)",
+            "pass": true,
+            "note": "Patarei-punktkeevitusaparaadid"
+          },
+          {
+            "n": "3 name_en (Fable)",
+            "pass": true,
+            "note": "Battery Spot Welders"
+          },
+          {
+            "n": "4 nav parent-L2 kehtiv",
+            "pass": true,
+            "note": "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine"
+          },
+          {
+            "n": "5 pilt (CDN primaar / Gemini fallback)",
+            "pass": true,
+            "note": "6 toodet → top-toote CDN-pilt → webp valge taust"
+          },
+          {
+            "n": "6 webp genereeritav",
+            "pass": true,
+            "note": "cat-thumbs/v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-patarei-punktkeevitusaparaadid.webp (build-cat-thumbs-l3.mjs)"
+          },
+          {
+            "n": "7 SEO (ET+EN kirj.+tagline, kategooria-tasand, 0 numbrit/lubadust)",
+            "pass": true,
+            "note": "4/4 täidetud · SEO-värav läbib"
+          },
+          {
+            "n": "8 Meili facet",
+            "pass": true,
+            "note": "tooted bind → reindeks → facet"
+          },
+          {
+            "n": "9 DB product_category rida",
+            "pass": true,
+            "note": "seed/INSERT transaktsioonis (gate #4)"
+          },
+          {
+            "n": "10 tooted seotud (≥1)",
+            "pass": true,
+            "note": "6 toodet"
+          },
+          {
+            "n": "11 täis-deploy",
+            "pass": true,
+            "note": "genyM → Meili → push mõlemad → redeploy (§4b)"
+          }
+        ],
+        "pass": true,
+        "fails": []
+      }
+    },
+    {
+      "ck": "a2:pcat_ag_2_5:pcat_e2_elektrikarjusevorkaiad",
+      "foldedCks": [
+        "a2:pcat_ag_2_5:pcat_e2_elektrikarjusevorkaiad"
+      ],
+      "name_et": "Elektrikarjuse võrkaiad",
+      "name_en": "Electric Fence Netting",
+      "handle": "v4-pollumajandus-ja-loomakasvatus-kariloomad-elektrikarjuse-vorkaiad",
+      "handleCollisionResolved": false,
+      "parentL2": "v4-pollumajandus-ja-loomakasvatus-kariloomad",
+      "parentL2_name": "Kariloomad",
+      "n": 6,
+      "currentL3": "v4-pollumajandus-ja-loomakasvatus-kariloomad-tra-ataiad-ja-aiapiirded",
+      "srcId": "pcat_ag_2_5",
+      "srcName": "Tarad ja võrgud",
+      "path": "Põllumajandus ja loomakasvatus/Kariloomad/Elektrikarjuse võrkaiad",
+      "cert": {
+        "mode": "a2-concept",
+        "detail": "kontseptsioonitest live-DB (6/23), THR 5"
+      },
+      "products": [
+        {
+          "id": "prod_01KNXXC408P4G4Q9QBNC13KG42",
+          "title": "Electric Fence Netting, 0.88 x 49.98 m, PE Net Fencing with Posts & Double-Spiked Stakes, Utility Portable Mesh for Goats, Sheep, Lambs, Deer, Hogs, Dogs, Used in Backyards, Farms, and Ranches"
+        },
+        {
+          "id": "prod_01KNXXC3ZX5Z8R37B7GSQJPATD",
+          "title": "Electric Fence Netting, 1.06 x 49.98 m, PE Net Fencing with Posts & Double-Spiked Stakes, Utility Portable Mesh for Goats, Sheep, Lambs, Deer, Hogs, Dogs, Used in Backyards, Farms, and Ranches"
+        },
+        {
+          "id": "prod_01KNXXRFPADKZZQ1MJ17HE50HA",
+          "title": "Electric Fence Netting, 1.27 m x 50 m, Livestock Net Fencing with Posts & Stakes, Portable Mesh Nets for Goats, Sheep, Deer, Hogs, Dogs, Electric Fencing for Backyards, Gardens, Farms, Ranches"
+        },
+        {
+          "id": "prod_01KNXXC0C748KM2VXK1SN3H2M3",
+          "title": "Electric Fence Netting, 48\" H x 100' L, PE Net Fencing Kit with Posts & Double-Spiked Stakes, Utility Portable Mesh for Chickens, Ducks, Geese, Rabbits, Used in Backyards, Farms, and Ranches"
+        },
+        {
+          "id": "prod_01KNXXC0C6W39P29ANR3K4JT5N",
+          "title": "Electric Fence Netting, 48\" H x 100' L, PE Net Fencing with Solar Charger/Posts/Double-Spiked Stakes, Utility Portable Mesh for Chickens, Ducks, Geese, Rabbits, Used in Backyards, Farms, Ranches"
+        },
+        {
+          "id": "prod_01KNXXC1A7M6972GH1HKFEWMSR",
+          "title": "Electric Fence Netting, 48\" H x 168' L, PE Net Fencing Kit with Posts & Double-Spiked Stakes, Utility Portable Mesh for Chickens, Ducks, Geese, Rabbits, Used in Backyards, Farms, and Ranches"
+        }
+      ],
+      "assets": {
+        "name_en": "Electric Fence Netting",
+        "description_et": "Elektrikarjuse võrkaiad on teisaldatavad aiavõrgud kariloomade ja kodulindude turvaliseks piiramiseks ning kiskjate eemalehoidmiseks. Sobivad nii farmidele kui ka koduaedadesse – lammaste, kitsede, kanade ja muude loomade tarbeks. Valikul tasub jälgida sobivat võrgu kõrgust, pikkust ja silmasuurust vastavalt loomaliigile.",
+        "description_en": "Electric fence netting offers portable mesh fencing to safely contain livestock and poultry while keeping predators out. Suitable for farms, ranches, and backyards – ideal for sheep, goats, chickens, and other animals. When choosing, consider the right net height, length, and mesh size for your animals.",
+        "tagline_et": "Mobiilne elektriaed loomade turvaliseks karjatamiseks",
+        "tagline_en": "Portable electric fencing for safe grazing",
+        "image_desc_et": "Heledal valgel taustal elektrikarjuse võrkaed koos postide ja maavaiadega, osaliselt lahti rullitud.",
+        "_seoGate": {
+          "pass": true,
+          "offenders": [],
+          "attempts": 1
+        }
+      },
+      "type_profile": {
+        "description": "Teisaldatavad elektrikarjuse võrkaiad loomade piiramiseks: integreeritud postide ja maasse surutavate vaiadega PE-võrkaed (electric fence netting), komplektid võrgu ja postidega, osadel päikesepaneeliga laadija. Mõeldud lammastele, kitsedele, kodulindudele jne. EI sisalda elektrikarjuse generaatoreid ega juhtmeid eraldi (need: Elektrikarjused ja tarvikud) ega mitte-elektrilisi võrke (need: Tarad ja võrgud).",
+        "ok": false,
+        "consensus": "GATE_FAIL",
+        "attempts": 4
+      },
+      "completeness": {
+        "checks": [
+          {
+            "n": "1 handle unikaalne",
+            "pass": true,
+            "note": "v4-pollumajandus-ja-loomakasvatus-kariloomad-elektrikarjuse-vorkaiad"
+          },
+          {
+            "n": "2 name_et (nimevärav)",
+            "pass": true,
+            "note": "Elektrikarjuse võrkaiad"
+          },
+          {
+            "n": "3 name_en (Fable)",
+            "pass": true,
+            "note": "Electric Fence Netting"
+          },
+          {
+            "n": "4 nav parent-L2 kehtiv",
+            "pass": true,
+            "note": "v4-pollumajandus-ja-loomakasvatus-kariloomad"
+          },
+          {
+            "n": "5 pilt (CDN primaar / Gemini fallback)",
+            "pass": true,
+            "note": "6 toodet → top-toote CDN-pilt → webp valge taust"
+          },
+          {
+            "n": "6 webp genereeritav",
+            "pass": true,
+            "note": "cat-thumbs/v4-pollumajandus-ja-loomakasvatus-kariloomad-elektrikarjuse-vorkaiad.webp (build-cat-thumbs-l3.mjs)"
+          },
+          {
+            "n": "7 SEO (ET+EN kirj.+tagline, kategooria-tasand, 0 numbrit/lubadust)",
+            "pass": true,
+            "note": "4/4 täidetud · SEO-värav läbib"
+          },
+          {
+            "n": "8 Meili facet",
+            "pass": true,
+            "note": "tooted bind → reindeks → facet"
+          },
+          {
+            "n": "9 DB product_category rida",
+            "pass": true,
+            "note": "seed/INSERT transaktsioonis (gate #4)"
+          },
+          {
+            "n": "10 tooted seotud (≥1)",
+            "pass": true,
+            "note": "6 toodet"
+          },
+          {
+            "n": "11 täis-deploy",
+            "pass": true,
+            "note": "genyM → Meili → push mõlemad → redeploy (§4b)"
+          }
+        ],
+        "pass": true,
+        "fails": []
+      }
+    },
+    {
+      "ck": "a2:pcat_ag_2_5:pcat_e2_tsingitudpeenvorkhardwar",
+      "foldedCks": [
+        "a2:pcat_ag_2_5:pcat_e2_tsingitudpeenvorkhardwar"
+      ],
+      "name_et": "Tsingitud peenvõrk (hardware cloth)",
+      "name_en": "Hardware Cloth",
+      "handle": "v4-pollumajandus-ja-loomakasvatus-kariloomad-tsingitud-peenvork-hardware-cloth",
+      "handleCollisionResolved": false,
+      "parentL2": "v4-pollumajandus-ja-loomakasvatus-kariloomad",
+      "parentL2_name": "Kariloomad",
+      "n": 13,
+      "currentL3": "v4-pollumajandus-ja-loomakasvatus-kariloomad-tra-ataiad-ja-aiapiirded",
+      "srcId": "pcat_ag_2_5",
+      "srcName": "Tarad ja võrgud",
+      "path": "Põllumajandus ja loomakasvatus/Kariloomad/Tsingitud peenvõrk (hardware cloth)",
+      "cert": {
+        "mode": "a2-concept",
+        "detail": "kontseptsioonitest live-DB (13/23), THR 5"
+      },
+      "products": [
+        {
+          "id": "prod_01M0P26FW495N77ZSEN66ME2Y5",
+          "title": "Hardware Cloth 12.7 mm 1220 mm x 15.24 m 19 Gauge Chicken Wire Fence, Hot-Dip Galvanized After Welding Metal Wire Mesh Roll, Garden Plant Welded Fencing Roll Supports Poultry Netting Cage Fence"
+        },
+        {
+          "id": "prod_01M1QHC4HX5EPW14S7GJ8NPK6F",
+          "title": "Hardware Cloth 12.7 mm 610 mm x 30.48 m 19 Gauge Chicken Wire Fence, Hot-Dip Galvanized After Welding Metal Wire Mesh Roll, Garden Plant Welded Fencing Roll Supports Poultry Netting Cage Fence"
+        },
+        {
+          "id": "prod_01M1QHC4HX54WZVB3NBYX5PWKM",
+          "title": "Hardware Cloth 12.7 mm 610 mm x 7.62 m 19 Gauge Chicken Wire Fence, Hot-Dip Galvanized After Welding Metal Wire Mesh Roll, Garden Plant Welded Fencing Roll Supports Poultry Netting Cage Fence"
+        },
+        {
+          "id": "prod_01M2Y5BB4ZECFCVMH0Z5FXY99B",
+          "title": "Hardware Cloth 6.35 mm 1220 mm x 15.24 m 23 Gauge Chicken Wire Fence, Hot-Dip Galvanized After Welding Metal Wire Mesh Roll, Garden Plant Welded Fencing Roll Supports Poultry Netting Cage Fence"
+        },
+        {
+          "id": "prod_01M26ZRDTHHRJTHKZ5SCDJMDJC",
+          "title": "Hardware Cloth 6.35 mm 915 mm x 15.24 m 23 Gauge Chicken Wire Fence, Hot-Dip Galvanized After Welding Metal Wire Mesh Roll, Garden Plant Welded Fencing Roll Supports Poultry Netting Cage Fence"
+        },
+        {
+          "id": "prod_01KNXXC33G61FC8P10C1GC7NAG",
+          "title": "Hardware Cloth, 1220 x 15240 mm Galvanized Wire Mesh Roll, 16 Gauge Chicken Wire Fence Roll, Vinyl Coating Metal Wire Mesh for Chicken Coop Barrier, Rabbit Snake Fences, Poultry Enclosures"
+        },
+        {
+          "id": "prod_01KNXXC4WZR9TXZDQB13QCXM33",
+          "title": "Hardware Cloth, 1220 x 15240 mm Galvanized Wire Mesh Roll, 19 Gauge Chicken Wire Fence Roll, Vinyl Coating Metal Wire Mesh for Chicken Coop Barrier, Rabbit Snake Fences, Poultry Enclosures"
+        },
+        {
+          "id": "prod_01KNXXC32Y6F42D7YE07S54C7B",
+          "title": "Hardware Cloth, 1220 x 30480 mm Galvanized Wire Mesh Roll, 19 Gauge Chicken Wire Fence Roll, Vinyl Coating Metal Wire Mesh for Chicken Coop Barrier, Rabbit Snake Fences, Poultry Enclosures"
+        },
+        {
+          "id": "prod_01KNXXC5T27DCSHVDZ1YWBR14J",
+          "title": "Hardware Cloth, 24'' x 100' Galvanized Wire Mesh Roll, 19 Gauge Chicken Wire Fence Roll, Vinyl Coating Metal Wire Mesh for Chicken Coop Barrier, Rabbit Snake Fences, Poultry Enclosures"
+        },
+        {
+          "id": "prod_01KNXXC5STD7Y133TKA44C9CWC",
+          "title": "Hardware Cloth, 24'' x 50' Galvanized Wire Mesh Roll, 16 Gauge Chicken Wire Fence Roll, Vinyl Coating Metal Wire Mesh for Chicken Coop Barrier, Rabbit Snake Fences, Poultry Enclosures"
+        },
+        {
+          "id": "prod_01KNXXC4WQWQ78HCBVBCPZB68W",
+          "title": "Hardware Cloth, 36'' x 50' Galvanized Wire Mesh Roll, 19 Gauge Chicken Wire Fence Roll, Vinyl Coating Metal Wire Mesh for Chicken Coop Barrier, Rabbit Snake Fences, Poultry Enclosures"
+        },
+        {
+          "id": "prod_01KNXXC4XF2MQPHQ0Y2G8WE4VG",
+          "title": "Hardware Cloth, 910 x 15240 mm Galvanized Wire Mesh Roll, 16 Gauge Chicken Wire Fence Roll, Vinyl Coating Metal Wire Mesh for Chicken Coop Barrier, Rabbit Snake Fences, Poultry Enclosures"
+        },
+        {
+          "id": "prod_01KNXXC6PSQ2072HG5C4X4X9Q5",
+          "title": "Hardware Cloth, 910 x 30480 mm Galvanized Wire Mesh Roll, 19 Gauge Chicken Wire Fence Roll, Vinyl Coating Metal Wire Mesh for Chicken Coop Barrier, Rabbit Snake Fences, Poultry Enclosures"
+        }
+      ],
+      "assets": {
+        "name_en": "Hardware Cloth",
+        "description_et": "Siit leiad tsingitud peenvõrgud rullides, mis sobivad kodulindude aedikute, puuride ja väikeloomade tarandike ehitamiseks ning aia ja taimede kaitseks näriliste eest. Valikus on erineva silmasuuruse, laiuse ja pikkusega võrgud, et leiaksid just oma projektile sobiva lahenduse. Vali võrk vastavalt kaitstavale loomale, paigalduskohale ja soovitud silmatihedusele.",
+        "description_en": "Here you will find galvanized hardware cloth rolls suitable for building poultry runs, cages and small animal enclosures, as well as protecting gardens and plants from rodents. The selection includes meshes with various opening sizes, widths and lengths, so you can find the right fit for your project. Choose your mesh based on the animal, installation site and desired mesh density.",
+        "tagline_et": "Vastupidav peenvõrk aedikutele ja aia kaitseks",
+        "tagline_en": "Durable wire mesh for coops and garden protection",
+        "image_desc_et": "Heledal valgel taustal osaliselt lahti rullitud tsingitud peenvõrgu rull, millel on selgelt näha tihe keevitatud võrgumuster.",
+        "_seoGate": {
+          "pass": true,
+          "offenders": [],
+          "attempts": 1
+        }
+      },
+      "type_profile": {
+        "description": "Tsingitud keevisvõrgu rullid loomapidamiseks ja aiabarjääriks: peenvõrk ehk hardware cloth (hardware cloth), tsingitud traatvõrgu rull (galvanized wire mesh roll), linnumajade ja puuride võrk (chicken wire fence), näriliste/maovastane võrk. Ruudukujulise väikese silmaga keevisvõrk. EI sisalda tarapaneele ega aiavõrke (need: Tarad ja võrgud).",
+        "ok": true,
+        "consensus": "OK",
+        "attempts": 1
+      },
+      "completeness": {
+        "checks": [
+          {
+            "n": "1 handle unikaalne",
+            "pass": true,
+            "note": "v4-pollumajandus-ja-loomakasvatus-kariloomad-tsingitud-peenvork-hardware-cloth"
+          },
+          {
+            "n": "2 name_et (nimevärav)",
+            "pass": true,
+            "note": "Tsingitud peenvõrk (hardware cloth)"
+          },
+          {
+            "n": "3 name_en (Fable)",
+            "pass": true,
+            "note": "Hardware Cloth"
+          },
+          {
+            "n": "4 nav parent-L2 kehtiv",
+            "pass": true,
+            "note": "v4-pollumajandus-ja-loomakasvatus-kariloomad"
+          },
+          {
+            "n": "5 pilt (CDN primaar / Gemini fallback)",
+            "pass": true,
+            "note": "13 toodet → top-toote CDN-pilt → webp valge taust"
+          },
+          {
+            "n": "6 webp genereeritav",
+            "pass": true,
+            "note": "cat-thumbs/v4-pollumajandus-ja-loomakasvatus-kariloomad-tsingitud-peenvork-hardware-cloth.webp (build-cat-thumbs-l3.mjs)"
+          },
+          {
+            "n": "7 SEO (ET+EN kirj.+tagline, kategooria-tasand, 0 numbrit/lubadust)",
+            "pass": true,
+            "note": "4/4 täidetud · SEO-värav läbib"
+          },
+          {
+            "n": "8 Meili facet",
+            "pass": true,
+            "note": "tooted bind → reindeks → facet"
+          },
+          {
+            "n": "9 DB product_category rida",
+            "pass": true,
+            "note": "seed/INSERT transaktsioonis (gate #4)"
+          },
+          {
+            "n": "10 tooted seotud (≥1)",
+            "pass": true,
+            "note": "13 toodet"
+          },
+          {
+            "n": "11 täis-deploy",
+            "pass": true,
+            "note": "genyM → Meili → push mõlemad → redeploy (§4b)"
+          }
+        ],
+        "pass": true,
+        "fails": []
+      }
+    },
+    {
+      "ck": "a2:pcat_ag2_3x2_3:pcat_e2_pikapikastikattedtonneau",
+      "foldedCks": [
+        "a2:pcat_ag2_3x2_3:pcat_e2_pikapikastikattedtonneau"
+      ],
+      "name_et": "Pikapi kastikatted (tonneau)",
+      "name_en": "Tonneau Covers",
+      "handle": "v4-autovaruosad-ja-tarvikud-veoauto-tarvikud-pikapi-kastikatted-tonneau",
+      "handleCollisionResolved": false,
+      "parentL2": "v4-autovaruosad-ja-tarvikud-veoauto-tarvikud",
+      "parentL2_name": "Veoauto tarvikud",
+      "n": 9,
+      "currentL3": "v4-autovaruosad-ja-tarvikud-veoauto-tarvikud-koormakatted-ja-presendid",
+      "srcId": "pcat_ag2_3x2_3",
+      "srcName": "Koormakatted ja presendid",
+      "path": "Autovaruosad ja -tarvikud/Veoauto tarvikud/Pikapi kastikatted (tonneau)",
+      "cert": {
+        "mode": "a2-concept",
+        "detail": "kontseptsioonitest live-DB (9/22), THR 5"
+      },
+      "products": [
+        {
+          "id": "prod_01KNXXEQS44BF7FPENPC3K2HYY",
+          "title": "Quad-Fold Truck Bed Tonneau Cover, Compatible with 2002-2024 Dodge Ram 1500 (Inclu. Classic & New), 2003-2024 Dodge Ram 2500 3500, Fleetside 6.4' (76.3\") Bed, Fit 6.4' x 5.5' Inside Bed, Black"
+        },
+        {
+          "id": "prod_01KNXXDXR6THY88DAY9KED8RKM",
+          "title": "Tri-Fold Truck Bed Tonneau Cover, Compatible with 1999-2024 Ford F-250 F-350 Super Duty, Styleside 6.75' (81\", 82\") Bed, Fit 6.7' x 5.4'/6.8' x 5.6' Inside Bed, 400 lbs Load Capacity, Black"
+        },
+        {
+          "id": "prod_01KNXXE0DCVWZF0D8W5TS2EY1Q",
+          "title": "Tri-Fold Truck Bed Tonneau Cover, Compatible with 2009-2024 Ram 1500 (19-24 Classic/New Body), Fleetside 5.7' (67.4\") Bed Without Rambox, Fit 5.7' x 5.5' Inside Bed, 400 lbs Load Capacity, Black"
+        },
+        {
+          "id": "prod_01KNXXDXQF2GR3KY2TA4179VWQ",
+          "title": "Tri-Fold Truck Bed Tonneau Cover, Compatible with 2014-2024 Toyota Tundra (NOT FIT Trail Special Edition with Storage Boxes), Fleetside 5.5' (67\") Short Bed 2023, 400 lbs Load Capacity, Black"
+        },
+        {
+          "id": "prod_01KNXXDWTDC3GDHA4049Q6R6H2",
+          "title": "Tri-Fold Truck Bed Tonneau Cover, Compatible with 2015-2024 Ford F-150, 6.5' (79\") Bed, Only Fit 6.5' x 5.4' (79\" x 65.2\") Inside Bed, 400 lbs Load Capacity, LED Light, Quick Folding, Black"
+        },
+        {
+          "id": "prod_01KNXXE0DEQ43RBMH4ZSPHVP5F",
+          "title": "Tri-Fold Truck Bed Tonneau Cover, Compatible with 2015-2024 Ford F-150, Lightning, Styleside 5.5' (65.4\") Bed, Fit 5.6' x 5.4'/5.5' x 5.4' (67.1\" x 65.2\"/65.4\" x 65.2\") Inside Bed, 400lbs, Black"
+        },
+        {
+          "id": "prod_01KNXXE0D703P8E87THXRWZ59P",
+          "title": "Tri-Fold Truck Bed Tonneau Cover, Compatible with 2016-2023 Toyota Tacoma, 5' (60.5\") Bed, Only Fit 5.0' x 4.6' (60.5\" x 55.0\") Inside Bed, 400 lbs Load Capacity, LED Light, Quick Folding, Black"
+        },
+        {
+          "id": "prod_01KNXXDXQG49N079X7ZPD2E1MX",
+          "title": "Tri-Fold Truck Bed Tonneau Cover, Compatible with 2019-2024 Chevy Silverado GMC Sierra 1500 (NOT FIT 19-24 Classic) 5'8\" Bed, Fit 5.8' x 5.3' (70\" x 63.3\") Inside Bed, 400 lbs Capacity, Black"
+        },
+        {
+          "id": "prod_01KNXXDJ0F80MDC76M993AEFNE",
+          "title": "Truck Bed Cover, Roll Up Truck Bed Tonneau Cover, Compatible with 2002-2018 Dodge Ram 1500, 2003-2024 2500 3500, 2019-2024 Classic, for 6.4 x 5.5 ft Bed, Soft PVC material, Roll Up Tonneau Cover"
+        }
+      ],
+      "assets": {
+        "name_en": "Tonneau Covers",
+        "description_et": "Pikapi kastikatted kaitsevad veokasti ja selles olevat lasti ilmastiku, tolmu ja võõraste pilkude eest. Sobivad nii igapäevaseks töösõiduks kui ka vaba aja veetmiseks – kaup püsib kuiv ja turvaliselt varjul. Valikul jälgi, et kate sobiks sinu pikapi margi, mudeli ja kasti suurusega.",
+        "description_en": "Tonneau covers protect your truck bed and cargo from weather, dust and prying eyes. Ideal for both daily work use and leisure trips – your gear stays dry and safely out of sight. When choosing, make sure the cover matches your truck's make, model and bed size.",
+        "tagline_et": "Kaitse oma pikapi kasti iga ilmaga!",
+        "tagline_en": "Protect your truck bed in any weather!",
+        "image_desc_et": "Heledal valgel taustal must kokkuvolditav pikapi kastikate, osaliselt avatud asendis veokasti kohal.",
+        "_seoGate": {
+          "pass": true,
+          "offenders": [],
+          "attempts": 1
+        }
+      },
+      "type_profile": {
+        "description": "Pikapi lastikasti katted kasti sisu katmiseks ja kaitsmiseks: kokkuvolditavad katted (tri-fold / quad-fold tonneau cover), rulluvad katted (roll-up tonneau cover), mudelispetsiifilised kastikatted. EI sisalda üldisi koormakatteid ega presente (need: Koormakatted ja presendid).",
+        "ok": true,
+        "consensus": "OK",
+        "attempts": 1
+      },
+      "completeness": {
+        "checks": [
+          {
+            "n": "1 handle unikaalne",
+            "pass": true,
+            "note": "v4-autovaruosad-ja-tarvikud-veoauto-tarvikud-pikapi-kastikatted-tonneau"
+          },
+          {
+            "n": "2 name_et (nimevärav)",
+            "pass": true,
+            "note": "Pikapi kastikatted (tonneau)"
+          },
+          {
+            "n": "3 name_en (Fable)",
+            "pass": true,
+            "note": "Tonneau Covers"
+          },
+          {
+            "n": "4 nav parent-L2 kehtiv",
+            "pass": true,
+            "note": "v4-autovaruosad-ja-tarvikud-veoauto-tarvikud"
+          },
+          {
+            "n": "5 pilt (CDN primaar / Gemini fallback)",
+            "pass": true,
+            "note": "9 toodet → top-toote CDN-pilt → webp valge taust"
+          },
+          {
+            "n": "6 webp genereeritav",
+            "pass": true,
+            "note": "cat-thumbs/v4-autovaruosad-ja-tarvikud-veoauto-tarvikud-pikapi-kastikatted-tonneau.webp (build-cat-thumbs-l3.mjs)"
+          },
+          {
+            "n": "7 SEO (ET+EN kirj.+tagline, kategooria-tasand, 0 numbrit/lubadust)",
+            "pass": true,
+            "note": "4/4 täidetud · SEO-värav läbib"
+          },
+          {
+            "n": "8 Meili facet",
+            "pass": true,
+            "note": "tooted bind → reindeks → facet"
+          },
+          {
+            "n": "9 DB product_category rida",
+            "pass": true,
+            "note": "seed/INSERT transaktsioonis (gate #4)"
+          },
+          {
+            "n": "10 tooted seotud (≥1)",
+            "pass": true,
+            "note": "9 toodet"
+          },
+          {
+            "n": "11 täis-deploy",
+            "pass": true,
+            "note": "genyM → Meili → push mõlemad → redeploy (§4b)"
+          }
+        ],
+        "pass": true,
+        "fails": []
+      }
+    },
+    {
+      "ck": "a2:pcat_13roll:pcat_e2_ehterullpressivaruvaltsi",
+      "foldedCks": [
+        "a2:pcat_13roll:pcat_e2_ehterullpressivaruvaltsi"
+      ],
+      "name_et": "Ehte-rullpressi varuvaltsid",
+      "name_en": "Rolling Mill Replacement Rollers",
+      "handle": "v4-hobi-ehtekunst-ehte-rullpressi-varuvaltsid",
+      "handleCollisionResolved": false,
+      "parentL2": "v4-hobi-ehtekunst",
+      "parentL2_name": "Ehte- ja metallitöö",
+      "n": 7,
+      "currentL3": "v4-hobi-ehtekunst-ehte-rullpressid",
+      "srcId": "pcat_13roll",
+      "srcName": "Ehte-rullpressid",
+      "path": "Hobi ja käsitöö/Ehte- ja metallitöö/Ehte-rullpressi varuvaltsid",
+      "cert": {
+        "mode": "a2-concept",
+        "detail": "kontseptsioonitest live-DB (7/20), THR 5"
+      },
+      "products": [
+        {
+          "id": "prod_01M0RMK6RSZ8KC6A2KM62WXNDY",
+          "title": "Replacement Roller for Rolling Mill 1 Half-Round & 1 Flat Roller, Jewelry DIY Tool Accessory Parts, 7 Sizes Grooves, Premium Alloy Steel, for Pressing Ductile Metals, Gold, Silver, Copper"
+        },
+        {
+          "id": "prod_01M0RMK6YA0B8S48Y719YKHWB4",
+          "title": "Replacement Roller for Rolling Mill 3 Sizes Grooves 2 Domed Rollers, Jewelry DIY Tool Accessory Parts, Premium Alloy Steel, Easy Installation, for Pressing Ductile Metals, Gold, Silver, Brass"
+        },
+        {
+          "id": "prod_01M0RMK6WR9S5J1FWZ3JSHVB5C",
+          "title": "Replacement Roller for Rolling Mill 3 Sizes Grooves 2 Square Rollers, Jewelry DIY Tool Accessory Parts, Premium Alloy Steel, Easy Installation, for Pressing Ductile Metals, Gold, Silver, Brass"
+        },
+        {
+          "id": "prod_01M0RMK71W5Z670N0A7Z4GVYZ0",
+          "title": "Replacement Roller for Rolling Mill 4 Sizes Grooves 2 Round Rollers, Jewelry DIY Tool Accessory Parts, Premium Alloy Steel, Easy Installation, for Pressing Ductile Metals, Gold, Silver, Brass"
+        },
+        {
+          "id": "prod_01M0RMK6PWPNVRXZ29BYG9AQ63",
+          "title": "Replacement Roller for Rolling Mill 4 Sizes Grooves Metal Roller, Jewelry DIY Tool Accessory Parts, 1 Half-Round, 1 Flat, Premium Alloy Steel, for Pressing Ductile Metals, Gold, Silver, Brass"
+        },
+        {
+          "id": "prod_01M0RMK703FSY18QRDMVQ4AHJH",
+          "title": "Replacement Roller for Rolling Mill 7 Sizes Grooves 2 Oval Rollers, Jewelry DIY Tool Accessory Parts, Premium Alloy Steel, Easy Installation, for Pressing Ductile Metals, Gold, Silver, Brass"
+        },
+        {
+          "id": "prod_01M0RMK73WCHKD4ZANJ0BKABVA",
+          "title": "Replacement Roller for Rolling Mill 7 Sizes Grooves 2 Round Rollers, Jewelry DIY Tool Accessory Parts, Premium Alloy Steel, Easy Installation, for Pressing Ductile Metals, Gold, Silver, Brass"
+        }
+      ],
+      "assets": {
+        "name_en": "Rolling Mill Replacement Rollers",
+        "description_et": "Siit leiad varuvaltsid ehete rullpressidele – erineva profiiliga rullikud pehmete metallide, nagu kuld, hõbe ja vask, vormimiseks ja pressimiseks. Valikus on eri kuju ja soontega valtsid, mis sobivad nii ehtekunstnikele kui ka hobimeistritele. Vali oma rullpressi mudeliga sobiv valts ja soovitud profiil vastavalt tööle, mida teha plaanid.",
+        "description_en": "Here you will find replacement rollers for jewelry rolling mills – rollers with various profiles for shaping and pressing ductile metals such as gold, silver and copper. The selection includes rollers of different shapes and groove patterns, suitable for both jewelry artists and hobby makers. Choose a roller that fits your rolling mill model and matches the profile you need for your work.",
+        "tagline_et": "Sobiv valts igaks ehtetööks",
+        "tagline_en": "The right roller for every jewelry project",
+        "image_desc_et": "Heledal valgel taustal läikivast terasest rullpressi varuvalts, millel on nähtavad erineva suurusega sooned.",
+        "_seoGate": {
+          "pass": true,
+          "offenders": [],
+          "attempts": 1
+        }
+      },
+      "type_profile": {
+        "description": "Ehte-rullpressi varuvaltsid metalli lapiks või traadiks pressimiseks: vahetatavad valtsrullid (replacement roller) soontega profiilidele – ümarad (round), ovaalsed (oval), ruudu- (square), kuplja (domed), poolümara ja lapiku (half-round, flat) soonega rullid juveliiritööks. EI sisalda terviklikku rullpressi (need: Ehte-rullpressid).",
+        "ok": true,
+        "consensus": "OK",
+        "attempts": 1
+      },
+      "completeness": {
+        "checks": [
+          {
+            "n": "1 handle unikaalne",
+            "pass": true,
+            "note": "v4-hobi-ehtekunst-ehte-rullpressi-varuvaltsid"
+          },
+          {
+            "n": "2 name_et (nimevärav)",
+            "pass": true,
+            "note": "Ehte-rullpressi varuvaltsid"
+          },
+          {
+            "n": "3 name_en (Fable)",
+            "pass": true,
+            "note": "Rolling Mill Replacement Rollers"
+          },
+          {
+            "n": "4 nav parent-L2 kehtiv",
+            "pass": true,
+            "note": "v4-hobi-ehtekunst"
+          },
+          {
+            "n": "5 pilt (CDN primaar / Gemini fallback)",
+            "pass": true,
+            "note": "7 toodet → top-toote CDN-pilt → webp valge taust"
+          },
+          {
+            "n": "6 webp genereeritav",
+            "pass": true,
+            "note": "cat-thumbs/v4-hobi-ehtekunst-ehte-rullpressi-varuvaltsid.webp (build-cat-thumbs-l3.mjs)"
+          },
+          {
+            "n": "7 SEO (ET+EN kirj.+tagline, kategooria-tasand, 0 numbrit/lubadust)",
+            "pass": true,
+            "note": "4/4 täidetud · SEO-värav läbib"
+          },
+          {
+            "n": "8 Meili facet",
+            "pass": true,
+            "note": "tooted bind → reindeks → facet"
+          },
+          {
+            "n": "9 DB product_category rida",
+            "pass": true,
+            "note": "seed/INSERT transaktsioonis (gate #4)"
+          },
+          {
+            "n": "10 tooted seotud (≥1)",
+            "pass": true,
+            "note": "7 toodet"
+          },
+          {
+            "n": "11 täis-deploy",
+            "pass": true,
+            "note": "genyM → Meili → push mõlemad → redeploy (§4b)"
+          }
+        ],
+        "pass": true,
+        "fails": []
+      }
+    },
+    {
+      "ck": "a2:pcat_ag2_2x1_15:pcat_e2_piduritoruflaarijapainut",
+      "foldedCks": [
+        "a2:pcat_ag2_2x1_15:pcat_e2_piduritoruflaarijapainut"
+      ],
+      "name_et": "Piduritoru flaari- ja painutustööriistad",
+      "name_en": "Brake Line Flaring & Bending Tools",
+      "handle": "v4-garaaziseadmed-pidurisysteem-piduritoru-flaari-ja-painutustooriistad",
+      "handleCollisionResolved": false,
+      "parentL2": "v4-garaaziseadmed-pidurisysteem",
+      "parentL2_name": "Pidurisüsteemi tööriistad",
+      "n": 7,
+      "currentL3": "v4-garaaziseadmed-mehaaniku-tooriistad-piduri-ohutus-ja-remonditooriistad",
+      "srcId": "pcat_ag2_2x1_15",
+      "srcName": "Piduri õhutus- ja remonditööriistad",
+      "path": "Garaažiseadmed ja autoremont/Pidurisüsteemi tööriistad/Piduritoru flaari- ja painutustööriistad",
+      "cert": {
+        "mode": "a2-concept",
+        "detail": "kontseptsioonitest live-DB (7/18), THR 7"
+      },
+      "products": [
+        {
+          "id": "prod_01KPJVGVPTBKMR94NTEGKC5AK2",
+          "title": "Brake Line Flaring Tool Kit, 45° Single & Double Flare Tool for 4.75mm, 6.35mm Copper Tubing - with 2 Forming Dies, Deburring Tool & Toolbox for Automotive Brake Hydraulic Line Repair"
+        },
+        {
+          "id": "prod_01KNXXBHXZW39WMZ0FJGNPEN19",
+          "title": "Brake Line Flaring Tool, 45 Degree Single, Double, and Bubble Flares for 3/16\\\", 1/4\\\", 5/16\\\" and 3/8\\\" Tube Size, Suitable for Soft Metal of Copper Lines"
+        },
+        {
+          "id": "prod_01KPJVGV3P5657PE3A5BXYYWJE",
+          "title": "Brake Line Repair Kit, 45° Double & Single Brake Line Flaring Tool Kit, 7.6m x 4.76mm Copper Coated Brake Line (with 16 Fittings & 4 Unions) - Tube Cutter, 5 Adapters and Toolbox Included"
+        },
+        {
+          "id": "prod_01KPJVGTYE2ZQR28Y85B5PEG8F",
+          "title": "Brake Line Repair Kit, 45° Single Brake Line Flaring Tool Kit, 7.6m x 4.76mm Copper-Coated Brake Line with 20 Fittings & 2 Unions, 3-in-1 Tube Bender, Tube Cutter Included"
+        },
+        {
+          "id": "prod_01KNXXRZRY31S1CEBMGG16PTN9",
+          "title": "Hydraulic Flaring Tool Kit, 45° Double Flaring Tool, Brake Repair Brake Flaring Tools for 3/16\"-1/2\", Brake Flare Tool with Tube Cutter and Deburrer, 32 PCS Tube Flaring Tools for Copper Lines"
+        },
+        {
+          "id": "prod_01KPJVGVXGAN2BRRDRB3TWGVA6",
+          "title": "Professional Brake Line Flaring Tool, 45 & 37 Degree Double Flare Bubble Flare Tool Kit for 4.76mm, 6.35mm, 7.94mm, 9.52mm Copper Aluminum Thin Steel Tubes"
+        },
+        {
+          "id": "prod_01KPJVGW38KPYXP4PEP8E1DZNW",
+          "title": "Professional Brake Line Flaring Tool, 45 Degree Double Flare Bubble Flare Tool Kit for 4.76mm, 6.35mm, 7.94mm, 9.52mm Copper Aluminum Thin Steel Tubes"
+        }
+      ],
+      "assets": {
+        "name_en": "Brake Line Flaring & Bending Tools",
+        "description_et": "Siit leiad tööriistad ja komplektid piduritorude otste vormimiseks, painutamiseks, lõikamiseks ja parandamiseks. Sobivad nii autoremonditöökodadele kui ka hobikorras meistritele, kes soovivad pidurisüsteemi torustikku ise hooldada. Vali komplekt vastavalt torude materjalile, vajalikule vormimistüübile ja tööde mahule.",
+        "description_en": "Here you will find tools and kits for forming, bending, cutting and repairing brake line ends. Suitable for both auto repair shops and DIY enthusiasts who want to maintain brake system tubing themselves. Choose a kit based on tube material, the type of flare needed and the scope of your work.",
+        "tagline_et": "Täpne piduritorude vormimine ja parandus iseseisvalt",
+        "tagline_en": "Precise brake line forming and repair made easy",
+        "image_desc_et": "Heledal valgel taustal piduritoru flaaritööriista komplekt koos vormimisraamide, adapterite ja torulõikuriga avatud tööriistakastis.",
+        "_seoGate": {
+          "pass": true,
+          "offenders": [],
+          "attempts": 1
+        }
+      },
+      "type_profile": {
+        "description": "Tööriistad piduritorude otste vormimiseks ja painutamiseks: flaaritööriistad ja -komplektid (brake line flaring tool), nii ühe- kui kaheastmelise flaari ja mulli-flaari jaoks, torupainutajad (tube bender), torulõikurid (tube cutter), kraatide eemaldajad (deburrer), adapterid ja torukomplektid. EI sisalda pidurite õhutustööriistu (need: Piduri õhutus- ja remonditööriistad).",
+        "ok": true,
+        "consensus": "OK",
+        "attempts": 2
+      },
+      "completeness": {
+        "checks": [
+          {
+            "n": "1 handle unikaalne",
+            "pass": true,
+            "note": "v4-garaaziseadmed-pidurisysteem-piduritoru-flaari-ja-painutustooriistad"
+          },
+          {
+            "n": "2 name_et (nimevärav)",
+            "pass": true,
+            "note": "Piduritoru flaari- ja painutustööriistad"
+          },
+          {
+            "n": "3 name_en (Fable)",
+            "pass": true,
+            "note": "Brake Line Flaring & Bending Tools"
+          },
+          {
+            "n": "4 nav parent-L2 kehtiv",
+            "pass": true,
+            "note": "v4-garaaziseadmed-pidurisysteem"
+          },
+          {
+            "n": "5 pilt (CDN primaar / Gemini fallback)",
+            "pass": true,
+            "note": "7 toodet → top-toote CDN-pilt → webp valge taust"
+          },
+          {
+            "n": "6 webp genereeritav",
+            "pass": true,
+            "note": "cat-thumbs/v4-garaaziseadmed-pidurisysteem-piduritoru-flaari-ja-painutustooriistad.webp (build-cat-thumbs-l3.mjs)"
+          },
+          {
+            "n": "7 SEO (ET+EN kirj.+tagline, kategooria-tasand, 0 numbrit/lubadust)",
+            "pass": true,
+            "note": "4/4 täidetud · SEO-värav läbib"
+          },
+          {
+            "n": "8 Meili facet",
+            "pass": true,
+            "note": "tooted bind → reindeks → facet"
+          },
+          {
+            "n": "9 DB product_category rida",
+            "pass": true,
+            "note": "seed/INSERT transaktsioonis (gate #4)"
+          },
+          {
+            "n": "10 tooted seotud (≥1)",
+            "pass": true,
+            "note": "7 toodet"
+          },
+          {
+            "n": "11 täis-deploy",
+            "pass": true,
+            "note": "genyM → Meili → push mõlemad → redeploy (§4b)"
+          }
+        ],
+        "pass": true,
+        "fails": []
+      }
+    },
+    {
+      "ck": "a2:pcat_es_9x3_10:pcat_e2_kaevuluugidjakanalisatsi",
+      "foldedCks": [
+        "a2:pcat_es_9x3_10:pcat_e2_kaevuluugidjakanalisatsi"
+      ],
+      "name_et": "Kaevuluugid ja kanalisatsioonikaaned",
+      "name_en": "Manhole Covers",
+      "handle": "v4-ehitus-remont-ja-varvid-uksed-aknad-ja-luugid-kaevuluugid-ja-kanalisatsioonikaaned",
+      "handleCollisionResolved": false,
+      "parentL2": "v4-ehitus-remont-ja-varvid-uksed-aknad-ja-luugid",
+      "parentL2_name": "Uksed, aknad ja luugid",
+      "n": 6,
+      "currentL3": "v4-ehitus-remont-ja-varvid-uksed-aknad-ja-luugid-revisiooni-ja-juurdepaasuluugid",
+      "srcId": "pcat_es_9x3_10",
+      "srcName": "Revisiooni- ja juurdepääsuluugid",
+      "path": "Ehitus ja remont/Uksed, aknad ja luugid/Kaevuluugid ja kanalisatsioonikaaned",
+      "cert": {
+        "mode": "a2-concept",
+        "detail": "kontseptsioonitest live-DB (6/16), THR 6"
+      },
+      "products": [
+        {
+          "id": "prod_01KPJVDA30BYM8C665VMGBGBM8",
+          "title": "Manhole Cover with Frame, 300 x 300mm Invisible Recessed Septic Tank Access Covers, Aluminum Alloy Embedded Drain Channel Inspection Cover for Pavements Gardens Patios"
+        },
+        {
+          "id": "prod_01KPJVD9GH0716F6K7ERM7JAYD",
+          "title": "Manhole Cover with Frame, 400 x 400mm Invisible Recessed Septic Tank Access Covers, Aluminum Alloy Embedded Drain Channel Inspection Cover for Pavements Gardens Patios"
+        },
+        {
+          "id": "prod_01KPJVD9PPR82GAJXJXYJEE61R",
+          "title": "Manhole Cover with Frame, 500 x 500mm Invisible Recessed Septic Tank Access Covers, Aluminum Alloy Embedded Drain Channel Inspection Cover for Pavements Gardens Patios"
+        },
+        {
+          "id": "prod_01KPJVDA8PPA76N8AMYNH2X48X",
+          "title": "Manhole Cover with Frame, 500 x 500mm Square Septic Tank Lid with Base, Heavy-Duty Slip-Resistant Carbon Steel Drain Channel Inspection Access Cover for Pavements Gardens"
+        },
+        {
+          "id": "prod_01KPJVD9WTRAB12YV3P8TW9T3J",
+          "title": "Manhole Cover with Frame, 600 x 600mm Invisible Recessed Septic Tank Access Covers, Aluminum Alloy Embedded Drain Channel Inspection Cover for Pavements Gardens Patios"
+        },
+        {
+          "id": "prod_01KPJVDAF8Q6STTN64DT69QNP6",
+          "title": "Manhole Cover with Frame, 600 x 600mm Square Septic Tank Lid with Base, Heavy-Duty Slip-Resistant Carbon Steel Drain Channel Inspection Access Cover for Pavements Gardens"
+        }
+      ],
+      "assets": {
+        "name_en": "Manhole Covers",
+        "description_et": "Siit leiad kaevuluugid ja kanalisatsioonikaaned hoovide, kõnniteede, terrasside ja aedade tarbeks. Valikus on nii nähtamatud süvistatavad luugid, mille sisse saab paigaldada ümbritseva katte, kui ka klassikalised raamiga kaaned septiku- ja kontrollkaevudele. Valikul tasub jälgida ava mõõtudele vastavat suurust, sobivat materjali ja paigalduskoha koormust.",
+        "description_en": "Here you will find manhole covers and drainage access lids for yards, pavements, patios and gardens. The range includes both invisible recessed covers that can be filled with the surrounding surface material, and classic framed lids for septic tanks and inspection chambers. When choosing, consider the size matching your opening, a suitable material and the expected load at the installation site.",
+        "tagline_et": "Vastupidavad kaevuluugid hoovi ja aeda",
+        "tagline_en": "Durable manhole covers for yard and garden",
+        "image_desc_et": "Heledal valgel taustal kandiline metallist raamiga kaevuluuk, mille süvistatav kaas on avatud asendis.",
+        "_seoGate": {
+          "pass": true,
+          "offenders": [],
+          "attempts": 1
+        }
+      },
+      "type_profile": {
+        "description": "Kaevuluugid ja kanalisatsioonikaaned maapinna või sillutise ava katmiseks ja juurdepääsuks: raamiga kaevuluugid (manhole cover with frame), süvistatavad peidetud revisioonikaaned (invisible recessed access cover), septiku- ja drenaažikaaned (septic tank lid, drain inspection cover). EI sisalda sisemisi seina-/laeluuke (need: Revisiooni- ja juurdepääsuluugid).",
+        "ok": true,
+        "consensus": "OK",
+        "attempts": 1
+      },
+      "completeness": {
+        "checks": [
+          {
+            "n": "1 handle unikaalne",
+            "pass": true,
+            "note": "v4-ehitus-remont-ja-varvid-uksed-aknad-ja-luugid-kaevuluugid-ja-kanalisatsioonikaaned"
+          },
+          {
+            "n": "2 name_et (nimevärav)",
+            "pass": true,
+            "note": "Kaevuluugid ja kanalisatsioonikaaned"
+          },
+          {
+            "n": "3 name_en (Fable)",
+            "pass": true,
+            "note": "Manhole Covers"
+          },
+          {
+            "n": "4 nav parent-L2 kehtiv",
+            "pass": true,
+            "note": "v4-ehitus-remont-ja-varvid-uksed-aknad-ja-luugid"
+          },
+          {
+            "n": "5 pilt (CDN primaar / Gemini fallback)",
+            "pass": true,
+            "note": "6 toodet → top-toote CDN-pilt → webp valge taust"
+          },
+          {
+            "n": "6 webp genereeritav",
+            "pass": true,
+            "note": "cat-thumbs/v4-ehitus-remont-ja-varvid-uksed-aknad-ja-luugid-kaevuluugid-ja-kanalisatsioonikaaned.webp (build-cat-thumbs-l3.mjs)"
+          },
+          {
+            "n": "7 SEO (ET+EN kirj.+tagline, kategooria-tasand, 0 numbrit/lubadust)",
+            "pass": true,
+            "note": "4/4 täidetud · SEO-värav läbib"
+          },
+          {
+            "n": "8 Meili facet",
+            "pass": true,
+            "note": "tooted bind → reindeks → facet"
+          },
+          {
+            "n": "9 DB product_category rida",
+            "pass": true,
+            "note": "seed/INSERT transaktsioonis (gate #4)"
+          },
+          {
+            "n": "10 tooted seotud (≥1)",
+            "pass": true,
+            "note": "6 toodet"
+          },
+          {
+            "n": "11 täis-deploy",
+            "pass": true,
+            "note": "genyM → Meili → push mõlemad → redeploy (§4b)"
+          }
+        ],
+        "pass": true,
+        "fails": []
+      }
+    },
+    {
+      "ck": "a2:pcat_el_12x1_24:pcat_e2_tennisepallikorvidjakaru",
+      "foldedCks": [
+        "a2:pcat_el_12x1_24:pcat_e2_tennisepallikorvidjakaru"
+      ],
+      "name_et": "Tennisepallikorvid ja -kärud",
+      "name_en": "Tennis Ball Hoppers & Carts",
+      "handle": "v4-sport-ja-vaba-aeg-pallimangud-ja-valjakusport-tennisepallikorvid-ja-karud",
+      "handleCollisionResolved": false,
+      "parentL2": "v4-sport-ja-vaba-aeg-pallimangud-ja-valjakusport",
+      "parentL2_name": "Pallimängud ja väljakusport",
+      "n": 9,
+      "currentL3": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-tennise-ja-pallimasinad",
+      "srcId": "pcat_el_12x1_24",
+      "srcName": "Tennise pallimasinad ja -korvid",
+      "path": "Sport ja vaba aeg/Pallimängud ja väljakusport/Tennisepallikorvid ja -kärud",
+      "cert": {
+        "mode": "a2-concept",
+        "detail": "kontseptsioonitest live-DB (9/16), THR 6"
+      },
+      "products": [
+        {
+          "id": "prod_01KY5EYN3Q9Q0PHZJ1V8FYERG7",
+          "title": "2-in-1 Tennis & Pickleball Hopper, with Pickup Tube, Foldable Pickleball Basket Cart with with Wheels, Holds 150 Tennis Balls or 260 Pickleballs, Portable Pickleball Caddy Holder, for Training"
+        },
+        {
+          "id": "prod_01KNXXDVWT6JRERNF581VP46VP",
+          "title": "Foldable Tennis Ball Hopper, Holds 150 Tennis Balls, Lightweight Aluminum Alloy Tennis Ball Basket Cart with Wheels, Removable Bag, Carry Bag, Portable Sports Teaching Cart for Tennis Player"
+        },
+        {
+          "id": "prod_01KNXXDV0RWTS9G5Q3QVA8QYRH",
+          "title": "Foldable Tennis Ball Hopper, Holds 180 Tennis Balls, Lightweight Aluminum Alloy Tennis Ball Basket Cart with Wheels, Removable Bag, Carry Bag, Portable Sports Teaching Cart for Tennis Player"
+        },
+        {
+          "id": "prod_01KY5EYT8WTN6D2XMK3D5PFMZ9",
+          "title": "Tennis Ball Hopper, Holds 120 Tennis Balls, Foldable Pickleball Basket Cart with Wheels for Easy Pick Up, Lightweight Aluminum Alloy, Portable Pickleball Caddy with Storage Bag, for Training"
+        },
+        {
+          "id": "prod_01KZA9E6V8K7BYG1RVNQGKTSJF",
+          "title": "Tennis Ball Hopper, Holds 150 Tennis Balls, Foldable Pickleball Basket Cart with Wheels for Easy Pick Up, Lightweight Aluminum Alloy, Portable Pickleball Caddy with Storage Bag, for Training"
+        },
+        {
+          "id": "prod_01KY5EZBTYF5DK6SRRXP1A6E4M",
+          "title": "Tennis Ball Hopper, Holds 175 Tennis Balls or 290 Pickleballs, Foldable Pickleball Basket Cart with Wheels for Easy Pick Up, Portable Baseball Cart Caddy with Storage Bag, for Training Coaching"
+        },
+        {
+          "id": "prod_01KY5EYSW13KC3AMC0885V9YEB",
+          "title": "Tennis Ball Hopper, Holds 200 Tennis Balls, Foldable Pickleball Basket Cart with Wheels for Easy Pick Up, Stainless Steel Portable Pickleball Cart Caddy with Storage Bag, for Training Teaching"
+        },
+        {
+          "id": "prod_01KY5EZ3KY99Z51EC32QFZF539",
+          "title": "Tennis Ball Hopper, Holds 75 Tennis Balls, Pickleball Basket Cart with Wheels for Easy Pick Up, Portable Pickleball Caddy with Heavy-Duty Construction, Handle, for Training Carrying Storage"
+        },
+        {
+          "id": "prod_01KY5EYSP332D59H7WJXBKHM7E",
+          "title": "Tennis Ball Hopper, Holds 80 Tennis Balls, Pickleball Basket Cart with Wheels for Easy Pick Up, Portable Pickleball Collection Caddy with Heavy-Duty Construction, for Training Carrying Storage"
+        }
+      ],
+      "assets": {
+        "name_en": "Tennis Ball Hoppers & Carts",
+        "description_et": "Tennisepallikorvid ja -kärud teevad pallide kogumise, hoiustamise ja väljakul liigutamise lihtsaks. Sobivad nii treeneritele, klubidele kui ka harrastajatele, kes soovivad treeningul aega kokku hoida. Valikul tasub jälgida sobivat suurust, kokkupandavust ja mugavat teisaldatavust.",
+        "description_en": "Tennis ball hoppers and carts make collecting, storing and moving balls around the court quick and effortless. Ideal for coaches, clubs and recreational players who want to save time during practice. When choosing, consider a suitable size, foldability and ease of transport.",
+        "tagline_et": "Kogu pallid kiirelt ja treeni mugavalt!",
+        "tagline_en": "Pick up balls fast, train with ease!",
+        "image_desc_et": "Heledal valgel taustal kokkupandav metallraamiga tennisepallikorv ratastel, täidetud kollaste tennisepallidega.",
+        "_seoGate": {
+          "pass": true,
+          "offenders": [],
+          "attempts": 2
+        }
+      },
+      "type_profile": {
+        "description": "Tennise- ja pickleball-pallide kogumis- ja hoiukorvid ning -kärud treeninguks: ratastega kokkupandavad pallikorvid (tennis ball hopper), pallikärud kiirkorjeks (pickleball basket cart), teisaldatavad caddy-hoidjad eemaldatava koti ja kandekäepidemega (ball caddy with wheels). EI sisalda üldisi spordivarustuse kärusid (need: Pallihoidjad ja spordivarustuse kärud) ega pallimasinaid (need: Tennise pallimasinad ja -korvid).",
+        "ok": false,
+        "consensus": "GATE_FAIL",
+        "attempts": 4
+      },
+      "completeness": {
+        "checks": [
+          {
+            "n": "1 handle unikaalne",
+            "pass": true,
+            "note": "v4-sport-ja-vaba-aeg-pallimangud-ja-valjakusport-tennisepallikorvid-ja-karud"
+          },
+          {
+            "n": "2 name_et (nimevärav)",
+            "pass": true,
+            "note": "Tennisepallikorvid ja -kärud"
+          },
+          {
+            "n": "3 name_en (Fable)",
+            "pass": true,
+            "note": "Tennis Ball Hoppers & Carts"
+          },
+          {
+            "n": "4 nav parent-L2 kehtiv",
+            "pass": true,
+            "note": "v4-sport-ja-vaba-aeg-pallimangud-ja-valjakusport"
+          },
+          {
+            "n": "5 pilt (CDN primaar / Gemini fallback)",
+            "pass": true,
+            "note": "9 toodet → top-toote CDN-pilt → webp valge taust"
+          },
+          {
+            "n": "6 webp genereeritav",
+            "pass": true,
+            "note": "cat-thumbs/v4-sport-ja-vaba-aeg-pallimangud-ja-valjakusport-tennisepallikorvid-ja-karud.webp (build-cat-thumbs-l3.mjs)"
+          },
+          {
+            "n": "7 SEO (ET+EN kirj.+tagline, kategooria-tasand, 0 numbrit/lubadust)",
+            "pass": true,
+            "note": "4/4 täidetud · SEO-värav läbib"
+          },
+          {
+            "n": "8 Meili facet",
+            "pass": true,
+            "note": "tooted bind → reindeks → facet"
+          },
+          {
+            "n": "9 DB product_category rida",
+            "pass": true,
+            "note": "seed/INSERT transaktsioonis (gate #4)"
+          },
+          {
+            "n": "10 tooted seotud (≥1)",
+            "pass": true,
+            "note": "9 toodet"
+          },
+          {
+            "n": "11 täis-deploy",
+            "pass": true,
+            "note": "genyM → Meili → push mõlemad → redeploy (§4b)"
+          }
+        ],
+        "pass": true,
+        "fails": []
+      }
+    },
+    {
+      "ck": "a2:pcat_15keha:pcat_e2_silmamassoorid",
+      "foldedCks": [
+        "a2:pcat_15keha:pcat_e2_silmamassoorid"
+      ],
+      "name_et": "Silmamassöörid",
+      "name_en": "Eye Massagers",
+      "handle": "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-silmamassoorid",
+      "handleCollisionResolved": false,
+      "parentL2": "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed",
+      "parentL2_name": "Isikuhooldusseadmed",
+      "n": 5,
+      "currentL3": "v4-keha-massoorid",
+      "srcId": "pcat_15keha",
+      "srcName": "Keha-massöörid",
+      "path": "Tervis, hooldus ja ilu/Isikuhooldusseadmed/Silmamassöörid",
+      "cert": {
+        "mode": "a2-concept",
+        "detail": "kontseptsioonitest live-DB (5/16), THR 5"
+      },
+      "products": [
+        {
+          "id": "prod_01KNXXEPWH1MYVDQKKC05C0P96",
+          "title": "Eye Massager with Heat & Remote, Heated Eye Massage Mask with 5 Modes and Bluetooth Music, 180° Foldable Eye Care Massager for Eye Strain, Dry Eyes, Dark Circles, Ideal Gift for Mom/Dad, Black"
+        },
+        {
+          "id": "prod_01KNXXEPWMC6657BFXFMNGF7WY",
+          "title": "Eye Massager with Heat & Remote, Heated Eye Massage Mask with 5 Modes and Bluetooth Music, 180° Foldable Eye Care Massager for Eye Strain, Dry Eyes, Dark Circles, Ideal Gift for Mom/Dad, Black"
+        },
+        {
+          "id": "prod_01KNXXEPVKJ60AXRS7PCXC7E7W",
+          "title": "Eye Massager with Heat, Heated Eye Massage Mask with 5 Modes and Bluetooth Music, 180° Foldable Eye Care Massager for Migraines, Eye Strain, Dark Circles, Ideal Gift for Mom/Dad, Black"
+        },
+        {
+          "id": "prod_01KNXXENZARB9GWAFM6E8BYQ0W",
+          "title": "Eye Massager with Heat, Heated Eye Massage Mask with 5 Modes and Bluetooth Music, 180° Foldable Eye Care Massager for Migraines, Eye Strain, Dark Circles, Ideal Gift for Mom/Dad, Gray"
+        },
+        {
+          "id": "prod_01KNXXEPVKZJWH54APNASDR8AA",
+          "title": "Eye Massager with Heat, Heated Eye Massage Mask with 5 Modes and Bluetooth Music, 180° Foldable Eye Care Massager for Migraines, Eye Strain, Dark Circles, Ideal Gift for Mom/Dad, White"
+        }
+      ],
+      "assets": {
+        "name_en": "Eye Massagers",
+        "description_et": "Silmamassöörid aitavad leevendada silmade väsimust ja pingeid pärast pikka päeva ekraani taga. Siit leiad massaažimaskid ja -seadmed, mis pakuvad lõõgastust nii kodus kui ka reisil. Valikul tasub jälgida massaažirežiime, lisafunktsioone ja mugavat istuvust näole.",
+        "description_en": "Eye massagers help relieve eye fatigue and tension after long days in front of a screen. Here you will find massage masks and devices that offer relaxation at home or while travelling. When choosing, consider the massage modes, extra features and a comfortable fit for your face.",
+        "tagline_et": "Lõõgastus väsinud silmadele – iga päev",
+        "tagline_en": "Relaxation for tired eyes – every day",
+        "image_desc_et": "Heledal valgel taustal must kokkupandav silmamassaažimask, mis katab silmade piirkonda.",
+        "_seoGate": {
+          "pass": true,
+          "offenders": [],
+          "attempts": 1
+        }
+      },
+      "type_profile": {
+        "description": "Silmapiirkonna massaažiseadmed silmade väsimuse ja pinge leevendamiseks: soojendusega massaažimaskid (eye massager), surve- ja vibratsioonirežiimidega silmahooldusmaskid, kokkupandavad Bluetooth-muusikaga silmamassöörid (heated eye massage mask) kuivade silmade ja tumedate silmaaluste jaoks. EI sisalda näo- ega kehamassaažiseadmeid (need: Keha-massöörid).",
+        "ok": true,
+        "consensus": "OK",
+        "attempts": 1
+      },
+      "completeness": {
+        "checks": [
+          {
+            "n": "1 handle unikaalne",
+            "pass": true,
+            "note": "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-silmamassoorid"
+          },
+          {
+            "n": "2 name_et (nimevärav)",
+            "pass": true,
+            "note": "Silmamassöörid"
+          },
+          {
+            "n": "3 name_en (Fable)",
+            "pass": true,
+            "note": "Eye Massagers"
+          },
+          {
+            "n": "4 nav parent-L2 kehtiv",
+            "pass": true,
+            "note": "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed"
+          },
+          {
+            "n": "5 pilt (CDN primaar / Gemini fallback)",
+            "pass": true,
+            "note": "5 toodet → top-toote CDN-pilt → webp valge taust"
+          },
+          {
+            "n": "6 webp genereeritav",
+            "pass": true,
+            "note": "cat-thumbs/v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-silmamassoorid.webp (build-cat-thumbs-l3.mjs)"
+          },
+          {
+            "n": "7 SEO (ET+EN kirj.+tagline, kategooria-tasand, 0 numbrit/lubadust)",
+            "pass": true,
+            "note": "4/4 täidetud · SEO-värav läbib"
+          },
+          {
+            "n": "8 Meili facet",
+            "pass": true,
+            "note": "tooted bind → reindeks → facet"
+          },
+          {
+            "n": "9 DB product_category rida",
+            "pass": true,
+            "note": "seed/INSERT transaktsioonis (gate #4)"
+          },
+          {
+            "n": "10 tooted seotud (≥1)",
+            "pass": true,
+            "note": "5 toodet"
+          },
+          {
+            "n": "11 täis-deploy",
+            "pass": true,
+            "note": "genyM → Meili → push mõlemad → redeploy (§4b)"
+          }
+        ],
+        "pass": true,
+        "fails": []
+      }
+    },
+    {
+      "ck": "a2:pcat_15keha:pcat_e2_jalamassoorid",
+      "foldedCks": [
+        "a2:pcat_15keha:pcat_e2_jalamassoorid"
+      ],
+      "name_et": "Jalamassöörid",
+      "name_en": "Foot Massagers",
+      "handle": "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-jalamassoorid",
+      "handleCollisionResolved": false,
+      "parentL2": "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed",
+      "parentL2_name": "Isikuhooldusseadmed",
+      "n": 8,
+      "currentL3": "v4-keha-massoorid",
+      "srcId": "pcat_15keha",
+      "srcName": "Keha-massöörid",
+      "path": "Tervis, hooldus ja ilu/Isikuhooldusseadmed/Jalamassöörid",
+      "cert": {
+        "mode": "a2-concept",
+        "detail": "kontseptsioonitest live-DB (8/16), THR 5"
+      },
+      "products": [
+        {
+          "id": "prod_01KNXXGT1F82TS8E4RWJQTKERY",
+          "title": "Foot Circulation Stimulator with Heat, EMS & TENS Foot Massager for Neuropathy, Electric Foot Stimulator with 3-Level Temperature, 25 Modes & 50 Intensities for Pain Relief, Plantar Fasciitis"
+        },
+        {
+          "id": "prod_01KNXXGS5NDA0PWV9WA62R1P4Q",
+          "title": "Foot Circulation Stimulator, EMS & TENS Foot Massager for Neuropathy, Electric Foot Stimulator with 25 Mode, 99 Intensities & Remote Control for Pain Relief, Plantar Fasciitis, Blood Circulation"
+        },
+        {
+          "id": "prod_01KNXXGTYXDJ5JGT275KP0KXHM",
+          "title": "Foot Circulation Stimulator, EMS & TENS Foot Massager for Neuropathy, Electric Foot Stimulator with Physical Massage Roller, 25 Modes and 99-Level Intensity for Pain Relief, Plantar Fasciitis"
+        },
+        {
+          "id": "prod_01M1QHC4HYPBW36WKK64NVF3X0",
+          "title": "Leg Compression Massager 3 Heat Settings Air Compression Leg Massager, For Daily Relaxation, 6 Modes, 3 Massage Intensities, and 3 Calf Vibration Settings, with Storage Bag, and Power Adapter"
+        },
+        {
+          "id": "prod_01M1QHC4HY9JQC80YNYP8F51FT",
+          "title": "Leg Compression Massager 6 Massage Modes Air Compression Leg Massager, For Daily Relaxation, 9 Intensities, 3 Heat Settings, Auto Shut-Off Timer, Adjustable Wraps, with Storage Bag and Adapter"
+        },
+        {
+          "id": "prod_01M1QHC4HY8QPJYNRY50CK4B47",
+          "title": "Leg Compression Massager 6 Modes Air Compression Full Leg Massager, For Daily Relaxation, 9 Massage Intensities, 360° Coverage, Auto Shut-Off Timer, with Portable Storage Bag and Power Adapter"
+        },
+        {
+          "id": "prod_01M1QHC4HYZDDZ2VC90VWA4FDX",
+          "title": "Leg Compression Massager 9 Intensities Air Compression Leg Massager, For Daily Relaxation, 6 Massage Modes, 3 Heat Settings, Auto Shut-Off Timer, Adjustable Fit, with Storage Bag and Adapter"
+        },
+        {
+          "id": "prod_01KNXXHNXD0J6PR0CHN2PXRFJX",
+          "title": "Shiatsu Foot Massager with Heat, Deep Kneading Feet Massager with Compression, Scraping, Rolling for Plantar Fasciitis, Neuropathy Pain Relief, Gift for Men, Women - Fits up to Men Size 12"
+        }
+      ],
+      "assets": {
+        "name_en": "Foot Massagers",
+        "description_et": "Jalamassöörid aitavad leevendada väsinud jalgade pinget ja toetavad igapäevast lõõgastumist kodus. Valikus on erinevat tüüpi seadmeid – elektrilised jalastimulaatorid ning õhkkompressiooniga sääre- ja jalamassöörid, mis sobivad nii aktiivse eluviisiga inimestele kui ka neile, kes veedavad palju aega püsti või istudes. Valikul tasub arvestada massaažitüübi, reguleerimisvõimaluste ja kasutusmugavusega.",
+        "description_en": "Foot massagers help relieve tension in tired feet and support daily relaxation at home. The range includes different types of devices – electric foot stimulators as well as air compression leg and foot massagers, suitable for active people and those who spend long hours standing or sitting. When choosing, consider the massage type, adjustment options and ease of use.",
+        "tagline_et": "Lõõgastus väsinud jalgadele otse kodus",
+        "tagline_en": "Relaxation for tired feet at home",
+        "image_desc_et": "Heledal valgel taustal modernne elektriline jalamassöör, mille massaažialusel on näha jalgade asetuskohad.",
+        "_seoGate": {
+          "pass": true,
+          "offenders": [],
+          "attempts": 1
+        }
+      },
+      "type_profile": {
+        "description": "Jalgade ja säärte massaažiseadmed vereringe ja valu leevendamiseks: EMS/TENS jala-stimulaatorid (foot circulation stimulator), shiatsu soojendusega jalamassöörid rulli- ja survemassaažiga (shiatsu foot massager), õhksurve sääremassöörid (leg compression massager). EI sisalda üldisi keha-massööre ega massaažipüstoleid (need: Keha-massöörid, Massaažipüstolid).",
+        "ok": true,
+        "consensus": "OK",
+        "attempts": 1
+      },
+      "completeness": {
+        "checks": [
+          {
+            "n": "1 handle unikaalne",
+            "pass": true,
+            "note": "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-jalamassoorid"
+          },
+          {
+            "n": "2 name_et (nimevärav)",
+            "pass": true,
+            "note": "Jalamassöörid"
+          },
+          {
+            "n": "3 name_en (Fable)",
+            "pass": true,
+            "note": "Foot Massagers"
+          },
+          {
+            "n": "4 nav parent-L2 kehtiv",
+            "pass": true,
+            "note": "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed"
+          },
+          {
+            "n": "5 pilt (CDN primaar / Gemini fallback)",
+            "pass": true,
+            "note": "8 toodet → top-toote CDN-pilt → webp valge taust"
+          },
+          {
+            "n": "6 webp genereeritav",
+            "pass": true,
+            "note": "cat-thumbs/v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-jalamassoorid.webp (build-cat-thumbs-l3.mjs)"
+          },
+          {
+            "n": "7 SEO (ET+EN kirj.+tagline, kategooria-tasand, 0 numbrit/lubadust)",
+            "pass": true,
+            "note": "4/4 täidetud · SEO-värav läbib"
+          },
+          {
+            "n": "8 Meili facet",
+            "pass": true,
+            "note": "tooted bind → reindeks → facet"
+          },
+          {
+            "n": "9 DB product_category rida",
+            "pass": true,
+            "note": "seed/INSERT transaktsioonis (gate #4)"
+          },
+          {
+            "n": "10 tooted seotud (≥1)",
+            "pass": true,
+            "note": "8 toodet"
+          },
+          {
+            "n": "11 täis-deploy",
+            "pass": true,
+            "note": "genyM → Meili → push mõlemad → redeploy (§4b)"
+          }
+        ],
+        "pass": true,
+        "fails": []
+      }
+    },
+    {
+      "ck": "a2:pcat_ag2_3x4_13:pcat_e2_golfiautojagokartsidurid",
+      "foldedCks": [
+        "a2:pcat_ag2_3x4_13:pcat_e2_golfiautojagokartsidurid"
+      ],
+      "name_et": "Golfiauto ja go-kart sidurid",
+      "name_en": "Golf Cart & Go-Kart Clutches",
+      "handle": "v4-autovaruosad-ja-tarvikud-autovaruosad-golfiauto-ja-go-kart-sidurid",
+      "handleCollisionResolved": false,
+      "parentL2": "v4-autovaruosad-ja-tarvikud-autovaruosad",
+      "parentL2_name": "Autovaruosad",
+      "n": 8,
+      "currentL3": "v4-autovaruosad-ja-tarvikud-autovaruosad-golfikaru-ja-go-kart-osad",
+      "srcId": "pcat_ag2_3x4_13",
+      "srcName": "Golfikäru ja go-kart osad",
+      "path": "Autovaruosad ja -tarvikud/Autovaruosad/Golfiauto ja go-kart sidurid",
+      "cert": {
+        "mode": "a2-concept",
+        "detail": "kontseptsioonitest live-DB (8/14), THR 5"
+      },
+      "products": [
+        {
+          "id": "prod_01KNXXJAGNW09MCX062NQPF63A",
+          "title": "Drive Clutch, 2-7HP Engine, 2300 RPM High-Strength Drive Clutch with 3 Shift Modes & Dynamic Balanced Axle, Quick Shift Durable Clutch with Full Accessories, Fit for Kart/Dune Buggies/UTV"
+        },
+        {
+          "id": "prod_01KNXXK5KEFGA4V9J59G9V6RYS",
+          "title": "Drive Clutch, 2-8HP Engine, 2000 RPM High-Strength Drive Clutch with Asymmetric Designed Wheels & Robust Rubber Belt, Sturdy & Durable Clutch with Full Accessories, Fit for Various Engines"
+        },
+        {
+          "id": "prod_01KNXXJ7THVZ2D4DRP9ZH5P9YV",
+          "title": "Drive Clutch, 2-8HP Engine, 2000 RPM High-Strength Drive Clutch with Asymmetric Designed Wheels & Robust Rubber Belt, Sturdy & Durable Clutch with Full Accessories, Fit for Various Engines"
+        },
+        {
+          "id": "prod_01KNXXJ8Q0S49Q3S24DF710M7K",
+          "title": "Drive Clutch, 2-8HP Engine, 2000 RPM High-Strength Drive Clutch with Asymmetric Designed Wheels & Robust Rubber Belt, Sturdy & Durable Clutch with Full Accessories, Fit for Various Engines"
+        },
+        {
+          "id": "prod_01KNXXA17Y0MT110R9MYFKTJAA",
+          "title": "G2-G22 Drive Clutch Compatible With Yamaha Golf Cart 1985+ G2 G8 G9 G14 G16 G22 4 Cycle Carts Gas Golf Cart 1985 Up"
+        },
+        {
+          "id": "prod_01KNXXAC39J4NQ646ZYKR0T576",
+          "title": "Golf Cart High Torque Driven Clutch for Club Car DS & Precedent 1997 to Up Club Car 4-Cycle Gas Golf Cart Model, Silver"
+        },
+        {
+          "id": "prod_01KNXXA17SP3F5JRB1YXP4GAY6",
+          "title": "Golf Cart Secondary Driven Power Clutch Kit Metal Surface Drive Clutch 1985-2007 Driven Clutch Kit Compatible with Yamaha Low End G2-G28 Golf Cart (with Spring)"
+        },
+        {
+          "id": "prod_01KNXXAM8X3YENGX1N38C9TX5E",
+          "title": "Rear Driven Clutch Kit for Yamaha Gas Golf Cart G2-G22 1985+ Secondary Clutch Driven Kit with Belt JN6-G6201-03 JN6-G6201-04, Silver"
+        }
+      ],
+      "assets": {
+        "name_en": "Golf Cart & Go-Kart Clutches",
+        "description_et": "Siit leiad sidurid ja veoajami komponendid golfiautodele, go-kartidele ja teistele väikemasinatele. Sobivad nii remondiks kui ka kulunud osade väljavahetamiseks, et masin püsiks töökindel ja sõit sujuv. Vali oma mootori ja mudeliga ühilduv sidur ning jälgi sobivat kinnitusviisi ja konstruktsiooni.",
+        "description_en": "Here you will find clutches and drive components for golf carts, go-karts and other small vehicles. Suitable for repairs as well as replacing worn parts to keep your machine reliable and your ride smooth. Choose a clutch compatible with your engine and model, and pay attention to the right fit and construction.",
+        "tagline_et": "Töökindlad sidurid golfiautole ja go-kardile",
+        "tagline_en": "Reliable clutches for golf carts and go-karts",
+        "image_desc_et": "Heledal valgel taustal metallist veosidur koos rihmarattaga, tüüpiline golfiauto või go-kardi varuosa.",
+        "_seoGate": {
+          "pass": true,
+          "offenders": [],
+          "attempts": 1
+        }
+      },
+      "type_profile": {
+        "description": "Golfiautode, go-kartide ja väikemootoriga sõidukite variaator-sidurid jõuülekandeks: veo- ehk esisidurid (drive clutch), veetavad ehk tagasidurid (driven clutch), sidurikomplektid rihma ja vedruga (clutch kit). Sobivad Yamaha, Club Car jm golfiautodele ning kartidele/UTV-dele. EI sisalda tava-autode sidurikomplekte (need: Sidurikomplektid) ega muid golfikäru osi (need: Golfikäru ja go-kart osad).",
+        "ok": true,
+        "consensus": "OK",
+        "attempts": 1
+      },
+      "completeness": {
+        "checks": [
+          {
+            "n": "1 handle unikaalne",
+            "pass": true,
+            "note": "v4-autovaruosad-ja-tarvikud-autovaruosad-golfiauto-ja-go-kart-sidurid"
+          },
+          {
+            "n": "2 name_et (nimevärav)",
+            "pass": true,
+            "note": "Golfiauto ja go-kart sidurid"
+          },
+          {
+            "n": "3 name_en (Fable)",
+            "pass": true,
+            "note": "Golf Cart & Go-Kart Clutches"
+          },
+          {
+            "n": "4 nav parent-L2 kehtiv",
+            "pass": true,
+            "note": "v4-autovaruosad-ja-tarvikud-autovaruosad"
+          },
+          {
+            "n": "5 pilt (CDN primaar / Gemini fallback)",
+            "pass": true,
+            "note": "8 toodet → top-toote CDN-pilt → webp valge taust"
+          },
+          {
+            "n": "6 webp genereeritav",
+            "pass": true,
+            "note": "cat-thumbs/v4-autovaruosad-ja-tarvikud-autovaruosad-golfiauto-ja-go-kart-sidurid.webp (build-cat-thumbs-l3.mjs)"
+          },
+          {
+            "n": "7 SEO (ET+EN kirj.+tagline, kategooria-tasand, 0 numbrit/lubadust)",
+            "pass": true,
+            "note": "4/4 täidetud · SEO-värav läbib"
+          },
+          {
+            "n": "8 Meili facet",
+            "pass": true,
+            "note": "tooted bind → reindeks → facet"
+          },
+          {
+            "n": "9 DB product_category rida",
+            "pass": true,
+            "note": "seed/INSERT transaktsioonis (gate #4)"
+          },
+          {
+            "n": "10 tooted seotud (≥1)",
+            "pass": true,
+            "note": "8 toodet"
+          },
+          {
+            "n": "11 täis-deploy",
+            "pass": true,
+            "note": "genyM → Meili → push mõlemad → redeploy (§4b)"
+          }
+        ],
+        "pass": true,
+        "fails": []
+      }
+    },
+    {
+      "ck": "a2:pcat_ag2_3x4_13:pcat_e2_golfiautokiirusekontroll",
+      "foldedCks": [
+        "a2:pcat_ag2_3x4_13:pcat_e2_golfiautokiirusekontroll"
+      ],
+      "name_et": "Golfiauto kiirusekontrollerid",
+      "name_en": "Golf Cart Speed Controllers",
+      "handle": "v4-autovaruosad-ja-tarvikud-autovaruosad-golfiauto-kiirusekontrollerid",
+      "handleCollisionResolved": false,
+      "parentL2": "v4-autovaruosad-ja-tarvikud-autovaruosad",
+      "parentL2_name": "Autovaruosad",
+      "n": 5,
+      "currentL3": "v4-autovaruosad-ja-tarvikud-autovaruosad-golfikaru-ja-go-kart-osad",
+      "srcId": "pcat_ag2_3x4_13",
+      "srcName": "Golfikäru ja go-kart osad",
+      "path": "Autovaruosad ja -tarvikud/Autovaruosad/Golfiauto kiirusekontrollerid",
+      "cert": {
+        "mode": "a2-concept",
+        "detail": "kontseptsioonitest live-DB (5/14), THR 5"
+      },
+      "products": [
+        {
+          "id": "prod_01KNXXMJWHG1WKT7P8XTN2CDNC",
+          "title": "Golf Cart Speed Controller, 36V & 500A, DC Motor Controller Replacement for Club Car Golf Carts, IP65 Rated Protection, Aluminum Alloy & ABS Housing, Compatible with 1205-117/1205M-5603 Models"
+        },
+        {
+          "id": "prod_01KNXXMNKE9M07W6PWM776EGP5",
+          "title": "Golf Cart Speed Controller, 36V 350A, DC Motor Controller Replacement for 2000-2009 EZGO TXT Golf Carts, IP65 Rated Protection, Aluminum Alloy & ABS Housing, Compatible with 1206MX-4301 Models"
+        },
+        {
+          "id": "prod_01KNXXMKTCXQFPF05675QBCRW4",
+          "title": "Golf Cart Speed Controller, 36V and 350A, DC Motor Controller Replacement for 1994-2019 EZGO Golf Carts, IP65 Rated Protection, Aluminum Alloy & ABS Housing, Compatible with 1206-4301 Models"
+        },
+        {
+          "id": "prod_01KNXXMMQJBQD1SAQPN8T67XWR",
+          "title": "Golf Cart Speed Controller, 48 Volt & 250 Amp, DC Motor Controller Replacement for EZGO TXT Golf Carts, IP65 Rated Protection, Aluminum Alloy & ABS Housing, Compatible with 1206HB-5201 Models"
+        },
+        {
+          "id": "prod_01KNXXMJVB3JHXWFVBEXVAZ5D2",
+          "title": "Golf Cart Speed Controller, 48V & 250A, DC Motor Controller Replacement for 2000-2008 Club Car Golf Carts, IP65 Rated Protection, Aluminum Alloy & ABS Housing, Compatible with 1510A-5251 Models"
+        }
+      ],
+      "assets": {
+        "name_en": "Golf Cart Speed Controllers",
+        "description_et": "Siit leiad kiirusekontrollerid golfiautode elektrimootorite juhtimiseks ja vananenud originaalosade asendamiseks. Sobivad erinevatele tuntud golfiauto markidele ja mudelitele, aidates taastada sõiduki sujuva kiirendamise ja töökindluse. Enne ostu veendu, et kontroller sobib just sinu golfiauto mudeli ja mootoritüübiga.",
+        "description_en": "Here you will find speed controllers for managing golf cart electric motors and replacing worn-out original parts. They fit a range of well-known golf cart brands and models, helping restore smooth acceleration and reliable performance. Before purchasing, make sure the controller matches your golf cart model and motor type.",
+        "tagline_et": "Taasta oma golfiauto sujuv sõit!",
+        "tagline_en": "Restore your golf cart's smooth ride!",
+        "image_desc_et": "Heledal valgel taustal golfiauto kiirusekontroller — kompaktne metallkorpusega elektroonikamoodul ühendusklemmidega.",
+        "_seoGate": {
+          "pass": true,
+          "offenders": [],
+          "attempts": 1
+        }
+      },
+      "type_profile": {
+        "description": "Golfiautode elektroonilised kiiruse- ja mootorikontrollerid alalisvoolumootori juhtimiseks: DC-mootori kiirusekontrollerid (DC motor speed controller), asenduskontrollerid golfiautodele ja go-kartidele (golf cart controller replacement). EI sisalda golfikäru muid mehaanilisi osi (need: Golfikäru ja go-kart osad).",
+        "ok": true,
+        "consensus": "OK",
+        "attempts": 1
+      },
+      "completeness": {
+        "checks": [
+          {
+            "n": "1 handle unikaalne",
+            "pass": true,
+            "note": "v4-autovaruosad-ja-tarvikud-autovaruosad-golfiauto-kiirusekontrollerid"
+          },
+          {
+            "n": "2 name_et (nimevärav)",
+            "pass": true,
+            "note": "Golfiauto kiirusekontrollerid"
+          },
+          {
+            "n": "3 name_en (Fable)",
+            "pass": true,
+            "note": "Golf Cart Speed Controllers"
+          },
+          {
+            "n": "4 nav parent-L2 kehtiv",
+            "pass": true,
+            "note": "v4-autovaruosad-ja-tarvikud-autovaruosad"
+          },
+          {
+            "n": "5 pilt (CDN primaar / Gemini fallback)",
+            "pass": true,
+            "note": "5 toodet → top-toote CDN-pilt → webp valge taust"
+          },
+          {
+            "n": "6 webp genereeritav",
+            "pass": true,
+            "note": "cat-thumbs/v4-autovaruosad-ja-tarvikud-autovaruosad-golfiauto-kiirusekontrollerid.webp (build-cat-thumbs-l3.mjs)"
+          },
+          {
+            "n": "7 SEO (ET+EN kirj.+tagline, kategooria-tasand, 0 numbrit/lubadust)",
+            "pass": true,
+            "note": "4/4 täidetud · SEO-värav läbib"
+          },
+          {
+            "n": "8 Meili facet",
+            "pass": true,
+            "note": "tooted bind → reindeks → facet"
+          },
+          {
+            "n": "9 DB product_category rida",
+            "pass": true,
+            "note": "seed/INSERT transaktsioonis (gate #4)"
+          },
+          {
+            "n": "10 tooted seotud (≥1)",
+            "pass": true,
+            "note": "5 toodet"
+          },
+          {
+            "n": "11 täis-deploy",
+            "pass": true,
+            "note": "genyM → Meili → push mõlemad → redeploy (§4b)"
+          }
+        ],
+        "pass": true,
+        "fails": []
+      }
+    },
+    {
+      "ck": "a2:pcat_ag2_3x1_13:pcat_e2_vintsitaasteplokidsnatch",
+      "foldedCks": [
+        "a2:pcat_ag2_3x1_13:pcat_e2_vintsitaasteplokidsnatch"
+      ],
+      "name_et": "Vintsi taasteplokid (snatch-plokid)",
+      "name_en": "Winch Snatch Blocks",
+      "handle": "v4-autovaruosad-ja-tarvikud-pukseerimisseadmed-vintsi-taasteplokid-snatch-plokid",
+      "handleCollisionResolved": false,
+      "parentL2": "v4-autovaruosad-ja-tarvikud-pukseerimisseadmed",
+      "parentL2_name": "Pukseerimisseadmed",
+      "n": 6,
+      "currentL3": "v4-autovaruosad-ja-tarvikud-pukseerimisseadmed-vintsi-trossid-ja-taasteplokid",
+      "srcId": "pcat_ag2_3x1_13",
+      "srcName": "Vintsi trossid ja taasteplokid",
+      "path": "Autovaruosad ja -tarvikud/Pukseerimisseadmed/Vintsi taasteplokid (snatch-plokid)",
+      "cert": {
+        "mode": "a2-concept",
+        "detail": "kontseptsioonitest live-DB (6/14), THR 6"
+      },
+      "products": [
+        {
+          "id": "prod_01KNXXKDWVSRB991V6WMZ5W8MR",
+          "title": "10 T Winch Snatch Block, 22,000 lbs Capacity Block and Tackle Pulley System, Work with 0.4\" - 0.55\" Rope, Winch Hook Accessories, Heavy Duty Offroad Recovery Accessory for Truck Tractor ATV UTV"
+        },
+        {
+          "id": "prod_01KNXXKDX67AJJHGMR0MZY0J9P",
+          "title": "14.5 Ton Snatch Block for Winch Recovery, Heavy Duty 32,000 lbs Break Strength, Work with 3/8 inch Rope, Compact Offroad Recovery Accessory for Towing & Recovery on Truck, Tractor, ATV & UTV"
+        },
+        {
+          "id": "prod_01KNXXKCZXVQ6AGXA57WSDAEMH",
+          "title": "2 Ton Snatch Block with G80 Chain, Swivel Shackle, 3\" Sheave for 3/8\" Wire Rope, Snatch Block Pulley for Towing and Recovery Applications on Flatbed Tow Truck Rollback Wrecker Car Carrier Cable"
+        },
+        {
+          "id": "prod_01KNXXKD03JANDXKAAQVGNKNM0",
+          "title": "2 Ton Snatch Block with Swivel Hook, 3\" Sheave 3/8\" Inch Wire Rope, Heavy Duty Snatch Block Pulley 4400 lbs for Towing and Recovery operations on Tow Truck Rollback Wrecker Car Hauler Winches"
+        },
+        {
+          "id": "prod_01KNXXKDWPVTZBKSP164PJDKSV",
+          "title": "30 T Snatch Block for Winch Recovery, 66,000 lbs Break Strength Pulley System with 0.4\" - 0.55\" Rope, Heavy Duty Offroad Recovery Accessory for Towing & Recovery on Truck, Tractor, ATV & UTV"
+        },
+        {
+          "id": "prod_01KNXX7VB5YAFXHEPY7ATGDET0",
+          "title": "Snatch Block, 11T/25,000 LBS Working Load Limit, Heavy Duty Winch Pulley for 0.55\"/14 mm Synthetic Rope or Soft Shackles, Off-road Recovery Accessories for Tractor, Truck, ATV & UTV, 2 Packs"
+        }
+      ],
+      "assets": {
+        "name_en": "Winch Snatch Blocks",
+        "description_et": "Vintsi taasteplokid ehk snatch-plokid aitavad suunata vintsitrossi ja suurendada tõmbejõudu maastikul või pukseerimistöödel. Sobivad veoautode, traktorite, ATV-de ja UTV-de taastetöödeks nii hobikasutajale kui professionaalile. Valikul jälgi oma vintsi, trossi tüübi ja sõiduki suurusega sobivust.",
+        "description_en": "Winch snatch blocks help redirect the winch line and increase pulling power during off-road recovery or towing work. Suitable for recovery operations on trucks, tractors, ATVs and UTVs, for both hobby users and professionals. When choosing, make sure the block matches your winch, rope type and vehicle size.",
+        "tagline_et": "Rohkem tõmbejõudu igaks taastetööks",
+        "tagline_en": "More pulling power for every recovery",
+        "image_desc_et": "Heledal valgel taustal vastupidav metallist snatch-plokk avatava külje ja pöörleva rullikuga, mõeldud vintsitrossi suunamiseks.",
+        "_seoGate": {
+          "pass": true,
+          "offenders": [],
+          "attempts": 1
+        }
+      },
+      "type_profile": {
+        "description": "Vintsi taasteplokid vintsi tõmbejõu ümbersuunamiseks ja jõu kahekordistamiseks maastikusõidukite väljatõmbamisel: plokirattaga taasteplokid (snatch block pulley), pöördkonksu või šakliga plokid (swivel shackle/hook block), ketiga plokid troosile/sünteettrossile. EI sisalda terastrosse ega sünteettrosse (need: Vintsi trossid ja taasteplokid) ega šakleid eraldi (need: Šaklid ja D-rõngad).",
+        "ok": true,
+        "consensus": "OK",
+        "attempts": 1
+      },
+      "completeness": {
+        "checks": [
+          {
+            "n": "1 handle unikaalne",
+            "pass": true,
+            "note": "v4-autovaruosad-ja-tarvikud-pukseerimisseadmed-vintsi-taasteplokid-snatch-plokid"
+          },
+          {
+            "n": "2 name_et (nimevärav)",
+            "pass": true,
+            "note": "Vintsi taasteplokid (snatch-plokid)"
+          },
+          {
+            "n": "3 name_en (Fable)",
+            "pass": true,
+            "note": "Winch Snatch Blocks"
+          },
+          {
+            "n": "4 nav parent-L2 kehtiv",
+            "pass": true,
+            "note": "v4-autovaruosad-ja-tarvikud-pukseerimisseadmed"
+          },
+          {
+            "n": "5 pilt (CDN primaar / Gemini fallback)",
+            "pass": true,
+            "note": "6 toodet → top-toote CDN-pilt → webp valge taust"
+          },
+          {
+            "n": "6 webp genereeritav",
+            "pass": true,
+            "note": "cat-thumbs/v4-autovaruosad-ja-tarvikud-pukseerimisseadmed-vintsi-taasteplokid-snatch-plokid.webp (build-cat-thumbs-l3.mjs)"
+          },
+          {
+            "n": "7 SEO (ET+EN kirj.+tagline, kategooria-tasand, 0 numbrit/lubadust)",
+            "pass": true,
+            "note": "4/4 täidetud · SEO-värav läbib"
+          },
+          {
+            "n": "8 Meili facet",
+            "pass": true,
+            "note": "tooted bind → reindeks → facet"
+          },
+          {
+            "n": "9 DB product_category rida",
+            "pass": true,
+            "note": "seed/INSERT transaktsioonis (gate #4)"
+          },
+          {
+            "n": "10 tooted seotud (≥1)",
+            "pass": true,
+            "note": "6 toodet"
+          },
+          {
+            "n": "11 täis-deploy",
+            "pass": true,
+            "note": "genyM → Meili → push mõlemad → redeploy (§4b)"
+          }
+        ],
+        "pass": true,
+        "fails": []
+      }
+    },
+    {
+      "ck": "a2:pcat_el_11x6_5:pcat_e2_fotovalguskastidlightbox",
+      "foldedCks": [
+        "a2:pcat_el_11x6_5:pcat_e2_fotovalguskastidlightbox"
+      ],
+      "name_et": "Foto valguskastid (lightboxid)",
+      "name_en": "Photo Light Boxes",
+      "handle": "v4-elektroonika-foto-video-foto-valguskastid-lightboxid",
+      "handleCollisionResolved": false,
+      "parentL2": "v4-elektroonika-foto-video",
+      "parentL2_name": "Foto ja video",
+      "n": 7,
+      "currentL3": "v4-elektritarvikud-ja-valgustus-toostusvalgustus-fotostuudio-valgustid",
+      "srcId": "pcat_el_11x6_5",
+      "srcName": "Fotostuudio valgustid",
+      "path": "Elektroonika ja multimeedia/Foto ja video/Foto valguskastid (lightboxid)",
+      "cert": {
+        "mode": "a2-concept",
+        "detail": "kontseptsioonitest live-DB (7/14), THR 5"
+      },
+      "products": [
+        {
+          "id": "prod_01KNXXFN9CS52QQK1V6D2HTRD9",
+          "title": "315x310x310 mm Photo Studio Light Box 3000-5600K 6 Double-Sided Color Backdrops"
+        },
+        {
+          "id": "prod_01KNXXFMDA725XRR91H1MD3157",
+          "title": "410x400x390 mm Photo Studio Light Box 3000-5600K 6 Double-Sided Color Backdrops"
+        },
+        {
+          "id": "prod_01KNXXFMCE2QFYYRZ6C013VCMY",
+          "title": "Photo Studio Light Box 1000x1000x1000 mm 5600K with 210 LED Lights Power Adapter"
+        },
+        {
+          "id": "prod_01KNXXFNAFYRA2BRNHHY4HE3W1",
+          "title": "Photo Studio Light Box 410x300x305 mm 3000-5600K Adjustable 3 Color Temperatures"
+        },
+        {
+          "id": "prod_01KNXXFSXHNFG56225B4Z525GX",
+          "title": "Photo Studio Light Box 505x485x495 mm 3000-5600K Adjustable 3 Color Temperatures"
+        },
+        {
+          "id": "prod_01KNXXFMCFBBYDVWETZD8KZ9BR",
+          "title": "Photo Studio Light Box 600x590x600 mm 3000-5600K Adjustable 3 Color Temperatures"
+        },
+        {
+          "id": "prod_01KNXXF4H9P7CKCN5W42AAXF0H",
+          "title": "Photo Studio Light Box 815x815x815 mm 5600K with 210 LED Lights Power Adapter"
+        }
+      ],
+      "assets": {
+        "name_en": "Photo Light Boxes",
+        "description_et": "Foto valguskastid aitavad teha ühtlase ja professionaalse valgustusega tootefotosid kodus või stuudios. Sobivad e-poe pidajatele, sisuloojatele ja hobifotograafidele, kes soovivad pildistada esemeid puhtal taustal. Valikus on erineva suuruse ja valgustusvõimalustega mudelid – vali kast pildistatavate esemete mõõtude ja soovitud taustavärvide järgi.",
+        "description_en": "Photo light boxes help you capture evenly lit, professional-looking product photos at home or in a studio. Ideal for online sellers, content creators and hobby photographers who want to shoot items on a clean background. The range includes models in various sizes with different lighting options – choose based on the size of your items and the backdrop colours you need.",
+        "tagline_et": "Professionaalsed tootefotod lihtsalt ja kiirelt",
+        "tagline_en": "Professional product photos made simple",
+        "image_desc_et": "Avatud foto valguskast sisse lülitatud LED-valgustuse ja valge taustaga, mille sees on pildistamiseks asetatud väike ese.",
+        "_seoGate": {
+          "pass": true,
+          "offenders": [],
+          "attempts": 1
+        }
+      },
+      "type_profile": {
+        "description": "Valgustatud tootefoto-telgid ja -kastid esemete pildistamiseks hajutatud valguses: LED-valgusega fotostuudio valguskastid (photo studio light box), reguleeritava värvitemperatuuriga valgustelgid koos taustadega (light tent). EI sisalda eraldiseisvaid stuudiovalgusteid (need: Fotostuudio valgustid).",
+        "ok": true,
+        "consensus": "OK",
+        "attempts": 1
+      },
+      "completeness": {
+        "checks": [
+          {
+            "n": "1 handle unikaalne",
+            "pass": true,
+            "note": "v4-elektroonika-foto-video-foto-valguskastid-lightboxid"
+          },
+          {
+            "n": "2 name_et (nimevärav)",
+            "pass": true,
+            "note": "Foto valguskastid (lightboxid)"
+          },
+          {
+            "n": "3 name_en (Fable)",
+            "pass": true,
+            "note": "Photo Light Boxes"
+          },
+          {
+            "n": "4 nav parent-L2 kehtiv",
+            "pass": true,
+            "note": "v4-elektroonika-foto-video"
+          },
+          {
+            "n": "5 pilt (CDN primaar / Gemini fallback)",
+            "pass": true,
+            "note": "7 toodet → top-toote CDN-pilt → webp valge taust"
+          },
+          {
+            "n": "6 webp genereeritav",
+            "pass": true,
+            "note": "cat-thumbs/v4-elektroonika-foto-video-foto-valguskastid-lightboxid.webp (build-cat-thumbs-l3.mjs)"
+          },
+          {
+            "n": "7 SEO (ET+EN kirj.+tagline, kategooria-tasand, 0 numbrit/lubadust)",
+            "pass": true,
+            "note": "4/4 täidetud · SEO-värav läbib"
+          },
+          {
+            "n": "8 Meili facet",
+            "pass": true,
+            "note": "tooted bind → reindeks → facet"
+          },
+          {
+            "n": "9 DB product_category rida",
+            "pass": true,
+            "note": "seed/INSERT transaktsioonis (gate #4)"
+          },
+          {
+            "n": "10 tooted seotud (≥1)",
+            "pass": true,
+            "note": "7 toodet"
+          },
+          {
+            "n": "11 täis-deploy",
+            "pass": true,
+            "note": "genyM → Meili → push mõlemad → redeploy (§4b)"
+          }
+        ],
+        "pass": true,
+        "fails": []
+      }
+    },
+    {
+      "ck": "a2:pcat_el_12x1_38:pcat_e2_jalgpallitagasiporkelaua",
+      "foldedCks": [
+        "a2:pcat_el_12x1_38:pcat_e2_jalgpallitagasiporkelaua"
+      ],
+      "name_et": "Jalgpalli tagasipõrkelauad (rebounder)",
+      "name_en": "Soccer Rebounders",
+      "handle": "v4-sport-ja-vaba-aeg-pallimangud-ja-valjakusport-jalgpalli-tagasiporkelauad-rebounder",
+      "handleCollisionResolved": false,
+      "parentL2": "v4-sport-ja-vaba-aeg-pallimangud-ja-valjakusport",
+      "parentL2_name": "Pallimängud ja väljakusport",
+      "n": 7,
+      "currentL3": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-spordivorgud-ja-tagasiloogiseinad",
+      "srcId": "pcat_el_12x1_38",
+      "srcName": "Barjääri- ja praktikavõrgud",
+      "path": "Sport ja vaba aeg/Pallimängud ja väljakusport/Jalgpalli tagasipõrkelauad (rebounder)",
+      "cert": {
+        "mode": "a2-concept",
+        "detail": "kontseptsioonitest live-DB (7/13), THR 6"
+      },
+      "products": [
+        {
+          "id": "prod_01KNXXBF9G4S5ZV9NXHVAYT119",
+          "title": "Soccer Rebounder Board, 101.6 x 40.6 cm Portable Soccer Wall with 2 Angles Rebound, Foldable HDPE Kickback Rebound Board, Soccer Training Equipment for Kids and Adults, Passing & Shooting Practice"
+        },
+        {
+          "id": "prod_01KNXXBH1VS6SZWTRKX69F2AK8",
+          "title": "Soccer Rebounder Board, 114.3 x 45.7 cm Portable Soccer Wall with 2 Angles Rebound, Foldable HDPE Kickback Rebound Board, Soccer Training Equipment for Kids and Adults, Passing & Shooting Practice"
+        },
+        {
+          "id": "prod_01KNXXJWK79MR54Y4DDS5MPGCH",
+          "title": "Soccer Rebounder Board, 32\"X12\" Portable Soccer Wall with 2 Angles Rebound, Foldable HDPE Kickback Rebound Board, Soccer Training Equipment for Kids and Adults, Passing & Shooting Practice"
+        },
+        {
+          "id": "prod_01KNXXJQXWJ080W2QQ05TJD1RA",
+          "title": "Soccer Rebounder Board, 40\"X12\" Portable Soccer Wall with 2 Angles Rebound, Foldable HDPE Kickback Rebound Board, Soccer Training Equipment for Kids and Adults, Passing & Shooting Practice"
+        },
+        {
+          "id": "prod_01KNXXJQXRF0Z6C5QQYZ9EZ3W8",
+          "title": "Soccer Rebounder Board, 45\"X13\" Portable Soccer Wall with 2 Angles Rebound, Foldable HDPE Kickback Rebound Board, Soccer Training Equipment for Kids and Adults, Passing & Shooting Practice"
+        },
+        {
+          "id": "prod_01M0GXD31R7SE3G861DM74XN4S",
+          "title": "Soccer Rebounder Board, 95 x 25 cm Dual-Sided Soccer Rebound Wall, 4 Adjustable Angles, Portable Water-Fillable PE Kickback Trainer, Ground Stakes for Kids Adults, Passing & Shooting Practice"
+        },
+        {
+          "id": "prod_01KQ4Y1H4ZG0WFW2VY96118KKQ",
+          "title": "Soccer Rebounder Board, 950 x 250 mm Portable Soccer Rebound Wall, Dual Surface Sports Kick Back Trainer, 3 Adjustable Angles, Easy Setup Ball Practice Equipment for Passing & Reaction Skills"
+        }
+      ],
+      "assets": {
+        "name_en": "Soccer Rebounders",
+        "description_et": "Jalgpalli tagasipõrkelauad on suurepärased treeningvahendid söötude, vastuvõtu ja löögitäpsuse harjutamiseks – ka siis, kui treeningpartnerit pole käepärast. Siit leiad erinevas suuruses ja kujunduses põrkelaudu nii lastele kui ka täiskasvanutele, mis sobivad kasutamiseks aias, hoovis või treeningväljakul. Valikul tasub jälgida sobivat suurust, põrkenurga reguleeritavust ning hoiustamise ja kaasaskandmise mugavust.",
+        "description_en": "Soccer rebounders are excellent training tools for practising passing, ball control and shooting accuracy – even when you don't have a training partner at hand. Here you'll find rebound boards in various sizes and designs for both kids and adults, suitable for use in the garden, backyard or on the training pitch. When choosing, consider the right size, adjustability of the rebound angle, and ease of storage and transport.",
+        "tagline_et": "Treeni sööte ja lööke ka üksinda!",
+        "tagline_en": "Practise passing and shooting – even solo!",
+        "image_desc_et": "Heledal valgel taustal seisab kaldu asetatud kokkupandav jalgpalli tagasipõrkelaud, mille ees on jalgpall.",
+        "_seoGate": {
+          "pass": true,
+          "offenders": [],
+          "attempts": 1
+        }
+      },
+      "type_profile": {
+        "description": "Jalgpalli tagasipõrkeseinad palli söötmise ja löögi harjutamiseks: kokkupandavad põrkelauad (soccer rebounder board), reguleeritava nurgaga tagasilöögiseinad (kickback rebound wall), kahepoolsed treeningseinad (dual-sided rebound trainer). EI sisalda võrgust põrkeraame ega väravaid (need: Barjääri- ja praktikavõrgud, Jalgpalliväravad).",
+        "ok": true,
+        "consensus": "OK",
+        "attempts": 1
+      },
+      "completeness": {
+        "checks": [
+          {
+            "n": "1 handle unikaalne",
+            "pass": true,
+            "note": "v4-sport-ja-vaba-aeg-pallimangud-ja-valjakusport-jalgpalli-tagasiporkelauad-rebounder"
+          },
+          {
+            "n": "2 name_et (nimevärav)",
+            "pass": true,
+            "note": "Jalgpalli tagasipõrkelauad (rebounder)"
+          },
+          {
+            "n": "3 name_en (Fable)",
+            "pass": true,
+            "note": "Soccer Rebounders"
+          },
+          {
+            "n": "4 nav parent-L2 kehtiv",
+            "pass": true,
+            "note": "v4-sport-ja-vaba-aeg-pallimangud-ja-valjakusport"
+          },
+          {
+            "n": "5 pilt (CDN primaar / Gemini fallback)",
+            "pass": true,
+            "note": "7 toodet → top-toote CDN-pilt → webp valge taust"
+          },
+          {
+            "n": "6 webp genereeritav",
+            "pass": true,
+            "note": "cat-thumbs/v4-sport-ja-vaba-aeg-pallimangud-ja-valjakusport-jalgpalli-tagasiporkelauad-rebounder.webp (build-cat-thumbs-l3.mjs)"
+          },
+          {
+            "n": "7 SEO (ET+EN kirj.+tagline, kategooria-tasand, 0 numbrit/lubadust)",
+            "pass": true,
+            "note": "4/4 täidetud · SEO-värav läbib"
+          },
+          {
+            "n": "8 Meili facet",
+            "pass": true,
+            "note": "tooted bind → reindeks → facet"
+          },
+          {
+            "n": "9 DB product_category rida",
+            "pass": true,
+            "note": "seed/INSERT transaktsioonis (gate #4)"
+          },
+          {
+            "n": "10 tooted seotud (≥1)",
+            "pass": true,
+            "note": "7 toodet"
+          },
+          {
+            "n": "11 täis-deploy",
+            "pass": true,
+            "note": "genyM → Meili → push mõlemad → redeploy (§4b)"
+          }
+        ],
+        "pass": true,
+        "fails": []
+      }
+    },
+    {
+      "ck": "a2:pcat_el_12x3_17:pcat_e2_jalgrattatrenazoorialuse",
+      "foldedCks": [
+        "a2:pcat_el_12x3_17:pcat_e2_jalgrattatrenazoorialuse"
+      ],
+      "name_et": "Jalgratta trenažööri-alused",
+      "name_en": "Bike Trainer Stands",
+      "handle": "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-jalgratta-trenazoori-alused",
+      "handleCollisionResolved": false,
+      "parentL2": "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed",
+      "parentL2_name": "Fitness ja treeningseadmed",
+      "n": 7,
+      "currentL3": "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-velo-ja-jalgrattatrenazoorid",
+      "srcId": "pcat_el_12x3_17",
+      "srcName": "Velotrenažöörid",
+      "path": "Sport ja vaba aeg/Fitness ja treeningseadmed/Jalgratta trenažööri-alused",
+      "cert": {
+        "mode": "a2-concept",
+        "detail": "kontseptsioonitest live-DB (7/14), THR 5"
+      },
+      "products": [
+        {
+          "id": "prod_01KNXX76QZR8M9HRA6GA8722EY",
+          "title": "Bike Trainer Stand with Noise Reduction Wheel Foldable Adjustable Indoor Mountain & Road Bicycles Fixed Gear Trainer 26\" - 28\", 700C Wheels, Bike Magnetic Turbo Trainer"
+        },
+        {
+          "id": "prod_01KNXXC4WWDKP2708VAAGWTB8W",
+          "title": "Bike Trainer Stand, Fluid Stationary Bike Stand for 26\"-29\" Wheels, Noise Reduction Fluid Flywheel, Portable Cycling Stand for Indoor Riding Exercise, with Quick-Release Lever & Front Wheel Rise"
+        },
+        {
+          "id": "prod_01KNXXC5THC58R9G1NKWWD2AY4",
+          "title": "Bike Trainer Stand, Magnetic Stationary Bike Stand for 26\"-29\" Wheels, 8 Resistance Settings, Low Noise Motor, Protable for Indoor Riding Exercise, with Quick-Release Lever & Front Wheel Riser"
+        },
+        {
+          "id": "prod_01KNXXC5SZ44NB3NBTH71H7N45",
+          "title": "Bike Trainer Stand, Magnetic Stationary Bike Stand for 26\"-29\" Wheels, Low Noise Motor, Protable Folding Bicycle Trainer for Indoor Riding Exercise, with Quick-Release Lever & Front Wheel Riser"
+        },
+        {
+          "id": "prod_01KNXXC4X907ZR4M5P8Q4RX3YB",
+          "title": "Bike Trainer Stand, Magnetic Stationary Bike Stand for 26\"-29\" Wheels, Noise Reduction Flywheel Motor, Protable Cycling for Indoor Riding Exercise, with Quick-Release Lever & Front Wheel Riser"
+        },
+        {
+          "id": "prod_01KP6FC1J569CFZDV7PJHFJTVW",
+          "title": "Bike Trainer, 6 Level Resistance, 660.4-736.6 mm & 700C Wheels, Foldable Magnetic Bicycle Stationary Stand for Indoor Exercise Riding with Quick Release Skewer & Front Wheel Riser Block, Black"
+        },
+        {
+          "id": "prod_01KP6FC4NF9JBGF8N523RQH7P2",
+          "title": "Bike Trainer, 660.4-736.6 mm & 700C Wheels, Foldable Fluid Bicycle Stationary Trainer Stand for Indoor Exercise Riding with Quick Release Skewer & Front Wheel Riser Block, Fits Road Bikes, Black"
+        }
+      ],
+      "assets": {
+        "name_en": "Bike Trainer Stands",
+        "description_et": "Jalgratta trenažööri-alused muudavad sinu tavalise ratta mugavaks sisetreeningu vahendiks – treeni kodus sõltumata ilmast ja aastaajast. Sobivad nii harrastajatele kui ka aktiivsetele ratturitele, kes soovivad vormi hoida aastaringselt. Valikul tasub jälgida sobivust oma ratta rattasuurusega, takistuse reguleerimise võimalusi ja seadme kokkupandavust.",
+        "description_en": "Bike trainer stands turn your regular bicycle into a convenient indoor training setup – exercise at home regardless of weather or season. Suitable for both casual riders and active cyclists who want to stay in shape all year round. When choosing, pay attention to compatibility with your wheel size, resistance adjustment options and foldability.",
+        "tagline_et": "Treeni oma rattaga kodus aastaringselt!",
+        "tagline_en": "Train indoors with your own bike all year!",
+        "image_desc_et": "Heledal valgel taustal kokkupandav jalgratta trenažööri-alus, mille külge on kinnitatud jalgratta tagaratas.",
+        "_seoGate": {
+          "pass": true,
+          "offenders": [],
+          "attempts": 1
+        }
+      },
+      "type_profile": {
+        "description": "Siseruumi trenažööri-alused tavalise jalgratta muutmiseks statsionaarseks treeningmasinaks: magnetilised trenažöörid (magnetic bike trainer), vedeliktrenažöörid (fluid trainer stand), kokkupandavad takistusega alused tagaratta kinnitusega ning esiratta tõstuklotsid (front wheel riser). EI sisalda velotrenažööre ega jooksulinte (need: Velotrenažöörid, Jooksulindid).",
+        "ok": true,
+        "consensus": "OK",
+        "attempts": 1
+      },
+      "completeness": {
+        "checks": [
+          {
+            "n": "1 handle unikaalne",
+            "pass": true,
+            "note": "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-jalgratta-trenazoori-alused"
+          },
+          {
+            "n": "2 name_et (nimevärav)",
+            "pass": true,
+            "note": "Jalgratta trenažööri-alused"
+          },
+          {
+            "n": "3 name_en (Fable)",
+            "pass": true,
+            "note": "Bike Trainer Stands"
+          },
+          {
+            "n": "4 nav parent-L2 kehtiv",
+            "pass": true,
+            "note": "v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed"
+          },
+          {
+            "n": "5 pilt (CDN primaar / Gemini fallback)",
+            "pass": true,
+            "note": "7 toodet → top-toote CDN-pilt → webp valge taust"
+          },
+          {
+            "n": "6 webp genereeritav",
+            "pass": true,
+            "note": "cat-thumbs/v4-sport-ja-vaba-aeg-fitness-ja-treeningseadmed-jalgratta-trenazoori-alused.webp (build-cat-thumbs-l3.mjs)"
+          },
+          {
+            "n": "7 SEO (ET+EN kirj.+tagline, kategooria-tasand, 0 numbrit/lubadust)",
+            "pass": true,
+            "note": "4/4 täidetud · SEO-värav läbib"
+          },
+          {
+            "n": "8 Meili facet",
+            "pass": true,
+            "note": "tooted bind → reindeks → facet"
+          },
+          {
+            "n": "9 DB product_category rida",
+            "pass": true,
+            "note": "seed/INSERT transaktsioonis (gate #4)"
+          },
+          {
+            "n": "10 tooted seotud (≥1)",
+            "pass": true,
+            "note": "7 toodet"
+          },
+          {
+            "n": "11 täis-deploy",
+            "pass": true,
+            "note": "genyM → Meili → push mõlemad → redeploy (§4b)"
+          }
+        ],
+        "pass": true,
+        "fails": []
+      }
+    },
+    {
+      "ck": "a2:pcat_f4_13x1_2:pcat_e2_co2laseritoiteplokid",
+      "foldedCks": [
+        "a2:pcat_f4_13x1_2:pcat_e2_co2laseritoiteplokid"
+      ],
+      "name_et": "CO2 laseri toiteplokid",
+      "name_en": "Laser Tube Power Supplies",
+      "handle": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-co2-laseri-toiteplokid",
+      "handleCollisionResolved": false,
+      "parentL2": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc",
+      "parentL2_name": "Laser, graveerimine ja CNC",
+      "n": 7,
+      "currentL3": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-lasertorud-ja-toiteplokid",
+      "srcId": "pcat_f4_13x1_2",
+      "srcName": "Lasertorud ja toiteplokid",
+      "path": "Reklaami-, trüki- ja graveerimisseadmed/Laser, graveerimine ja CNC/CO2 laseri toiteplokid",
+      "cert": {
+        "mode": "a2-concept",
+        "detail": "kontseptsioonitest live-DB (7/13), THR 5"
+      },
+      "products": [
+        {
+          "id": "prod_01KNXXHFK6NKK2Q16E595FEV6C",
+          "title": "CO2 Laser Power Supply, 100W, Power Supply for 100W Laser Tube, Constant Current Protection, Open Circuit Protection, Fast Heat Dissipation, Compatible for Multi-brand Laser Engravers & Cutters"
+        },
+        {
+          "id": "prod_01KNXXHGFHANPX9RZSB6V6JBXG",
+          "title": "CO2 Laser Power Supply, 150W, Power Supply for 150W Laser Tube, Constant Current Protection, Open Circuit Protection, Fast Heat Dissipation, Compatible for Multi-brand Laser Engravers & Cutters"
+        },
+        {
+          "id": "prod_01KNXXHW6N5Y20T2FBYYTFBB9F",
+          "title": "CO2 Laser Power Supply, 40W, Power Supply for 40W Laser Tube, Constant Current Protection, Open Circuit Protection, Fast Heat Dissipation, Compatible for Multi-brand Laser Engravers & Cutters"
+        },
+        {
+          "id": "prod_01KNXXHGFKH4BJNX6ZZS5P7H9P",
+          "title": "CO2 Laser Power Supply, 60W, Power Supply for 60W Laser Tube, Constant Current Protection, Open Circuit Protection, Fast Heat Dissipation, Compatible for Multi-brand Laser Engravers & Cutters"
+        },
+        {
+          "id": "prod_01KNXXHFK5W2N12DABRY1046ZM",
+          "title": "CO2 Laser Power Supply, 80W, Power Supply for 80W Laser Tube, Constant Current Protection, Open Circuit Protection, Fast Heat Dissipation, Compatible for Multi-brand Laser Engravers & Cutters"
+        },
+        {
+          "id": "prod_01KNXX6NAG3AQ3T7SNWG66TH4F",
+          "title": "Laser Power Supply 100W for Co2 Laser Engraver Power Supply Laser Tube Laser Power Box for Laser Cutter Engraving Machine"
+        },
+        {
+          "id": "prod_01KNXX6NAGATMCZEQJQZ3B0R35",
+          "title": "Laser Power Supply 80W for Co2 Laser Engraver Power Supply Laser Tube Laser Power Box for Laser Cutter Engraving Machine"
+        }
+      ],
+      "assets": {
+        "name_en": "Laser Tube Power Supplies",
+        "description_et": "Siit leiad toiteplokid laseritorudega graveerimis- ja lõikemasinatele. Need tagavad laseritorule stabiilse toite ning on varustatud kaitsefunktsioonide ja tõhusa jahutusega. Sobivad nii remondiks kui ka masina uuendamiseks — vali oma laseritoru võimsusklassile ja masinale sobiv mudel.",
+        "description_en": "Here you will find power supplies for laser tube engraving and cutting machines. They provide stable power to the laser tube and come with protection features and efficient cooling. Suitable for repairs as well as machine upgrades — choose a model that matches your laser tube's power class and machine.",
+        "tagline_et": "Töökindel toide sinu lasergraveerijale ja -lõikurile",
+        "tagline_en": "Reliable power for your laser engraver and cutter",
+        "image_desc_et": "Heledal valgel taustal metallkorpusega laseritoru toiteplokk, millel on nähtavad jahutusavad ja ühendusklemmid.",
+        "_seoGate": {
+          "pass": true,
+          "offenders": [],
+          "attempts": 2
+        }
+      },
+      "type_profile": {
+        "description": "CO2-laseri toiteplokid laseri toru pingega varustamiseks graveerijates ja lõikurites: kõrgepinge-toiteplokid (laser power supply), toitekastid (laser power box) erineva võimsusega torudele. Püsivoolu- ja avatud ahela kaitsega. EI sisalda laserite CO2-torusid endid (need: Lasertorud ja toiteplokid) ega spindlimootorite toiteid.",
+        "ok": true,
+        "consensus": "OK",
+        "attempts": 1
+      },
+      "completeness": {
+        "checks": [
+          {
+            "n": "1 handle unikaalne",
+            "pass": true,
+            "note": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-co2-laseri-toiteplokid"
+          },
+          {
+            "n": "2 name_et (nimevärav)",
+            "pass": true,
+            "note": "CO2 laseri toiteplokid"
+          },
+          {
+            "n": "3 name_en (Fable)",
+            "pass": true,
+            "note": "Laser Tube Power Supplies"
+          },
+          {
+            "n": "4 nav parent-L2 kehtiv",
+            "pass": true,
+            "note": "v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc"
+          },
+          {
+            "n": "5 pilt (CDN primaar / Gemini fallback)",
+            "pass": true,
+            "note": "7 toodet → top-toote CDN-pilt → webp valge taust"
+          },
+          {
+            "n": "6 webp genereeritav",
+            "pass": true,
+            "note": "cat-thumbs/v4-reklaami-truki-ja-graveerimisseadmed-laser-graveerimine-ja-cnc-co2-laseri-toiteplokid.webp (build-cat-thumbs-l3.mjs)"
+          },
+          {
+            "n": "7 SEO (ET+EN kirj.+tagline, kategooria-tasand, 0 numbrit/lubadust)",
+            "pass": true,
+            "note": "4/4 täidetud · SEO-värav läbib"
+          },
+          {
+            "n": "8 Meili facet",
+            "pass": true,
+            "note": "tooted bind → reindeks → facet"
+          },
+          {
+            "n": "9 DB product_category rida",
+            "pass": true,
+            "note": "seed/INSERT transaktsioonis (gate #4)"
+          },
+          {
+            "n": "10 tooted seotud (≥1)",
+            "pass": true,
+            "note": "7 toodet"
+          },
+          {
+            "n": "11 täis-deploy",
+            "pass": true,
+            "note": "genyM → Meili → push mõlemad → redeploy (§4b)"
+          }
+        ],
+        "pass": true,
+        "fails": []
+      }
+    },
+    {
+      "ck": "a2:pcat_ks_4x1_4:pcat_e2_vaakumkulmkuivatid",
+      "foldedCks": [
+        "a2:pcat_ks_4x1_4:pcat_e2_vaakumkulmkuivatid"
+      ],
+      "name_et": "Vaakum-külmkuivatid",
+      "name_en": "Vacuum Freeze Dryers",
+      "handle": "v4-kodumasinad-ja-kodutehnika-koogitehnika-vaakum-kulmkuivatid",
+      "handleCollisionResolved": false,
+      "parentL2": "v4-kodumasinad-ja-kodutehnika-koogitehnika",
+      "parentL2_name": "Köögitehnika",
+      "n": 7,
+      "currentL3": "v4-kodumasinad-ja-kodutehnika-koogitehnika-toidukuivatid",
+      "srcId": "pcat_ks_4x1_4",
+      "srcName": "Toidukuivatid ja külmkuivatid",
+      "path": "Kodumasinad ja kodutehnika/Köögitehnika/Vaakum-külmkuivatid",
+      "cert": {
+        "mode": "a2-concept",
+        "detail": "kontseptsioonitest live-DB (7/13), THR 5"
+      },
+      "products": [
+        {
+          "id": "prod_01M76QVJ75ZS0HDCG8B4A0AB6X",
+          "title": "Vacuum Freeze Dryer Machine, 10-15 kg/Batch, 6 Trays, 10 Presets for Fruit Vegetable Meat, Durable Freestanding Freeze Drying Equipment with Wheel, App Control, LCD Touchscreen, Auto Defrost"
+        },
+        {
+          "id": "prod_01M7BWMY90714H1JADBDGWYC8R",
+          "title": "Vacuum Freeze Dryer Machine, 2-3 kg/Batch, 4 Trays, 5 Presets for Fruit Vegetable Meat Storage, Compact Countertop Freeze Drying Equipment with LCD Touchscreen, Auto Defrost, Carbon Steel"
+        },
+        {
+          "id": "prod_01M79A871TPVDPVGSM9A69WZBZ",
+          "title": "Vacuum Freeze Dryer Machine, 5-7 kg/Batch, 4 Trays, 10 Presets for Fruit Vegetable Meat, Durable Freestanding Freeze Drying Equipment with Wheel, App Control, LCD Touchscreen, Auto Defrost"
+        },
+        {
+          "id": "prod_01M79A871TBQJZWXXP6DQBMAJV",
+          "title": "Vacuum Freeze Dryer Machine, 5-7 kg/Batch, 4 Trays, 10 Presets for Fruit Vegetable Meat, Durable Freestanding Freeze Drying Equipment with Wheel, App Control, LCD Touchscreen, Auto Defrost"
+        },
+        {
+          "id": "prod_01M79A871TX12J03GK12556KN5",
+          "title": "Vacuum Freeze Dryer Machine, 8-12 kg/Batch, 5 Trays, 10 Presets  for Fruit Vegetable Meat, Durable Freestanding Freeze Drying Equipment with Wheel, App Control, LCD Touchscreen, Auto Defrost"
+        },
+        {
+          "id": "prod_01KNXXMAS7256DJ466M6CHBP7M",
+          "title": "Vacuum Freeze Dryer Machine, 8.8-13.2 LBS/Batch Food Freeze Drying Machine with 4-Layer Trays, Vacuum Pump, Adjustable Timer and Temperature Control, for Fruits Vegetables Meat, Black"
+        },
+        {
+          "id": "prod_01KNXXM9XB39VVGGAN3BQX51HT",
+          "title": "Vacuum Freeze Dryer Machine, 8.8-13.2 LBS/Batch Food Freeze Drying Machine with 4-Layer Trays, Vacuum Pump, Adjustable Timer and Temperature Control, for Fruits Vegetables Meat, White"
+        }
+      ],
+      "assets": {
+        "name_en": "Vacuum Freeze Dryers",
+        "description_et": "Vaakum-külmkuivatid võimaldavad kodus ja väiketootmises säilitada puuvilju, köögivilju, marju ja liha, hoides alles maitse, värvi ja toitained. Kategooriast leiad nii kompaktsed tööpinnale sobivad mudelid kui ka suurema mahuga ratastel seadmed. Valikul tasub jälgida sobivat partii suurust, aluste arvu ja juhtimisvõimalusi.",
+        "description_en": "Vacuum freeze dryers let you preserve fruits, vegetables, berries and meat at home or in small-scale production while retaining flavour, colour and nutrients. This category includes both compact countertop models and larger freestanding units on wheels. When choosing, consider the batch size, number of trays and control options that suit your needs.",
+        "tagline_et": "Säilita toidu maitse ja toitained aastateks",
+        "tagline_en": "Preserve flavour and nutrients for years",
+        "image_desc_et": "Heledal valgel taustal moodne vaakum-külmkuvati koos väljatõmmatud alustega, millel värvilised külmkuivatatud puuviljad.",
+        "_seoGate": {
+          "pass": true,
+          "offenders": [],
+          "attempts": 1
+        }
+      },
+      "type_profile": {
+        "description": "Vaakum-külmkuivatid toidu vee eemaldamiseks külmutamise ja vaakumi abil (sublimatsioon) säilitamiseks: alustega lauapealsed või põrandal seisvad külmkuivatusseadmed (vacuum freeze dryer) puu-, köögivilja ja liha jaoks, vaakumpumba ja temperatuuriregulaatoriga. EI sisalda sooja õhuga toidukuivateid (need: Toidukuivatid ja külmkuivatid).",
+        "ok": true,
+        "consensus": "OK",
+        "attempts": 1
+      },
+      "completeness": {
+        "checks": [
+          {
+            "n": "1 handle unikaalne",
+            "pass": true,
+            "note": "v4-kodumasinad-ja-kodutehnika-koogitehnika-vaakum-kulmkuivatid"
+          },
+          {
+            "n": "2 name_et (nimevärav)",
+            "pass": true,
+            "note": "Vaakum-külmkuivatid"
+          },
+          {
+            "n": "3 name_en (Fable)",
+            "pass": true,
+            "note": "Vacuum Freeze Dryers"
+          },
+          {
+            "n": "4 nav parent-L2 kehtiv",
+            "pass": true,
+            "note": "v4-kodumasinad-ja-kodutehnika-koogitehnika"
+          },
+          {
+            "n": "5 pilt (CDN primaar / Gemini fallback)",
+            "pass": true,
+            "note": "7 toodet → top-toote CDN-pilt → webp valge taust"
+          },
+          {
+            "n": "6 webp genereeritav",
+            "pass": true,
+            "note": "cat-thumbs/v4-kodumasinad-ja-kodutehnika-koogitehnika-vaakum-kulmkuivatid.webp (build-cat-thumbs-l3.mjs)"
+          },
+          {
+            "n": "7 SEO (ET+EN kirj.+tagline, kategooria-tasand, 0 numbrit/lubadust)",
+            "pass": true,
+            "note": "4/4 täidetud · SEO-värav läbib"
+          },
+          {
+            "n": "8 Meili facet",
+            "pass": true,
+            "note": "tooted bind → reindeks → facet"
+          },
+          {
+            "n": "9 DB product_category rida",
+            "pass": true,
+            "note": "seed/INSERT transaktsioonis (gate #4)"
+          },
+          {
+            "n": "10 tooted seotud (≥1)",
+            "pass": true,
+            "note": "7 toodet"
+          },
+          {
+            "n": "11 täis-deploy",
+            "pass": true,
+            "note": "genyM → Meili → push mõlemad → redeploy (§4b)"
+          }
+        ],
+        "pass": true,
+        "fails": []
+      }
+    },
+    {
+      "ck": "a2:pcat_el_12x1_31:pcat_e2_mahjongilauad",
+      "foldedCks": [
+        "a2:pcat_el_12x1_31:pcat_e2_mahjongilauad"
+      ],
+      "name_et": "Mahjongilauad",
+      "name_en": "Mahjong Tables",
+      "handle": "v4-sport-ja-vaba-aeg-mangulauad-ja-sisemangud-mahjongilauad",
+      "handleCollisionResolved": false,
+      "parentL2": "v4-sport-ja-vaba-aeg-mangulauad-ja-sisemangud",
+      "parentL2_name": "Mängulauad ja sisemängud",
+      "n": 5,
+      "currentL3": "v4-sport-ja-vaba-aeg-ouesport-ja-valimangud-lauamangud-ja-malekomplektid",
+      "srcId": "pcat_el_12x1_31",
+      "srcName": "Lauamängud ja malekomplektid",
+      "path": "Sport ja vaba aeg/Mängulauad ja sisemängud/Mahjongilauad",
+      "cert": {
+        "mode": "a2-concept",
+        "detail": "kontseptsioonitest live-DB (5/12), THR 5"
+      },
+      "products": [
+        {
+          "id": "prod_01KNXXCY4YVT0FTZ5N4R9WQJ13",
+          "title": "Mahjong Table with Mahjong Tiles Set, Fold-in-Half 4 Player Card Table with 144PCS Majiang Tiles and 3 Dice, Portable Bi-Folding Domino Table with Wear-Resistant Green Tabletop & Carrying Handle"
+        },
+        {
+          "id": "prod_01KNXXCY5NP3M2NEB1EAAA6DWG",
+          "title": "Mahjong Table, 4 Player Folding Domino Table with Wear-Resistant Green Tabletop, Portable Square Card Table with 4 Cup Holders & 4 Chip Trays for Mahjong Poker Puzzles, 35.4 x 35.4-inch"
+        },
+        {
+          "id": "prod_01KNXXCZ0X9KDWD80F6Q6E4ABC",
+          "title": "Mahjong Table, Fold-in-Half 4 Player Card Table with Wear-Resistant Green Tabletop, Portable Bi-Folding Square Domino Table with Carrying Handle for Outdoor Camping Picnic Party, 34 x 34-inch"
+        },
+        {
+          "id": "prod_01KNXXCZ1REXHV1Z7J54N3CPA7",
+          "title": "Mahjong Table, Square 4 Player Folding Card Table with 4 Cup Holders & 4 Chip Trays, Portable Domino Game Table with 1 Set of Dominoes for Mahjong Poke Puzzles, 35.4 x 35.4-inch, Black"
+        },
+        {
+          "id": "prod_01KNXXCY5M52TKACVRSE2PARTV",
+          "title": "Mahjong Table, Square 4 Player Folding Card Table with 4 Cup Holders & 4 Chip Trays, Portable Domino Game Table with 1 Set of Dominoes for Mahjong Poker Puzzles, 35.4 x 35.4-inch, White"
+        }
+      ],
+      "assets": {
+        "name_en": "Mahjong Tables",
+        "description_et": "Mahjongilauad on spetsiaalselt lauamängude jaoks loodud mängulauad, mis sobivad nii mahjongi, doomino kui ka kaardimängude mängimiseks pere ja sõpradega. Paljud mudelid on kokkupandavad ja kergesti transporditavad, mistõttu sobivad need nii koju, suvilasse kui ka üritustele. Valikul tasub jälgida laua suurust, lauaplaadi materjali ja lisamugavusi nagu topsihoidjad või kandekäepide.",
+        "description_en": "Mahjong tables are game tables designed specifically for board and tile games, perfect for playing mahjong, dominoes and card games with family and friends. Many models are foldable and easy to transport, making them suitable for home, summer house or events. When choosing, consider the table size, tabletop material and extra conveniences such as cup holders or a carrying handle.",
+        "tagline_et": "Mugav mängulaud igaks mahjongi- ja kaardiõhtuks",
+        "tagline_en": "The perfect table for every mahjong night",
+        "image_desc_et": "Heledal valgel taustal kokkupandav roheline mahjongilaud, millel on mahjongikivid ja topsihoidjad.",
+        "_seoGate": {
+          "pass": true,
+          "offenders": [],
+          "attempts": 1
+        }
+      },
+      "type_profile": {
+        "description": "Mahjongi ja kaardimängude mängulauad 4 mängijale: kokkuklapitavad ja kantavad ruudukujulised lauad kulumiskindla rohelise mänguplatiga (mahjong table, folding card table), sageli komplektis mahjongi/doominokividega, topsihoidjate ja žetoonisalvedega. EI sisalda pokerilaudu/katteid (need: Pokerilauad ja lauakatted) ega lauatennise/piljardilaudu.",
+        "ok": false,
+        "consensus": "GATE_FAIL",
+        "attempts": 4
+      },
+      "completeness": {
+        "checks": [
+          {
+            "n": "1 handle unikaalne",
+            "pass": true,
+            "note": "v4-sport-ja-vaba-aeg-mangulauad-ja-sisemangud-mahjongilauad"
+          },
+          {
+            "n": "2 name_et (nimevärav)",
+            "pass": true,
+            "note": "Mahjongilauad"
+          },
+          {
+            "n": "3 name_en (Fable)",
+            "pass": true,
+            "note": "Mahjong Tables"
+          },
+          {
+            "n": "4 nav parent-L2 kehtiv",
+            "pass": true,
+            "note": "v4-sport-ja-vaba-aeg-mangulauad-ja-sisemangud"
+          },
+          {
+            "n": "5 pilt (CDN primaar / Gemini fallback)",
+            "pass": true,
+            "note": "5 toodet → top-toote CDN-pilt → webp valge taust"
+          },
+          {
+            "n": "6 webp genereeritav",
+            "pass": true,
+            "note": "cat-thumbs/v4-sport-ja-vaba-aeg-mangulauad-ja-sisemangud-mahjongilauad.webp (build-cat-thumbs-l3.mjs)"
+          },
+          {
+            "n": "7 SEO (ET+EN kirj.+tagline, kategooria-tasand, 0 numbrit/lubadust)",
+            "pass": true,
+            "note": "4/4 täidetud · SEO-värav läbib"
+          },
+          {
+            "n": "8 Meili facet",
+            "pass": true,
+            "note": "tooted bind → reindeks → facet"
+          },
+          {
+            "n": "9 DB product_category rida",
+            "pass": true,
+            "note": "seed/INSERT transaktsioonis (gate #4)"
+          },
+          {
+            "n": "10 tooted seotud (≥1)",
+            "pass": true,
+            "note": "5 toodet"
+          },
+          {
+            "n": "11 täis-deploy",
+            "pass": true,
+            "note": "genyM → Meili → push mõlemad → redeploy (§4b)"
+          }
+        ],
+        "pass": true,
+        "fails": []
+      }
+    },
+    {
+      "ck": "a2:pcat_t3f_7_7:pcat_e2_keevituslaatsedjakaitsek",
+      "foldedCks": [
+        "a2:pcat_t3f_7_7:pcat_e2_keevituslaatsedjakaitsek"
+      ],
+      "name_et": "Keevitusläätsed ja kaitseklaasid",
+      "name_en": "Welding Lenses & Protective Glasses",
+      "handle": "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-keevituslaatsed-ja-kaitseklaasid",
+      "handleCollisionResolved": false,
+      "parentL2": "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine",
+      "parentL2_name": "Keevitus ja jootmine",
+      "n": 5,
+      "currentL3": "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-keevitusmaskid-ja-filtrid",
+      "srcId": "pcat_t3f_7_7",
+      "srcName": "Keevitusmaskid ja filtrid",
+      "path": "Tööriistad ja tarvikud/Keevitus ja jootmine/Keevitusläätsed ja kaitseklaasid",
+      "cert": {
+        "mode": "a2-concept",
+        "detail": "kontseptsioonitest live-DB (5/12), THR 5"
+      },
+      "products": [
+        {
+          "id": "prod_01KNXXS0Q8Q76SZM907W1BFPZS",
+          "title": "Auto Darkening Welding Lens 108 x 51 mm, Shade 10 True Color Welding Lens with Dual Arc Sensors, Compatible with Most Welding Helmets for TIG, MIG, MMA, ARC Applications"
+        },
+        {
+          "id": "prod_01KNXXS1JD6Z7C1NMZVZBC880D",
+          "title": "Auto Darkening Welding Lens 108 x 51 mm, Shade 11 True Color Welding Lens with Dual Arc Sensors, Compatible with Most Welding Helmets for TIG, MIG, MMA, ARC Applications"
+        },
+        {
+          "id": "prod_01KNXXS1JNNN79WESSHM35Y2MT",
+          "title": "Auto Darkening Welding Lens 108 x 51 mm, Shade 5-13 Adjustable True Color Welding Lens with Dual Arc Sensors, Compatible with Most Welding Helmets for TIG, MIG, MMA Applications"
+        },
+        {
+          "id": "prod_01KNXXS1JNAWXYFXQA5DSSAHAS",
+          "title": "Auto Darkening Welding Lens 108 x 51 mm, Shade 9 True Color Welding Lens with Dual Arc Sensors, Compatible with Most Welding Helmets for TIG, MIG, MMA, ARC Applications"
+        },
+        {
+          "id": "prod_01KNXXSAJJ28BPNYWN4H6446G3",
+          "title": "Welding Helmet Outer Cover Lens, 121 x 118mm 20PCS Outside Replacement Lens, Filter Protective Clear Covers Compatible with VEVOR CRIUS/METIS Series Auto Darkening Welding Helmets"
+        }
+      ],
+      "assets": {
+        "name_en": "Welding Lenses & Protective Glasses",
+        "description_et": "Siit leiad keevitusläätsed ja kaitseklaasid keevitusmaskide jaoks – nii isetumenevad läätsed kui ka vahetatavad kaitsekatted. Sobivad nii hobikeevitajale kui ka professionaalile, kes soovib silmi kaitsta ja hoida vaatevälja selgena. Valikul jälgi sobivust oma maski mudeliga ning kasutatavale keevitusviisile vastavat tumedusastet.",
+        "description_en": "Here you will find welding lenses and protective glasses for welding helmets – both auto-darkening lenses and replaceable cover lenses. Suitable for hobby welders and professionals alike who want to protect their eyes and keep a clear view. When choosing, check compatibility with your helmet model and a shade level that matches your welding method.",
+        "tagline_et": "Selge vaade ja kaitstud silmad igal keevitusel",
+        "tagline_en": "Clear view and protected eyes for every weld",
+        "image_desc_et": "Isetumenev keevituslääts tumeda klaasiga heledal valgel taustal.",
+        "_seoGate": {
+          "pass": true,
+          "offenders": [],
+          "attempts": 1
+        }
+      },
+      "type_profile": {
+        "description": "Keevitusmaski läätsed ja kaitseklaasid silmade kaitseks ja filtreerimiseks: automaatselt tumenevad keevitusläätsed (auto darkening welding lens), fikseeritud või reguleeritava tumedusastmega filtrid (shade filter), vahetatavad läbipaistvad kaitseklaasid/katteklaasid (outer/inner cover lens). EI sisalda terveid keevitusmaske ega peakatteid (need: Keevitusmaskid ja filtrid).",
+        "ok": true,
+        "consensus": "OK",
+        "attempts": 1
+      },
+      "completeness": {
+        "checks": [
+          {
+            "n": "1 handle unikaalne",
+            "pass": true,
+            "note": "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-keevituslaatsed-ja-kaitseklaasid"
+          },
+          {
+            "n": "2 name_et (nimevärav)",
+            "pass": true,
+            "note": "Keevitusläätsed ja kaitseklaasid"
+          },
+          {
+            "n": "3 name_en (Fable)",
+            "pass": true,
+            "note": "Welding Lenses & Protective Glasses"
+          },
+          {
+            "n": "4 nav parent-L2 kehtiv",
+            "pass": true,
+            "note": "v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine"
+          },
+          {
+            "n": "5 pilt (CDN primaar / Gemini fallback)",
+            "pass": true,
+            "note": "5 toodet → top-toote CDN-pilt → webp valge taust"
+          },
+          {
+            "n": "6 webp genereeritav",
+            "pass": true,
+            "note": "cat-thumbs/v4-tooriistad-ja-tarvikud-keevitus-ja-jootmine-keevituslaatsed-ja-kaitseklaasid.webp (build-cat-thumbs-l3.mjs)"
+          },
+          {
+            "n": "7 SEO (ET+EN kirj.+tagline, kategooria-tasand, 0 numbrit/lubadust)",
+            "pass": true,
+            "note": "4/4 täidetud · SEO-värav läbib"
+          },
+          {
+            "n": "8 Meili facet",
+            "pass": true,
+            "note": "tooted bind → reindeks → facet"
+          },
+          {
+            "n": "9 DB product_category rida",
+            "pass": true,
+            "note": "seed/INSERT transaktsioonis (gate #4)"
+          },
+          {
+            "n": "10 tooted seotud (≥1)",
+            "pass": true,
+            "note": "5 toodet"
+          },
+          {
+            "n": "11 täis-deploy",
+            "pass": true,
+            "note": "genyM → Meili → push mõlemad → redeploy (§4b)"
+          }
+        ],
+        "pass": true,
+        "fails": []
+      }
+    },
+    {
+      "ck": "a2:pcat_f4_16x2_4:pcat_e2_imavadvoodialused",
+      "foldedCks": [
+        "a2:pcat_f4_16x2_4:pcat_e2_imavadvoodialused"
+      ],
+      "name_et": "Imavad voodialused",
+      "name_en": "Absorbent Underpads",
+      "handle": "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-imavad-voodialused",
+      "handleCollisionResolved": false,
+      "parentL2": "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud",
+      "parentL2_name": "Meditsiinitarvikud",
+      "n": 6,
+      "currentL3": "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-inkontinentsitooted",
+      "srcId": "pcat_f4_16x2_4",
+      "srcName": "Inkontinentsitooted",
+      "path": "Meditsiin, labor ja teadus/Meditsiinitarvikud/Imavad voodialused",
+      "cert": {
+        "mode": "a2-concept",
+        "detail": "kontseptsioonitest live-DB (6/12), THR 5"
+      },
+      "products": [
+        {
+          "id": "prod_01KNXXN7MX9HR6QX6C40X2C1F6",
+          "title": "Disposable Underpads, 21\" x 36\" Incontinence Bed Pads, Super Absorbent Chux Pads with 5-Layer Protection for Bed Sofa and Mattress, Protective Bedwetting Pad for Pet Adult Kid Elderly (48-Pack)"
+        },
+        {
+          "id": "prod_01KNXXN7N1PEY0TW5178KVYBT5",
+          "title": "Disposable Underpads, 24\" x 36\" Incontinence Bed Pads, Super Absorbent Chux Pads with 5-Layer Protection for Bed Sofa and Mattress, Protective Bedwetting Pad for Pet Adult Kid Elderly (70-Pack)"
+        },
+        {
+          "id": "prod_01KNXXNSPSVJSVWFGNY9P3DWZ3",
+          "title": "Disposable Underpads, 30\" x 36\" Incontinence Bed Pads, Super Absorbent Chux Pads with 5-Layer Protection for Bed Sofa and Mattress, Protective Bedwetting Pad for Pet Adult Kid Elderly (70-Pack)"
+        },
+        {
+          "id": "prod_01KNXXN7N0C91MZ6ARJ8V3K10J",
+          "title": "Disposable Underpads, 30\" x 36\" Incontinence Bed Pads, Super Absorbent Chux Pads with 5-Layer Protection for Bed Sofa and Mattress, Protective Bedwetting Pad for Pet Adult Kid Elderly (75-Pack)"
+        },
+        {
+          "id": "prod_01KNXXNC6CQ66QJRX0P10CF84M",
+          "title": "Washable Underpads, 34 x 36-inch Reusable Bed Pads, Super Absorbent & Fast Drying Incontinence Bedwetting Pad for Bed Sofa and Mattress, Protective Pee Pads for Pet Adult Kid Elderly (10-Pack)"
+        },
+        {
+          "id": "prod_01KNXXNB8F494GE39GR5WHJR34",
+          "title": "Washable Underpads, 34 x 36-inch Reusable Bed Pads, Super Absorbent & Fast Drying Incontinence Bedwetting Pad for Bed Sofa and Mattress, Protective Pee Pads for Pet Adult Kid Elderly (6-Pack)"
+        }
+      ],
+      "assets": {
+        "name_en": "Absorbent Underpads",
+        "description_et": "Siit leiad ühekordsed ja pestavad imavad voodialused, mis kaitsevad voodit, diivanit ja madratsit niiskuse eest. Sobivad nii eakate ja laste hooldamisel kui ka lemmikloomadele. Vali enda vajadusele vastav suurus, tüüp ja pakendi kogus.",
+        "description_en": "Here you'll find disposable and washable absorbent underpads that protect beds, sofas and mattresses from moisture. Suitable for caring for the elderly and children, as well as for pets. Choose the size, type and pack quantity that fits your needs.",
+        "tagline_et": "Kindel kaitse voodile ja mööblile",
+        "tagline_en": "Reliable protection for beds and furniture",
+        "image_desc_et": "Heledal valgel taustal volditud valge imav voodialus, mille kõrval on näha pakendist väljavõetud alused virnas.",
+        "_seoGate": {
+          "pass": true,
+          "offenders": [],
+          "attempts": 1
+        }
+      },
+      "type_profile": {
+        "description": "Imavad voodi- ja pinnakaitsealused vedelike/inkontinentsi vastu: ühekordsed imavad alused (disposable underpads, chux pads), pestavad korduvkasutatavad alused (washable reusable bed pads), kihilise imavusega voodi-, diivani- ja madratsikaitsed inimestele ja lemmikloomadele. EI sisalda kehal kantavaid mähkmeid ega sidemeid (need: Inkontinentsitooted) ega uuringulaua katmispaberit (need: Ühekordsed katte- ja aluspaberid).",
+        "ok": false,
+        "consensus": "GATE_FAIL",
+        "attempts": 4
+      },
+      "completeness": {
+        "checks": [
+          {
+            "n": "1 handle unikaalne",
+            "pass": true,
+            "note": "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-imavad-voodialused"
+          },
+          {
+            "n": "2 name_et (nimevärav)",
+            "pass": true,
+            "note": "Imavad voodialused"
+          },
+          {
+            "n": "3 name_en (Fable)",
+            "pass": true,
+            "note": "Absorbent Underpads"
+          },
+          {
+            "n": "4 nav parent-L2 kehtiv",
+            "pass": true,
+            "note": "v4-meditsiin-ja-liikumisabi-meditsiinitarvikud"
+          },
+          {
+            "n": "5 pilt (CDN primaar / Gemini fallback)",
+            "pass": true,
+            "note": "6 toodet → top-toote CDN-pilt → webp valge taust"
+          },
+          {
+            "n": "6 webp genereeritav",
+            "pass": true,
+            "note": "cat-thumbs/v4-meditsiin-ja-liikumisabi-meditsiinitarvikud-imavad-voodialused.webp (build-cat-thumbs-l3.mjs)"
+          },
+          {
+            "n": "7 SEO (ET+EN kirj.+tagline, kategooria-tasand, 0 numbrit/lubadust)",
+            "pass": true,
+            "note": "4/4 täidetud · SEO-värav läbib"
+          },
+          {
+            "n": "8 Meili facet",
+            "pass": true,
+            "note": "tooted bind → reindeks → facet"
+          },
+          {
+            "n": "9 DB product_category rida",
+            "pass": true,
+            "note": "seed/INSERT transaktsioonis (gate #4)"
+          },
+          {
+            "n": "10 tooted seotud (≥1)",
+            "pass": true,
+            "note": "6 toodet"
+          },
+          {
+            "n": "11 täis-deploy",
+            "pass": true,
+            "note": "genyM → Meili → push mõlemad → redeploy (§4b)"
+          }
+        ],
+        "pass": true,
+        "fails": []
+      }
+    },
+    {
+      "ck": "a2:pcat_24hobu:pcat_e2_ratastelratsutusmanguasj",
+      "foldedCks": [
+        "a2:pcat_24hobu:pcat_e2_ratastelratsutusmanguasj"
+      ],
+      "name_et": "Ratastel ratsutusmänguasjad",
+      "name_en": "Ride-On Animal Toys",
+      "handle": "v4-lastekaubad-ouemanguasjad-ratastel-ratsutusmanguasjad",
+      "handleCollisionResolved": false,
+      "parentL2": "v4-lastekaubad-ouemanguasjad",
+      "parentL2_name": "Õuemänguasjad ja mänguväljak",
+      "n": 5,
+      "currentL3": "v4-lastekaubad-kiikhobud",
+      "srcId": "pcat_24hobu",
+      "srcName": "Kiikhobud",
+      "path": "Lastekaubad ja mänguasjad/Õuemänguasjad ja mänguväljak/Ratastel ratsutusmänguasjad",
+      "cert": {
+        "mode": "a2-concept",
+        "detail": "kontseptsioonitest live-DB (5/10), THR 5"
+      },
+      "products": [
+        {
+          "id": "prod_01KY5F0663HPZ7SSYWAWM2S7MF",
+          "title": "Ride On Horse, Riding Dinosaur Toys for Kids, Features Lifelike Dinosaur Roars, No Battery Required, 360-Degree Flexible Smooth Wheels, Soft Seat, 40 kg Max Load Capacity for Toddlers Ages 3+"
+        },
+        {
+          "id": "prod_01KY5F0579RPDS2QXEGPJD9V0Y",
+          "title": "Ride On Horse, Riding Pink Unicorn Toys for Kids, No Battery Required, Smooth Wheels with Anti-Roll Stop Ring, Upgraded Raised Seat, Handles, Pedals, 50 kg Max Load Capacity for Ages 3-8"
+        },
+        {
+          "id": "prod_01KY5F042AZ08ZEVHT621PWQYF",
+          "title": "Ride On Horse, Riding Pony Toys for Kids, No Battery Required, Smooth Wheels with Anti-Roll Stop Ring, Upgraded Raised Seat, Handles, Pedals, 50 kg Max Load Capacity for Ages 3-8"
+        },
+        {
+          "id": "prod_01KY5F03WM6BM3ZRCNCSFMTHJD",
+          "title": "Ride On Horse, Riding Pony Toys for Kids, No Battery Required, Smooth Wheels with Anti-Roll Stop Ring, Upgraded Raised Seat, Handles, Sturdy Pedals, 80 kg Max Load Capacity for Ages 6+"
+        },
+        {
+          "id": "prod_01KY5F05DQSKVJJH34TEDPX5DQ",
+          "title": "Ride On Horse, Riding Unicorn Toys for Kids, No Battery Required, Smooth Wheels with Anti-Roll Stop Ring, Upgraded Raised Seat, Handles, Sturdy Pedals, 80 kg Max Load Capacity for Ages 6+"
+        }
+      ],
+      "assets": {
+        "name_en": "Ride-On Animal Toys",
+        "description_et": "Ratastel ratsutusmänguasjad pakuvad lastele rõõmsat liikumist nii toas kui õues – siit leiad ponisid, ükssarvikuid, dinosaurusi ja teisi sõbralikke tegelasi, kellel laps saab ise hoogu anda. Need mänguasjad arendavad tasakaalu ja koordinatsiooni ning sobivad suurepäraselt aktiivseks mänguks. Valikul jälgi lapse vanusele ja kasvule sobivat suurust ning istme mugavust.",
+        "description_en": "Ride-on animal toys bring joyful movement for kids both indoors and outdoors – discover ponies, unicorns, dinosaurs and other friendly characters that children propel themselves. These toys help develop balance and coordination and are perfect for active play. When choosing, consider the right size for your child's age and height as well as seat comfort.",
+        "tagline_et": "Hoogne ratsasõit igale väikesele seiklejale!",
+        "tagline_en": "Galloping fun for every little adventurer!",
+        "image_desc_et": "Heledal valgel taustal värviline ratastel ratsutatav poni-mänguasi pehme istme ja käepidemetega.",
+        "_seoGate": {
+          "pass": true,
+          "offenders": [],
+          "attempts": 1
+        }
+      },
+      "type_profile": {
+        "description": "Ratastel pealeistutavad loommänguasjad lastele sõitmiseks ja liikumiseks: ratsutushobused (ride on horse), ükssarved (riding unicorn), ponid (riding pony), dinosaurused (riding dinosaur) ratastel, istme, käepidemete ja pedaalidega. EI sisalda õõtsuvaid kiikhobuseid (need: Kiikhobud) ega mootoriga elektriautosid (need: Kiikautod).",
+        "ok": true,
+        "consensus": "OK",
+        "attempts": 1
+      },
+      "completeness": {
+        "checks": [
+          {
+            "n": "1 handle unikaalne",
+            "pass": true,
+            "note": "v4-lastekaubad-ouemanguasjad-ratastel-ratsutusmanguasjad"
+          },
+          {
+            "n": "2 name_et (nimevärav)",
+            "pass": true,
+            "note": "Ratastel ratsutusmänguasjad"
+          },
+          {
+            "n": "3 name_en (Fable)",
+            "pass": true,
+            "note": "Ride-On Animal Toys"
+          },
+          {
+            "n": "4 nav parent-L2 kehtiv",
+            "pass": true,
+            "note": "v4-lastekaubad-ouemanguasjad"
+          },
+          {
+            "n": "5 pilt (CDN primaar / Gemini fallback)",
+            "pass": true,
+            "note": "5 toodet → top-toote CDN-pilt → webp valge taust"
+          },
+          {
+            "n": "6 webp genereeritav",
+            "pass": true,
+            "note": "cat-thumbs/v4-lastekaubad-ouemanguasjad-ratastel-ratsutusmanguasjad.webp (build-cat-thumbs-l3.mjs)"
+          },
+          {
+            "n": "7 SEO (ET+EN kirj.+tagline, kategooria-tasand, 0 numbrit/lubadust)",
+            "pass": true,
+            "note": "4/4 täidetud · SEO-värav läbib"
+          },
+          {
+            "n": "8 Meili facet",
+            "pass": true,
+            "note": "tooted bind → reindeks → facet"
+          },
+          {
+            "n": "9 DB product_category rida",
+            "pass": true,
+            "note": "seed/INSERT transaktsioonis (gate #4)"
+          },
+          {
+            "n": "10 tooted seotud (≥1)",
+            "pass": true,
+            "note": "5 toodet"
+          },
+          {
+            "n": "11 täis-deploy",
+            "pass": true,
+            "note": "genyM → Meili → push mõlemad → redeploy (§4b)"
+          }
+        ],
+        "pass": true,
+        "fails": []
+      }
+    },
+    {
+      "ck": "a2:merge:pcat_e2_infrapunasaunatekid",
+      "foldedCks": [
+        "a2:merge:pcat_e2_infrapunasaunatekid"
+      ],
+      "name_et": "Infrapuna saunatekid",
+      "name_en": "Infrared Sauna Blankets",
+      "handle": "v4-saun-infrapuna-saunatekid",
+      "handleCollisionResolved": false,
+      "parentL2": "v4-saun",
+      "parentL2_name": "Saun",
+      "n": 10,
+      "currentL3": "v4-tervis-hooldus-ja-ilu-isikuhooldusseadmed-infrapuna-ja-soojendusseadmed",
+      "srcId": "merge:pcat_e2_infrapunasaunatekid",
+      "srcName": "Infrapuna-soojendus + Infrapunasaunad (ühendatud)",
+      "path": "Aed ja aiatehnika/Saun/Infrapuna saunatekid",
+      "cert": {
+        "mode": "a2-merge",
+        "detail": "partii-sisene kontseptsiooni-ühendus: Infrapuna- ja soojendusseadmed:«Infrapuna saunatekid»(5) + Infrapunasaunad:«Infrapuna-saunatekid»(5) = 10 · sama kontseptsioon kahest allikast → üks L3; L2=Saun (wellness-toode, mitte isikuhooldusseade)"
+      },
+      "products": [
+        {
+          "id": "prod_01KNXX9S22RNE3KKFKGQQYXZ0X",
+          "title": "Sauna Blanket Far Infrared Heating with Arm Holes for Detox Oxford 180 x 79 cm"
+        },
+        {
+          "id": "prod_01KNXX9S18WT6MHCTHGTXF2V11",
+          "title": "Sauna Blanket Far Infrared Heating with Arm Holes for Detox Oxford 190 x 89 cm"
+        },
+        {
+          "id": "prod_01KNXX9R4RXFRGM0P7T0V6V3H0",
+          "title": "Sauna Blanket for Detoxification, Portable Far Infrared Sauna for Home Relaxation, 1-6 Level Adjustable Temprature Rannge 35-85°C, 1-60 Minutes Timer, Far Infrared Carbon Heating Sauna Bag"
+        },
+        {
+          "id": "prod_01KNXX9S11AXQ46R0RCS9TC7EZ",
+          "title": "Sauna Blanket for Detoxification, Portable Far Infrared Sauna for Home with Arm Holes for Comfort, 1-6 Level Adjustable Temprature Rannge 35-85°C, 1-60 Minutes Timer, Carbon Fiber Heating"
+        },
+        {
+          "id": "prod_01KNXX9VRMBRFP0GVQFYNN03ZN",
+          "title": "Sauna Blanket for Detoxification, Portable Far Infrared Sauna for Home, PU Sauna Bag w/  Therapy Stones & Carbon Fiber Heating, 1-6 Level Adjustable Temp 35-85°C, 1-60 Minutes Timer, 1900x900mm"
+        },
+        {
+          "id": "prod_01M26ZRE5ZXZBKKTDT83SV4SSC",
+          "title": "Infrared Sauna Blanket 185 x 90 cm, Portable PU Leather Sauna Bag, Even Heating for Home Detox & Relaxation, Temp Control & Timer, Full-Body Heating Wrap with Towel Liner, Carry Bag, Black"
+        },
+        {
+          "id": "prod_01M26ZRE5ZP8H0X5BRBAE6XGZF",
+          "title": "Infrared Sauna Blanket 71 x 32 in, Portable Oxford Fabric Sauna Bag, Even Heating for Home Detox & Relaxation, Temp Control & Timer, Lightweight Full-Body Heating Wrap with Carry Bag, Black"
+        },
+        {
+          "id": "prod_01M1D7S7SN12ZM8QKKDE6N1T37",
+          "title": "Infrared Sauna Blanket with Armholes, 180 x 80 cm Portable Sauna Bag, Even Heating for Home Detox & Relaxation, Temp Control & Timer, Lightweight Oxford Fabric Heating Wrap with Carry Bag, Black"
+        },
+        {
+          "id": "prod_01M1D7S7SN457W6K0PJHGM8BC7",
+          "title": "Infrared Sauna Blanket with Armholes, 180 x 90 cm Portable Sauna Bag, Even Heating for Home Detox & Relaxation, Temp Control & Timer, PU Leather Heating Wrap with Towel Liner, Carry Bag, Black"
+        },
+        {
+          "id": "prod_01M1WP5MMAFX6RXTYR6RJBG8NC",
+          "title": "Infrared Sauna Blanket with Mineral Stones, 185 x 90 cm Sauna Bag, Zero EMF, Portable for Home Detox and Relaxation, Temperature Control & Timer, PU Leather Heating Wrap with Carry Bag, Black"
+        }
+      ],
+      "assets": {
+        "name_en": "Infrared Sauna Blankets",
+        "description_et": "Infrapuna saunatekid toovad sauna mõnusa soojuse otse koju – lamades ja lõõgastudes. Siit leiad kaasaskantavad saunatekid koduseks lõõgastumiseks, taastumiseks ja heaolurutiini täiendamiseks. Valikul tasub jälgida sobivat suurust, materjali ning mugavaid lisavõimalusi nagu reguleeritav soojus ja taimer.",
+        "description_en": "Infrared sauna blankets bring the cosy warmth of a sauna straight to your home – simply lie back and relax. Here you'll find portable sauna blankets for home relaxation, recovery and wellness routines. When choosing, consider the right size, material and convenient features such as adjustable heat and a timer.",
+        "tagline_et": "Sauna soojus ja lõõgastus mugavalt kodus",
+        "tagline_en": "Sauna warmth and relaxation at home",
+        "image_desc_et": "Heledal valgel taustal avatud infrapuna saunatekk, millel on nähtav sile pind, tõmblukk ja juhtpult.",
+        "_seoGate": {
+          "pass": true,
+          "offenders": [],
+          "attempts": 1
+        }
+      },
+      "type_profile": {
+        "description": "Kaasaskantavad infrapuna-saunatekid keha ümbritsevaks kuumutamiseks ja detoksiks kodus: kauginfrapuna-kütteteki/-kotiga mähised (infrared sauna blanket, sauna bag), käeavadega mudelid, süsinikkiud-küttega, temperatuuri- ja taimerijuhtimisega, PU- või Oxford-kangast. EI sisalda infrapuna-saunakabiine (need: Infrapunasaunad) ega saunaahje/keriseid.",
+        "ok": true,
+        "consensus": "OK",
+        "attempts": 1
+      },
+      "completeness": {
+        "checks": [
+          {
+            "n": "1 handle unikaalne",
+            "pass": true,
+            "note": "v4-saun-infrapuna-saunatekid"
+          },
+          {
+            "n": "2 name_et (nimevärav)",
+            "pass": true,
+            "note": "Infrapuna saunatekid"
+          },
+          {
+            "n": "3 name_en (Fable)",
+            "pass": true,
+            "note": "Infrared Sauna Blankets"
+          },
+          {
+            "n": "4 nav parent-L2 kehtiv",
+            "pass": true,
+            "note": "v4-saun"
+          },
+          {
+            "n": "5 pilt (CDN primaar / Gemini fallback)",
+            "pass": true,
+            "note": "10 toodet → top-toote CDN-pilt → webp valge taust"
+          },
+          {
+            "n": "6 webp genereeritav",
+            "pass": true,
+            "note": "cat-thumbs/v4-saun-infrapuna-saunatekid.webp (build-cat-thumbs-l3.mjs)"
+          },
+          {
+            "n": "7 SEO (ET+EN kirj.+tagline, kategooria-tasand, 0 numbrit/lubadust)",
+            "pass": true,
+            "note": "4/4 täidetud · SEO-värav läbib"
+          },
+          {
+            "n": "8 Meili facet",
+            "pass": true,
+            "note": "tooted bind → reindeks → facet"
+          },
+          {
+            "n": "9 DB product_category rida",
+            "pass": true,
+            "note": "seed/INSERT transaktsioonis (gate #4)"
+          },
+          {
+            "n": "10 tooted seotud (≥1)",
+            "pass": true,
+            "note": "10 toodet"
+          },
+          {
+            "n": "11 täis-deploy",
+            "pass": true,
+            "note": "genyM → Meili → push mõlemad → redeploy (§4b)"
+          }
+        ],
+        "pass": true,
+        "fails": []
+      }
+    },
+    {
+      "ck": "a2:merge:pcat_e2_lastemangutelgidjatunnel",
+      "foldedCks": [
+        "a2:merge:pcat_e2_lastemangutelgidjatunnel"
+      ],
+      "name_et": "Laste mängutelgid ja tunnelid",
+      "name_en": "Kids Play Tents & Tunnels",
+      "handle": "v4-lastekaubad-ouemanguasjad-laste-mangutelgid-ja-tunnelid",
+      "handleCollisionResolved": false,
+      "parentL2": "v4-lastekaubad-ouemanguasjad",
+      "parentL2_name": "Õuemänguasjad ja mänguväljak",
+      "n": 17,
+      "currentL3": "v4-sport-ja-vaba-aeg-manguasjad-lastele-ronimismanguasjad-ja-ronimiskomplektid",
+      "srcId": "merge:pcat_e2_lastemangutelgidjatunnel",
+      "srcName": "Ronimismänguasjad + Mängumajad (ühendatud)",
+      "path": "Lastekaubad ja mänguasjad/Õuemänguasjad ja mänguväljak/Laste mängutelgid ja tunnelid",
+      "cert": {
+        "mode": "a2-merge",
+        "detail": "partii-sisene kontseptsiooni-ühendus: Ronimismänguasjad ja ronimiskomplektid:«Laste mängutelgid ja tunnelid»(7) + Mängumajad ja telgid:«Laste mängutelgid»(10) = 17 · sama kontseptsioon kahest allikast (sama L2) → üks L3"
+      },
+      "products": [
+        {
+          "id": "prod_01KNXXBWRJM3CSFBQS7GBNN8AD",
+          "title": "3 in 1 Kids Play Tent with Tunnel for Boys, Girls, Babies and Toddlers, Indoor/Outdoor Pop Up Playhouse with Carrying Bag & Banding Straps Birthday Gifts, Royal Blue Color Rocket Theme"
+        },
+        {
+          "id": "prod_01KNXXC1A36ZV5BYZ69ASHP217",
+          "title": "3 in 1 Kids Play Tent with Tunnel for Boys, Girls, Babies and Toddlers, Indoor/Outdoor Pop Up Playhouse with Carrying Bag & Banding Straps as Birthday Gifts, Red/Yellow/Blue Multicolor"
+        },
+        {
+          "id": "prod_01KNXXC0CATJKNN59CS0EYA7SZ",
+          "title": "3 in 1 Kids Play Tent with Tunnel for Girls, Princes, Boys, Babies and Toddlers, Indoor/Outdoor Pop Up Playhouse with Carrying Bag & Banding Straps as Birthday Gifts, Magenta Color"
+        },
+        {
+          "id": "prod_01KNXXC0D68HDN86DBPF35BBED",
+          "title": "3 in 1 Kids Play Tent with Tunnel, Basketball Hoop for Boys, Girls, Babies and Toddlers, Indoor/Outdoor Pop Up Playhouse with Carrying Bag & Banding Straps Birthday Gifts, Blue Ocean"
+        },
+        {
+          "id": "prod_01KNXXBZF1EMHJPDJPP87DBWVQ",
+          "title": "5 in 1 Kids Play Tent with Tunnel, Basketball Hoop for Boys, Girls, Babies and Toddlers, Indoor/Outdoor Pop Up Playhouse with Carrying Bag & Banding Straps Birthday Gifts, Red/Yellow/Blue"
+        },
+        {
+          "id": "prod_01KNXXC0D3Y3SB67CP8F8142Q3",
+          "title": "Kids Play Tunnel Tent for Toddlers, Colorful Pop Up Caterpillar Crawl Tunnel Toy for Baby or Pet, Collapsible Gift for Boy and Girl Play Tunnel Indoor and Outdoor Game, Multicolor"
+        },
+        {
+          "id": "prod_01KNXXC0CVM111KK2VJVZ1AXZM",
+          "title": "Kids Play Tunnel Tent for Toddlers, Colorful Pop Up Crawl Tunnel Toy for Baby or Pet, Collapsible Gift for Boy and Girl Play Tunnel Indoor and Outdoor Game Red/Yellow/Blue Multicolor"
+        },
+        {
+          "id": "prod_01M47BPXRBBZ1PSN3MDDAV32YB",
+          "title": "Kids Play Tent 2 in 1 Wood Frame Toddler Tent with Padded Mat Beige, for Girls Boys Birthday Play, Indoor & Outdoor Playhouse, Cozy Reading Corner, with Stars Lights, Pompoms, Breathable Window"
+        },
+        {
+          "id": "prod_01M35WHGGK5AVMHP4DM9HH285D",
+          "title": "Kids Play Tent Fiberglass Frame Playhouse for Kids Padded Mat Beige, for Toddlers Girls Boys, Indoor & Outdoor, Reading Nook Nap Bed Tent, with Stars Lights, Carry Bag, Flag, Breathable Window"
+        },
+        {
+          "id": "prod_01M35WHGGK0JNBEQMAZQMFNQCM",
+          "title": "Kids Play Tent PVC Frame Playhouse for Kids with Padded Mat Blue, for Toddlers Girls Boys, Indoor & Outdoor, Reading Nook Nap Bed Tent, with Stars Lights, Carry Bag, Flag, Breathable Window"
+        },
+        {
+          "id": "prod_01M35WHGGJRVASZH9BH3Y29QH5",
+          "title": "Kids Play Tent PVC Frame Playhouse for Kids with Padded Mat Pink, for Toddlers Girls Boys, Indoor & Outdoor, Reading Nook Nap Bed Tent, with Stars Lights, Carry Bag, Flag, Breathable Window"
+        },
+        {
+          "id": "prod_01M47BPXRBVMZJWGM01PMKXXAJ",
+          "title": "Kids Play Tent Pine Wood Teepee Tent for Kids Cotton Canvas Pink, for Toddlers Girls Boys Play, Indoor & Outdoor, with Padded Mat, Stars Lights, Carry Bag, Flag, Breathable Window, Pompom"
+        },
+        {
+          "id": "prod_01M35WHGGK34NJP10A8MP70QGJ",
+          "title": "Kids Play Tent with Eave 2 in 1 Toddler Tent with Padded Mat Beige, for Girls Boys Play, Indoor & Outdoor Large Playhouse, with Stars Lights, Carry Bag, Flag, 2 Doors & 2 Breathable Windows"
+        },
+        {
+          "id": "prod_01KNXXDZFRJVM98TH31A9XJ1X5",
+          "title": "Kids Play Tent, Kids Tent for Kids 1-5 Years Old, Toddler Tent with Mat and Tent Lamp, Tent for Kids with Windows for Indoor and Outdoor, Play House Castle Tent for Boys and Girls, Beige"
+        },
+        {
+          "id": "prod_01KNXXDZFTM7GRVD76WBZ1ZMA2",
+          "title": "Kids Play Tent, Kids Tent for Kids 1-5 Years Old, Toddler Tent with Mat and Tent Lamp, Tent for Kids with Windows for Indoor and Outdoor, Yurt Tent for Boys and Girls, Beige"
+        },
+        {
+          "id": "prod_01KNXXE0CHZPQFB8BEGJHVWM6H",
+          "title": "Kids Play Tent, Teepee Tent for Kids 1-5 Years Old, Foldable Toddler Tent with Mat and Carrying Bag, Tent for Kids with Windows for Indoor and Outdoor, Kids Tent for Boys and Girls, Beige"
+        },
+        {
+          "id": "prod_01KNXXDZFWZ9WJXCFYRZKVFA4Q",
+          "title": "Kids Play Tent, Teepee Tent for Kids 1-5 Years Old, Toddler Tent with Mat and Plush Decorative Balls, Tent for Kids with Windows for Indoor and Outdoor, for Boys and Girls, Beige"
+        }
+      ],
+      "assets": {
+        "name_en": "Kids Play Tents & Tunnels",
+        "description_et": "Siit leiad värvikirevad mängutelgid, roomamistunnelid ja nende kombinatsioonid, mis muudavad nii toa kui ka õue põnevaks seiklusmaaks. Sobivad beebidele, väikelastele ja suurematele mudilastele mängimiseks, peitusepaikadeks ja aktiivseks liikumiseks. Valikul tasub jälgida teemat, värvilahendust ning kui lihtsalt telk kokku käib ja kaasa võtta annab.",
+        "description_en": "Discover colorful play tents, crawl tunnels and combined playsets that turn any room or backyard into an exciting adventure zone. Suitable for babies, toddlers and older kids for playing, hiding and active fun. When choosing, consider the theme, colors and how easily the tent folds up and travels along.",
+        "tagline_et": "Lapse oma seiklusmaa – toas ja õues!",
+        "tagline_en": "Your child's own adventure world, indoors and out!",
+        "image_desc_et": "Värviline laste pop-up mängutelk koos roomamistunneliga heledal valgel taustal.",
+        "_seoGate": {
+          "pass": true,
+          "offenders": [],
+          "attempts": 1
+        }
+      },
+      "type_profile": {
+        "description": "Laste mängutelgid ja roomamistunnelid sise- ja välismänguks: pop-up mängutelgid (pop up play tent), 3-in-1/5-in-1 telk-tunnel komplektid (play tent with tunnel), roomamistunnelid (crawl tunnel), tipi/vigvam-telgid (teepee tent), puit- või kiudklaasraamiga mängumajad matiga (playhouse with mat). Mõeldud väikelastele. EI sisalda matkatelke.",
+        "ok": true,
+        "consensus": "OK",
+        "attempts": 1
+      },
+      "completeness": {
+        "checks": [
+          {
+            "n": "1 handle unikaalne",
+            "pass": true,
+            "note": "v4-lastekaubad-ouemanguasjad-laste-mangutelgid-ja-tunnelid"
+          },
+          {
+            "n": "2 name_et (nimevärav)",
+            "pass": true,
+            "note": "Laste mängutelgid ja tunnelid"
+          },
+          {
+            "n": "3 name_en (Fable)",
+            "pass": true,
+            "note": "Kids Play Tents & Tunnels"
+          },
+          {
+            "n": "4 nav parent-L2 kehtiv",
+            "pass": true,
+            "note": "v4-lastekaubad-ouemanguasjad"
+          },
+          {
+            "n": "5 pilt (CDN primaar / Gemini fallback)",
+            "pass": true,
+            "note": "17 toodet → top-toote CDN-pilt → webp valge taust"
+          },
+          {
+            "n": "6 webp genereeritav",
+            "pass": true,
+            "note": "cat-thumbs/v4-lastekaubad-ouemanguasjad-laste-mangutelgid-ja-tunnelid.webp (build-cat-thumbs-l3.mjs)"
+          },
+          {
+            "n": "7 SEO (ET+EN kirj.+tagline, kategooria-tasand, 0 numbrit/lubadust)",
+            "pass": true,
+            "note": "4/4 täidetud · SEO-värav läbib"
+          },
+          {
+            "n": "8 Meili facet",
+            "pass": true,
+            "note": "tooted bind → reindeks → facet"
+          },
+          {
+            "n": "9 DB product_category rida",
+            "pass": true,
+            "note": "seed/INSERT transaktsioonis (gate #4)"
+          },
+          {
+            "n": "10 tooted seotud (≥1)",
+            "pass": true,
+            "note": "17 toodet"
+          },
+          {
+            "n": "11 täis-deploy",
+            "pass": true,
+            "note": "genyM → Meili → push mõlemad → redeploy (§4b)"
+          }
+        ],
+        "pass": true,
+        "fails": []
+      }
+    }
+  ]
+}
