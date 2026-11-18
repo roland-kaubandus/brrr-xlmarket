@@ -66,7 +66,10 @@ export async function createL3Batch({
 }) {
   const C = resolveContainers();
   if (!C.ok) return { ok: false, reason: `Konteiner puudu: db=${!!C.DB} meili=${!!C.MEILI} medusa=${!!C.MEDUSA} sf=${!!C.SF}` };
-  const { DB, MEILI, MEDUSA, SF } = C;
+  // NB `let`, mitte `const`: Coolify deploy [7/9] taasloob konteinerid UUE timestamp-nimega → vana nimi
+  // aegub ("No such container"). Peale deploy'd re-resolvime ja reassignime; psql/psqlTx/rollback sulgevad
+  // nende muutujate üle, nii et värske nimi jõuab KÕIKI järgnevaisse docker exec'eisse (juurpõhjus 2026-11-18).
+  let { DB, MEILI, MEDUSA, SF } = C;
   // ── STACK-LUKK (item 1, HARD RULE #5 — jagatud mootor = ETAPP + öine auto-create): live-write EI tohi
   // käia keset deploy-recreate'i. Re-entrantne → runL3Batches'i mitu partiid hoiavad ÜHE luku (1. live-partii
   // võtab, hoitakse exit'ini). dryRun-partii EI lukusta. Keeldub kiirelt kui deploy käib. ──
@@ -473,6 +476,15 @@ export async function createL3Batch({
     // 7. Coolify redeploy
     console.log("[7/9] Coolify staging redeploy");
     sh(`bash ${REPO}/scripts/coolify-deploy.sh`); deployed = true;
+    // Coolify recreate'b konteinerid UUE timestamp-nimega (nt db-k33g…-093837 → …-192927) → vana DB/MEDUSA
+    // nimi aegub. Re-resolvime ENNE järgnevaid docker exec'e (review_decision_log INSERT [8/9] JA rollback'i
+    // DB-taaste), muidu "No such container" → FATAAL + vigane rollback (DB jääb taastamata). deploy ootab
+    // UUTE konteinerite healthy-olekut (coolify-deploy.sh), seega siin on uued juba üleval.
+    try {
+      const C2 = resolveContainers();
+      if (C2.DB) DB = C2.DB; if (C2.MEDUSA) MEDUSA = C2.MEDUSA; if (C2.MEILI) MEILI = C2.MEILI; if (C2.SF) SF = C2.SF;
+      console.log(`    ♻️  konteinerid re-resolvitud peale deploy'd (DB=${DB})`);
+    } catch (e) { console.error("  ⚠️ konteineri re-resolve kukkus peale deploy'd: " + String(e.message).slice(0, 120)); }
 
     // 8. Tervisekontroll
     console.log("[8/9] Tervisekontroll — L3 nähtavus (helde oote-aken)");
