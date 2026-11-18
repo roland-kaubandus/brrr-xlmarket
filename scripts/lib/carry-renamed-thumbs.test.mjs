@@ -4,7 +4,7 @@
  * uus handle pildita → INV-20/26 FAIL → blokeeris A2. See test kaitseb regressiooni eest.
  * Jooksuta: cd scripts && node lib/carry-renamed-thumbs.test.mjs
  */
-import { carryRenamedThumbs, parseRenameRows } from "./carry-renamed-thumbs.mjs";
+import { carryRenamedThumbs, parseRenameRows, reconcileAliasesAfterCarry } from "./carry-renamed-thumbs.mjs";
 import { mkdtempSync, writeFileSync, existsSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
@@ -97,6 +97,54 @@ console.log("\n=== mitu renamet partiis + onCarry viga ei blokeeri ===");
   eq("mõlemad carried", res.carried.sort(), ["a → a2", "b → b2"]);
   ok("a2 olemas vaatamata onCarry-veale", existsSync(webp(d, "a2")));
   ok("b2 olemas vaatamata onCarry-veale", existsSync(webp(d, "b2")));
+  rmSync(d, { recursive: true, force: true });
+}
+
+console.log("\n=== reconcileAliasesAfterCarry: self-alias (VARIANT-B rename) → kustuta + kommentaarid säilivad ===");
+{
+  const d = mkdtempSync(path.join(tmpdir(), "carry-alias-"));
+  const f = path.join(d, "aliases.yaml");
+  writeFileSync(f,
+    "# päis kommentaar\n" +
+    "ice-machines: commercial-ice\n" +         // legacy-sihtmärk, EI nimetatud ümber → muutmata
+    "\n" +
+    "# rename-alias (VARIANT-B)\n" +
+    "v4-uus-soojapuhurid: v4-vana-ruumisoojendid\n" +  // vana nimetati uueks → self → kustuta
+    "x-muu: v4-vana-ruumisoojendid\n");         // teine alias samale vanale → retarget uuele
+  const res = reconcileAliasesAfterCarry(f, [{ from_slug: "v4-vana-ruumisoojendid", to_slug: "v4-uus-soojapuhurid" }]);
+  const body = readFileSync(f, "utf8");
+  eq("dropped self-alias", res.dropped, ["v4-uus-soojapuhurid → v4-vana-ruumisoojendid"]);
+  eq("retargeted muu alias", res.retargeted, ["x-muu: v4-vana-ruumisoojendid → v4-uus-soojapuhurid"]);
+  ok("self-alias rida kustutatud", !body.includes("v4-uus-soojapuhurid: v4-vana-ruumisoojendid"));
+  ok("muu alias suunatud uuele", body.includes("x-muu: v4-uus-soojapuhurid"));
+  ok("legacy-alias muutmata", body.includes("ice-machines: commercial-ice"));
+  ok("päis-kommentaar säilis", body.includes("# päis kommentaar"));
+  ok("vahe-kommentaar säilis", body.includes("# rename-alias (VARIANT-B)"));
+  rmSync(d, { recursive: true, force: true });
+}
+
+console.log("\n=== reconcileAliasesAfterCarry: idempotent + puudub-fail + tühi renames ===");
+{
+  const d = mkdtempSync(path.join(tmpdir(), "carry-alias2-"));
+  const f = path.join(d, "aliases.yaml");
+  writeFileSync(f, "a: b\nc: d\n");
+  eq("tühi renames → no-op", reconcileAliasesAfterCarry(f, []), { retargeted: [], dropped: [] });
+  const r1 = reconcileAliasesAfterCarry(f, [{ from_slug: "b", to_slug: "e" }]);
+  eq("esimene jooks retargetib a", r1.retargeted, ["a: b → e"]);
+  const r2 = reconcileAliasesAfterCarry(f, [{ from_slug: "b", to_slug: "e" }]); // b pole enam ühegi value
+  eq("teine jooks idempotent (b kadunud)", r2, { retargeted: [], dropped: [] });
+  eq("puuduv fail → no-op", reconcileAliasesAfterCarry(path.join(d, "puudub.yaml"), [{ from_slug: "x", to_slug: "y" }]), { retargeted: [], dropped: [] });
+  rmSync(d, { recursive: true, force: true });
+}
+
+console.log("\n=== reconcileAliasesAfterCarry: transitiivne ahel vana→vahe→uus ===");
+{
+  const d = mkdtempSync(path.join(tmpdir(), "carry-alias3-"));
+  const f = path.join(d, "aliases.yaml");
+  writeFileSync(f, "k: vana\n");
+  const res = reconcileAliasesAfterCarry(f, [{ from_slug: "vana", to_slug: "vahe" }, { from_slug: "vahe", to_slug: "uus" }]);
+  eq("ahel resolvib lõpuni", res.retargeted, ["k: vana → uus"]);
+  ok("k osutab lõpp-handle'ile", readFileSync(f, "utf8").includes("k: uus"));
   rmSync(d, { recursive: true, force: true });
 }
 
