@@ -189,6 +189,18 @@ RANGED REEGLID:
 3. confidence 0.0-1.0 = kui kindel oled tegevuses.
 4. reason = lühike eestikeelne põhjendus (mis tüüp + miks see kodu).
 
+🧭 PIIRIREEGLID (segment/domeen — osa TÜÜP+DOMEEN väravast, Tarmo 2026-11-18):
+(a) KODU vs KOMMERTS/TÖÖKODA = ERALDI L3 (eristuvad nimed). Kodutarbija-seade (väike, 230V, üksik-
+    kasutus) ja professionaalne/tööstus-/töökoja-seade (suur võimsus, äri-/raske kasutus) on ERI OSTJA
+    → ära koonda, ka kui nimi/tüüp on identne (nt kodu-tolmuimeja ≠ tööstustolmuimeja; kodu-mikser ≠
+    professionaalne taignamikser; kodu-külmik ≠ kommertskülmik). Kui mõlemad poolused esinevad, eelista
+    eristuvat sihti; kui ühtki eristuvat pole, new_l3-ETTEPANEK selle segmendi jaoks.
+(b) IDENTNE KLIENDIKONTSEPTSIOON = KOOS. Kui sama ostja otsib sama asja ja toode on sisuliselt sama
+    tüüp, kuulub ühte L3-sse — ka kui praegu on sihid 2 L1/L2 vahel laiali (nt jerry-/ohutuskanister,
+    LED-kasvulamp). Vali üks sobiv olemas-L3 (assign_existing), ära loo dubleerivat new_l3.
+(c) VARUOSAD/TARVIKUD seadme JUURDE. Väike varuosa/tarvik (varuklapp, toorik, adapter, rull, filter)
+    kuulub PÕHISEADME L3-sse, MITTE oma L3-sse — v.a kui tarvik-rühm on ise suur ja selgelt eristuv.
+
 Vasta AINULT etteantud JSON-skeemis.`;
 
 const CLSF_SCHEMA = {
@@ -288,6 +300,15 @@ RANGED REEGLID:
 3. confidence 0.0-1.0 = kui kindel oled tegevuses kogu klastri kohta.
 4. reason = lühike eestikeelne põhjendus (mis tüüp + miks see kodu).
 5. cluster_key PEAB olema täpselt see, mis sisendis anti.
+
+🧭 PIIRIREEGLID (segment/domeen — osa TÜÜP+DOMEEN väravast, Tarmo 2026-11-18):
+(a) KODU vs KOMMERTS/TÖÖKODA = ERALDI L3 (eristuvad nimed) — kodutarbija-seade ja professionaalne/
+    tööstusseade on ERI OSTJA, ära koonda ka identse nime/tüübi korral (kodu-tolmuimeja ≠ tööstus-;
+    kodu-mikser ≠ professionaalne; kodu-külmik ≠ kommertskülmik).
+(b) IDENTNE KLIENDIKONTSEPTSIOON = KOOS — sama ostja + sisuliselt sama tüüp kuulub ühte L3-sse, ka kui
+    sihid on 2 L1/L2 vahel laiali; vali üks olemas-L3 (assign/group), ära loo dubleerivat new_l3.
+(c) VARUOSAD/TARVIKUD seadme JUURDE — väike varuosa/tarvik kuulub põhiseadme L3-sse, v.a kui tarvik-
+    rühm on ise suur ja eristuv.
 
 Vasta AINULT etteantud JSON-skeemis — ÜKS kirje iga klastri kohta.`;
 
@@ -470,6 +491,10 @@ Vali iga toote kohta TEGEVUS:
 
 RANGE: parem "keep" kui vale "assign_existing". Vale kodu on nähtav ja eksitab ostjat.
 target_handle PEAB olema täpselt nimekirjast. reason = üks lühike eestikeelne lause.
+
+🧭 PIIRIREEGLID (segment/domeen): (a) kodu vs kommerts/töökoda = ERI kategooria (eri ostja), ära koonda
+identse tüübi korral; (b) identne kliendikontseptsioon = sama kategooria, ka kui laiali 2 L1/L2 vahel;
+(c) väike varuosa/tarvik kuulub põhiseadme kategooriasse, mitte omaette.
 
 Vasta AINULT etteantud JSON-skeemis.`;
 
