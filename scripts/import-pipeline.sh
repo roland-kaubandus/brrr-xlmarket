@@ -448,8 +448,20 @@ else
   echo "  [DRY] reindeks vahele (kirjutust polnud)"
 fi
 
+# ── [7.4] KIHT2-FOLK-SYNC (host) — rahvakeelne sõnavara → product_synonym (lang='et-kiht2') ──
+# HARD RULE #5 hook: SAMA transform kui backfill (kiht2-folk-sync.mjs). TÄIS-ASENDUS = delta (reconcilib
+# reports/kiht2-sonavara-dry.json → kanal), idempotentne. --no-sync: DB-write ENNE [7.5], mis sünkib Meili't.
+# Mitte-fataalne: viga ≠ pood katki (KIHT 2 laiendus puudu kuni järgmine öö) → HOIATUS.
+echo "[7.4/7] kiht2-folk-sync (rahvakeelne sõnavara → product_synonym, lang=et-kiht2)"
+if [ "$EXECUTE" = "1" ]; then
+  node "$ROOT/scripts/kiht2-folk-sync.mjs" --execute --no-sync 2>&1 | sed 's/^/  /' \
+    || slack "⚠️ XLM kiht2-folk-sync [7.4] nurjus — KIHT 2 rahvakeelne otsing-laiendus puudu kuni järgmine öö (otsing töötab). Käsitsi: node scripts/kiht2-folk-sync.mjs --execute"
+else
+  echo "  [DRY] kiht2-folk-sync vahele"
+fi
+
 # ── [7.5] SYNC-SYNONYMS (konteiner) — KRIITILINE: reindeks [7] KUSTUTAB Meili synonyms ──
-# Taasta synonyms DB product_synonym'ist (word+synonyms+variants, täis-ühendatud). PEAB olema PÄRAST [7].
+# Taasta synonyms DB product_synonym'ist (word+synonyms+variants, täis-ühendatud). PEAB olema PÄRAST [7] JA [7.4].
 # Mitte-fataalne: sync-viga ≠ pood katki (otsing töötab, sünonüümid puudu kuni järgmine sync) → HOIATUS.
 echo "[7.5/7] sync-synonyms (taasta Meili synonyms — reindeks kustutas)"
 if [ "$EXECUTE" = "1" ]; then

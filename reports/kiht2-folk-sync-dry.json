@@ -1,0 +1,396 @@
+{
+  "generated": "2026-11-18T09:46:35.757Z",
+  "lang": "et-kiht2",
+  "gen_version": "kiht2-folk-v1",
+  "l3_with_consensus": 1615,
+  "skipped_no_anchor": 13,
+  "rows": 4351,
+  "net_new_estimate": 160,
+  "already_covered": 1040,
+  "sample": [
+    {
+      "product_id": "prod_01KNXXQZ7EQQ384434HQJ3RAD6",
+      "word": "generaatori kate",
+      "synonyms": [
+        "Generaatorite tarvikud",
+        "generaatorikate"
+      ],
+      "variants": [
+        "generaatori kate",
+        "generaatorikate"
+      ],
+      "cid": "pcat_7gc",
+      "name": "Generaatorite tarvikud"
+    },
+    {
+      "product_id": "prod_01KNXX8QEBJCVPNM61EHEY30R2",
+      "word": "hekitrimmer",
+      "synonyms": [
+        "Hekitrimmerid ja hekikäärid",
+        "heki trimmer"
+      ],
+      "variants": [
+        "hekitrimmer",
+        "heki trimmer"
+      ],
+      "cid": "pcat_t3a_5_8",
+      "name": "Hekitrimmerid ja hekikäärid"
+    },
+    {
+      "product_id": "prod_01KNXX8QEBJCVPNM61EHEY30R2",
+      "word": "heki käärid",
+      "synonyms": [
+        "Hekitrimmerid ja hekikäärid",
+        "hekikäärid"
+      ],
+      "variants": [
+        "heki käärid",
+        "hekikäärid"
+      ],
+      "cid": "pcat_t3a_5_8",
+      "name": "Hekitrimmerid ja hekikäärid"
+    },
+    {
+      "product_id": "prod_01KNXX8QEBJCVPNM61EHEY30R2",
+      "word": "hekilõikur",
+      "synonyms": [
+        "Hekitrimmerid ja hekikäärid",
+        "heki lõikur"
+      ],
+      "variants": [
+        "hekilõikur",
+        "heki lõikur"
+      ],
+      "cid": "pcat_t3a_5_8",
+      "name": "Hekitrimmerid ja hekikäärid"
+    },
+    {
+      "product_id": "prod_01KNXX8QEBJCVPNM61EHEY30R2",
+      "word": "akuhekitrimmer",
+      "synonyms": [
+        "Hekitrimmerid ja hekikäärid"
+      ],
+      "variants": [
+        "akuhekitrimmer"
+      ],
+      "cid": "pcat_t3a_5_8",
+      "name": "Hekitrimmerid ja hekikäärid"
+    },
+    {
+      "product_id": "prod_01KNXX8QEBJCVPNM61EHEY30R2",
+      "word": "bensiinihekitrimmer",
+      "synonyms": [
+        "Hekitrimmerid ja hekikäärid",
+        "bensiini hekitrimmer"
+      ],
+      "variants": [
+        "bensiinihekitrimmer",
+        "bensiini hekitrimmer"
+      ],
+      "cid": "pcat_t3a_5_8",
+      "name": "Hekitrimmerid ja hekikäärid"
+    },
+    {
+      "product_id": "prod_01KNXX8QEBJCVPNM61EHEY30R2",
+      "word": "varrehekitrimmer",
+      "synonyms": [
+        "Hekitrimmerid ja hekikäärid"
+      ],
+      "variants": [
+        "varrehekitrimmer"
+      ],
+      "cid": "pcat_t3a_5_8",
+      "name": "Hekitrimmerid ja hekikäärid"
+    },
+    {
+      "product_id": "prod_01KNXXF6CQ2G4D9CM3V2F7D04Q",
+      "word": "kettsaag",
+      "synonyms": [
+        "Kettsaed ja mootorsaed",
+        "kett saag"
+      ],
+      "variants": [
+        "kettsaag",
+        "kett saag"
+      ],
+      "cid": "pcat_t3a_5_4",
+      "name": "Kettsaed ja mootorsaed"
+    },
+    {
+      "product_id": "prod_01KNXXF6CQ2G4D9CM3V2F7D04Q",
+      "word": "mootorsaag",
+      "synonyms": [
+        "Kettsaed ja mootorsaed"
+      ],
+      "variants": [
+        "mootorsaag"
+      ],
+      "cid": "pcat_t3a_5_4",
+      "name": "Kettsaed ja mootorsaed"
+    },
+    {
+      "product_id": "prod_01KNXXF6CQ2G4D9CM3V2F7D04Q",
+      "word": "bensiinisaag",
+      "synonyms": [
+        "Kettsaed ja mootorsaed"
+      ],
+      "variants": [
+        "bensiinisaag"
+      ],
+      "cid": "pcat_t3a_5_4",
+      "name": "Kettsaed ja mootorsaed"
+    },
+    {
+      "product_id": "prod_01KNXXDPJ0T5EKFVBMEM659522",
+      "word": "lehepuhur",
+      "synonyms": [
+        "Lehepuhurid ja lehekogujad",
+        "lehe puhur"
+      ],
+      "variants": [
+        "lehepuhur",
+        "lehe puhur"
+      ],
+      "cid": "pcat_t3a_5_11",
+      "name": "Lehepuhurid ja lehekogujad"
+    },
+    {
+      "product_id": "prod_01KNXXDPJ0T5EKFVBMEM659522",
+      "word": "lehekoguja",
+      "synonyms": [
+        "Lehepuhurid ja lehekogujad"
+      ],
+      "variants": [
+        "lehekoguja"
+      ],
+      "cid": "pcat_t3a_5_11",
+      "name": "Lehepuhurid ja lehekogujad"
+    },
+    {
+      "product_id": "prod_01KNXXDPJ0T5EKFVBMEM659522",
+      "word": "lehtede puhur",
+      "synonyms": [
+        "Lehepuhurid ja lehekogujad"
+      ],
+      "variants": [
+        "lehtede puhur"
+      ],
+      "cid": "pcat_t3a_5_11",
+      "name": "Lehepuhurid ja lehekogujad"
+    },
+    {
+      "product_id": "prod_01KNXXGXKQQ4EESJKS5Y29C5Z6",
+      "word": "mullapuur",
+      "synonyms": [
+        "Maapuurid ja postiaugurid",
+        "mulla puur"
+      ],
+      "variants": [
+        "mullapuur",
+        "mulla puur"
+      ],
+      "cid": "pcat_t3a_5_10",
+      "name": "Maapuurid ja postiaugurid"
+    },
+    {
+      "product_id": "prod_01KNXXGXKQQ4EESJKS5Y29C5Z6",
+      "word": "maapuur",
+      "synonyms": [
+        "Maapuurid ja postiaugurid",
+        "maa puur"
+      ],
+      "variants": [
+        "maapuur",
+        "maa puur"
+      ],
+      "cid": "pcat_t3a_5_10",
+      "name": "Maapuurid ja postiaugurid"
+    },
+    {
+      "product_id": "prod_01KNXXGXKQQ4EESJKS5Y29C5Z6",
+      "word": "augupuur",
+      "synonyms": [
+        "Maapuurid ja postiaugurid",
+        "augu puur"
+      ],
+      "variants": [
+        "augupuur",
+        "augu puur"
+      ],
+      "cid": "pcat_t3a_5_10",
+      "name": "Maapuurid ja postiaugurid"
+    },
+    {
+      "product_id": "prod_01KNXXDV0G0HV8B4GRXQA94FNQ",
+      "word": "multitrimmer",
+      "synonyms": [
+        "Multifunktsionaalsed aiatrimmerid"
+      ],
+      "variants": [
+        "multitrimmer"
+      ],
+      "cid": "pcat_t3a_5_13",
+      "name": "Multifunktsionaalsed aiatrimmerid"
+    },
+    {
+      "product_id": "prod_01KNXXC4XG42EDZ2AHRG2A9J30",
+      "word": "muruniiduki rattad",
+      "synonyms": [
+        "Muruniiduki rehvid ja rattad"
+      ],
+      "variants": [
+        "muruniiduki rattad"
+      ],
+      "cid": "pcat_7mr",
+      "name": "Muruniiduki rehvid ja rattad"
+    },
+    {
+      "product_id": "prod_01KNXXC4XG42EDZ2AHRG2A9J30",
+      "word": "niiduki rehvid",
+      "synonyms": [
+        "Muruniiduki rehvid ja rattad"
+      ],
+      "variants": [
+        "niiduki rehvid"
+      ],
+      "cid": "pcat_7mr",
+      "name": "Muruniiduki rehvid ja rattad"
+    },
+    {
+      "product_id": "prod_01KNXXC4XG42EDZ2AHRG2A9J30",
+      "word": "täisrehvid niidukile",
+      "synonyms": [
+        "Muruniiduki rehvid ja rattad"
+      ],
+      "variants": [
+        "täisrehvid niidukile"
+      ],
+      "cid": "pcat_7mr",
+      "name": "Muruniiduki rehvid ja rattad"
+    },
+    {
+      "product_id": "prod_01KNXXPT7Q4E5GPNRRZ9XXE4PF",
+      "word": "käsiniiduk",
+      "synonyms": [
+        "Muruniidukid",
+        "käsi niiduk"
+      ],
+      "variants": [
+        "käsiniiduk",
+        "käsi niiduk"
+      ],
+      "cid": "pcat_t3a_5_12",
+      "name": "Muruniidukid"
+    },
+    {
+      "product_id": "prod_01KNXXPT7Q4E5GPNRRZ9XXE4PF",
+      "word": "trummelniiduk",
+      "synonyms": [
+        "Muruniidukid"
+      ],
+      "variants": [
+        "trummelniiduk"
+      ],
+      "cid": "pcat_t3a_5_12",
+      "name": "Muruniidukid"
+    },
+    {
+      "product_id": "prod_01KNXXPT7Q4E5GPNRRZ9XXE4PF",
+      "word": "muruniiduk",
+      "synonyms": [
+        "Muruniidukid",
+        "muru niiduk"
+      ],
+      "variants": [
+        "muruniiduk",
+        "muru niiduk"
+      ],
+      "cid": "pcat_t3a_5_12",
+      "name": "Muruniidukid"
+    },
+    {
+      "product_id": "prod_01KNXXGM7HJHYZ0D2JJD75MFFV",
+      "word": "oksapurusti",
+      "synonyms": [
+        "Oksapurustid ja hakkurid"
+      ],
+      "variants": [
+        "oksapurusti"
+      ],
+      "cid": "pcat_7op",
+      "name": "Oksapurustid ja hakkurid"
+    },
+    {
+      "product_id": "prod_01KNXXGM7HJHYZ0D2JJD75MFFV",
+      "word": "hakkur",
+      "synonyms": [
+        "Oksapurustid ja hakkurid"
+      ],
+      "variants": [
+        "hakkur"
+      ],
+      "cid": "pcat_7op",
+      "name": "Oksapurustid ja hakkurid"
+    },
+    {
+      "product_id": "prod_01KNXXGM7HJHYZ0D2JJD75MFFV",
+      "word": "puiduhakkur",
+      "synonyms": [
+        "Oksapurustid ja hakkurid"
+      ],
+      "variants": [
+        "puiduhakkur"
+      ],
+      "cid": "pcat_7op",
+      "name": "Oksapurustid ja hakkurid"
+    },
+    {
+      "product_id": "prod_01KNXXGM7HJHYZ0D2JJD75MFFV",
+      "word": "multsija",
+      "synonyms": [
+        "Oksapurustid ja hakkurid"
+      ],
+      "variants": [
+        "multsija"
+      ],
+      "cid": "pcat_7op",
+      "name": "Oksapurustid ja hakkurid"
+    },
+    {
+      "product_id": "prod_01KNXXGM7HJHYZ0D2JJD75MFFV",
+      "word": "oksahakkur",
+      "synonyms": [
+        "Oksapurustid ja hakkurid"
+      ],
+      "variants": [
+        "oksahakkur"
+      ],
+      "cid": "pcat_7op",
+      "name": "Oksapurustid ja hakkurid"
+    },
+    {
+      "product_id": "prod_01KNXXRN20FBXK3T540922BQAR",
+      "word": "traktori lisaseadmed",
+      "synonyms": [
+        "Traktori lisaseadmed ja tarvikud"
+      ],
+      "variants": [
+        "traktori lisaseadmed"
+      ],
+      "cid": "pcat_t3a_5_2",
+      "name": "Traktori lisaseadmed ja tarvikud"
+    },
+    {
+      "product_id": "prod_01KNXXRN20FBXK3T540922BQAR",
+      "word": "pto võll",
+      "synonyms": [
+        "Traktori lisaseadmed ja tarvikud"
+      ],
+      "variants": [
+        "pto võll"
+      ],
+      "cid": "pcat_t3a_5_2",
+      "name": "Traktori lisaseadmed ja tarvikud"
+    }
+  ]
+}
