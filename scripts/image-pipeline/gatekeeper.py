@@ -38,7 +38,10 @@ from PIL import Image
 from google import genai
 from google.genai import types
 
-MODEL = "gemini-2.5-flash"
+# gemini-flash-latest = veerev alias (Google hoiab alati värskel flash-mudelil). KÕVAKODEERITUD
+# versioon (nt gemini-2.5-flash) aegub "no longer available to new users" → 404 (2026-11-18 juurpõhjus).
+# Alias väldib sama klassi katkemist; vision+JSON on kõigil flash-mudelitel stabiilne.
+MODEL = os.environ.get("GATEKEEPER_MODEL", "gemini-flash-latest")
 
 SYSTEM = """You are a strict image quality gatekeeper for an e-commerce category thumbnail.
 Evaluate a single candidate image against four criteria. Output ONLY valid JSON, nothing else.
