@@ -16,6 +16,28 @@ Opus-klassifikaator asendab resolver-v2 feed-cron'is **ainsa primaar-paigutajana
 
 ---
 
+## 1b. SISU-ARHITEKTUUR — MASTER = PUHASTATUD EN (Tarmo 2026-11-18)
+
+Klassifikaator töötab **sisu-arhitektuuri sees** (SSoT = CLAUDE.md "SISU-ARHITEKTUUR"). Lühidalt:
+
+- **Master = puhastatud EN** (display-kvaliteet, meie tekstid). Tarnija toores feed (VEVOR / Poola
+  tarnijad PL / DE / …) on **ainult allikas**, ei lähe kliendile.
+- **Voog:** `tarnija feed → puhas EN master → kõik poe-keeled` (ET nüüd, hiljem ES/FI/LV/…). Poola
+  tarnijad (BlackTools/KraftDele/GEKO) käivad sama teed: PL → EN master → ET.
+- **Kihid eraldi:** keel masterist + tõlge-kiht (`metadata.*_et`); riigi-spetsiifika (KM, valuuta,
+  juriidika, tarne) poe-seadetest. Uus keel = üks tõlke-kiht; uus riik = üks seadete-komplekt.
+- **Kategooriad:** master samuti EN, DB SSoT (`taxonomy_node_translation` locale='en' +
+  `taxonomy_node_seo`). Uus keel = üks `locale`-rida, mitte koodi-muudatus.
+- **Mõju klassifikaatorile:** L3-nimi (`name_en` l3-gates.genAssetsGated) + SEO on **EN-master-tasandil**;
+  ET tuleb tõlke-kihist. See spets (§4.5 vara #3 name_en, #7 SEO) kirjutab juba EN-mastrisse.
+- **Toote-sisu seis:** `title`/`description` on toores VEVOR (EI ole master) → puhas EN master tuleb
+  genereerida (`title_en_clean` + `description_en_clean`, raw jääb allikaks). Audit:
+  `reports/en-master-audit-2026-11-18.md`. DRY-skript: `scripts/en-master-dry-sample.mjs`.
+- **HINNATA (mitte veel teha):** kas ET genereerub hiljem puhtast EN masterist, mitte toorest VEVOR-ist
+  (kasu: üks puhas allikas kõigile keeltele; kulu: topelt-töö kui ET juba enne valmis). Otsus lahtine.
+
+---
+
 ## 2. OTSUSTUSAHEL (üks joonis)
 
 ```
@@ -146,6 +168,27 @@ funktsiooni/VÄLJUNDI mõttes nii palju, et ostja otsiks seda eraldi?
 ```
 
 **Miks prompt-tekstina, mitte koodina:** granulaarsus on semantiline otsus, mida kood ei suuda deterministlikult teha (tõestatud: keyword-recall 0%). LLM rakendab reeglit; kood **jõustab tulemuse** väravatega (§4).
+
+---
+
+## 3b. GRAB-BAG JAGAMISE SEMANTIKA (HARD RULE #5 — Tarmo 2026-11-18)
+
+Kui OLEMASOLEV grab-bag-L3 jagatakse (liiga lai sahtel, mitu eristuvat kontseptsiooni), kehtib range semantika. **Kood:** `scripts/lib/split-semantics.mjs` (LLM-klassifikaator per allikas) + `scripts/lib/l3-create-engine.mjs` kontseptsiooni-dup värav. Sama reegel kehtib iganädalasele masinale (mitte ainult A2 ühekordsele migratsioonile).
+
+**Reegel:**
+1. **PÕHISEADE / domineeriv kontseptsioon JÄÄB allika-L3-sse** (vajadusel ümbernimetus selgemaks → 301 automaatne). See on kategooria identiteet — tavaliselt põhimasin/-seade, mille ümber tarvikud tiirlevad, või kõige üldisem tooteliik.
+2. **AINULT selgelt eri alamkontseptsioonid** (TARVIKUD, VARUOSAD, KULUMATERJAL, täiesti ERI TOOTELIIK) saavad UUED L3-d — allika kõrvale, **sama L2** alla.
+3. **"Uus põhiseadme-L3" = allika duplikaat → EI looda** (granulaarsus-värav §3 viskaks niikuinii; semantika ei paku seda üldse).
+4. Kui pärast jagamist jääb alles AINULT põhiseade + 0 elujõulist (≥THR) alamkontseptsiooni → **jagamist pole vaja** (cancel; allikas jääb terveks).
+5. Kui allikas on PUHAS tarviku-/segasahtel ilma loomuliku põhiseadmeta (nt "X lisaseadmed", kus X-i ennast seal pole) → core = suurim/üldisem rühm (jääb allikasse + ümbernimetus), ülejäänud elujõulised lahkuvad.
+
+**KONTSEPTSIOONI-DUP VÄRAV (partii-sisene + olemas-live, mootoris):**
+- **Sama kontseptsiooni uus L3 KAHEST allikast = ÜKS L3** (mitte kaks). Mootor ühendab tooted (dedup `product_id`) ühte L3-sse; võti = `slugId(name_en)` + normaliseeritud nimi. *Nt A2: «Infrapuna saunatekid» (Infrapuna-soojendus 5 + Infrapunasaunad 5) → üks L3; «Laste mängutelgid ja tunnelid» (Ronimismänguasjad 7 + Mängumajad 10) → üks L3.*
+- **Sama kontseptsioon juba live** (sama id, non-deleted, L3) → **EI looda uut**, tooted marsruuditakse olemasolevasse (attach + detach vanast kodust).
+- **Puhas trunkeeri-kollisioon** (ERI `name_en`, mis trunkeeruvad samaks 24-char id-ks, VÕI soft-deleted id blokeeriks INSERT-i) → suffiks (disambig). See oli varasema dup-key (`pcat_e2_infraredsaunablankets`) juurpõhjus — nüüd parandatud.
+- **L2-valik ühendamisel:** kui liikmed on eri L2 all, vali loomulikum kodu (nt infrapuna-saunatekk → «Saun», mitte «Isikuhooldusseadmed»); A2-s eksplitsiitne, masinal esimese liikme L2 + Telegram-hoiatus.
+
+**Miks:** grab-bag-i jagamine EI tohi killustada (sama asi kaht kohta) ega dubleerida põhiseadet. Põhiseade = stabiilne identiteet (301 katab ümbernimetuse); killustumist väldib kontseptsiooni-dup värav, mis töötab nii partii-siseselt kui live-DB vastu.
 
 ---
 

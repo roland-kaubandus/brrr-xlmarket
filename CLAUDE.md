@@ -239,6 +239,41 @@ EN baseline (fallback kui locale-spetsiifiline väli puudub).
 kuni storefront code sai locale-aware (B1 tehtud 2026-04-24). Enam ei kehti —
 tõlkepipeline on aktiivne, metadata fieldid on õiged sihtmärgid.
 
+### ⭐ SISU-ARHITEKTUUR — MASTER = PUHASTATUD EN (Tarmo 2026-11-18)
+
+**Printsiip (üks tõde):** poe sisu MASTER on **puhastatud ingliskeelne sisu** (meie
+oma tekstid, display-kvaliteet). Tarnija toores feed-tekst (VEVOR / BlackTools /
+KraftDele / GEKO …) on **ainult ALLIKAS** — ei lähe kunagi otse kliendile.
+
+**Voog (kõik tarnijad, kõik keeled):**
+```
+tarnija feed (EN / PL / DE / …)  →  PUHAS EN MASTER  →  kõik poe-keeled (ET nüüd, hiljem ES/FI/LV/…)
+```
+- Poola tarnijad (BlackTools/KraftDele/GEKO) käivad **SAMA teed**: PL feed → puhas EN master → ET.
+- Iga riigi-pood = **kohalik keel + EN**. EN on kliendile nähtav IGAL pool → master peab
+  olema display-kvaliteet (mitte keyword-stuffitud VEVOR-dump).
+
+**Kihid (eraldi, ei segune):**
+- **Keel** tuleb masterist (EN) + tõlge-kiht (`metadata.*_et`, hiljem `_es`/`_fi`/…).
+- **Riigi-spetsiifiline** (KM-määr, valuuta, juriidika, tarne) tuleb **poe-seadetest**, MITTE sisust.
+  Uus keel = üks tõlke-kiht; uus riik = üks seadete-komplekt.
+
+**Toote-väljade seis (audit 2026-11-18, `reports/en-master-audit-2026-11-18.md`):**
+- `title` = toores VEVOR keyword-stuffing (94% >120 tähe) — **EI ole master**, on allikas.
+- `description` = toores VEVOR-dump (84% HTML, 99.5% "vevor") — **EI ole master**, on allikas.
+- `metadata.selling_points` = ainus juba-puhas EN-väli (proosa, 95.7%).
+- → puhas EN master tuleb **genereerida** (`title_en_clean` + `description_en_clean`, raw JÄÄB allikaks).
+
+**Kategooriad = master on samuti EN (DB SSoT):** `taxonomy_node_translation` (`locale='en'`
+name) + `taxonomy_node_seo` (description/tagline ET+EN). genyM loeb DB-st → uus keel =
+üks `locale`-rida DB-s, mitte koodi-muudatus. Vt [[en-pakett-otsused]].
+
+**HINNATA (MITTE veel teha):** kas ET peaks hiljem genereeruma **puhtast EN masterist**, mitte
+toorest VEVOR-ist? *Kasu:* üks puhas allikas → järjepidev kvaliteet kõigis keeltes, odavam
+uus keel. *Kulu:* ET juba olemas (juuni-tõlge, asendatakse generaatoriga, vt
+[[sisu-kihid-vana-tolge-asendatakse]]) → topelt-töö kui enne EN-masterit valmis. *Otsus
+lahtine* — sõltub sellest, kas EN-master jookseb ENNE või PÄRAST ET-sisu-generaatorit.
+
 ---
 
 ## 🛑 HARD RULE #2 — SEVERITY LEVEL: "LOW" JA "MEDIUM" EI EKSISTEERI
