@@ -71,9 +71,35 @@ for (const s of sem.results) if (!s.error && !s.cancel) subsOf.set(s.id, new Set
 
 const j = JSON.parse(fs.readFileSync(ASSIGN, "utf8"));
 const hold = j.results.filter(r => !r.error).map(r => ({ r, a: j.analysis.find(x => x.id === r.id) })).filter(x => x.a && x.a.splitHolds);
+const holdBySrc = new Map(hold.map(h => [h.r.id, h]));
+
+// ── PARTII-SISENE KONTSEPTSIOONI-ÜHENDUS (Tarmo 2026-11-18): sama kontseptsiooni uus L3 KAHEST allikast = ÜKS L3.
+//    Siin eksplitsiitne (kontrollitud L2-valik + varad genereeritakse ÜKS kord). Mootoris on SAMA reegel
+//    kaitseväravana (hard rule #5 — uued L3-d omavahel + olemasolevate live-L3-de vastu). ──
+const MERGES = [
+  {
+    name_et: "Infrapuna saunatekid", parentL2: "v4-saun", parentL2_name: "Saun",
+    srcName: "Infrapuna-soojendus + Infrapunasaunad (ühendatud)",
+    members: [
+      { srcId: "pcat_f4_15x1_2", sub: "Infrapuna saunatekid" },
+      { srcId: "pcat_t3a_2_17", sub: "Infrapuna-saunatekid" },
+    ],
+    reason: "sama kontseptsioon kahest allikast → üks L3; L2=Saun (wellness-toode, mitte isikuhooldusseade)",
+  },
+  {
+    name_et: "Laste mängutelgid ja tunnelid", parentL2: "v4-lastekaubad-ouemanguasjad", parentL2_name: "Õuemänguasjad ja mänguväljak",
+    srcName: "Ronimismänguasjad + Mängumajad (ühendatud)",
+    members: [
+      { srcId: "pcat_el_12x2_5", sub: "Laste mängutelgid ja tunnelid" },
+      { srcId: "pcat_el_12x2_10", sub: "Laste mängutelgid" },
+    ],
+    reason: "sama kontseptsioon kahest allikast (sama L2) → üks L3",
+  },
+];
+const mergeClaim = new Set(MERGES.flatMap(m => m.members.map(x => `${x.srcId}::${x.sub}`)));
 
 function buildCandidates() {
-  const cands = [], warn = [];
+  const cands = [], warn = [], mergeInfo = [];
   for (const { r, a } of hold) {
     const sp = srcParent.get(r.id);
     if (!sp) { warn.push(`${r.id}: L2-vanem puudub src-parents.tsv-st`); continue; }
@@ -83,6 +109,7 @@ function buildCandidates() {
     // AINULT semantika subs lahkuvad; core + jäägid jäävad allikasse. Kaitse: sub PEAB olema a.viable seas.
     const viableNames = a.viable.map(v => v.newl3).filter(nm => subs.has(nm));
     for (const nm of viableNames) {
+      if (mergeClaim.has(`${r.id}::${nm}`)) continue; // kuulub ühendatud L3 alla (allpool)
       const products = r.assign.filter(it => it.target === nm && it.confidence >= 0.7).map(it => ({ id: it.product_id, title: it.title }));
       if (products.length < THR) { warn.push(`${r.id} «${nm}»: ${products.length}<THR ${THR} pärast kindlus-filtrit → jäetakse (tooted allikasse)`); continue; }
       cands.push({
@@ -93,7 +120,29 @@ function buildCandidates() {
       });
     }
   }
-  return { cands, warn };
+  // ── ühendatud kandidaadid: liida liikmete tooted (dedup product_id), vali üks L2 ──
+  for (const M of MERGES) {
+    const products = [], seen = new Set(), parts = [];
+    let maxTHR = 0;
+    for (const mem of M.members) {
+      const h = holdBySrc.get(mem.srcId);
+      if (!h) { warn.push(`MERGE «${M.name_et}»: allikas ${mem.srcId} puudub holds → vahele`); continue; }
+      maxTHR = Math.max(maxTHR, h.a.THR || 0);
+      const got = h.r.assign.filter(it => it.target === mem.sub && it.confidence >= 0.7);
+      for (const it of got) if (!seen.has(it.product_id)) { seen.add(it.product_id); products.push({ id: it.product_id, title: it.title }); }
+      parts.push(`${h.r.name}:«${mem.sub}»(${got.length})`);
+    }
+    if (products.length < maxTHR) { warn.push(`MERGE «${M.name_et}»: ${products.length}<THR ${maxTHR} pärast kindlus-filtrit → EI looda`); continue; }
+    const primSp = srcParent.get(M.members[0].srcId);
+    cands.push({
+      ck: `a2:merge:${slugId(M.name_et)}`, name_et: M.name_et, parentL2: M.parentL2, parentL2_name: M.parentL2_name,
+      currentL3: primSp?.handle || null, srcId: `merge:${slugId(M.name_et)}`, srcName: M.srcName, n: products.length, products,
+      titles: products.map(p => p.title).filter(Boolean),
+      cert: { mode: "a2-merge", detail: `partii-sisene kontseptsiooni-ühendus: ${parts.join(" + ")} = ${products.length} · ${M.reason}` },
+    });
+    mergeInfo.push(`«${M.name_et}» ← ${parts.join(" + ")} = ${products.length} toodet → L2 «${M.parentL2_name}» · ${M.reason}`);
+  }
+  return { cands, warn, mergeInfo };
 }
 
 // ── SAMM 2: varad (SEO + tüübiprofiil) + completeness — SAMA kui ETAPP3 buildPlans ──
@@ -143,7 +192,7 @@ async function buildPlans(cands) {
   return plans;
 }
 
-function writePlan(plans, warn) {
+function writePlan(plans, warn, mergeInfo = []) {
   const nowIso = new Date().toISOString();
   const totProd = plans.reduce((s, p) => s + p.n, 0);
   const allPass = plans.every(p => p.completeness.pass && p.assets?._seoGate?.pass);
@@ -153,6 +202,7 @@ function writePlan(plans, warn) {
   md += `> Mootor = \`scripts/lib/l3-create-engine.mjs\` (SAMA kui ETAPP3 + öine auto-create, HARD RULE #5).\n`;
   md += `> Fable SEO: ${usage.calls} kutset (~$${((usage.input / 1e6) * 10 + (usage.output / 1e6) * 50).toFixed(2)}) · tüübiprofiil ${JSON.stringify(Object.fromEntries(Object.entries(tpUsage).map(([k, v]) => [k, `${v.in}/${v.out}`])))}\n\n`;
   md += `**${Object.keys(bySrc).length} allikat → ${plans.length} uut L3 · ${totProd} toodet liigutatakse.** Täielikkus+SEO: ${allPass ? "✅ kõik" : "🛑 mõni kukub"}\n\n`;
+  if (mergeInfo.length) md += `### 🔗 Partii-sisesed kontseptsiooni-ühendused (${mergeInfo.length})\n${mergeInfo.map(m => `- ${m}`).join("\n")}\n\n`;
   if (warn.length) md += `### ⚠️ Märkused (${warn.length})\n${warn.map(w => `- ${w}`).join("\n")}\n\n`;
   md += `---\n\n`;
   for (const srcId of Object.keys(bySrc)) {
@@ -180,11 +230,12 @@ function writePlan(plans, warn) {
     console.log(`📋 --execute: olemas plaan (${plans.length} L3) — EI regen SEO (determinism).`);
   } else {
     assertNotNightWindow("plaani varade-genereerimine");
-    const { cands, warn } = buildCandidates();
+    const { cands, warn, mergeInfo } = buildCandidates();
     console.log(`\n🏗  A2 — ${hold.length} allikat, ${cands.length} uut L3 kandidaati · varade genereerimine:`);
+    for (const m of mergeInfo) console.log(`  🔗 MERGE: ${m}`);
     for (const w of warn) console.log(`  ⚠️ ${w}`);
     plans = await buildPlans(cands);
-    const allPass = writePlan(plans, warn);
+    const allPass = writePlan(plans, warn, mergeInfo);
     if (!allPass) { console.error("🛑 Mõni L3 ei läbi täielikkus/SEO → EI jätka. Vaata A2-plaan üle."); process.exit(1); }
     if (!EXECUTE) {
       // Mootori DRY-eelvaade (struktuur: L2-vanemad kehtivad, handle'd, oodatav toodete/L3 arv).

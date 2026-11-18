@@ -87,14 +87,39 @@ function isRateLimit(res) {
   return s.includes('429') || s.includes('RESOURCE_EXHAUSTED') || s.includes('503') || s.includes('UNAVAILABLE');
 }
 
-async function runGatekeeperUrl(handle, nameEn, url) {
+// Gatekeeper runtime: eelista `uv` (lahendab inline-deps), muidu käivita python3 otse
+// (süsteemis on google-genai/httpx/pillow). "Tööriist enne tööd": kui kumbagi pole,
+// ANNA KÕVA viga, mitte vaikne "parse fail: undefined" → shadow-degrade.
+const GK_PY = join(SCRIPT_DIR, 'gatekeeper.py');
+const GK_CMD = (() => {
+  if (spawnSync('uv', ['--version'], { encoding: 'utf8' }).status === 0) return { bin: 'uv', pre: ['run', '--quiet', GK_PY] };
+  for (const py of ['python3', 'python']) {
+    if (spawnSync(py, ['--version'], { encoding: 'utf8' }).status === 0) return { bin: py, pre: [GK_PY] };
+  }
+  return null; // kumbagi pole
+})();
+
+// Üks mehhanism (DRY): URL- ja fail-variant kutsuvad sama runnerit erinevate arg-tailidega.
+async function runGatekeeper(tail) {
+  if (!GK_CMD) return { pass: false, reason: 'gatekeeper runtime PUUDUB (ei uv ega python3) — paigalda uv või python3+deps' };
   for (let attempt = 0; attempt < 4; attempt++) {
-    const r = spawnSync('uv', ['run', '--quiet', join(SCRIPT_DIR, 'gatekeeper.py'),
-      '--handle', handle, '--name-en', nameEn, '--image-url', url
-    ], { encoding: 'utf8', env: { ...process.env }, timeout: 120_000 });
+    const r = spawnSync(GK_CMD.bin, [...GK_CMD.pre, ...tail], { encoding: 'utf8', env: { ...process.env }, timeout: 120_000 });
     let res;
-    try { res = JSON.parse((r.stdout || '').trim().split('\n').pop()); }
-    catch { res = { pass: false, reason: `gatekeeper parse fail: ${r.stderr?.slice(0, 200)}` }; }
+    const out = (r.stdout || '').trim();
+    try {
+      if (!out) throw new Error('empty stdout');
+      res = JSON.parse(out.split('\n').pop());
+    } catch (e) {
+      // Pinnale KÕIK diagnostika: spawn-viga (ENOENT), signaal, exit-kood, stderr, parse-viga.
+      const bits = [
+        r.error ? `spawn:${r.error.code || r.error.message}` : null,
+        r.signal ? `signal:${r.signal}` : null,
+        (r.status != null && r.status !== 0) ? `exit:${r.status}` : null,
+        (r.stderr || '').trim() ? `stderr:${(r.stderr || '').trim().slice(0, 160)}` : null,
+        `parse:${e.message}`,
+      ].filter(Boolean).join(' · ');
+      res = { pass: false, reason: `gatekeeper parse fail [${GK_CMD.bin}]: ${bits}` };
+    }
     if (!isRateLimit(res)) return res;
     const wait = [15_000, 45_000, 120_000, 300_000][attempt] || 300_000;
     process.stderr.write(`  (rate-limit, sleep ${wait/1000}s) `);
@@ -103,20 +128,12 @@ async function runGatekeeperUrl(handle, nameEn, url) {
   return { pass: false, reason: 'gatekeeper rate-limited 4x' };
 }
 
+async function runGatekeeperUrl(handle, nameEn, url) {
+  return runGatekeeper(['--handle', handle, '--name-en', nameEn, '--image-url', url]);
+}
+
 async function runGatekeeperFile(handle, nameEn, path) {
-  for (let attempt = 0; attempt < 4; attempt++) {
-    const r = spawnSync('uv', ['run', '--quiet', join(SCRIPT_DIR, 'gatekeeper.py'),
-      '--handle', handle, '--name-en', nameEn, '--image', path
-    ], { encoding: 'utf8', env: { ...process.env }, timeout: 120_000 });
-    let res;
-    try { res = JSON.parse((r.stdout || '').trim().split('\n').pop()); }
-    catch { res = { pass: false, reason: `gatekeeper parse fail: ${r.stderr?.slice(0, 200)}` }; }
-    if (!isRateLimit(res)) return res;
-    const wait = [15_000, 45_000, 120_000, 300_000][attempt] || 300_000;
-    process.stderr.write(`  (rate-limit, sleep ${wait/1000}s) `);
-    await sleep(wait);
-  }
-  return { pass: false, reason: 'gatekeeper rate-limited 4x' };
+  return runGatekeeper(['--handle', handle, '--name-en', nameEn, '--image', path]);
 }
 
 async function runGenerator(handle, outputPath, prompt) {
