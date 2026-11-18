@@ -23,7 +23,7 @@
 import fs from "node:fs";
 import { execSync } from "node:child_process";
 import { acquireStackLock } from "./lib/stack-lock.mjs";
-import { carryRenamedThumbs, parseRenameRows } from "./lib/carry-renamed-thumbs.mjs";
+import { carryRenamedThumbs, parseRenameRows, reconcileAliasesAfterCarry } from "./lib/carry-renamed-thumbs.mjs";
 
 const REPO = "/opt/xlmarket-github";
 const SP = process.env.SP || "/tmp/claude-0/-opt-xlmarket-github/8966820c-cfb5-4418-ab04-7e331739a85c/scratchpad";
@@ -62,9 +62,9 @@ const GIT_PATHS = ["backend/src/data/taxonomy.yaml", "storefront/lib/category-tr
 function deploy(commitMsg) {
   sh(`node ${REPO}/scripts/genyM.mjs`);
   sh(`cp /opt/eumotors-tasks/v4-staging/taxonomy-music.yaml ${REPO}/backend/src/data/taxonomy.yaml`);
-  sh(`node ${REPO}/scripts/gen-category-tree.mjs`);
   // HARD RULE #5 — pilt liigub handle-muutusega kaasa (FS-pool, analoog migration 010 DB-triggerile).
-  // Kaitse-reconcile: kui mõni rename (A1 / naaber / käsitsi) jättis webp'i orvuks, kanna see siin uue handle alla.
+  // Kaitse-reconcile ENNE gen-category-tree'd (muidu liigutatud webp + ühildatud alias ei jõua puusse):
+  // kui mõni rename (A1 / naaber / käsitsi) jättis webp'i orvuks, kanna see uue handle alla + suuna aliased.
   try {
     const CAT_THUMBS = `${REPO}/storefront/public/cat-thumbs`;
     const renames = parseRenameRows(q(`SELECT from_slug, to_slug FROM slug_redirect WHERE reason='rename'`));
@@ -73,7 +73,16 @@ function deploy(commitMsg) {
       if (!GIT_PATHS.includes(`storefront/public/cat-thumbs/${to}.webp`)) GIT_PATHS.push(`storefront/public/cat-thumbs/${to}.webp`);
     });
     if (carried.length) console.log(`  🖼  pilt-kaaskandmine (rename→handle): ${carried.length} — ${carried.slice(0, 6).join(" · ")}${carried.length > 6 ? " …" : ""}`);
-  } catch (e) { console.log(`  ⚠️ pilt-kaaskandmine vahele (ei blokeeri): ${String(e.message).slice(0, 120)}`); }
+    // alias-ühildamine: carry tühjendab vana handle → alias `* → vana` dangling → INV-22 WARN → --ci exit 1
+    const aliasYaml = `${REPO}/backend/src/data/taxonomy-image-aliases.yaml`;
+    const { retargeted, dropped } = reconcileAliasesAfterCarry(aliasYaml, renames);
+    if (retargeted.length || dropped.length) {
+      try { sh(`cd ${REPO} && git add -A -- backend/src/data/taxonomy-image-aliases.yaml`); } catch {}
+      if (!GIT_PATHS.includes("backend/src/data/taxonomy-image-aliases.yaml")) GIT_PATHS.push("backend/src/data/taxonomy-image-aliases.yaml");
+      console.log(`  🔗 alias-ühildamine: ${retargeted.length} suunatud, ${dropped.length} kustutatud (dangling→carry-direct)`);
+    }
+  } catch (e) { console.log(`  ⚠️ pilt-kaaskandmine/alias vahele (ei blokeeri): ${String(e.message).slice(0, 120)}`); }
+  sh(`node ${REPO}/scripts/gen-category-tree.mjs`);
   try {
     sh(`cd ${REPO} && git add -- ${GIT_PATHS.join(" ")}`);
     sh(`cd ${REPO} && git commit -m ${JSON.stringify(commitMsg + "\n\nCo-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>")}`);

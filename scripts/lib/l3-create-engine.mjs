@@ -31,7 +31,7 @@ import { makeCaller } from "./l3-desc.mjs";
 import { granularityGate } from "./granularity-gate.mjs";
 import { ensureShadowSchema, recordShadowProposal } from "./shadow-ledger.mjs";
 import { acquireStackLock } from "./stack-lock.mjs";
-import { carryRenamedThumbs, parseRenameRows } from "./carry-renamed-thumbs.mjs";
+import { carryRenamedThumbs, parseRenameRows, reconcileAliasesAfterCarry } from "./carry-renamed-thumbs.mjs";
 
 const REPO = "/opt/xlmarket-github";
 const sh = (cmd, opts = {}) => execSync(cmd, { encoding: "utf8", stdio: opts.capture ? "pipe" : "inherit", ...opts });
@@ -371,6 +371,17 @@ export async function createL3Batch({
         extraGitPaths.push(`storefront/public/cat-thumbs/${to}.webp`);
       });
       if (carried.length) console.log(`    🖼  pilt-kaaskandmine (rename→handle): ${carried.length} — ${carried.slice(0, 6).join(" · ")}${carried.length > 6 ? " …" : ""}`);
+      // 3.0b — ALIASTE ÜHILDAMINE (sama rename-kirjed): carry tühjendab rename'itud vana handle webp'i →
+      //   alias `* → vana` dangling → INV-22 WARN → --ci exit 1 (WARN=fatal) → rollback. Suuna ümber uuele.
+      try {
+        const aliasYaml = `${REPO}/backend/src/data/taxonomy-image-aliases.yaml`;
+        const { retargeted, dropped } = reconcileAliasesAfterCarry(aliasYaml, renames);
+        if (retargeted.length || dropped.length) {
+          try { sh(`cd ${REPO} && git add -A -- backend/src/data/taxonomy-image-aliases.yaml`); } catch {}
+          extraGitPaths.push("backend/src/data/taxonomy-image-aliases.yaml");
+          console.log(`    🔗 alias-ühildamine: ${retargeted.length} suunatud, ${dropped.length} kustutatud (dangling→carry-direct)`);
+        }
+      } catch (e) { console.log(`    ⚠️ alias-ühildamine vahele (ei blokeeri): ${String(e.message).slice(0, 120)}`); }
     } catch (e) { console.log(`    ⚠️ pilt-kaaskandmine vahele (ei blokeeri): ${String(e.message).slice(0, 120)}`); }
     const buildThumbs = (handles) => {
       const mt = { nodes: Object.fromEntries(handles.map(h => { const p = plans.find(x => x.handle === h); return [h, { handle: h, name_et: p?.name_et || p?.name, name_en: p?.name_en || p?.assets?.name_en || p?.name, level: 3 }]; })) };
