@@ -33,11 +33,15 @@ const q = (sql) => execSync(`docker exec -i ${DB} psql -U xlmarket -d xlmarket -
 const dq = (s) => `$DEF$${String(s).replace(/\$DEF\$/g, "")}$DEF$`   // dollar-quote (kirjeldus võib sisaldada koma/→/sulge)
 
 // --- VALIDEERI kõik defs ENNE ühtki kirjutust ---
-const errors = [], rows = []
+const errors = [], rows = [], seenId = new Set(), seenHandle = new Set()
 for (const d of defs) {
   const { id, name, description, handle, parent_id } = d
   const rank = d.rank ?? 0
   if (!id || !name || !handle || !parent_id) { errors.push(`${id || "?"}: puuduv väli (id/name/handle/parent_id)`); continue }
+  // partii-sisene dubli-kaitse (DB-kontroll allpool ei näe sama partii teist rida — oli dup-key juurpõhjus)
+  if (seenId.has(id)) { errors.push(`${id}: id DUBLEERIB partiis`); continue }
+  if (seenHandle.has(handle)) { errors.push(`${id}: handle '${handle}' DUBLEERIB partiis`); continue }
+  seenId.add(id); seenHandle.add(handle)
   // ema-L2
   const p = q(`SELECT COALESCE(mpath,'')||'|'||(char_length(COALESCE(mpath,''))-char_length(replace(COALESCE(mpath,''),'.',''))) FROM product_category WHERE id='${parent_id}' AND deleted_at IS NULL;`)
   if (!p) { errors.push(`${id}: ema-L2 '${parent_id}' puudub`); continue }
