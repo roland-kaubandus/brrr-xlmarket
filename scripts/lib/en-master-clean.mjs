@@ -213,6 +213,12 @@ const lenRound = (met, unit) => unit === "cm"
   ? (met >= 100 ? Math.round(met) : Number(met.toFixed(1)))
   : (met >= 10 ? Number(met.toFixed(1)) : Number(met.toFixed(2)));
 const LEN_UNIT = `inches|inch|feet|foot|ft|in|″|"`; // pikim enne (inches enne in)
+// allikas-duaal PIKKUSELE: imperiaal + KOHE meetriline pikkus-annotatsioon ("12\" (320 mm)", "60 x 24 in (152 x 61 cm)",
+//   "2 in / 5 cm") → ära lisa teist teisendust (väldib topelt-sulgu). AINULT pikkus-ühikud (mm/cm/m): "12 in, 5 kg"
+//   on ERI mõõt (kaal), seda teisenda normaalselt.
+const _LEN_GRP = `\\d+(?:[.,]\\d+)?(?:\\s*[x×-]\\s*\\d+(?:[.,]\\d+)?)*`;
+const _AFTER_LEN_MET = new RegExp(`^\\s*[/,(]?\\s*${_LEN_GRP}\\s*(?:mm|cm|m)\\b`, "i");
+const _BEFORE_LEN_MET = new RegExp(`\\d+(?:[.,]\\d+)?\\s*(?:mm|cm|m)\\b\\s*[/(,]?\\s*$`, "i");
 // grupp: num [unit?] (SEP num [unit?])* lõpp-unit ; sabas (?![a-z]) väldib osa-sõna ("12int")
 //   Separaator x/× = mõõtmed ("60 x 24 in"); KRIIPS ja sõna "to" = vahemik ("28-32 inch", "34 to 48 inches").
 //   MÕLEMAD otsad haaratakse aatomina, et vältida osalist teisendust nagu "28–81.3 cm (32 inch)" või
@@ -239,6 +245,8 @@ function convertLengths(text, addedPairs) {
     // bare "in" on ka inglise eessõna ("12 in the box") — ÜKSIKväärtusel JA vahemikul (mitte x-grupis) ära
     // teisenda, kui järgneb sõna. x-grupis ("60 x 24 x 12 in") on "in" kindlalt ühik. Sümbolid/"inch(es)"/"ft" ok.
     const after = whole.slice(offset + full.length);
+    // allikas andis juba meetrilise PIKKUSE kõrval ("12\" (320 mm)", "2 in / 5 cm") → ära korda (topelt-sulg)
+    if (_AFTER_LEN_MET.test(after) || _BEFORE_LEN_MET.test(whole.slice(0, offset))) return full;
     // "in" vahetult numbri küljes (tühikuta, nt "71in") = kindel ühik, mitte eessõna; tühikuga "in" + sõna → eessõna, jäta
     const inAttached = /\d$/.test(full.slice(0, full.length - endUnit.length));
     if (endUnit.toLowerCase() === "in" && !isXGroup && !inAttached && /^\s+[a-z]/i.test(after)) return full;
@@ -302,12 +310,13 @@ export function applyMetric(clean) {
 // Annotatsiooni-kuju mida addMetric toodab: "<meetriline(d)> <mühik> (<originaal imperiaal>)".
 // 1) TAGASIARVUTUS: arvuta imperiaal → meetriline uuesti, võrdle; kardinaalsus (vahemik 2 vs üksik 1) peab klappima.
 // 2) KORDUS: ")(" kõrvuti (topelt-sulg) VÕI sama "(sisu)" kaks korda → ebasidus.
-const _MG_NUM = `\\d+(?:[.,]\\d+)?`;
+const _MG_NUM = `-?\\d+(?:[.,]\\d+)?`; // -? → negatiivne temp ("-16 °C") haaratakse; vahemiku kriips eristab _nums
 const _MG_RANGE = `${_MG_NUM}(?:\\s*(?:[-–—]|x|×)\\s*|\\s+to\\s+)${_MG_NUM}`;
 // imperiaal → {meetriline ühik, tegur}; järjekord: pindala/maht ENNE lineaarset (² ja ³ sabaga)
 const _IMP2MET = [
   { re: /\bsq(?:uare)?\.?\s?(?:ft|feet|foot)\b|\bft\s?(?:²|\^?2)|feet\s?(?:²|\^?2)/i, u: "m²", f: 0.092903 },
   { re: /\bcu(?:bic)?\.?\s?(?:ft|feet|foot)\b|\bft\s?(?:³|\^?3)|feet\s?(?:³|\^?3)/i, u: "m³", f: 0.0283168 },
+  { re: /\bsq(?:uare)?\.?\s?(?:in|inch|inches)\b|\bin\s?(?:²|\^?2)|inches\s?(?:²|\^?2)/i, u: "cm²", f: 6.4516 }, // ruut-toll ENNE lineaarset
   { re: /inch|inches|\bin\b|["″]/i, u: "cm", f: 2.54 },
   { re: /\bft\b|\bfeet\b|\bfoot\b/i, u: "m", f: 0.3048 },
   { re: /lbs|\blb\b|pounds?|pound/i, u: "kg", f: 0.453592 },
@@ -315,7 +324,35 @@ const _IMP2MET = [
   { re: /℉|°\s?F|fahrenheit/i, u: "°C", f: null }, // temp = eri-valem
 ];
 const _METU = `m²|cm²|m³|cm³|mm|cm|m|kg|g|L|mL|°C`;
-function _nums(s) { return (String(s).match(/\d+(?:[.,]\d+)?/g) || []).map(pNum); }
+// meetriliste ühikute DIMENSIOONI-perekonnad + SI-baasühiku tegur. Värav võrdleb PEREKONDA + baasühikus,
+//   MITTE täpset alam-ühikut: allikas annab sageli "1100 mm (43.3\")" — dimensiooniliselt ÕIGE, aga _IMP2MET
+//   kanooniline oleks cm. mm≡cm≡m (pikkus), mL≡L≡m³ (maht) jne → ei tohi "ühiku-tüüp ei klapi" valepositiivi anda.
+const _MET_FAM = {
+  "mm": { fam: "len", base: 0.001 }, "cm": { fam: "len", base: 0.01 }, "m": { fam: "len", base: 1 },
+  "cm²": { fam: "area", base: 0.0001 }, "m²": { fam: "area", base: 1 },
+  "cm³": { fam: "vol", base: 1e-6 }, "m³": { fam: "vol", base: 1 }, "mL": { fam: "vol", base: 1e-6 }, "L": { fam: "vol", base: 1e-3 },
+  "g": { fam: "mass", base: 0.001 }, "kg": { fam: "mass", base: 1 },
+  "°C": { fam: "temp", base: 1 },
+};
+// kriips = VAHEMIK (mitte miinus-märk), kui ees — ühikuid/sümboleid (" ″ ' % ) tähed) ignoreerides — on number.
+//   Nii "71-81" ja "7.75\"-8.25\"" on vahemikud, aga "-16 °C" ja "range -4 to" on negatiivsed.
+function _digitBefore(str, idx) { return /\d$/.test(str.slice(0, idx).replace(/[\s"″'%)a-z]*$/i, "")); }
+// Arvude-parse värava tagasiarvutuseks: MURD-tollid ("1/8\""=0.125, "5/16 in"=0.3125) = ÜKS väärtus (mitte [1,8]);
+//   MÄRGI-teadlik (negatiivne temp säilib, vahemiku-kriips mitte). Mõlemad pooled sama _nums → kardinaalsus klapib.
+function _nums(s) {
+  const str = String(s); const out = [];
+  const re = /(-?)(\d+(?:[.,]\d+)?)\s*\/\s*(\d+(?:[.,]\d+)?)|(-?)(\d+(?:[.,]\d+)?)/g; let m;
+  while ((m = re.exec(str))) {
+    if (m[2] !== undefined) {                                    // murd a/b → üks väärtus
+      let sign = m[1]; if (sign === "-" && _digitBefore(str, m.index)) sign = "";
+      out.push(pNum(sign + m[2]) / pNum(m[3]));
+    } else {                                                     // tavaline arv
+      let sign = m[4]; if (sign === "-" && _digitBefore(str, m.index)) sign = "";
+      out.push(pNum(sign + m[5]));
+    }
+  }
+  return out;
+}
 function _annRe() { return new RegExp(`(${_MG_RANGE}|${_MG_NUM})\\s*(${_METU})\\s*\\(([^)]*)\\)`, "gi"); }
 export function metricOffenders(text) {
   const t = String(text); const out = [];
@@ -323,8 +360,8 @@ export function metricOffenders(text) {
   if (/\([^)]*\d[^)]*\)\s*\([^)]*\d[^)]*\)/.test(t)) {
     const m = t.match(/\([^)]*\d[^)]*\)\s*\([^)]*\d[^)]*\)/); out.push(`topelt-sulg: ${m[0]}`);
   }
-  // 2) sama sulu-sisu kaks korda
-  { const seen = new Set(); for (const m of t.matchAll(/\(([^)]*\d[^)]*)\)/g)) { const k = m[1].replace(/\s+/g, "").toLowerCase(); if (seen.has(k)) { out.push(`korduv sulg: (${m[1]})`); break; } seen.add(k); } }
+  // 2) sama sulu-sisu kaks korda LÄHESTIKKU (≤60 tähte) = teisendus-artefakt; kaugel = legitiimne proosa-kordus
+  { const seen = new Map(); for (const m of t.matchAll(/\(([^)]*\d[^)]*)\)/g)) { const k = m[1].replace(/\s+/g, "").toLowerCase(); const prev = seen.get(k); if (prev !== undefined && (m.index - prev) <= 60) { out.push(`korduv sulg: (${m[1]})`); break; } seen.set(k, m.index); } }
   // 3) tagasiarvutus iga annotatsiooni kohta
   let m; const RE = _annRe();
   while ((m = RE.exec(t))) {
@@ -338,14 +375,16 @@ export function metricOffenders(text) {
     }
     const fam = _IMP2MET.find((x) => x.re.test(paren));
     if (!fam) continue;                                   // originaal pole tuntud imperiaal → jäta (nt juba-meetriline sulg)
-    if (fam.u !== munit) { out.push(`ühiku-tüüp ei klapi: "${m[0]}" (ootasin ${fam.u}, sain ${munit})`); continue; }
+    // PEREKONNA-kontroll (mitte täpne alam-ühik): mm/cm/m kõik "len" → "1100 mm (43.3\")" ei ole viga.
+    const gm = _MET_FAM[munit]; const fm = _MET_FAM[fam.u];
+    if (!gm || !fm || gm.fam !== fm.fam) { out.push(`ühiku-tüüp ei klapi: "${m[0]}" (ootasin ${fm ? fm.fam : fam.u}-perekonda, sain ${munit})`); continue; }
     const impNums = _nums(paren);
     if (metNums.length !== impNums.length) { out.push(`kardinaalsus: "${m[0]}" (${metNums.length} vs ${impNums.length})`); continue; }
     for (let i = 0; i < metNums.length; i++) {
-      const exp = fam.f === null ? (impNums[i] - 32) / 1.8 : impNums[i] * fam.f;
-      const got = metNums[i];
-      const tol = Math.max(Math.abs(exp) * 0.04, munit === "°C" ? 1.1 : 0.06); // 4% või temp ±1.1°C
-      if (Math.abs(got - exp) > tol) { out.push(`vale teisendus: "${m[0]}" (${got} ${munit} ≠ ${Number(exp.toFixed(2))})`); break; }
+      const exp = fam.f === null ? (impNums[i] - 32) / 1.8 : impNums[i] * fam.f; // kanoonilises ühikus fam.u
+      const got = (metNums[i] * gm.base) / fm.base;                              // got → kanooniline ühik (mm→cm jne)
+      const tol = Math.max(Math.abs(exp) * 0.04, munit === "°C" ? 1.1 : 0.06);   // 4% või temp ±1.1°C
+      if (Math.abs(got - exp) > tol) { out.push(`vale teisendus: "${m[0]}" (${metNums[i]} ${munit} ≠ ${Number(exp.toFixed(2))} ${fam.u})`); break; }
     }
   }
   return out;
