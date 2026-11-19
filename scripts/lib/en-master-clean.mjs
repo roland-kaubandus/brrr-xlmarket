@@ -161,9 +161,14 @@ const lenRound = (met, unit) => unit === "cm"
   ? (met >= 100 ? Math.round(met) : Number(met.toFixed(1)))
   : (met >= 10 ? Number(met.toFixed(1)) : Number(met.toFixed(2)));
 const LEN_UNIT = `inches|inch|feet|foot|ft|in|″|"`; // pikim enne (inches enne in)
-// grupp: num [unit?] (x num [unit?])* lõpp-unit ; sabas (?![a-z]) väldib osa-sõna ("12int")
+// grupp: num [unit?] (SEP num [unit?])* lõpp-unit ; sabas (?![a-z]) väldib osa-sõna ("12int")
+//   Separaator x/× = mõõtmed ("60 x 24 in"); KRIIPS ja sõna "to" = vahemik ("28-32 inch", "34 to 48 inches").
+//   MÕLEMAD otsad haaratakse aatomina, et vältida osalist teisendust nagu "28–81.3 cm (32 inch)" või
+//   "34.8 to 123 cm (48.4 inches)" (parandus B, Tarmo 2026-11-19: vahemiku üks ots jäi varem teisendamata →
+//   ebasidus/vale ühik; vt parandus A sama loogika x-grupile). "to" nõuab ümber tühikut (väldib "into"/"onto").
+const DIM_SEP = `(?:\\s*(?:${LEN_UNIT})?\\s*(?:[x×]|[-–—])\\s*|\\s+to\\s+)`;
 const DIM_RE = new RegExp(
-  `(\\d+(?:[.,]\\d+)?(?:\\s*(?:${LEN_UNIT})?\\s*[x×]\\s*\\d+(?:[.,]\\d+)?)*)\\s*(${LEN_UNIT})(?![a-z])`,
+  `(\\d+(?:[.,]\\d+)?(?:${DIM_SEP}\\d+(?:[.,]\\d+)?)*)\\s*(${LEN_UNIT})(?![a-z])`,
   "gi",
 );
 function convertLengths(text, addedPairs) {
@@ -172,10 +177,14 @@ function convertLengths(text, addedPairs) {
     if (whole[offset - 1] === "/") return full;        // murd-toll (3/8") = keere-nominaal → EI teisenda
     const key = lenKey(endUnit);
     if (!key) return full;
-    // bare "in" on ka inglise eessõna ("12 in the box") — ÜKSIKväärtusel (grupita) ära teisenda, kui järgneb sõna.
-    // Grupis (sisaldab x/×) on "in" kindlalt ühik ("60 x 24 x 12 in overall"). Sümbolid/"inch(es)"/"ft" alati ok.
+    const isXGroup = /[x×]/.test(body);                   // mõõtme-grupp = ühemõtteliselt ühik
+    const isDashRange = /[-–—]/.test(body);               // kriips-vahemik
+    const isToRange = /\s+to\s+/i.test(body);             // sõna-vahemik ("34 to 48")
+    const isRange = !isXGroup && (isDashRange || isToRange);
+    // bare "in" on ka inglise eessõna ("12 in the box") — ÜKSIKväärtusel JA vahemikul (mitte x-grupis) ära
+    // teisenda, kui järgneb sõna. x-grupis ("60 x 24 x 12 in") on "in" kindlalt ühik. Sümbolid/"inch(es)"/"ft" ok.
     const after = whole.slice(offset + full.length);
-    if (endUnit.toLowerCase() === "in" && !/[x×]/.test(body) && /^\s+[a-z]/i.test(after)) return full;
+    if (endUnit.toLowerCase() === "in" && !isXGroup && /^\s+[a-z]/i.test(after)) return full;
     // inline-ühikud grupis peavad olema sama perekond (cm vs m) — muidu ohtlik, jäta teisendamata.
     const inlineUnits = body.match(new RegExp(LEN_UNIT, "gi")) || [];
     for (const iu of inlineUnits) { const k = lenKey(iu); if (!k || LEN[k].u !== LEN[key].u) return full; }
@@ -187,7 +196,12 @@ function convertLengths(text, addedPairs) {
       addedPairs.add(`${normNum(String(met))}|${normUnit(fam.u)}`);
       return met;
     });
-    return `${conv.join(" x ")} ${fam.u} (${full.trim()})`;
+    // ühenda ORIGINAAL-struktuuriga: x-grupp → " x ", kriips-vahemik → sama kriipsumärk, "to"-vahemik → " to ".
+    // Nii teiseneb vahemik TERVIKUNA ("28-32 inch" → "71.1-81.3 cm (28-32 inch)"), mitte pooleldi.
+    let sep = " x ";
+    if (isRange && isDashRange) { const m = body.match(/[-–—]/); sep = m ? m[0] : "-"; }
+    else if (isRange && isToRange) { sep = " to "; }
+    return `${conv.join(sep)} ${fam.u} (${full.trim()})`;
   });
 }
 
