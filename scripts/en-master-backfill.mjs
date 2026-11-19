@@ -307,11 +307,20 @@ const usageHit = (r) => !r.ok && /credit|usage|insufficient|rate limit|quota/i.t
       // PÜSIV ebasiduse-värav addMetric JÄREL (Tarmo 2026-11-19 #3): osaline vahemiku-teisendus → EI kirjuta + signaal.
       const coh = rangeCoherenceGate(s.clean);
       if (!coh.pass) {
-        ledger.skipped[t.id] = { reason: "coherence", offenders: coh.offenders.slice(0, 4) };
-        skipCount++;
-        const cmsg = `⚠️ EN-master EBASIDUSUS-VÄRAV (addMetric järel) · ${t.id}: ${coh.offenders[0]} → EI kirjutatud`;
-        console.error(cmsg); if (EXECUTE) sendTelegram(cmsg);
-        continue;
+        if (BASE_ONLY) {
+          // base-only REGEN: värav on CLEAN-kirjutuse valvur. base = LLM-tekst ENNE addMetric → ALATI ohutu
+          // salvestada (clean'i ei puututa). remetric rakendab hiljem parandatud addMetric-i + selle värava
+          // clean-kirjutusel. Need on just HALVIMA addMetric-iga tooted — neid tahame base'ina hoida, MITTE
+          // välja jätta (muidu jääksid igavesti parandamata). Märgi ainult telemeetriasse, ÄRA skibi.
+          if (!ledger.base_coherence) ledger.base_coherence = {};
+          ledger.base_coherence[t.id] = coh.offenders.slice(0, 4);
+        } else {
+          ledger.skipped[t.id] = { reason: "coherence", offenders: coh.offenders.slice(0, 4) };
+          skipCount++;
+          const cmsg = `⚠️ EN-master EBASIDUSUS-VÄRAV (addMetric järel) · ${t.id}: ${coh.offenders[0]} → EI kirjutatud`;
+          console.error(cmsg); if (EXECUTE) sendTelegram(cmsg);
+          continue;
+        }
       }
       if (metrized) metrCount++;
       s.metrized = metrized;
@@ -337,13 +346,15 @@ const usageHit = (r) => !r.ok && /credit|usage|insufficient|rate limit|quota/i.t
 
   ledger.samples = samples;
   const dqCount = Object.keys(ledger.data_quality || {}).length;
-  ledger.counts = { ok: okCount, skipped: skipCount, metrized: metrCount, regen: regenCount, data_quality: dqCount };
+  ledger.counts = { ok: okCount, skipped: skipCount, metrized: metrCount, regen: regenCount, data_quality: dqCount, base_coherence: Object.keys(ledger.base_coherence || {}).length };
   saveLedger(ledger);
 
   const status = STOPPED ? "CREDIT" : (skipCount > 0 ? "PARTIAL" : "OK");
   const mark = STOPPED ? "🟠 PEATUS" : (skipCount > 0 ? "⚠️ OSALINE" : "✅ VALMIS");
+  const bcCount = Object.keys(ledger.base_coherence || {}).length;
   const sum = `${EXECUTE ? mark : "🟡 DRY " + mark} EN-master · batch=${BATCH_ID}\n` +
-    `puhastatud: ${okCount} · skip: ${skipCount} · meetriline: ${metrCount} · regen: ${regenCount} · data-quality-märget: ${dqCount}`;
+    `puhastatud: ${okCount} · skip: ${skipCount} · meetriline: ${metrCount} · regen: ${regenCount} · data-quality-märget: ${dqCount}` +
+    (BASE_ONLY ? ` · base-värav-märge: ${bcCount} (addMetric ebasidus — base ikkagi salvestatud, remetric parandab)` : "");
   console.log(`\n${sum}`);
   console.log(`📄 ledger: ${ledgerPath()}`);
   if (EXECUTE) sendTelegram(sum);
