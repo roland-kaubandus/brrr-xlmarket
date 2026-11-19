@@ -26,6 +26,7 @@ const argv = process.argv.slice(2);
 const val = (f) => { const i = argv.indexOf(f); return i >= 0 ? argv[i + 1] : null; };
 const N = Number(val("--n")) || 50;
 const SEED = val("--seed") || "";
+const IDS_FILE = val("--ids") || ""; // kureeritud valim: reavahega toote-ID-d (nt A+B+dup) — asendab juhuvaliku
 const M_REVIEW = "claude-opus-4-8";   // SÕLTUMATU: Opus (generaator/kohtunik olid Sonnet)
 
 const API_KEY = process.env.ANTHROPIC_API_KEY;
@@ -43,25 +44,35 @@ function psqlJson(sql) {
   return out ? JSON.parse(out) : [];
 }
 
-// juhuslik N puhastatud toodet (title_en_clean olemas); --seed → korratav (md5(id||seed))
-const orderExpr = SEED ? `md5(p.id || '${SEED.replace(/'/g, "''")}')` : `md5(p.id)`;
-const rows = psqlJson(`SELECT coalesce(json_agg(obj),'[]') FROM (
-  SELECT json_build_object(
+// valim: kas kureeritud (--ids FILE, täpselt need) VÕI juhuslik N (--seed → korratav md5(id||seed))
+const OBJ = `json_build_object(
     'id', p.id,
     'title', p.title, 'description', p.description,
     'selling_points', p.metadata->'selling_points', 'specs', p.metadata->'specs',
     'dimensions', p.metadata->'dimensions', 'vptype', p.metadata->>'vevor_product_type',
     'clean_title', p.metadata->>'title_en_clean',
     'clean_desc', p.metadata->>'description_en_clean'
-  ) AS obj
-  FROM product p
-  WHERE p.status='published' AND p.deleted_at IS NULL
-    AND (p.metadata->>'title_en_clean') IS NOT NULL
-  ORDER BY ${orderExpr} LIMIT ${N}
-) s;`);
+  )`;
+let rows;
+if (IDS_FILE) {
+  const ids = fs.readFileSync(IDS_FILE, "utf8").split(/\r?\n/).map((s) => s.trim()).filter(Boolean);
+  const inList = ids.map((i) => `'${i.replace(/'/g, "''")}'`).join(",");
+  rows = psqlJson(`SELECT coalesce(json_agg(obj),'[]') FROM (
+    SELECT ${OBJ} AS obj FROM product p
+    WHERE (p.metadata->>'title_en_clean') IS NOT NULL AND p.id IN (${inList})
+  ) s;`);
+} else {
+  const orderExpr = SEED ? `md5(p.id || '${SEED.replace(/'/g, "''")}')` : `md5(p.id)`;
+  rows = psqlJson(`SELECT coalesce(json_agg(obj),'[]') FROM (
+    SELECT ${OBJ} AS obj FROM product p
+    WHERE p.status='published' AND p.deleted_at IS NULL
+      AND (p.metadata->>'title_en_clean') IS NOT NULL
+    ORDER BY ${orderExpr} LIMIT ${N}
+  ) s;`);
+}
 
 if (!rows.length) { console.error("🔴 ei leidnud ühtki puhastatud toodet (title_en_clean) — kas backfill jooksis?"); process.exit(1); }
-console.log(`🔎 SÕLTUMATU Opus-kontroll · ${rows.length} juhuslikku toodet · mudel=${M_REVIEW}${SEED ? ` · seed=${SEED}` : ""}`);
+console.log(`🔎 SÕLTUMATU Opus-kontroll · ${rows.length} ${IDS_FILE ? "kureeritud" : "juhuslikku"} toodet · mudel=${M_REVIEW}${SEED ? ` · seed=${SEED}` : ""}${IDS_FILE ? ` · ids=${IDS_FILE}` : ""}`);
 
 // ── Opus prompt (sõltumatu audiitor) ──
 const SYS = `You are an INDEPENDENT quality-assurance reviewer for e-commerce product copy.
