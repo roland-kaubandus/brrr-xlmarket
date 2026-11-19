@@ -142,13 +142,65 @@ export function lemmaOrphans(clean, srcText) {
 // Lisatud meetriline number on arvutatud → whitelistitakse täpsus/ühik-värava jaoks (addedPairs).
 function parenDepthAt(str, idx) { let d = 0; for (let i = 0; i < idx; i++) { if (str[i] === "(") d++; else if (str[i] === ")") d = Math.max(0, d - 1); } return d; }
 
-// ── üksik-väärtus teisendused (mitte-pikkus) ──
-const CONV = [
-  { re: /(\d+(?:[.,]\d+)?)\s*(lbs|lb|pounds?|pound)\b/gi, unit: "kg", f: (v) => v * 0.453592, dec: (v) => v >= 10 ? 0 : 1 },
-  { re: /(\d+(?:[.,]\d+)?)\s*(gal|gallons?|gallon)\b/gi, unit: "L", f: (v) => v * 3.78541, dec: () => 1 },
-  { re: /(\d+(?:[.,]\d+)?)\s*(oz|ounces?|ounce)\b/gi, unit: "g", f: (v) => v * 28.3495, dec: () => 0 },
-  { re: /(\d+(?:[.,]\d+)?)\s*(°\s?F|°F|F)\b/gi, unit: "°C", f: (v) => (v - 32) / 1.8, dec: () => 0 }, // 2 gruppi: offset/whole joondus (paren-kaitse)
+// ── NUMBRI-PARSE: inglise tuhandete-koma ("17,600"=17600) vs koma-koma (harv, "2,5"=2.5) ──
+//   VANA BUG: "17,600 lbs" → Number("17.600")=17.6 → 8 kg. Nüüd: eemalda tuhandete-koma, siis koma→punkt.
+function pNum(s) {
+  let x = String(s).trim().replace(/,(?=\d{3}(?:\D|$))/g, ""); // 17,600 → 17600
+  return Number(x.replace(",", "."));
+}
+// ── magnituudi-teadlik ümardus iga meetrilise ühiku jaoks (loetav + täpne) ──
+//   VANA BUG: 0.33 lb → 0.15 kg → toFixed(1) = "0.1" (liiga agar). Nüüd väikesed kg/L/m 2 kohta.
+function roundMet(v, u) {
+  switch (u) {
+    case "mm": return v >= 100 ? Math.round(v) : Number(v.toFixed(1));
+    case "cm": return v >= 100 ? Math.round(v) : Number(v.toFixed(1));
+    case "m": return v >= 10 ? Number(v.toFixed(1)) : Number(v.toFixed(2));
+    case "kg": return v >= 10 ? Number(v.toFixed(1)) : Number(v.toFixed(2));
+    case "g": return Math.round(v);
+    case "L": return v >= 10 ? Number(v.toFixed(1)) : Number(v.toFixed(2));
+    case "mL": return Math.round(v);
+    case "°C": return Math.round(v);
+    case "m²": return v >= 10 ? Number(v.toFixed(1)) : Number(v.toFixed(2));
+    case "cm²": return Math.round(v);
+    case "m³": return Number(v.toFixed(2));
+    case "cm³": return Math.round(v);
+    default: return Number(v.toFixed(2));
+  }
+}
+// ── SKALAAR-perekonnad (ümberehitus, Tarmo 2026-11-19): igaühel OMA ühiku-tüüp + reegel. ──
+//   Vahemik aatomina ("110-330 lbs" → "50-150 kg (…)"). Mitmetähenduslik "oz" (kaal vs vedelik) → PUUTUMATA
+//   (vältis "30 ounces (900 mL)" → fabritseeritud "850 g"). Tundmatu ühik → puutumata. Tonn/T = juba meetriline.
+//   Pindala/maht EI teisendata lineaarselt (vana bug: "1500 ft²" → "457 m (…)²"). Temp AINULT °F/℉/Fahrenheit (mitte paljas "F").
+const SCALAR = [
+  { k: "temp", units: `℉|°\\s?F|degrees?\\s?F(?:ahrenheit)?|Fahrenheit`, to: "°C", conv: (v) => (v - 32) / 1.8 },
+  { k: "area_ft", units: `sq(?:uare)?\\.?\\s?(?:ft|feet|foot)|ft\\s?(?:²|\\^?2)|feet\\s?(?:²|\\^?2)`, to: "m²", conv: (v) => v * 0.092903 },
+  { k: "area_in", units: `sq(?:uare)?\\.?\\s?(?:in|inch|inches)|in\\s?(?:²|\\^?2)`, to: "cm²", conv: (v) => v * 6.4516 },
+  { k: "vol_ft", units: `cu(?:bic)?\\.?\\s?(?:ft|feet|foot)|ft\\s?(?:³|\\^?3)|feet\\s?(?:³|\\^?3)`, to: "m³", conv: (v) => v * 0.0283168 },
+  { k: "vol_gal", units: `gallons?|gal\\b`, to: "L", conv: (v) => v * 3.78541 },
+  { k: "weight_lb", units: `lbs|lb|pounds?|pound`, to: "kg", conv: (v) => v * 0.453592 },
 ];
+// meetrilised ühikud mida loeme "juba olemas" (kõrval → ära teisenda, väldib topelt-sulgu)
+const _MET_ADJ = `mm|cm|m²|cm²|m³|m|kg|g|t|L|mL|ml|°C|°c`;
+const _SC_NUM = `\\d+(?:[.,]\\d+)*`;
+const _SC_SEP = `(?:\\s*[-–—]\\s*|\\s+to\\s+)`;
+// convScalar: üksik VÕI vahemik; paren-kaitse; kõrval-meetriline → skip (allikas andis mõlemad); 1 sulg; vahemik aatomina.
+function convScalar(text, fam, addedPairs) {
+  const RE = new RegExp(`(${_SC_NUM}(?:${_SC_SEP}${_SC_NUM})?)\\s*(?:${fam.units})(?![a-zA-Z])`, "gi");
+  const afterMet = new RegExp(`^\\s*[/,(]?\\s*${_SC_NUM}\\s*(?:${_MET_ADJ})\\b`, "i");
+  const beforeMet = new RegExp(`${_SC_NUM}\\s*(?:${_MET_ADJ})\\b\\s*[/,(]?\\s*$`, "i");
+  return text.replace(RE, (full, body, offset, whole) => {
+    if (parenDepthAt(whole, offset) > 0) return full;             // sulgude sees = allika-meetriline annotatsioon
+    const after = whole.slice(offset + full.length, offset + full.length + 18);
+    const before = whole.slice(Math.max(0, offset - 18), offset);
+    if (afterMet.test(after) || beforeMet.test(before)) return full; // meetriline kõrval → allikas duaalne, ära korda
+    const nums = body.match(new RegExp(_SC_NUM, "g")) || [];
+    if (!nums.length) return full;
+    const conv = nums.map((n) => { const cv = roundMet(fam.conv(pNum(n)), fam.to); addedPairs.add(`${normNum(String(cv))}|${normUnit(fam.to)}`); return cv; });
+    const sepM = body.match(/[-–—]|\bto\b/i);
+    const sep = sepM ? (/to/i.test(sepM[0]) ? " to " : sepM[0]) : "";
+    return `${conv.join(sep)} ${fam.to} (${full.trim()})`;
+  });
+}
 
 // ── PIKKUS-ühikud (toll + jalg) atomaarse grupi-toega ──
 const LEN = {
@@ -175,6 +227,9 @@ function convertLengths(text, addedPairs) {
   return text.replace(DIM_RE, (full, body, endUnit, offset, whole) => {
     if (parenDepthAt(whole, offset) > 0) return full; // juba meetriline ees → jäta
     if (whole[offset - 1] === "/") return full;        // murd-toll (3/8") = keere-nominaal → EI teisenda
+    // PINDALA/MAHT: "ft²"/"ft2"/"ft^3" (ühik järel vahetult ²/³/2/3) → PINDALA/MAHT-konverter, MITTE lineaarne pikkus
+    //   (vana bug: "1500 ft²" → "457 m (1500 ft)²"). Tühik enne arvu ("6 ft 2 in" jalg-toll) EI käivita kaitset.
+    { const tail0 = whole.slice(offset + full.length); if (/^(?:[²³]|\^?[23])(?![0-9])/.test(tail0)) return full; }
     const key = lenKey(endUnit);
     if (!key) return full;
     const isXGroup = /[x×]/.test(body);                   // mõõtme-grupp = ühemõtteliselt ühik
@@ -184,7 +239,9 @@ function convertLengths(text, addedPairs) {
     // bare "in" on ka inglise eessõna ("12 in the box") — ÜKSIKväärtusel JA vahemikul (mitte x-grupis) ära
     // teisenda, kui järgneb sõna. x-grupis ("60 x 24 x 12 in") on "in" kindlalt ühik. Sümbolid/"inch(es)"/"ft" ok.
     const after = whole.slice(offset + full.length);
-    if (endUnit.toLowerCase() === "in" && !isXGroup && /^\s+[a-z]/i.test(after)) return full;
+    // "in" vahetult numbri küljes (tühikuta, nt "71in") = kindel ühik, mitte eessõna; tühikuga "in" + sõna → eessõna, jäta
+    const inAttached = /\d$/.test(full.slice(0, full.length - endUnit.length));
+    if (endUnit.toLowerCase() === "in" && !isXGroup && !inAttached && /^\s+[a-z]/i.test(after)) return full;
     // inline-ühikud grupis peavad olema sama perekond (cm vs m) — muidu ohtlik, jäta teisendamata.
     const inlineUnits = body.match(new RegExp(LEN_UNIT, "gi")) || [];
     for (const iu of inlineUnits) { const k = lenKey(iu); if (!k || LEN[k].u !== LEN[key].u) return full; }
@@ -222,18 +279,11 @@ export function dedupeDualUnit(text) {
 }
 
 export function addMetric(text, addedPairs) {
-  let out = convertLengths(text, addedPairs); // pikkused esmalt (atomaarne grupp)
-  for (const c of CONV) {
-    out = out.replace(c.re, (full, numStr, _u, offset, whole) => {
-      if (parenDepthAt(whole, offset) > 0) return full; // sulgude sees = juba meetriline ees → jäta
-      const v = Number(numStr.replace(",", "."));
-      if (!isFinite(v)) return full;
-      const met = v >= 100 ? Math.round(c.f(v)) : Number(c.f(v).toFixed(c.dec(v)));
-      addedPairs.add(`${normNum(String(met))}|${normUnit(c.unit)}`);
-      return `${met} ${c.unit} (${full.trim()})`;
-    });
-  }
-  return dedupeDualUnit(out); // duaalühiku-jääk kokku (SSoT, kõik kutsujad)
+  // Töötab PUHTAL LLM-baasil (arhitektuur: metadata.*_en_base; addMetric = puhas funktsioon baas→clean).
+  // 1) pikkus (atomaarne x-grupp + vahemik, ²/³-kaitse)  2) skalaar-perekonnad (igaüks oma tüüp+reegel)
+  let out = convertLengths(text, addedPairs);
+  for (const fam of SCALAR) out = convScalar(out, fam, addedPairs);
+  return dedupeDualUnit(out); // duaalühiku-jääk (allikas "220 lbs/100 kg") kokku (SSoT, kõik kutsujad)
 }
 /** Rakenda meetriline teisendus mõlemale väljale. Tagastab {metrized, addedPairs}. Muudab clean'i kohapeal. */
 export function applyMetric(clean) {
@@ -245,32 +295,72 @@ export function applyMetric(clean) {
   return { metrized, addedPairs };
 }
 
-// ─────────────────────── PÜSIV EBASIDUSE-VÄRAV (addMetric JÄREL, lõppväljund) ───────────────────────
-// Osalise vahemiku-teisenduse signatuur: meetriline pool on VAHEMIK (A<sep>B cm/mm/m), aga sulg sisaldab
-// ÜKSIKUT imperiaal-väärtust → addMetric teisendas vahemiku ainult ühe otsa (nt "28–81.3 cm (32 inch)").
-// Sidus väljund = meetriline vahemik + imperiaal-vahemik sulus (2 vs 2). Allikat EI vaja — kardinaliteet.
-// JOOKSEB addMetric JÄREL (Tarmo 2026-11-19 #3): backfill + öine hook [6.55], fail → EI kirjuta + signaal (rule #5).
-const _COH_NUM = `\\d+(?:[.,]\\d+)?`;
-const _COH_SEP = `(?:\\s*[-–—]\\s*|\\s+to\\s+)`;
-const COHERENCE_RE = new RegExp(`${_COH_NUM}${_COH_SEP}${_COH_NUM}\\s*(?:cm|mm|m)\\b\\s*\\(([^)]*)\\)`, "gi");
-export function rangeCoherenceOffenders(text) {
-  const out = []; let m; COHERENCE_RE.lastIndex = 0;
-  const countNums = (s) => (s.match(/\d+(?:[.,]\d+)?/g) || []).length;
-  while ((m = COHERENCE_RE.exec(String(text)))) {
-    const paren = m[1];
-    const parenImperial = /inch|inches|\bin\b|ft|feet|foot|["″]/i.test(paren);
-    if (parenImperial && countNums(paren) === 1) out.push(m[0]); // vahemik-meetriline + üksik-imperiaal-sulg
+// ─────────────────────── PÜSIV VÄRAV (addMetric JÄREL, lõppväljund) — ÜMBEREHITUS 2026-11-19 ───────────────────────
+// Tarmo #4: TAGASIARVUTUS-kontroll + KORDUS-tuvastus lõppväljundil (asendab vana ainult-pikkus coherence-värava).
+// Jookseb addMetric JÄREL: backfill + öine hook [6.55], fail → EI kirjuta DB + signaal (rule #5).
+//
+// Annotatsiooni-kuju mida addMetric toodab: "<meetriline(d)> <mühik> (<originaal imperiaal>)".
+// 1) TAGASIARVUTUS: arvuta imperiaal → meetriline uuesti, võrdle; kardinaalsus (vahemik 2 vs üksik 1) peab klappima.
+// 2) KORDUS: ")(" kõrvuti (topelt-sulg) VÕI sama "(sisu)" kaks korda → ebasidus.
+const _MG_NUM = `\\d+(?:[.,]\\d+)?`;
+const _MG_RANGE = `${_MG_NUM}(?:\\s*(?:[-–—]|x|×)\\s*|\\s+to\\s+)${_MG_NUM}`;
+// imperiaal → {meetriline ühik, tegur}; järjekord: pindala/maht ENNE lineaarset (² ja ³ sabaga)
+const _IMP2MET = [
+  { re: /\bsq(?:uare)?\.?\s?(?:ft|feet|foot)\b|\bft\s?(?:²|\^?2)|feet\s?(?:²|\^?2)/i, u: "m²", f: 0.092903 },
+  { re: /\bcu(?:bic)?\.?\s?(?:ft|feet|foot)\b|\bft\s?(?:³|\^?3)|feet\s?(?:³|\^?3)/i, u: "m³", f: 0.0283168 },
+  { re: /inch|inches|\bin\b|["″]/i, u: "cm", f: 2.54 },
+  { re: /\bft\b|\bfeet\b|\bfoot\b/i, u: "m", f: 0.3048 },
+  { re: /lbs|\blb\b|pounds?|pound/i, u: "kg", f: 0.453592 },
+  { re: /gallons?|\bgal\b/i, u: "L", f: 3.78541 },
+  { re: /℉|°\s?F|fahrenheit/i, u: "°C", f: null }, // temp = eri-valem
+];
+const _METU = `m²|cm²|m³|cm³|mm|cm|m|kg|g|L|mL|°C`;
+function _nums(s) { return (String(s).match(/\d+(?:[.,]\d+)?/g) || []).map(pNum); }
+function _annRe() { return new RegExp(`(${_MG_RANGE}|${_MG_NUM})\\s*(${_METU})\\s*\\(([^)]*)\\)`, "gi"); }
+export function metricOffenders(text) {
+  const t = String(text); const out = [];
+  // 1) topelt-sulg kõrvuti: "(…num…) (…num…)" → kordus/kuhjumine
+  if (/\([^)]*\d[^)]*\)\s*\([^)]*\d[^)]*\)/.test(t)) {
+    const m = t.match(/\([^)]*\d[^)]*\)\s*\([^)]*\d[^)]*\)/); out.push(`topelt-sulg: ${m[0]}`);
+  }
+  // 2) sama sulu-sisu kaks korda
+  { const seen = new Set(); for (const m of t.matchAll(/\(([^)]*\d[^)]*)\)/g)) { const k = m[1].replace(/\s+/g, "").toLowerCase(); if (seen.has(k)) { out.push(`korduv sulg: (${m[1]})`); break; } seen.add(k); } }
+  // 3) tagasiarvutus iga annotatsiooni kohta
+  let m; const RE = _annRe();
+  while ((m = RE.exec(t))) {
+    const metNums = _nums(m[1]); const munit = m[2]; const paren = m[3];
+    // x-grupp (nt "152 x 61 x 30.5 cm (60 x 24 in)"): convertLengths teisendab aatomina → usalda, ära tagasiarvuta
+    if (/[x×]/i.test(m[1]) || /[x×]/i.test(paren)) continue;
+    const end = m.index + m[0].length; const tail = t.slice(end, end + 2);
+    // PINDALA/MAHT lineaarsena: originaalis või saba-s ²/³, aga meetriline ühik on lineaarne (m/cm) → vale
+    if ((/[²³]/.test(paren) || /^\s*[²³]/.test(tail)) && !/[²³]/.test(munit)) {
+      out.push(`pindala/maht lineaarsena: "${m[0]}${/^\s*[²³]/.test(tail) ? tail.trim() : ""}"`); continue;
+    }
+    const fam = _IMP2MET.find((x) => x.re.test(paren));
+    if (!fam) continue;                                   // originaal pole tuntud imperiaal → jäta (nt juba-meetriline sulg)
+    if (fam.u !== munit) { out.push(`ühiku-tüüp ei klapi: "${m[0]}" (ootasin ${fam.u}, sain ${munit})`); continue; }
+    const impNums = _nums(paren);
+    if (metNums.length !== impNums.length) { out.push(`kardinaalsus: "${m[0]}" (${metNums.length} vs ${impNums.length})`); continue; }
+    for (let i = 0; i < metNums.length; i++) {
+      const exp = fam.f === null ? (impNums[i] - 32) / 1.8 : impNums[i] * fam.f;
+      const got = metNums[i];
+      const tol = Math.max(Math.abs(exp) * 0.04, munit === "°C" ? 1.1 : 0.06); // 4% või temp ±1.1°C
+      if (Math.abs(got - exp) > tol) { out.push(`vale teisendus: "${m[0]}" (${got} ${munit} ≠ ${Number(exp.toFixed(2))})`); break; }
+    }
   }
   return out;
 }
 /** Värav clean-objektile (mõlemad väljad). Tagastab {pass, offenders}. */
-export function rangeCoherenceGate(clean) {
+export function metricGate(clean) {
   const off = [
-    ...rangeCoherenceOffenders(clean.title_en_clean || "").map((s) => `title: ${s} — osaline vahemiku-teisendus (ebasidus ühik)`),
-    ...rangeCoherenceOffenders(clean.description_en_clean || "").map((s) => `desc: ${s} — osaline vahemiku-teisendus (ebasidus ühik)`),
+    ...metricOffenders(clean.title_en_clean || "").map((s) => `title: ${s}`),
+    ...metricOffenders(clean.description_en_clean || "").map((s) => `desc: ${s}`),
   ];
   return { pass: off.length === 0, offenders: off };
 }
+// Tagasiühilduvus (vanad kutsujad): endine nimi delegeerib uuele värav-loogikale.
+export const rangeCoherenceOffenders = metricOffenders;
+export const rangeCoherenceGate = metricGate;
 
 // ─────────────────────────── PROMPTID ───────────────────────────
 export const CLEAN_SYS = `Sa oled XL e-poe (xlmarket.ee) ingliskeelse sisu MASTER-toimetaja. Sulle antakse TARNIJA (VEVOR) TOORE ingliskeelse toote title + müügipunktid + spetsifikatsioonid. Tee neist PUHAS, display-kvaliteediga ingliskeelne MASTER-title ja -kirjeldus.
