@@ -100,12 +100,12 @@ CREDIT_OK=1; PROBE_STATUS=ok
 if [ -n "${ANTHROPIC_API_KEY:-}" ]; then
   node "$ROOT/scripts/credit-probe.mjs" && PROBE_RC=0 || PROBE_RC=$?
   case "$PROBE_RC" in
-    0) echo "  💳 probe: krediit OK — LLM-sammud [4][6][6.5] jooksevad"; CREDIT_OK=1; PROBE_STATUS=ok ;;
-    3) echo "  💳 probe: krediit maas — LLM-sammud [4][6][6.5] SKIP (degrade); laoseis/hind/reindeks JÄTKUB"; CREDIT_OK=0; PROBE_STATUS=credit ;;
+    0) echo "  💳 probe: krediit OK — LLM-sammud [4][6][6.5][6.55] jooksevad"; CREDIT_OK=1; PROBE_STATUS=ok ;;
+    3) echo "  💳 probe: krediit maas — LLM-sammud [4][6][6.5][6.55] SKIP (degrade); laoseis/hind/reindeks JÄTKUB"; CREDIT_OK=0; PROBE_STATUS=credit ;;
     *) echo "  ⚠️ probe: API maas (rc=$PROBE_RC, MITTE krediit) — LLM-sammud SKIP, laoseis JÄTKUB (süsteemne)"; CREDIT_OK=0; PROBE_STATUS=api ;;
   esac
 else
-  echo "  ⚠️ probe: ANTHROPIC_API_KEY puudub → LLM-sammud [4][6][6.5] SKIP (degrade)"; CREDIT_OK=0; PROBE_STATUS=api
+  echo "  ⚠️ probe: ANTHROPIC_API_KEY puudub → LLM-sammud [4][6][6.5][6.55] SKIP (degrade)"; CREDIT_OK=0; PROBE_STATUS=api
 fi
 # ANTI-SPÄMM digest + taastumis-teade (reports/credit-outage.state): 1 teade/päev, mitte igal jooksul
 # (õppetund: 26 identset = müra). Skript otsustab kas teavitada; tühi väljund = vaikus. EXECUTE-only.
@@ -338,6 +338,42 @@ if [ "$CREDIT_OK" = "1" ] && [ -s /tmp/deficit-content.txt ]; then
   esac
 else
   [ "$CREDIT_OK" = "1" ] && echo "  sisu-deficit tühi → sisu-gen vahele (kõigil ET-sisu olemas)" || echo "  krediit/API maas → sisu-gen SKIP (degrade)"
+fi
+
+# ── [6.55] EN-MASTER PUHASTUS (host) — HARD RULE #5 HOOK (display-kvaliteet EN, ENNE reindeks) ─
+# SAMA transform+write kui backfill (en-master-backfill.mjs jagab en-master-clean.mjs lib'i). DEFICIT-peal
+# (title_en_clean puudu — self-healing, Fix 2). Batch API: GEN→kohtunik→regen→det-väravad→applyMetric.
+# ASUKOHT: ENNE [7] reindeks → Meili doc saab title_en_clean/description_en_clean (otsitav + display).
+# KVIET-AKEN: skript ise ootab DB-kirjutusega 02:45–04:30 välja (batch-LLM jookseb kvieti sees); stack-lukk sees.
+# FAIL-LOUD: süsteemne → fail()/Telegram; krediit (rc=3) → degrade; üksik toode → skip+count (rc=2, järgmine öö).
+echo "[6.55/7] en-master puhastus (DEFICIT: title_en_clean puuduolevatele — self-healing, Fix 2)"
+# KREDIIT-DEGRADE: CREDIT_OK=0 → skip KOHE. Fix 2: sisend = EN-master-DEFICIT (title_en_clean NULL).
+if [ "$CREDIT_OK" = "1" ]; then
+  compute_deficit enmaster /tmp/deficit-enmaster.txt
+fi
+if [ "$CREDIT_OK" = "1" ] && [ -s /tmp/deficit-enmaster.txt ]; then
+  EM_OUT=$(node "$ROOT/scripts/en-master-backfill.mjs" --skus /tmp/deficit-enmaster.txt \
+    $([ "$EXECUTE" = "1" ] && echo --execute || echo --sample 0) 2>&1) && EM_RC=0 || EM_RC=$?
+  echo "$EM_OUT" | sed 's/^/  /'
+  EM_SKIPPED=$( { echo "$EM_OUT" | grep -oE 'skipped=[0-9]+' | tail -1 | cut -d= -f2; } || true); EM_SKIPPED=${EM_SKIPPED:-0}
+  case "$EM_RC" in
+    0|2)
+      # OK (0) või osaline (2: üksik toode kukkus väravatest). Mõlemal: deficit proovib jääki JÄRGMINE öö.
+      # Üksik-skip = väraval kukkunud puhastus (täpsus/väide/ühik) — EI blokeeri reindeksit; toores jääb display'ks.
+      [ "$EM_SKIPPED" -gt 0 ] && slack "ℹ️ XLM en-master [6.55]: $EM_SKIPPED toodet skipiti (väravad) — toores EN jääb display'ks, deficit proovib järgmine öö"
+      ;;
+    3)
+      # KREDIIT-DEGRADE: EN-master OOTAB, laoseis/hind/spec/sisu + [7] reindeks JÄTKUB (toores EN display'ks).
+      echo "  ⚠️ [6.55] KREDIIT-DEGRADE — EN-master vahele, [7] reindeks JÄTKUB (toores EN jääb display'ks)"
+      slack "⚠️ XLM en-master [6.55] KREDIIT-DEGRADE (HOIATUS, mitte FAIL): tooted ootavad puhastatud EN-i (krediit maas). Reindeks JÄTKUS — pood uueneb toore EN-iga. Täidab: krediit korda → 'node scripts/en-master-backfill.mjs --all --execute' või järgmine öö."
+      ;;
+    *)
+      # MUU süsteemne (API maas / DB kaos) → PEATA (Telegram punane).
+      fail "en-master" "en-master-backfill.mjs rc=$EM_RC (süsteemne — API/DB maas?)"
+      ;;
+  esac
+else
+  [ "$CREDIT_OK" = "1" ] && echo "  en-master-deficit tühi → puhastus vahele (kõigil title_en_clean olemas)" || echo "  krediit/API maas → en-master SKIP (degrade)"
 fi
 
 # ── [6.6] SÜNONÜÜMID (host) — HARD RULE #5 HOOK (otsingu sünonüümid+variandid, ENNE reindeks) ─

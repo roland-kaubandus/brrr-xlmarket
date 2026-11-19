@@ -15,11 +15,13 @@ export interface MeiliTaxonomy {
 export type MeiliHit = {
   id: string
   title: string      // originaal EN (display fallback)
-  title_en?: string   // otsinguindeks EN
+  title_en?: string   // otsinguindeks EN (toores)
+  title_en_clean?: string   // EN-master: puhastatud display-title (eelistatud EN-locale'is)
   title_et?: string   // otsinguindeks ET
   handle: string
   description?: string
   description_en?: string
+  description_en_clean?: string   // EN-master: puhastatud display-kirjeldus (eelistatud EN-locale'is)
   description_et?: string
   thumbnail?: string | null
   sku?: string
@@ -58,18 +60,19 @@ export type MeiliHit = {
 /**
  * Locale-aware product title.
  * ET: prefer title_et, fall back to EN baseline if not yet translated.
- * EN / anything else: original EN baseline.
+ * EN / anything else: EN-master baseline — PUHASTATUD title_en_clean eelistatud (EN-master arhitektuur),
+ *   fallback toorele (title/title_en), kui puhastust veel pole (backfill lennus).
  * The fallback chain is intentional — during rollout many products will have
- * no ET yet; showing EN is better than showing empty string.
+ * no ET (ega puhastust) yet; showing raw EN is better than showing empty string.
  */
 export function getProductTitle(hit: MeiliHit, locale: string = 'en'): string {
   if (locale === 'et' && hit.title_et) return hit.title_et
-  return hit.title || hit.title_en || ''
+  return hit.title_en_clean || hit.title || hit.title_en || ''
 }
 
 export function getProductDescription(hit: MeiliHit, locale: string = 'en'): string {
   if (locale === 'et' && hit.description_et) return hit.description_et
-  return hit.description || hit.description_en || ''
+  return hit.description_en_clean || hit.description || hit.description_en || ''
 }
 
 /** Escape a value for safe inclusion in a MeiliSearch filter string */

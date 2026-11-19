@@ -51,7 +51,9 @@ async function configureIndex() {
     // morph_et = VIIMANE (madalaim prioriteet): Eesti liitsõna-otsing KIHT 1 (deterministlik
     // morfoloogia, scripts/lib/morph_et.py → metadata.morph_et). Annab liitsõna-teise-poole
     // tabamuse (ahi → elektriahi) ILMA et tõstaks neid üle title/description täppis-tabamuste.
-    searchableAttributes: ["title_et", "title_en", "brand_name", "description_et", "description_en", "categories", "sku", "handle", "morph_et"],
+    // title_en_clean/description_en_clean = EN-master puhastatud display-tekst (en-master-backfill).
+    // Otsitav samal real toorega (title_en/description_en), et EN-otsing leiaks ka puhastatud sõnastust.
+    searchableAttributes: ["title_et", "title_en", "title_en_clean", "brand_name", "description_et", "description_en", "description_en_clean", "categories", "sku", "handle", "morph_et"],
     filterableAttributes: [
       "categories", "category_handles", "subcategory", "price", "in_stock", "archived", "translated", "filter_tokens",
       // Taxonomy v3 SSoT fields (F2.8). See docs/superpowers/specs/2026-04-18-taxonomy-final-design.md §6.
@@ -322,9 +324,14 @@ function transform(row) {
   const doc = {
     id: row.id,
     title: row.title || '',        // display field (current active title)
-    title_en,                       // search: English
+    title_en,                       // search: English (toores feed-title)
+    // EN-master puhastatud väljad (en-master-backfill): display-kvaliteet EN-locale'is.
+    // Storefront getProductTitle/getProductDescription eelistab neid toorele. Tühi string
+    // kuni backfill jõuab tooteni (fallback toorele storefront'is). Otsitav (searchableAttributes).
+    title_en_clean: meta.title_en_clean || '',
     title_et,                       // search: Estonian
     // future: title_ru, title_fi — same pattern
+    description_en_clean: meta.description_en_clean || '',
     morph_et: meta.morph_et || '',  // search: Eesti liitsõna KIHT 1 (lemma+komponendid; madal prio)
     brand: brandSlug || '',         // slug (filter/URL)
     brand_name: brandName,          // search: bränd (nt "VEVOR") — sõltumatu title'st

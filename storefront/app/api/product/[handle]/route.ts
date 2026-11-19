@@ -208,13 +208,17 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     // Locale-aware title: prefer ET (if locale=et and title_et present), else EN baseline.
     // meta.title_et is written by translate-worker.mjs; Meili reindex picks it up.
     const metaTitleEt = locale === "et" ? (typeof metadata.title_et === "string" && metadata.title_et.trim() ? metadata.title_et : null) : null
+    // EN-master puhastatud baseliin (sama eelistus kui getProductTitle): kui Meili-hit puudub,
+    // loe title_en_clean otse metadata'st; fallback toorele (product.title), kui puhastust pole.
+    const metaTitleEnClean = typeof metadata.title_en_clean === "string" && metadata.title_en_clean.trim() ? metadata.title_en_clean : null
     const localizedTitle = meiliHit
       ? getProductTitle(meiliHit, locale)
-      : (metaTitleEt || product.title)
+      : (metaTitleEt || metaTitleEnClean || product.title)
     const metaDescEt = locale === "et" ? (typeof metadata.description_et === "string" && metadata.description_et.trim() ? metadata.description_et : null) : null
+    const metaDescEnClean = typeof metadata.description_en_clean === "string" && metadata.description_en_clean.trim() ? metadata.description_en_clean : null
     const localizedDescription = meiliHit
       ? getProductDescription(meiliHit, locale)
-      : (metaDescEt || product.description || "")
+      : (metaDescEt || metaDescEnClean || product.description || "")
     const variant = product.variants?.[0]
     // Hind Meili'st (kõik tooted 1-variant, Meili price === Medusa calc_price).
     // Väldib Medusa `calculated_price` pricing-moodul query.graph-laiendust mis
