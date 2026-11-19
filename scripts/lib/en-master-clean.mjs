@@ -182,22 +182,33 @@ const SCALAR = [
 // meetrilised ühikud mida loeme "juba olemas" (kõrval → ära teisenda, väldib topelt-sulgu)
 const _MET_ADJ = `mm|cm|m²|cm²|m³|m|kg|g|t|L|mL|ml|°C|°c`;
 const _SC_NUM = `\\d+(?:[.,]\\d+)*`;
+const _SC_SIGN = `[−-]?`;                       // juhtiv märk (U+2212 või ASCII); vahemiku-kriips eristatakse _digitBefore'ga
 const _SC_SEP = `(?:\\s*[-–—]\\s*|\\s+to\\s+)`;
 // convScalar: üksik VÕI vahemik; paren-kaitse; kõrval-meetriline → skip (allikas andis mõlemad); 1 sulg; vahemik aatomina.
+//   NEGATIIVNE allikas ("−4°F" = -4): märk HAARATAKSE tervikuna (teisendus -4°F→-20°C õige) ja algne märk ei jää orvuks
+//   (vana bug: "4°F"→"-16 °C" + orb "−" → "−-16 °C"; 21 temp-toodet). Vahemiku-kriips ("35-48") EI ole märk.
 function convScalar(text, fam, addedPairs) {
-  const RE = new RegExp(`(${_SC_NUM}(?:${_SC_SEP}${_SC_NUM})?)\\s*(?:${fam.units})(?![a-zA-Z])`, "gi");
+  const RE = new RegExp(`(${_SC_SIGN}${_SC_NUM}(?:${_SC_SEP}${_SC_SIGN}${_SC_NUM})?)\\s*(?:${fam.units})(?![a-zA-Z])`, "gi");
   const afterMet = new RegExp(`^\\s*[/,(]?\\s*${_SC_NUM}\\s*(?:${_MET_ADJ})\\b`, "i");
   const beforeMet = new RegExp(`${_SC_NUM}\\s*(?:${_MET_ADJ})\\b\\s*[/,(]?\\s*$`, "i");
+  const NUMSIGN = new RegExp(`(${_SC_SIGN})(${_SC_NUM})`, "g");
   return text.replace(RE, (full, body, offset, whole) => {
     if (parenDepthAt(whole, offset) > 0) return full;             // sulgude sees = allika-meetriline annotatsioon
     const after = whole.slice(offset + full.length, offset + full.length + 18);
     const before = whole.slice(Math.max(0, offset - 18), offset);
     if (afterMet.test(after) || beforeMet.test(before)) return full; // meetriline kõrval → allikas duaalne, ära korda
-    const nums = body.match(new RegExp(_SC_NUM, "g")) || [];
+    // märgi-teadlik arvude-haare: juhtiv "−"/"-" = märk; number ees → kriips on vahemik, mitte märk
+    const nums = []; let m2;
+    while ((m2 = NUMSIGN.exec(body))) {
+      let sign = m2[1];
+      if ((sign === "-" || sign === "−") && _digitBefore(body, m2.index)) sign = "";
+      nums.push((sign === "−" ? "-" : sign) + m2[2]); // normaliseeri U+2212 → ASCII (pNum jaoks)
+    }
     if (!nums.length) return full;
     const conv = nums.map((n) => { const cv = roundMet(fam.conv(pNum(n)), fam.to); addedPairs.add(`${normNum(String(cv))}|${normUnit(fam.to)}`); return cv; });
-    const sepM = body.match(/[-–—]|\bto\b/i);
-    const sep = sepM ? (/to/i.test(sepM[0]) ? " to " : sepM[0]) : "";
+    // separaator = arvude VAHEL (mitte juhtiv märk): otsi esimese arvu JÄREL
+    let sep = "";
+    if (nums.length > 1) { const sm = body.match(new RegExp(`${_SC_NUM}(${_SC_SEP})`)); sep = sm ? (/to/i.test(sm[1]) ? " to " : sm[1].trim()) : ""; }
     return `${conv.join(sep)} ${fam.to} (${full.trim()})`;
   });
 }

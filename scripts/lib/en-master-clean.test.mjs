@@ -47,6 +47,11 @@ eq("a: maht ft³", "tank holds 20 ft³ capacity", "tank holds 0.57 m³ (20 ft³)
 // (b) TEMPERATUUR (°F valem, mitte lineaarne)
 eq("b: temp vahemik", "operating 32-104°F range", "operating 0-40 °C (32-104°F) range");
 eq("b: temp üksik", "heats up to 205°F max", "heats up to 96 °C (205°F) max");
+// NEGATIIVNE temp (2026-11-19 parandus): märk haaratakse, väärtus õige, EI topelt-miinust ("−-16")
+eq("b: temp negatiivne üksik", "cools to -4°F inside", "cools to -20 °C (-4°F) inside");
+eq("b: temp negatiivne vahemik", "operating -22 to 122°F range", "operating -30 to 50 °C (-22 to 122°F) range");
+eq("b: temp neg U+2212 allikas", "reaches −"+"22°F cold", "reaches -30 °C (−"+"22°F) cold");
+eq("b: temp duaal allikas (°C/°F) puutumata", "rated -20°C/-4°F low", "rated -20°C/-4°F low");
 // (c) ALLIKAS JUBA MEETRILINE → ära teisenda uuesti (topelt-sulu keeld)
 eq("c: allikas kg olemas", "weight 100 kg (220 lbs) net", "weight 100 kg (220 lbs) net");
 eq("c: allikas m² olemas", "area 50 m² (538 ft²) total", "area 50 m² (538 ft²) total");
