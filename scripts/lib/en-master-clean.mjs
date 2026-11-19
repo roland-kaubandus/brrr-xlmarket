@@ -245,6 +245,33 @@ export function applyMetric(clean) {
   return { metrized, addedPairs };
 }
 
+// ─────────────────────── PÜSIV EBASIDUSE-VÄRAV (addMetric JÄREL, lõppväljund) ───────────────────────
+// Osalise vahemiku-teisenduse signatuur: meetriline pool on VAHEMIK (A<sep>B cm/mm/m), aga sulg sisaldab
+// ÜKSIKUT imperiaal-väärtust → addMetric teisendas vahemiku ainult ühe otsa (nt "28–81.3 cm (32 inch)").
+// Sidus väljund = meetriline vahemik + imperiaal-vahemik sulus (2 vs 2). Allikat EI vaja — kardinaliteet.
+// JOOKSEB addMetric JÄREL (Tarmo 2026-11-19 #3): backfill + öine hook [6.55], fail → EI kirjuta + signaal (rule #5).
+const _COH_NUM = `\\d+(?:[.,]\\d+)?`;
+const _COH_SEP = `(?:\\s*[-–—]\\s*|\\s+to\\s+)`;
+const COHERENCE_RE = new RegExp(`${_COH_NUM}${_COH_SEP}${_COH_NUM}\\s*(?:cm|mm|m)\\b\\s*\\(([^)]*)\\)`, "gi");
+export function rangeCoherenceOffenders(text) {
+  const out = []; let m; COHERENCE_RE.lastIndex = 0;
+  const countNums = (s) => (s.match(/\d+(?:[.,]\d+)?/g) || []).length;
+  while ((m = COHERENCE_RE.exec(String(text)))) {
+    const paren = m[1];
+    const parenImperial = /inch|inches|\bin\b|ft|feet|foot|["″]/i.test(paren);
+    if (parenImperial && countNums(paren) === 1) out.push(m[0]); // vahemik-meetriline + üksik-imperiaal-sulg
+  }
+  return out;
+}
+/** Värav clean-objektile (mõlemad väljad). Tagastab {pass, offenders}. */
+export function rangeCoherenceGate(clean) {
+  const off = [
+    ...rangeCoherenceOffenders(clean.title_en_clean || "").map((s) => `title: ${s} — osaline vahemiku-teisendus (ebasidus ühik)`),
+    ...rangeCoherenceOffenders(clean.description_en_clean || "").map((s) => `desc: ${s} — osaline vahemiku-teisendus (ebasidus ühik)`),
+  ];
+  return { pass: off.length === 0, offenders: off };
+}
+
 // ─────────────────────────── PROMPTID ───────────────────────────
 export const CLEAN_SYS = `Sa oled XL e-poe (xlmarket.ee) ingliskeelse sisu MASTER-toimetaja. Sulle antakse TARNIJA (VEVOR) TOORE ingliskeelse toote title + müügipunktid + spetsifikatsioonid. Tee neist PUHAS, display-kvaliteediga ingliskeelne MASTER-title ja -kirjeldus.
 
