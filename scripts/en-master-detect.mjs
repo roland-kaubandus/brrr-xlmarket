@@ -21,7 +21,7 @@
  */
 import fs from "node:fs";
 import { execSync } from "node:child_process";
-import { addMetric, srcUnitPairs, sourceCorpus } from "./lib/en-master-clean.mjs";
+import { addMetric, srcUnitPairs, sourceCorpus, metricOffenders } from "./lib/en-master-clean.mjs";
 
 const REPO = "/opt/xlmarket-github";
 const argv = process.argv.slice(2);
@@ -94,6 +94,10 @@ for (const p of rows) {
   const both = `${tc}\n${dc}`;
   const reasons = [];
 
+  // G — PÜSIV VÄRAV (SSoT metricOffenders, sama mis kirjutus-värav): struktuurselt-kindel korruptsioon
+  //   (topelt-sulg, kardinaalsus, vale tagasiarvutus, pindala/maht lineaarsena). Rule #5.
+  const goff = [...metricOffenders(tc), ...metricOffenders(dc)];
+  if (goff.length) reasons.push(`G:värav«${goff[0].slice(0, 36)}»`);
   // A1 — addMetric muudaks (teisendamata imperiaalne sulgude-väliselt)
   const ap = new Set();
   if (addMetric(tc, ap) !== tc || addMetric(dc, new Set()) !== dc) reasons.push("A1:teisendamata-imperiaal");
@@ -111,13 +115,16 @@ for (const p of rows) {
   if (reasons.length) affected.push({ id: p.id, tc, reasons });
 }
 
-const byPat = { A1: 0, A2: 0, B: 0 };
-for (const a of affected) for (const r of a.reasons) { if (r.startsWith("A1")) byPat.A1++; else if (r.startsWith("A2")) byPat.A2++; else if (r.startsWith("B")) byPat.B++; }
+const byPat = { G: 0, A1: 0, A2: 0, B: 0 };
+for (const a of affected) for (const r of a.reasons) { if (r.startsWith("G")) byPat.G++; else if (r.startsWith("A1")) byPat.A1++; else if (r.startsWith("A2")) byPat.A2++; else if (r.startsWith("B")) byPat.B++; }
+const gateOnly = affected.filter((a) => a.reasons.some((r) => r.startsWith("G"))).length;
 
 console.log(`\n════════ MÕJUTATUD: ${affected.length} / ${rows.length} ════════`);
+console.log(`  G  värav (struktuurne korruptsioon): ${byPat.G}   ← kindel regen-sihtmärk`);
 console.log(`  A1 teisendamata-imperiaal: ${byPat.A1}`);
 console.log(`  A2 osaline-teisendus:      ${byPat.A2}`);
 console.log(`  B  per-variant-üldistus:   ${byPat.B}`);
+console.log(`  (G-värava tooteid kokku: ${gateOnly})`);
 
 if (SHOW) {
   console.log("\n── näited (max 25) ──");

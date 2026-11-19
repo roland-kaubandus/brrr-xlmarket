@@ -39,17 +39,19 @@ const stmts = [];
 let rm = 0, rest = 0;
 for (const id of ids) {
   const p = prev[id];
-  // title_en_clean
-  const tSet = (p.tc == null)
-    ? `metadata = metadata - 'title_en_clean'`
-    : `metadata = jsonb_set(metadata,'{title_en_clean}', to_jsonb(${sq(p.tc)}::text), true)`;
-  // description_en_clean (ahelda järgmisele)
-  const dSet = (p.dc == null)
-    ? `metadata = metadata - 'description_en_clean'`
-    : `metadata = jsonb_set(metadata,'{description_en_clean}', to_jsonb(${sq(p.dc)}::text), true)`;
-  // kaks eraldi UPDATE-t (loetavus; sama transaktsioon)
-  stmts.push(`UPDATE product SET ${tSet} WHERE id=${sq(id)};`);
-  stmts.push(`UPDATE product SET ${dSet}, updated_at=NOW() WHERE id=${sq(id)};`);
+  // clean-väljad — AINULT kui ledger neid kannab (base-only regen jätab tc/dc välja → clean'i EI puudutata)
+  if ("tc" in p) {
+    const tSet = (p.tc == null)
+      ? `metadata = metadata - 'title_en_clean'`
+      : `metadata = jsonb_set(metadata,'{title_en_clean}', to_jsonb(${sq(p.tc)}::text), true)`;
+    // description_en_clean (ahelda järgmisele)
+    const dSet = (p.dc == null)
+      ? `metadata = metadata - 'description_en_clean'`
+      : `metadata = jsonb_set(metadata,'{description_en_clean}', to_jsonb(${sq(p.dc)}::text), true)`;
+    // kaks eraldi UPDATE-t (loetavus; sama transaktsioon)
+    stmts.push(`UPDATE product SET ${tSet} WHERE id=${sq(id)};`);
+    stmts.push(`UPDATE product SET ${dSet}, updated_at=NOW() WHERE id=${sq(id)};`);
+  }
   // base-väljad (Tarmo #1 arhitektuur) — ainult kui ledger neid kannab (vanad partiid ei kirjutanud base'i)
   if ("tb" in p) {
     const tbSet = (p.tb == null) ? `metadata = metadata - 'title_en_base'`
@@ -59,7 +61,8 @@ for (const id of ids) {
     stmts.push(`UPDATE product SET ${tbSet} WHERE id=${sq(id)};`);
     stmts.push(`UPDATE product SET ${dbSet}, updated_at=NOW() WHERE id=${sq(id)};`);
   }
-  if (p.tc == null && p.dc == null) rm++; else rest++;
+  if (("tc" in p) || ("dc" in p)) { if (p.tc == null && p.dc == null) rm++; else rest++; }
+  else if (("tb" in p) || ("db" in p)) { if (p.tb == null && p.db == null) rm++; else rest++; } // base-only regen
 }
 console.log(`  eemalda (väli puudus enne): ${rm} · taasta endine väärtus: ${rest}`);
 if (DRY) { console.log("[DRY] ei kirjuta. Esimesed laused:\n" + stmts.slice(0, 4).join("\n")); process.exit(0); }

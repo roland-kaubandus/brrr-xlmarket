@@ -51,6 +51,9 @@ const EXECUTE = has("--execute");
 const SAMPLE = val("--sample") ? Number(val("--sample")) : null;
 const SKUS_FILE = val("--skus");
 const ALL = has("--all");
+// --base-only (Tarmo 2026-11-19 #3 regen): kirjuta AINULT title_en_base/description_en_base (LLM-tekst),
+//   JÄTA title_en_clean/description_en_clean PUUTUMATA. Clean uuendab hiljem en-master-remetric (dry→Opus→GO).
+const BASE_ONLY = has("--base-only");
 const CHUNK = Number(val("--chunk")) || 2000;
 const BATCH_ID = val("--batch-id") || `enmaster-${new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19)}`;
 
@@ -362,15 +365,23 @@ async function writeChunk(toWrite, state, ledger) {
   for (const t of toWrite) {
     const s = state.get(t.id);
     const c = s.clean; const b = s.base || { title: "", description: "" };
-    // jsonb_set — 4 välja: clean (metrized, kuvatav) + base (LLM enne addMetric, ümberjooksu allikas).
-    // ülejäänud metadata puutumata. raw title/description EI muutu.
-    stmts.push(`UPDATE product SET metadata = jsonb_set(jsonb_set(jsonb_set(jsonb_set(COALESCE(metadata,'{}'::jsonb),`
-      + `'{title_en_clean}', to_jsonb(${sq(c.title_en_clean)}::text), true),`
-      + `'{description_en_clean}', to_jsonb(${sq(c.description_en_clean)}::text), true),`
-      + `'{title_en_base}', to_jsonb(${sq(b.title)}::text), true),`
-      + `'{description_en_base}', to_jsonb(${sq(b.description)}::text), true), updated_at = NOW() WHERE id = ${sq(t.id)};`);
     const pv = prev.get(t.id) || {};
-    ledger.prev[t.id] = { tc: pv.tc ?? null, dc: pv.dc ?? null, tb: pv.tb ?? null, db: pv.db ?? null }; // null = väli puudus → undo EEMALDAB
+    if (BASE_ONLY) {
+      // REGEN: AINULT base; clean JÄÄB praeguseks (remetric uuendab peale Opus-GO-d). undo kannab base'i (mitte clean).
+      stmts.push(`UPDATE product SET metadata = jsonb_set(jsonb_set(COALESCE(metadata,'{}'::jsonb),`
+        + `'{title_en_base}', to_jsonb(${sq(b.title)}::text), true),`
+        + `'{description_en_base}', to_jsonb(${sq(b.description)}::text), true), updated_at = NOW() WHERE id = ${sq(t.id)};`);
+      ledger.prev[t.id] = { tb: pv.tb ?? null, db: pv.db ?? null }; // tc/dc väljajäetud → undo EI puuduta clean'i
+    } else {
+      // jsonb_set — 4 välja: clean (metrized, kuvatav) + base (LLM enne addMetric, ümberjooksu allikas).
+      // ülejäänud metadata puutumata. raw title/description EI muutu.
+      stmts.push(`UPDATE product SET metadata = jsonb_set(jsonb_set(jsonb_set(jsonb_set(COALESCE(metadata,'{}'::jsonb),`
+        + `'{title_en_clean}', to_jsonb(${sq(c.title_en_clean)}::text), true),`
+        + `'{description_en_clean}', to_jsonb(${sq(c.description_en_clean)}::text), true),`
+        + `'{title_en_base}', to_jsonb(${sq(b.title)}::text), true),`
+        + `'{description_en_base}', to_jsonb(${sq(b.description)}::text), true), updated_at = NOW() WHERE id = ${sq(t.id)};`);
+      ledger.prev[t.id] = { tc: pv.tc ?? null, dc: pv.dc ?? null, tb: pv.tb ?? null, db: pv.db ?? null }; // null = väli puudus → undo EEMALDAB
+    }
   }
   if (!stmts.length) return;
 
