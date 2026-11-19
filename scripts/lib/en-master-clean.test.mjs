@@ -89,6 +89,40 @@ coh("katki: topelt-sulg pikkus", "2.1-2.41 m (6.9-7.9 ft) (2.1-2.4 m)", true);
 // uue addMetriku väljund (peab olema SIDUS):
 coh("sidus: pindala m²", "139.4 m² (1500 ft²)", false);
 coh("sidus: temp vahemik", "0-40 °C (32-104°F)", false);
+
+console.log("\n=== PARANDUS 2026-11-19: gate DIMENSIOONI-perekond (mm≡cm≡m) ===");
+// allikas annab mm — dimensiooniliselt ÕIGE (1100mm=43.3\"), värav EI tohi "cm ootasin" valepositiivi anda
+coh("sidus: mm allikas-duaal", '1100 mm (43.3")', false);
+coh("sidus: m allikas-duaal", "2000 mm (78.7 in)", false);
+coh("sidus: mL maht-perekond", "500 mL (0.13 gal)", false); // 0.13 gal=0.49 L=490 mL ≈ 500 (tol 4%... 500 vs 492, 1.6%)
+// AGA vale VÄÄRTUS mm-is peab ikka lipuma (perekond ok, arv vale):
+coh("katki: mm vale väärtus", '50 mm (43.3")', true);     // 50mm=5cm ≠ 110cm
+
+console.log("\n=== PARANDUS 2026-11-19: gate MÄRGI-teadlik (negatiivne temp) ===");
+coh("sidus: temp negatiivne", "-16 °C (4°F)", false);      // 4°F=-15.56°C, miinus SÄILIB
+coh("sidus: temp neg vahemik", "-18 to 4 °C (0 to 40°F)", false);
+coh("katki: temp neg vale", "16 °C (4°F)", true);          // märgi-kadu simul: 16 ≠ -15.56 → ikka lipub
+
+console.log("\n=== PARANDUS 2026-11-19: addMetric allikas-duaal PIKKUS (ei topelt-teisenda) ===");
+eq("allikas toll+mm sulus", 'wheel 12" (320 mm) solid', 'wheel 12" (320 mm) solid');
+eq("allikas x-grupp toll+cm sulus", "frame 60 x 24 in (152 x 61 cm) steel", "frame 60 x 24 in (152 x 61 cm) steel");
+eq("toll / cm kaldkriips", "spaced 2 in / 5 cm apart", "spaced 2 in / 5 cm apart");
+// AGA eri perekond (kaal) kõrval EI tohi pikkuse teisendust blokeerida:
+eq("eri mõõt: inch + kg (teisenda ikka)", "blade 20 inch, 5 kg weight", "blade 50.8 cm (20 inch), 5 kg weight");
+
+console.log("\n=== PARANDUS 2026-11-19: gate MURD-toll üks väärtus (1/8\"=3.2mm) ===");
+coh("sidus: murd-toll", '3.2 mm (1/8")', false);              // 1/8"=3.175mm
+coh("sidus: murd-vahemik", "6.4 to 8.0 mm (1/4 to 5/16 in)", false); // 1/4=6.35, 5/16=7.94
+coh("sidus: murd 5/8", '15.9 mm (5/8")', false);               // 5/8"=15.875mm
+coh("katki: murd vale väärtus", '9 mm (1/8")', true);          // 1/8"=3.2mm ≠ 9mm
+
+console.log("\n=== PARANDUS 2026-11-19: gate RUUT-toll (sq in → cm²) ===");
+coh("sidus: ruut-toll", "7432 cm² (1152 square inches)", false); // 1152×6.4516=7432
+coh("sidus: sümbol-vahemik tagasiarv", '19.7-21 cm (7.75"-8.25")', false); // kriips vahemik, mitte märk
+
+console.log("\n=== PARANDUS 2026-11-19: korduv sulg AINULT lähestikku (≤60) ===");
+coh("sidus: kaug-paren-kordus (proosa)", "Rated (10 lbs) for light tasks around the home and the garden every single day, also holds (10 lbs) elsewhere", false);
+coh("katki: lähi-paren-kordus (artefakt)", "capacity (10 lbs) weight (10 lbs) listed", true);
 {
   const g = rangeCoherenceGate({ title_en_clean: "ok 71.1-81.3 cm (28-32 inch)", description_en_clean: "bad 28–81.3 cm (32 inch)" });
   const ok = g.pass === false && g.offenders.length === 1;
