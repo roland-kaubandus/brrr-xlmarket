@@ -199,10 +199,11 @@ function convertLengths(text, addedPairs) {
  */
 export function dedupeDualUnit(text) {
   let out = String(text);
+  // (?<![\d.,]) = number EI tohi alata keset teist arvu (nt "4.5 kg / 5 kg" ei tohi haarata "5 kg/5 kg")
   // "M u (I)/M u" → "M u (I)"  (imperiaal-pool teisendati ette, meetriline kordus taga)
-  out = out.replace(/(\d+(?:[.,]\d+)?)\s*([a-zA-Z°"″]+)\s*\(([^)]*)\)\s*\/\s*\1\s*\2\b/g, "$1 $2 ($3)");
+  out = out.replace(/(?<![\d.,])(\d+(?:[.,]\d+)?)\s*([a-zA-Z°"″]+)\s*\(([^)]*)\)\s*\/\s*\1\s*\2\b/g, "$1 $2 ($3)");
   // "M u/M u (I)" → "M u (I)"  (meetriline ees, imperiaal-pool teisendati taha)
-  out = out.replace(/(\d+(?:[.,]\d+)?)\s*([a-zA-Z°"″]+)\s*\/\s*\1\s*\2\s*\(([^)]*)\)/g, "$1 $2 ($3)");
+  out = out.replace(/(?<![\d.,])(\d+(?:[.,]\d+)?)\s*([a-zA-Z°"″]+)\s*\/\s*\1\s*\2\s*\(([^)]*)\)/g, "$1 $2 ($3)");
   return out;
 }
 
