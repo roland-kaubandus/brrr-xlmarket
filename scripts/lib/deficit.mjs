@@ -56,7 +56,11 @@ export const DEFICIT_SQL = {
 
 // Jäme $/toode hinnang (AINULT Telegram-hoiatuse suurusjärguks — EI ole täppisarve):
 //   spec ≈ 1 Haiku-kutse; content ≈ Sonnet suur väljund; synonyms ≈ Sonnet väike väljund.
-const EST_USD_PER = { spec: 0.004, content: 0.03, synonyms: 0.007, enmaster: 0.012 };
+//   enmaster (kalibreeritud 2026-11-19 täisjooksu järgi): baas = 1 GEN + 1 JUDGE Sonnet-Batch (−50%) ≈
+//     0.012/toode, AGA väravalangus sunnib REGEN-ringi (täisjooksul 3087/19632 = ~16% tooteid sai lisa-
+//     GEN+JUDGE). Vana 0.012 eiras regenit → alahindas. Uus 0.014 = 0.012 × 1.16 (regen-ülekulu sees).
+//     Täpne per-jooks kulu → spend-liidri by_task["enmaster:GEN|JUDGE|REGEN"] (jälgitavus, mitte see hinnang).
+const EST_USD_PER = { spec: 0.004, content: 0.03, synonyms: 0.007, enmaster: 0.014 };
 
 function resolveDb() {
   return execSync("docker ps --format '{{.Names}}' | grep '^db-k33g' | head -1", { encoding: "utf8" }).trim();

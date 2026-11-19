@@ -215,7 +215,7 @@ const usageHit = (r) => !r.ok && /credit|usage|insufficient|rate limit|quota/i.t
     // ── BATCH GEN ──
     const reqG = grp.map((t) => ({ custom_id: `g_${ix.get(t.id)}`, params: pGen(cleanUser(t, "")) }));
     let G;
-    try { G = await runChunk(reqG, API_KEY, { label: "GEN" }); }
+    try { G = await runChunk(reqG, API_KEY, { label: "enmaster:GEN" }); }
     catch (e) { if (isUsageLimitError(e) || isUsageLimitError(e._json)) { safeStop(`GEN: ${e.message}`, ledger); break; } throw e; }
     console.log(`  GEN valmis: ${JSON.stringify(G.counts)} (batch ${G.batchId})`);
     if (G.results.some(usageHit)) { safeStop("GEN usage-limit tulemustes", ledger); break; }
@@ -244,7 +244,7 @@ const usageHit = (r) => !r.ok && /credit|usage|insufficient|rate limit|quota/i.t
     if (judgeTargets.length) {
       const reqJ = judgeTargets.map((t) => { const s = state.get(t.id); return { custom_id: `j_${ix.get(t.id)}`, params: pJudge(judgeUser(t, s.clean, s.orphans)) }; });
       let J;
-      try { J = await runChunk(reqJ, API_KEY, { label: "JUDGE" }); }
+      try { J = await runChunk(reqJ, API_KEY, { label: "enmaster:JUDGE" }); }
       catch (e) { if (isUsageLimitError(e) || isUsageLimitError(e._json)) { safeStop(`JUDGE: ${e.message}`, ledger); break; } throw e; }
       console.log(`  JUDGE valmis: ${JSON.stringify(J.counts)} (batch ${J.batchId})`);
       if (J.results.some(usageHit)) { safeStop("JUDGE usage-limit tulemustes", ledger); break; }
@@ -268,7 +268,7 @@ const usageHit = (r) => !r.ok && /credit|usage|insufficient|rate limit|quota/i.t
       console.log(`  väravad kukkusid: ${failTargets.length} → BATCH REGEN (1 ring)`);
       const reqR = failTargets.map((t) => { const s = state.get(t.id); return { custom_id: `r_${ix.get(t.id)}`, params: pGen(cleanUser(t, buildAvoidNote(s.offenders))) }; });
       let R;
-      try { R = await runChunk(reqR, API_KEY, { label: "REGEN" }); }
+      try { R = await runChunk(reqR, API_KEY, { label: "enmaster:REGEN" }); }
       catch (e) { if (isUsageLimitError(e) || isUsageLimitError(e._json)) { safeStop(`REGEN: ${e.message}`, ledger); break; } throw e; }
       console.log(`  REGEN valmis: ${JSON.stringify(R.counts)} (batch ${R.batchId})`);
       if (R.results.some(usageHit)) { safeStop("REGEN usage-limit tulemustes", ledger); break; }
