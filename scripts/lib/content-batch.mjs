@@ -57,7 +57,8 @@ export async function pollBatch(batchId, apiKey, { intervalMs = 20000, maxMs = 2
 }
 
 // results_url JSONL → [{custom_id, ok, message, errorType}]
-export async function retrieveResults(batch, apiKey) {
+//   task: vaba silt (= runChunk label) → per-task kulu-agregaat (jälgitavus, Tarmo 2026-11-19).
+export async function retrieveResults(batch, apiKey, { task = "" } = {}) {
   const url = batch.results_url;
   if (!url) throw new Error('results_url puudub (batch pole valmis?)');
   const res = await apiFetch(url, { method: 'GET' }, apiKey);
@@ -69,8 +70,8 @@ export async function retrieveResults(batch, apiKey) {
     const r = rec.result || {};
     if (r.type === 'succeeded') {
       // Fix 4 (Tarmo 2026-10-14): jälgi Batch-kulu kuu-liidrisse (üks koht → kõik Batch-kutsujad).
-      //   batch:true = −50% hind. Best-effort: jälgimise-tõrge EI katkesta tulemuste parsimist.
-      try { recordSpend({ model: r.message.model, usage: r.message.usage, batch: true }); } catch { /* ignore */ }
+      //   batch:true = −50% hind. task = per-jooks eristus. Best-effort: tõrge EI katkesta parsimist.
+      try { recordSpend({ model: r.message.model, usage: r.message.usage, batch: true, task }); } catch { /* ignore */ }
       out.push({ custom_id: rec.custom_id, ok: true, message: r.message });
     } else out.push({ custom_id: rec.custom_id, ok: false, errorType: r.type, error: JSON.stringify(r).slice(0, 300) });
   }
@@ -82,7 +83,7 @@ export async function retrieveResults(batch, apiKey) {
 export async function runChunk(requests, apiKey, { onTick, label } = {}) {
   const batch = await submitBatch(requests, apiKey);
   const ended = await pollBatch(batch.id, apiKey, { onTick });
-  const results = await retrieveResults(ended, apiKey);
+  const results = await retrieveResults(ended, apiKey, { task: label || "" });
   return { batchId: batch.id, counts: ended.request_counts, results };
 }
 

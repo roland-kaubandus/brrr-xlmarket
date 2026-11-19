@@ -137,17 +137,30 @@ function writeState(st) {
  *   on eraldi protsessid, jooksevad järjest → ka risti ohutu).
  *   @param {boolean} [batch=false] Batch API kutse → −50% hind (Fix 4). content-batch.retrieveResults
  *     seab selle automaatselt kõigile Batch-tulemustele; sünkroonsed kutsed jätavad vaikimisi false.
+ *   @param {string} [task=""] vaba silt (nt "enmaster", "enmaster:review") → KUMULATIIVNE kulu+kutse-arv
+ *     ühe taski kohta (by_task). JÄLGITAVUS (Tarmo 2026-11-19): ilma selleta näeb liider ainult kuu-summat
+ *     ($346 = KÕIK tööd) → üksikjooksu kulu ($170–235 prognoos) EI ole eristatav. AGREGAAT (usd+calls),
+ *     MITTE per-kutse/timestamp-logi (sama disain kui by_model). Tühi silt → ei liideta (tagasiühild;
+ *     content-batch.retrieveResults annab selle edasi, kui kutsuja ctx-i seadis).
  *   ⚠️ 80%-alert EI tule SIIT (parandus 2026-10-08): local näeb vaid MEIE kulu (nt $6.26), aga
  *     workspace'i cap täitub jagatult → vale-kindlus. Autoriteetne 80%-värav = checkWorkspaceSpendAlert.
  * @returns {{total:number, usd:number}}
  */
-export function recordSpend({ model, usage, batch = false } = {}) {
+export function recordSpend({ model, usage, batch = false, task = "" } = {}) {
   const usd = cost(model, usage) * (batch ? 0.5 : 1); // Batch API = −50% (Fix 4, Tarmo 2026-10-14)
   const mk = monthKey();
   const st = readState(mk);
   st.total_usd = (st.total_usd || 0) + usd;
   st.calls = (st.calls || 0) + 1;
   st.by_model[model] = +(((st.by_model[model] || 0) + usd).toFixed(6));
+  if (task) { // per-task AGREGAAT (usd+calls+by_model) — üksikjooksu kulu eristatav (jälgitavus)
+    if (!st.by_task) st.by_task = {};
+    const t = st.by_task[task] || { usd: 0, calls: 0, by_model: {} };
+    t.usd = +((t.usd + usd).toFixed(6));
+    t.calls += 1;
+    t.by_model[model] = +(((t.by_model[model] || 0) + usd).toFixed(6));
+    st.by_task[task] = t;
+  }
   st.updated = new Date().toISOString();
   writeState(st);
   return { total: st.total_usd, usd };
@@ -300,6 +313,7 @@ export function currentSpend() {
   const st = readState(mk);
   return {
     month: mk, total_usd: st.total_usd || 0, calls: st.calls || 0, by_model: st.by_model || {},
+    by_task: st.by_task || {}, // per-jooks kulu-eristus (jälgitavus, Tarmo 2026-11-19)
     limit_usd: resolveLimit(), ws_alerted80: !!st.ws_alerted80, partial_alerted: !!st.partial_alerted,
     workspace_usd: st.workspace_usd, workspace_scope: st.workspace_scope, workspace_checked: st.workspace_checked,
   };
