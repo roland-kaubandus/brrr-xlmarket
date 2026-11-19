@@ -135,19 +135,64 @@ export function lemmaOrphans(clean, srcText) {
 }
 
 // ─────────────────────────── DETERMINISTLIK meetriline teisendus (KOOD, mitte LLM) ───────────────────────────
-// Ainult imperiaalne-ainult mõõt (SULGUDE VÄLINE) → "meetriline (imperiaalne)". Sulgude-sisene jäetakse.
-// Murd-tollid (3/8") = keere-nominaal → EI teisenda (ei ühti CONV num-mustriga). Lisatud meetriline
-// number on usaldusväärne (arvutatud) → whitelistitakse täpsus/ühik-värava jaoks.
+// Imperiaalne-ainult mõõt (SULGUDE VÄLINE) → "meetriline (imperiaalne)". Sulgude-sisene jäetakse.
+// PIKKUS-ühikud (in/ft/") toetavad ATOMAARSEID mõõtme-GRUPPE: "A x B x C unit" → teisenda KÕIK numbrid või MITTE ÜHTKI
+//   (parandus A, Tarmo 2026-11-19: osaline teisendus — nt "5 x 2.13 m (7 ft)" — on KEELATUD).
+// Muud ühikud (lbs/gal/oz/°F) = üksikväärtus. Murd-tollid (3/8") jäetakse (ei ühti num-mustriga).
+// Lisatud meetriline number on arvutatud → whitelistitakse täpsus/ühik-värava jaoks (addedPairs).
+function parenDepthAt(str, idx) { let d = 0; for (let i = 0; i < idx; i++) { if (str[i] === "(") d++; else if (str[i] === ")") d = Math.max(0, d - 1); } return d; }
+
+// ── üksik-väärtus teisendused (mitte-pikkus) ──
 const CONV = [
   { re: /(\d+(?:[.,]\d+)?)\s*(lbs|lb|pounds?|pound)\b/gi, unit: "kg", f: (v) => v * 0.453592, dec: (v) => v >= 10 ? 0 : 1 },
-  { re: /(\d+(?:[.,]\d+)?)\s*(ft|foot|feet|FT)\b/gi, unit: "m", f: (v) => v * 0.3048, dec: (v) => v >= 10 ? 1 : 2 },
   { re: /(\d+(?:[.,]\d+)?)\s*(gal|gallons?|gallon)\b/gi, unit: "L", f: (v) => v * 3.78541, dec: () => 1 },
   { re: /(\d+(?:[.,]\d+)?)\s*(oz|ounces?|ounce)\b/gi, unit: "g", f: (v) => v * 28.3495, dec: () => 0 },
-  { re: /(\d+(?:[.,]\d+)?)\s*°?\s?F\b/gi, unit: "°C", f: (v) => (v - 32) / 1.8, dec: () => 0 },
+  { re: /(\d+(?:[.,]\d+)?)\s*(°\s?F|°F|F)\b/gi, unit: "°C", f: (v) => (v - 32) / 1.8, dec: () => 0 }, // 2 gruppi: offset/whole joondus (paren-kaitse)
 ];
-function parenDepthAt(str, idx) { let d = 0; for (let i = 0; i < idx; i++) { if (str[i] === "(") d++; else if (str[i] === ")") d = Math.max(0, d - 1); } return d; }
+
+// ── PIKKUS-ühikud (toll + jalg) atomaarse grupi-toega ──
+const LEN = {
+  in: { f: 2.54, u: "cm" }, inch: { f: 2.54, u: "cm" }, inches: { f: 2.54, u: "cm" },
+  '"': { f: 2.54, u: "cm" }, "″": { f: 2.54, u: "cm" },
+  ft: { f: 0.3048, u: "m" }, foot: { f: 0.3048, u: "m" }, feet: { f: 0.3048, u: "m" },
+};
+const lenKey = (u) => { u = (u || "").toLowerCase(); return LEN[u] ? u : null; };
+const lenRound = (met, unit) => unit === "cm"
+  ? (met >= 100 ? Math.round(met) : Number(met.toFixed(1)))
+  : (met >= 10 ? Number(met.toFixed(1)) : Number(met.toFixed(2)));
+const LEN_UNIT = `inches|inch|feet|foot|ft|in|″|"`; // pikim enne (inches enne in)
+// grupp: num [unit?] (x num [unit?])* lõpp-unit ; sabas (?![a-z]) väldib osa-sõna ("12int")
+const DIM_RE = new RegExp(
+  `(\\d+(?:[.,]\\d+)?(?:\\s*(?:${LEN_UNIT})?\\s*[x×]\\s*\\d+(?:[.,]\\d+)?)*)\\s*(${LEN_UNIT})(?![a-z])`,
+  "gi",
+);
+function convertLengths(text, addedPairs) {
+  return text.replace(DIM_RE, (full, body, endUnit, offset, whole) => {
+    if (parenDepthAt(whole, offset) > 0) return full; // juba meetriline ees → jäta
+    if (whole[offset - 1] === "/") return full;        // murd-toll (3/8") = keere-nominaal → EI teisenda
+    const key = lenKey(endUnit);
+    if (!key) return full;
+    // bare "in" on ka inglise eessõna ("12 in the box") — ÜKSIKväärtusel (grupita) ära teisenda, kui järgneb sõna.
+    // Grupis (sisaldab x/×) on "in" kindlalt ühik ("60 x 24 x 12 in overall"). Sümbolid/"inch(es)"/"ft" alati ok.
+    const after = whole.slice(offset + full.length);
+    if (endUnit.toLowerCase() === "in" && !/[x×]/.test(body) && /^\s+[a-z]/i.test(after)) return full;
+    // inline-ühikud grupis peavad olema sama perekond (cm vs m) — muidu ohtlik, jäta teisendamata.
+    const inlineUnits = body.match(new RegExp(LEN_UNIT, "gi")) || [];
+    for (const iu of inlineUnits) { const k = lenKey(iu); if (!k || LEN[k].u !== LEN[key].u) return full; }
+    const fam = LEN[key];
+    const nums = body.match(/\d+(?:[.,]\d+)?/g) || [];
+    if (!nums.length) return full;
+    const conv = nums.map((n) => {
+      const met = lenRound(Number(n.replace(",", ".")) * fam.f, fam.u);
+      addedPairs.add(`${normNum(String(met))}|${normUnit(fam.u)}`);
+      return met;
+    });
+    return `${conv.join(" x ")} ${fam.u} (${full.trim()})`;
+  });
+}
+
 export function addMetric(text, addedPairs) {
-  let out = text;
+  let out = convertLengths(text, addedPairs); // pikkused esmalt (atomaarne grupp)
   for (const c of CONV) {
     out = out.replace(c.re, (full, numStr, _u, offset, whole) => {
       if (parenDepthAt(whole, offset) > 0) return full; // sulgude sees = juba meetriline ees → jäta
@@ -179,8 +224,10 @@ RANGED REEGLID:
 3. 🔑 FAKTID (kriitiline): KÕIK, mida kirjutad — komponendid, komplekti-sisu, funktsioonid, materjalid — PEAB tulema allikast. ÄRA leiuta ühtegi omadust ega komponenti. Kui allikas ei ütle → ÄRA kirjuta.
 4. 🔑 NUMBRID+ÜHIKUD: iga number ja ühik PEAB esinema allikas. ÄRA leiuta numbreid.
 5. 🔑 ÜHIKUD — ÄRA TEISENDA ISE: kui allikas annab meetrilise (mm/cm/m/kg/L/°C), KASUTA SEDA. Kui allikas annab ainult imperiaalse (lbs/ft/inch/°F), JÄTA imperiaalne nii nagu allikas (süsteem lisab meetrilise ise). ÄRA KUNAGI teisenda mm→toll ega lbs→kg ise. Eelista meetrilist seal, kus allikas pakub.
+6. 🔑 KOMPLEKT/VARIANT — ÄRA ÜLDISTA: kui allikas annab ERINEVATELE osadele/variantidele ERINEVAD mõõdud või kaalud (nt 3 ketast: 210 / 214 / 213 mm), ÄRA kirjuta "each/all/every/per X" ühe variandi arvuga — see on VALE (üldistad ühe mõõdu kõigile). Kas loetle variandid eraldi VÕI jäta konkreetne arv välja ("in three sizes"). Komplekti kogukaal/-mõõt ≠ ühe eseme oma.
+7. 🔑 ALLIKA VASTUOLU: kui allikas annab SAMALE atribuudile vastuolulised väärtused (nt mootor "100 HP" ühes kohas, "150 HP" teises), ÄRA vali vaikselt ühte. Kui SPETSIFIKATSIOONI-väljal (specs) on väärtus, kasuta SEDA; kui specs ei ütle, JÄTA see number hoopis välja. Ära arva. Lisa iga selline juhtum "data_quality" loendisse (nt "motor power: source conflicts 100 HP vs 150 HP").
 
-Tagasta AINULT JSON: {"title_en_clean":"<lühike puhas EN title>","description_en_clean":"<loomulik EN proosa>"}`;
+Tagasta AINULT JSON: {"title_en_clean":"<lühike puhas EN title>","description_en_clean":"<loomulik EN proosa>","data_quality":["<vastuolu/väljajätu märge või tühi loend>"]}`;
 
 export function cleanUser(p, avoidNote) {
   const sp = Array.isArray(p.selling_points) ? p.selling_points.map((s) => `  • ${s}`).join("\n") : "  (pole)";
@@ -197,6 +244,7 @@ Tee puhas EN master-title + kirjeldus. Kõik faktid ja numbrid AINULT ülaltoodu
 export const JUDGE_SYS = `Sa oled range faktikontrollija e-poe sisule. Antakse ALLIKAS (tarnija toore toote-andmed) ja PUHASTATUD master-tekst. Leia PUHASTATUD tekstis IGA konkreetne faktiväide, mida ALLIKAS EI TOETA.
 Konkreetne väide = komponent/osa, komplekti kuuluv ese, funktsioon/režiim, materjal, sertifikaat, ühilduvus, nimetatud omadus/võimekus.
 TOETATUD = allikas ütleb seda VÕI vihjab üheselt; ümbersõnastus/sünonüüm on toetatud; üldine turundus-omadussõna (vastupidav, kvaliteetne) EI ole väide.
+🔑 PER-VARIANT ÜLDISTUS (loe rikkumiseks): kui puhas tekst ütleb "each/all/every/per <ese>" KOOS konkreetse mõõdu/kaaluga, aga allikas annab erinevatele variantidele ERINEVAD väärtused (nt kettad 210 vs 214 vs 213 mm), siis on see TOETAMATA väide — üks variandi arv on vale-üldistatud kõigile. Lisa see "unsupported" loendisse (why = millised allika-väärtused erinevad).
 Tagasta AINULT JSON: {"ok":true|false,"unsupported":[{"claim":"<väide>","field":"title|description","why":"<miks allikas ei toeta>"}]}`;
 
 export function judgeUser(p, clean, orphans) {
@@ -211,7 +259,10 @@ export function parseCleanJson(raw) {
   const o = JSON.parse(m[0]);
   if (typeof o.title_en_clean !== "string" || typeof o.description_en_clean !== "string")
     throw new Error("title_en_clean/description_en_clean puudub");
-  return { title_en_clean: o.title_en_clean.trim(), description_en_clean: o.description_en_clean.trim() };
+  const dq = Array.isArray(o.data_quality)
+    ? o.data_quality.filter((x) => typeof x === "string" && x.trim()).map((x) => x.trim())
+    : [];
+  return { title_en_clean: o.title_en_clean.trim(), description_en_clean: o.description_en_clean.trim(), data_quality: dq };
 }
 export function parseJudgeJson(raw) {
   const t = (raw || "").replace(/```(?:json)?/gi, "").trim();
@@ -260,7 +311,7 @@ export async function cleanGatedInline(p, srcText, { callGen, callJudge, maxAtte
     avoid = `Paranda KÕIK: ${offenders.join("; ")}. Kasuta AINULT allika fakte/numbreid/ühikuid; eemalda leiutatud väited; ära teisenda ühikuid.`;
   }
   const { metrized } = applyMetric(clean);
-  clean._gate = { ...gate, metrized };
+  clean._gate = { ...gate, metrized, data_quality: clean.data_quality || [] };
   return clean;
 }
 
