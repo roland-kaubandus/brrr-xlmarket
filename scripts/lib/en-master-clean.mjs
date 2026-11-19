@@ -191,6 +191,21 @@ function convertLengths(text, addedPairs) {
   });
 }
 
+/**
+ * dedupeDualUnit — eemalda duaalühiku-dubleerimine, mille addMetric ise tekitab. Allikas annab sageli
+ *   "IMPERIAAL/MEETRILINE" (nt "220 lbs/100 kg"); addMetric teisendab imperiaalse poole → "100 kg (220 lbs)"
+ *   ja jätab "/100 kg" alles → "100 kg (220 lbs)/100 kg" (väärtus ÕIGE, vormistus korratud). Siin varistame
+ *   SAMA arv+ühik mõlemal pool kaldkriipsu kokku. VÄÄRTUS säilib → ohutu. (Tarmo 2026-11-19, 259 toodet.)
+ */
+export function dedupeDualUnit(text) {
+  let out = String(text);
+  // "M u (I)/M u" → "M u (I)"  (imperiaal-pool teisendati ette, meetriline kordus taga)
+  out = out.replace(/(\d+(?:[.,]\d+)?)\s*([a-zA-Z°"″]+)\s*\(([^)]*)\)\s*\/\s*\1\s*\2\b/g, "$1 $2 ($3)");
+  // "M u/M u (I)" → "M u (I)"  (meetriline ees, imperiaal-pool teisendati taha)
+  out = out.replace(/(\d+(?:[.,]\d+)?)\s*([a-zA-Z°"″]+)\s*\/\s*\1\s*\2\s*\(([^)]*)\)/g, "$1 $2 ($3)");
+  return out;
+}
+
 export function addMetric(text, addedPairs) {
   let out = convertLengths(text, addedPairs); // pikkused esmalt (atomaarne grupp)
   for (const c of CONV) {
@@ -203,7 +218,7 @@ export function addMetric(text, addedPairs) {
       return `${met} ${c.unit} (${full.trim()})`;
     });
   }
-  return out;
+  return dedupeDualUnit(out); // duaalühiku-jääk kokku (SSoT, kõik kutsujad)
 }
 /** Rakenda meetriline teisendus mõlemale väljale. Tagastab {metrized, addedPairs}. Muudab clean'i kohapeal. */
 export function applyMetric(clean) {
