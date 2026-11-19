@@ -297,6 +297,9 @@ const usageHit = (r) => !r.ok && /credit|usage|insufficient|rate limit|quota/i.t
       const s = state.get(t.id);
       if (!s) { ledger.skipped[t.id] = { reason: "parse-fail" }; skipCount++; continue; }
       if (s.offenders && s.offenders.length) { ledger.skipped[t.id] = { reason: "gate", offenders: s.offenders.slice(0, 4) }; skipCount++; continue; }
+      // BAAS = LLM-tekst ENNE addMetric (Tarmo 2026-11-19 #1 arhitektuur): salvesta eraldi, et tulevane
+      // addMetric-parandus oleks deterministlik ümberjooks ILMA LLM-ita. applyMetric muteerib s.clean kohapeal.
+      s.base = { title: s.clean.title_en_clean ?? "", description: s.clean.description_en_clean ?? "" };
       const { metrized } = applyMetric(s.clean);
       // PÜSIV ebasiduse-värav addMetric JÄREL (Tarmo 2026-11-19 #3): osaline vahemiku-teisendus → EI kirjuta + signaal.
       const coh = rangeCoherenceGate(s.clean);
@@ -349,18 +352,25 @@ const usageHit = (r) => !r.ok && /credit|usage|insufficient|rate limit|quota/i.t
 // ── DB-kirjutus ühe osa kohta (stack-lukk, transaktsioon, prev-väärtus undo jaoks) ──
 async function writeChunk(toWrite, state, ledger) {
   const ids = toWrite.map((t) => t.id);
-  // prev-väärtused (undo): kas title_en_clean/description_en_clean oli juba olemas?
+  // prev-väärtused (undo): clean + base — kas väli oli juba olemas?
   const prev = new Map(psqlJson(`SELECT coalesce(json_agg(t),'[]') FROM (
-    SELECT id, metadata->>'title_en_clean' AS tc, metadata->>'description_en_clean' AS dc
+    SELECT id, metadata->>'title_en_clean' AS tc, metadata->>'description_en_clean' AS dc,
+           metadata->>'title_en_base' AS tb, metadata->>'description_en_base' AS db
     FROM product WHERE id = ANY(string_to_array(${sq(ids.join(","))},',')) ) t;`).map((r) => [r.id, r]));
 
   const stmts = [];
   for (const t of toWrite) {
-    const c = state.get(t.id).clean;
-    // jsonb_set — AINULT kaks välja; ülejäänud metadata puutumata. raw title/description EI muutu.
-    stmts.push(`UPDATE product SET metadata = jsonb_set(jsonb_set(COALESCE(metadata,'{}'::jsonb),'{title_en_clean}', to_jsonb(${sq(c.title_en_clean)}::text), true),'{description_en_clean}', to_jsonb(${sq(c.description_en_clean)}::text), true), updated_at = NOW() WHERE id = ${sq(t.id)};`);
+    const s = state.get(t.id);
+    const c = s.clean; const b = s.base || { title: "", description: "" };
+    // jsonb_set — 4 välja: clean (metrized, kuvatav) + base (LLM enne addMetric, ümberjooksu allikas).
+    // ülejäänud metadata puutumata. raw title/description EI muutu.
+    stmts.push(`UPDATE product SET metadata = jsonb_set(jsonb_set(jsonb_set(jsonb_set(COALESCE(metadata,'{}'::jsonb),`
+      + `'{title_en_clean}', to_jsonb(${sq(c.title_en_clean)}::text), true),`
+      + `'{description_en_clean}', to_jsonb(${sq(c.description_en_clean)}::text), true),`
+      + `'{title_en_base}', to_jsonb(${sq(b.title)}::text), true),`
+      + `'{description_en_base}', to_jsonb(${sq(b.description)}::text), true), updated_at = NOW() WHERE id = ${sq(t.id)};`);
     const pv = prev.get(t.id) || {};
-    ledger.prev[t.id] = { tc: pv.tc ?? null, dc: pv.dc ?? null }; // null = väli puudus → undo EEMALDAB
+    ledger.prev[t.id] = { tc: pv.tc ?? null, dc: pv.dc ?? null, tb: pv.tb ?? null, db: pv.db ?? null }; // null = väli puudus → undo EEMALDAB
   }
   if (!stmts.length) return;
 
