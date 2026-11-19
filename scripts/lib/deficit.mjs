@@ -45,11 +45,18 @@ export const DEFICIT_SQL = {
     WHERE p.deleted_at IS NULL AND p.status='published'
       AND p.title IS NOT NULL AND p.metadata->>'vevor_sku' IS NOT NULL
       AND NOT EXISTS (SELECT 1 FROM product_synonym ps WHERE ps.product_id=p.id AND ps.lang='et')`,
+  // enmaster [6.55]: EN-master puhastus puudu (title_en_clean NULL) — SAMA allikas-tingimus kui
+  //   en-master-backfill.mjs SOURCE_COND (HARD RULE #5 SSoT): title + (selling_points massiiv VÕI specs).
+  enmaster: `SELECT metadata->>'vevor_sku' FROM product
+    WHERE deleted_at IS NULL AND status='published'
+      AND metadata->>'vevor_sku' IS NOT NULL AND title IS NOT NULL
+      AND (jsonb_typeof(metadata->'selling_points')='array' OR metadata->'specs' IS NOT NULL)
+      AND (metadata->>'title_en_clean') IS NULL`,
 };
 
 // Jäme $/toode hinnang (AINULT Telegram-hoiatuse suurusjärguks — EI ole täppisarve):
 //   spec ≈ 1 Haiku-kutse; content ≈ Sonnet suur väljund; synonyms ≈ Sonnet väike väljund.
-const EST_USD_PER = { spec: 0.004, content: 0.03, synonyms: 0.007 };
+const EST_USD_PER = { spec: 0.004, content: 0.03, synonyms: 0.007, enmaster: 0.012 };
 
 function resolveDb() {
   return execSync("docker ps --format '{{.Names}}' | grep '^db-k33g' | head -1", { encoding: "utf8" }).trim();
