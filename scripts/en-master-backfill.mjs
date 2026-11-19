@@ -35,7 +35,7 @@ import { execSync } from "node:child_process";
 import {
   M_GEN, M_JUDGE, CLEAN_SYS, cleanUser, JUDGE_SYS, judgeUser,
   parseCleanJson, parseJudgeJson, sourceCorpus, numSet, srcUnitPairs,
-  runDetGates, applyMetric, buildAvoidNote,
+  runDetGates, applyMetric, buildAvoidNote, rangeCoherenceGate,
 } from "./lib/en-master-clean.mjs";
 import { runChunk, chunk as chunkArr } from "./lib/content-batch.mjs";
 import { acquireStackLock } from "./lib/stack-lock.mjs";
@@ -298,6 +298,15 @@ const usageHit = (r) => !r.ok && /credit|usage|insufficient|rate limit|quota/i.t
       if (!s) { ledger.skipped[t.id] = { reason: "parse-fail" }; skipCount++; continue; }
       if (s.offenders && s.offenders.length) { ledger.skipped[t.id] = { reason: "gate", offenders: s.offenders.slice(0, 4) }; skipCount++; continue; }
       const { metrized } = applyMetric(s.clean);
+      // PÜSIV ebasiduse-värav addMetric JÄREL (Tarmo 2026-11-19 #3): osaline vahemiku-teisendus → EI kirjuta + signaal.
+      const coh = rangeCoherenceGate(s.clean);
+      if (!coh.pass) {
+        ledger.skipped[t.id] = { reason: "coherence", offenders: coh.offenders.slice(0, 4) };
+        skipCount++;
+        const cmsg = `⚠️ EN-master EBASIDUSUS-VÄRAV (addMetric järel) · ${t.id}: ${coh.offenders[0]} → EI kirjutatud`;
+        console.error(cmsg); if (EXECUTE) sendTelegram(cmsg);
+        continue;
+      }
       if (metrized) metrCount++;
       s.metrized = metrized;
       if (Array.isArray(s.clean.data_quality) && s.clean.data_quality.length) {

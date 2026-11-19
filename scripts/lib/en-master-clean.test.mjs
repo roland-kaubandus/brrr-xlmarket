@@ -5,7 +5,7 @@
  * Tarmo 2026-11-19 (parandus B): kriips- ja "to"-vahemik teisenevad TERVIKUNA, mitte pooleldi.
  * Varem lõhkus addMetric vahemiku ("28-32 inch" → "28–81.3 cm (32 inch)") → ebasidus/vale ühik.
  */
-import { addMetric } from "./en-master-clean.mjs";
+import { addMetric, rangeCoherenceOffenders, rangeCoherenceGate } from "./en-master-clean.mjs";
 
 let fails = 0;
 function eq(label, input, want) {
@@ -39,6 +39,28 @@ eq("bare-in vahemik + sõna (skip)", "pack 2-8 in boxes", "pack 2-8 in boxes");
 eq("murd-toll (keere, skip)", 'thread 3/8" fitting', 'thread 3/8" fitting');
 eq("'into' EI ole vahemik (üksik 3 inch ikka teisendub)", "slide 12 into 3 inch slot", "slide 12 into 7.6 cm (3 inch) slot");
 eq("'onto' EI ole vahemik", "fits 5 onto 8 inch base", "fits 5 onto 20.3 cm (8 inch) base");
+
+console.log("\n=== PÜSIV EBASIDUSE-VÄRAV (addMetric järel, Tarmo #3) ===");
+function coh(label, text, wantOffenders) {
+  const n = rangeCoherenceOffenders(text).length;
+  const ok = (n > 0) === wantOffenders;
+  console.log(`${ok ? "✓" : "✗"} ${label}: «${text}» → ${n} offender${ok ? "" : ` (OODATUD ${wantOffenders ? ">0" : "0"})`}`);
+  if (!ok) fails++;
+}
+coh("katki: kriips-inch", "28–81.3 cm (32 inch)", true);
+coh("katki: to-inches", "34.8 to 123 cm (48.4 inches)", true);
+coh("katki: to-feet (kahanev)", "23 to 7.32 m (24 feet)", true);
+coh("sidus: kriips-vahemik", "71.1–81.3 cm (28–32 inch)", false);
+coh("sidus: to-vahemik", "7.01 to 7.32 m (23 to 24 feet)", false);
+coh("sidus: x-grupp", "152 x 61 x 30.5 cm (60 x 24 in)", false);
+coh("sidus: üksik lbs", "100 kg (220 lbs)", false);
+coh("sidus: meetriline vahemik", "905 to 1205 mm", false);
+{
+  const g = rangeCoherenceGate({ title_en_clean: "ok 71.1-81.3 cm (28-32 inch)", description_en_clean: "bad 28–81.3 cm (32 inch)" });
+  const ok = g.pass === false && g.offenders.length === 1;
+  console.log(`${ok ? "✓" : "✗"} gate clean-objektil: pass=${g.pass} offenders=${g.offenders.length}`);
+  if (!ok) fails++;
+}
 
 console.log(fails === 0 ? "\n✅ KÕIK LÄBIS" : `\n❌ ${fails} EBAÕNNESTUS`);
 process.exit(fails === 0 ? 0 : 1);
