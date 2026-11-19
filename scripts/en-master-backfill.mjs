@@ -141,7 +141,7 @@ function ledgerPath() { return path.join(LEDGER_DIR, `${BATCH_ID}.json`); }
 function loadLedger() {
   const p = ledgerPath();
   if (fs.existsSync(p)) return JSON.parse(fs.readFileSync(p, "utf8"));
-  return { batch_id: BATCH_ID, created_at: new Date().toISOString(), execute: EXECUTE, done: {}, prev: {}, skipped: {}, samples: [], counts: {} };
+  return { batch_id: BATCH_ID, created_at: new Date().toISOString(), execute: EXECUTE, done: {}, prev: {}, skipped: {}, data_quality: {}, samples: [], counts: {} };
 }
 function saveLedger(l) { fs.mkdirSync(LEDGER_DIR, { recursive: true }); fs.writeFileSync(ledgerPath(), JSON.stringify(l, null, 2)); }
 
@@ -300,6 +300,10 @@ const usageHit = (r) => !r.ok && /credit|usage|insufficient|rate limit|quota/i.t
       const { metrized } = applyMetric(s.clean);
       if (metrized) metrCount++;
       s.metrized = metrized;
+      if (Array.isArray(s.clean.data_quality) && s.clean.data_quality.length) {
+        if (!ledger.data_quality) ledger.data_quality = {};
+        ledger.data_quality[t.id] = s.clean.data_quality; // C-signaal: allika-vastuolu/väljajätu märked
+      }
       toWrite.push(t);
       if (samples.length < 40) samples.push({ id: t.id, vptype: t.vptype, title_raw: (t.title || "").slice(0, 160), title_en_clean: s.clean.title_en_clean, description_en_clean: s.clean.description_en_clean, metrized });
     }
@@ -317,13 +321,14 @@ const usageHit = (r) => !r.ok && /credit|usage|insufficient|rate limit|quota/i.t
   }
 
   ledger.samples = samples;
-  ledger.counts = { ok: okCount, skipped: skipCount, metrized: metrCount, regen: regenCount };
+  const dqCount = Object.keys(ledger.data_quality || {}).length;
+  ledger.counts = { ok: okCount, skipped: skipCount, metrized: metrCount, regen: regenCount, data_quality: dqCount };
   saveLedger(ledger);
 
   const status = STOPPED ? "CREDIT" : (skipCount > 0 ? "PARTIAL" : "OK");
   const mark = STOPPED ? "🟠 PEATUS" : (skipCount > 0 ? "⚠️ OSALINE" : "✅ VALMIS");
   const sum = `${EXECUTE ? mark : "🟡 DRY " + mark} EN-master · batch=${BATCH_ID}\n` +
-    `puhastatud: ${okCount} · skip: ${skipCount} · meetriline: ${metrCount} · regen: ${regenCount}`;
+    `puhastatud: ${okCount} · skip: ${skipCount} · meetriline: ${metrCount} · regen: ${regenCount} · data-quality-märget: ${dqCount}`;
   console.log(`\n${sum}`);
   console.log(`📄 ledger: ${ledgerPath()}`);
   if (EXECUTE) sendTelegram(sum);
