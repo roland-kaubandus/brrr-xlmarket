@@ -23,8 +23,8 @@ export async function generateMetadata({ searchParams, params }: Props) {
   const { q } = await searchParams
   const { locale } = await params
   void locale
-  const title = q ? `"${q}" — Search — XLMARKET` : "Search — XLMARKET"
-  const description = q ? `Search "${q}" among XLMARKET products.` : "Search XLMARKET products."
+  const title = q ? `"${q}" — Search — XLmarket` : "Search — XLmarket"
+  const description = q ? `Search "${q}" among XLmarket products.` : "Search XLmarket products."
   return {
     title,
     description,

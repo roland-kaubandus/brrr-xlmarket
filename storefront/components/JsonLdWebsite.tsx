@@ -7,7 +7,7 @@ export default function JsonLdWebsite() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "XLMARKET",
+    name: "XLmarket",
     url: "https://xlmarket.ee",
     inLanguage: ["et", "en"],
     potentialAction: {

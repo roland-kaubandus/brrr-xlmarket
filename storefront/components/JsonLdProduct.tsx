@@ -120,7 +120,7 @@ export default function JsonLdProduct({ product, price, locale = "en", inStock, 
       url: `https://xlmarket.ee/${locale}/toode/${product.handle}`,
       seller: {
         "@type": "Organization",
-        name: "XLMARKET",
+        name: "XLmarket",
       },
       hasMerchantReturnPolicy: {
         "@type": "MerchantReturnPolicy",

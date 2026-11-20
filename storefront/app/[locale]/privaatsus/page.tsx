@@ -5,8 +5,8 @@ import { getLegalPage } from "@/lib/cms"
 import fallback from "@/lib/cms-fallback/legal-privacy.json"
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — XLMARKET",
-  description: "How XLMARKET collects, uses, and protects your personal data.",
+  title: "Privacy Policy — XLmarket",
+  description: "How XLmarket collects, uses, and protects your personal data.",
 }
 
 export default async function PrivacyPage({ params }: { params: Promise<{ locale: string }> }) {

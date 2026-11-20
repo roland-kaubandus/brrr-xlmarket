@@ -5,8 +5,8 @@ import { getLegalPage } from "@/lib/cms"
 import fallback from "@/lib/cms-fallback/legal-returns.json"
 
 export const metadata: Metadata = {
-  title: "Returns & Refunds — XLMARKET",
-  description: "XLMARKET return policy. 14-day right of withdrawal on all orders.",
+  title: "Returns & Refunds — XLmarket",
+  description: "XLmarket return policy. 14-day right of withdrawal on all orders.",
 }
 
 export default async function ReturnsPage({ params }: { params: Promise<{ locale: string }> }) {

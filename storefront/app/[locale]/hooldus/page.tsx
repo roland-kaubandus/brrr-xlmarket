@@ -3,7 +3,7 @@ import Link from "@/components/SafeLink"
 import { ShieldCheck, ClipboardCheck, Zap, ArrowRight, FileText, Wrench, Flame, Car, Droplets, Snowflake, Fuel } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Service Plans & Maintenance — Your Machines Should Last a Decade | XL Market",
+  title: "Service Plans & Maintenance — Your Machines Should Last a Decade | XLmarket",
   description: "Three tiered service plans from €49/machine/year. Quarterly maintenance, 48h priority repair, replacement units. Plus six practical maintenance guides for café, welding, auto-shop equipment.",
 }
 

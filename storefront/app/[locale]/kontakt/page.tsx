@@ -7,7 +7,7 @@ import fallback from "@/lib/cms-fallback/contact.json"
 import globalFallback from "@/lib/cms-fallback/global.json"
 
 export const metadata: Metadata = {
-  title: "Kontakt — XLMARKET",
+  title: "Kontakt — XLmarket",
   description: "Võta XLmarketiga ühendust. Roland Kaubandus OÜ — vastame tavaliselt ühe tööpäeva jooksul.",
 }
 

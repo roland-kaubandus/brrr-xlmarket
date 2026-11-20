@@ -35,16 +35,16 @@ export async function generateMetadata({ params }: Props) {
       ? product.description.replace(/<[^>]*>/g, "").substring(0, 160)
       : product.title
 
-  // META TITLE (Tarmo DIRECTIVE 3b): "{pealkiri} — {bränd} | XL Market".
-  //   · Bränd puudub (brand_name "") → ilma brändi-osata: "{pealkiri} | XL Market".
+  // META TITLE: "{pealkiri} — {bränd} | XLmarket".
+  //   · Bränd puudub (brand_name "") → ilma brändi-osata: "{pealkiri} | XLmarket".
   //   · Liiga pikk → lühenda PEALKIRJA (mitte brändi ega saidi-nime).
-  //   · SAIDINIME " | XL Market" lisab juur-layout'i title.template (%s | XL Market) — EI korda siin,
-  //     muidu topelt-saba ("… — VEVOR | XLmarket | XL Market"). budget arvestab template-saba pikkust,
-  //     et renderdatud <title> jääks ~60 tähemärgi sisse. (Tarmo kirjutas "XLmarket"; sait kasutab
-  //     läbivalt "XL Market" — hoian ühtse saidinime; vaheta kui eelistad "XLmarket".)
+  //   · SAIDINIME " | XLmarket" lisab juur-layout'i title.template (%s | XLmarket) — EI korda siin,
+  //     muidu topelt-saba ("… — VEVOR | XLmarket | XLmarket"). budget arvestab template-saba
+  //     pikkust, et renderdatud <title> jääks ~60 tähemärgi sisse. Saidinimi = "XLmarket" (logo/arve,
+  //     ühtlustatud 2026-11-20 — varem segu "XL Market"/"XLMARKET").
   const brandName = (meiliHit as { brand_name?: string } | null)?.brand_name?.trim() || ""
   const brandPart = brandName ? ` — ${brandName}` : ""
-  const TEMPLATE_TAIL = " | XL Market"
+  const TEMPLATE_TAIL = " | XLmarket"
   const MAX_TITLE = 60
   const budget = MAX_TITLE - brandPart.length - TEMPLATE_TAIL.length
   const titleTrunc =

@@ -16,7 +16,7 @@ import AdminEnvError from "@/components/AdminEnvError"
 
 export const metadata: Metadata = {
   robots: "noindex, nofollow",
-  title: "Admin — XLMARKET",
+  title: "Admin — XLmarket",
 }
 
 export const dynamic = "force-dynamic"

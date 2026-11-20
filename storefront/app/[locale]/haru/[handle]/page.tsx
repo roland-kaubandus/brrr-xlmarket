@@ -21,12 +21,12 @@ type Props = {
 export async function generateMetadata({ params }: Props) {
   const { handle, locale } = await params
   const branch = getBranchBySlug(handle)
-  if (!branch) return { title: "Haru — XL Market" }
+  if (!branch) return { title: "Haru — XLmarket" }
   return {
-    title: `${branch.name} — XL Market`,
+    title: `${branch.name} — XLmarket`,
     description: branch.description,
     openGraph: {
-      title: `${branch.name} — XL Market`,
+      title: `${branch.name} — XLmarket`,
       description: branch.description,
       type: "website",
       images: [{ url: branch.heroImg, width: 1600, height: 900, alt: branch.name }],

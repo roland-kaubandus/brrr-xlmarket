@@ -5,8 +5,8 @@ import { getLegalPage } from "@/lib/cms"
 import fallback from "@/lib/cms-fallback/legal-terms.json"
 
 export const metadata: Metadata = {
-  title: "Terms & Conditions — XLMARKET",
-  description: "XLMARKET terms and conditions. Ordering, payment, shipping, and return policies.",
+  title: "Terms & Conditions — XLmarket",
+  description: "XLmarket terms and conditions. Ordering, payment, shipping, and return policies.",
 }
 
 export default async function TermsPage({ params }: { params: Promise<{ locale: string }> }) {

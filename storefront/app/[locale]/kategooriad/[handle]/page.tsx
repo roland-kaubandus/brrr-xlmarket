@@ -88,7 +88,7 @@ export async function generateMetadata({ params }: Props) {
       : `${displayName} — professional equipment at great prices. Fast delivery in Estonia.`)
   const shouldNoindex = NOINDEX_HANDLES.has(handle)
   return {
-    title: `${displayName} — XLMARKET`,
+    title: `${displayName} — XLmarket`,
     description: desc,
     // A2: hreflang alternate'id (nagu toode/layout) — kategooria-lehel puudusid.
     alternates: {
@@ -98,7 +98,7 @@ export async function generateMetadata({ params }: Props) {
         en: `https://xlmarket.ee/en/kategooriad/${handle}`,
       },
     },
-    openGraph: { title: `${displayName} — XLMARKET`, description: desc, type: "website" },
+    openGraph: { title: `${displayName} — XLmarket`, description: desc, type: "website" },
     robots: shouldNoindex ? { index: false, follow: false } : undefined,
   }
 }
