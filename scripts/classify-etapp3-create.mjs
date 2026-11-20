@@ -29,6 +29,7 @@ import {
   norm, slug, slugId, deriveHandle, genAssetsGated, completenessCheck,
 } from "./lib/l3-gates.mjs";
 import { makeCaller, genValidatedDesc } from "./lib/l3-desc.mjs";
+import { callMessages } from "./lib/llm-client.mjs";
 import { runL3Batches, resolveContainers } from "./lib/l3-create-engine.mjs";
 
 const REPO = "/opt/xlmarket-github";
@@ -200,13 +201,7 @@ function foldCollisions(keep) {
 // ============================================================
 let usage = { input: 0, output: 0, calls: 0 };
 async function fableRaw(system, user) {
-  const res = await fetch("https://api.anthropic.com/v1/messages", {
-    method: "POST",
-    headers: { "x-api-key": API_KEY, "anthropic-version": "2023-06-01", "content-type": "application/json" },
-    body: JSON.stringify({ model: FABLE, max_tokens: 8000, system, messages: [{ role: "user", content: user }] }),
-  });
-  if (!res.ok) throw new Error(`Fable HTTP ${res.status}: ${(await res.text()).slice(0, 300)}`);
-  const j = await res.json();
+  const { json: j } = await callMessages({ apiKey: API_KEY, task: "classify", body: { model: FABLE, max_tokens: 8000, system, messages: [{ role: "user", content: user }] }, ctx: "classify-etapp3:fable" });
   if (j.usage) { usage.input += j.usage.input_tokens || 0; usage.output += j.usage.output_tokens || 0; usage.calls++; }
   const raw = (j.content || []).find(c => c.type === "text")?.text || "";
   const m = raw.match(/\{[\s\S]*\}/);
@@ -214,7 +209,7 @@ async function fableRaw(system, user) {
   return JSON.parse(m[0]);
 }
 const tpUsage = { "claude-opus-4-8": { in: 0, out: 0 }, "claude-sonnet-5": { in: 0, out: 0 }, "claude-fable-5": { in: 0, out: 0 } };
-const callApiTP = makeCaller({ apiKey: API_KEY, onUsage: (model, u) => { if (u && tpUsage[model]) { tpUsage[model].in += u.input_tokens || 0; tpUsage[model].out += u.output_tokens || 0; } } });
+const callApiTP = makeCaller({ apiKey: API_KEY, task: "classify", onUsage: (model, u) => { if (u && tpUsage[model]) { tpUsage[model].in += u.input_tokens || 0; tpUsage[model].out += u.output_tokens || 0; } } });
 
 async function buildPlans(cands) {
   const plans = [];

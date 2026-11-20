@@ -99,7 +99,7 @@ export async function createL3Batch({
       const GN = gtree.nodes;
       const siblingsOf = (l2) => ((GN[l2]?.child_handles) || []).map(h => GN[h]).filter(n => n && n.level === 3).map(n => ({ handle: n.handle, name_et: n.name_et || n.name_en, name_en: n.name_en }));
       const cands = plans.map(p => ({ ck: p.ck, name_et: p.name_et, name_en: p.name_en || p.assets?.name_en, parentL2: p.parentL2, parentL2_name: p.parentL2_name, n: p.n, titles: (p.products || []).map(x => x.title).filter(Boolean) }));
-      const { results } = await granularityGate({ candidates: cands, siblingsOf, caller: makeCaller({ apiKey }) });
+      const { results } = await granularityGate({ candidates: cands, siblingsOf, caller: makeCaller({ apiKey, task: "classify" }) });
       const gDropped = plans.filter(p => !results.get(p.ck)?.pass);
       if (gDropped.length) {
         try {

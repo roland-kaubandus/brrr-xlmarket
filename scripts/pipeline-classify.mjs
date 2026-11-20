@@ -21,7 +21,8 @@
 //   Vaikimisi = --dry (loeb + klassifitseerib + raport, EI kirjuta DB-sse).
 import { execSync } from "node:child_process";
 import fs from "node:fs";
-import { isDegradeError, alertDegradeOnce } from "./lib/credit-guard.mjs"; // isDegradeError = krediit VÕI usage-cap (Fix 1)
+import { alertDegradeOnce } from "./lib/credit-guard.mjs"; // alertDegradeOnce: usage-cap → Telegram (1×/protsess); krediit → vaikne (Fix 1)
+import { callMessages } from "./lib/llm-client.mjs"; // SSoT LLM-klient (Faas 2): retry/usage-limit/degrade (e.degrade) + recordSpend(task) ühes kohas
 
 // Mid-run billing-tõrge (probe läbis, aga krediit/usage-cap sai OTSA jooksu ajal) → DEGRADE (exit 3),
 // MITTE fail. Orkestraator [4] näeb rc=3 → tühjendab classify-skus.txt → [6]/[6.5] skibivad → laoseis JÄTKUB.
@@ -129,30 +130,25 @@ function loadTargets() {
 // --- LLM ---------------------------------------------------------------------
 let cIn = 0, cOut = 0, cCacheW = 0, cCacheR = 0;
 async function call(system, user, maxTok) {
-  for (let a = 0; a < 4; a++) {
-    try {
-      const r = await fetch("https://api.anthropic.com/v1/messages", {
-        method: "POST",
-        headers: { "x-api-key": KEY, "anthropic-version": "2023-06-01", "content-type": "application/json" },
-        body: JSON.stringify({ model: OPUS, max_tokens: maxTok,
-          system: [{ type: "text", text: system, cache_control: { type: "ephemeral" } }],
-          messages: [{ role: "user", content: user }] }),
-      });
-      if (r.status === 429 || r.status >= 500) { await new Promise(x => setTimeout(x, 2000 * (a + 1))); continue; }
-      const j = await r.json();
-      if (j.error) {
-        // Krediidi-tõrge: EI retry'ta (pointless) — sea DEGRADE-lipp + katkesta kohe (return "").
-        { const es = JSON.stringify(j.error); if (isDegradeError(es)) { CREDIT_HIT = true; if (!CREDIT_ERR) CREDIT_ERR = es; console.error("💳 BILLING-degrade maas (mid-run: krediit/usage-cap) — DEGRADE"); return ""; } }
-        console.error("API err:", JSON.stringify(j.error).slice(0, 160)); await new Promise(x => setTimeout(x, 2000 * (a + 1))); continue;
-      }
-      const u = j.usage || {};
-      cIn += (u.input_tokens || 0) * PRICE[0] / 1e6; cOut += (u.output_tokens || 0) * PRICE[1] / 1e6;
-      cCacheW += (u.cache_creation_input_tokens || 0) * PRICE[0] * 1.25 / 1e6;
-      cCacheR += (u.cache_read_input_tokens || 0) * PRICE[0] * 0.1 / 1e6;
-      return j.content?.[0]?.text || "";
-    } catch { await new Promise(x => setTimeout(x, 2000 * (a + 1))); }
+  const body = { model: OPUS, max_tokens: maxTok,
+    system: [{ type: "text", text: system, cache_control: { type: "ephemeral" } }],
+    messages: [{ role: "user", content: user }] };
+  // SSoT-klient: 429/529/5xx→exp-backoff + recordSpend({task:"classify"}) ühes kohas. Kulu-DISPLAY (cIn/cOut/…)
+  //   jääb lokaalseks (≠ recordSpend). Degrade (krediit/usage-cap) → klient VISKAB e.degrade'iga.
+  try {
+    const { json, text } = await callMessages({ apiKey: KEY, task: "classify", body, ctx: "[4] classify" });
+    const u = json.usage || {};
+    cIn += (u.input_tokens || 0) * PRICE[0] / 1e6; cOut += (u.output_tokens || 0) * PRICE[1] / 1e6;
+    cCacheW += (u.cache_creation_input_tokens || 0) * PRICE[0] * 1.25 / 1e6;
+    cCacheR += (u.cache_read_input_tokens || 0) * PRICE[0] * 0.1 / 1e6;
+    return text || "";
+  } catch (e) {
+    // Mid-run billing-degrade (krediit-balance VÕI usage-cap): EI retry'ta (pointless) — sea DEGRADE-lipp
+    //   + katkesta kohe (return ""). Lõpu alertDegradeOnce teeb usage-cap Telegrami (dedup 1×/protsess).
+    if (e && e.degrade) { CREDIT_HIT = true; if (!CREDIT_ERR) CREDIT_ERR = String(e.message || e); console.error("💳 BILLING-degrade maas (mid-run: krediit/usage-cap) — DEGRADE"); return ""; }
+    console.error("API err:", String(e.message || e).slice(0, 160));
+    return "";
   }
-  return "";
 }
 const parseArr = (t) => { const s = t.indexOf("["), e = t.lastIndexOf("]"); if (s < 0) return null; try { return JSON.parse(t.slice(s, e + 1)); } catch { return null; } };
 

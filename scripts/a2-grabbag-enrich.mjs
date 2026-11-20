@@ -19,7 +19,8 @@ import { execSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { cost, recordSpend, isUsageLimitError, alertUsageLimit } from "./lib/spend-guard.mjs";
+import { cost } from "./lib/spend-guard.mjs";
+import { callMessages } from "./lib/llm-client.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const CACHE = "/opt/eumotors-tasks/reports/grab-verdiktid.json";
@@ -32,7 +33,6 @@ const BATCH = 6, SAMPLE = 24, MODEL = "claude-opus-4-8";
 const API_KEY = (() => { try { return fs.readFileSync("/opt/eumotors-tasks/.env", "utf8").split("\n").find(l => l.startsWith("ANTHROPIC_API_KEY="))?.split("=").slice(1).join("=").replace(/^["']|["']$/g, "").trim(); } catch { return process.env.ANTHROPIC_API_KEY; } })();
 const DB = execSync("docker ps --format '{{.Names}}' | grep '^db-k33g' | head -1", { encoding: "utf8" }).trim();
 const q = (sql) => execSync(`docker exec -i ${DB} psql -U xlmarket -d xlmarket -At -F '\t' -f -`, { input: sql, encoding: "utf8" }).trim();
-const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 
 const SCHEMA = {
   type: "object",
@@ -99,16 +99,8 @@ async function callOpus(batch) {
     messages: [{ role: "user", content: userMsg(batch) }],
     output_config: { format: { type: "json_schema", schema: SCHEMA } },
   };
-  for (let attempt = 1; attempt <= 5; attempt++) {
-    const ctrl = new AbortController(); const to = setTimeout(() => ctrl.abort(), 150000);
-    try {
-      const r = await fetch("https://api.anthropic.com/v1/messages", { method: "POST", signal: ctrl.signal, headers: { "x-api-key": API_KEY, "anthropic-version": "2023-06-01", "content-type": "application/json" }, body: JSON.stringify(body) });
-      if (!r.ok) { const t = await r.text(); if (isUsageLimitError(t)) { clearTimeout(to); alertUsageLimit(`API ${r.status}`, { ctx: "a2-enrich" }); throw new Error("USAGE_LIMIT"); } if ((r.status === 429 || r.status === 529 || r.status >= 500) && attempt < 5) { clearTimeout(to); await sleep(Math.min(30000, 1000 * 2 ** attempt)); continue; } clearTimeout(to); throw new Error(`API ${r.status}: ${t.slice(0, 160)}`); }
-      const j = await r.json(); clearTimeout(to); recordSpend({ model: MODEL, usage: j.usage });
-      return { parsed: JSON.parse((j.content.find(b => b.type === "text") || {}).text || "{}"), usage: j.usage };
-    } catch (e) { clearTimeout(to); if (String(e.message) === "USAGE_LIMIT") throw e; if (attempt < 5) { await sleep(Math.min(30000, 1000 * 2 ** attempt)); continue; } throw e; }
-  }
-  throw new Error("retries exhausted");
+  const { json, text } = await callMessages({ apiKey: API_KEY, task: "a2:grabbag", body, timeoutMs: 150000, ctx: "a2-enrich" });
+  return { parsed: JSON.parse(text || "{}"), usage: json.usage };
 }
 
 async function main() {

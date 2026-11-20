@@ -15,6 +15,10 @@
  * (ÄRA liiguta / jäta allikasse). API-võtit EI logita.
  */
 
+// API-KUTSE — SSoT lib/llm-client.mjs (Faas 2, HARD RULE #5). task="classify": liigutuse-korrektsuse kohtunik
+// on taksonoomia-struktuuri otsus; kulu oli varem JÄLGIMATA → nüüd salvestatud ühe koha kaudu. recordSpend ühes kohas.
+import { callMessages } from "./llm-client.mjs";
+
 // ───────────────────────── (b) EESTI MORFOLOOGIA — odav leksikaalne eelfilter ─────────────────────────
 
 // Diakriitika-voltimine (õäöü→oaou) + alnum — keele-neutraalne baas.
@@ -75,7 +79,6 @@ export function nimedLeksikaalseltLahedased(a, b, { stemThr = 0.34, triThr = 0.5
 
 // ───────────────────────── (a) SEMANTILINE KOHTUNIK — liigutuse-korrektsus ─────────────────────────
 
-const API_URL = "https://api.anthropic.com/v1/messages";
 const DEFAULT_MODEL = "claude-opus-4-8"; // struktuuri-mõjutav otsus → kõige võimekam
 
 const MOVE_SYSTEM = `Oled eesti e-kaubanduse TAKSONOOMIA-KOHTUNIK xlmarket.ee jaoks (VEVOR-tooted).
@@ -149,36 +152,26 @@ export async function conceptMoveJudge({ pairs, apiKey, model = DEFAULT_MODEL, m
   if (!pairs || !pairs.length) return new Map();
   const user = pairs.map(buildPairBlock).join("\n\n") +
     `\n\nHinda KÕIK ${pairs.length} liigutust. Vasta JSON { results: [...] } — iga paari kohta üks tulemus (pair_id täpselt nagu ülal).`;
-  // Proven path (judge.mjs): output_config json_schema + cache_control + anthropic-version 2023-06-01.
+  // Proven path (judge.mjs): output_config json_schema + cache_control. HTTP-transport nüüd SSoT-kliendi kaudu.
   const body = {
     model, max_tokens: maxTokens,
     system: [{ type: "text", text: MOVE_SYSTEM, cache_control: { type: "ephemeral" } }],
     messages: [{ role: "user", content: user }],
     output_config: { format: { type: "json_schema", schema: MOVE_SCHEMA } },
   };
+  // SSoT-klient: 429/5xx retry + usage-limit-alert + degrade + recordSpend({task:"classify"}) ühes kohas.
+  // Outer-loop AINULT: max_tokens-escalation (truncation) + parse-fail re-issue (concept-gate-spetsiifiline).
   let j, lastErr = "";
   for (let attempt = 1; attempt <= retries; attempt++) {
-    try {
-      const res = await fetch(API_URL, {
-        method: "POST",
-        headers: { "x-api-key": apiKey, "anthropic-version": "2023-06-01", "content-type": "application/json" },
-        body: JSON.stringify(body),
-      });
-      if (!res.ok) {
-        const t = await res.text();
-        lastErr = `API ${res.status}: ${t.slice(0, 200)}`;
-        if ((res.status === 429 || res.status === 529 || res.status >= 500) && attempt < retries) { await new Promise((r) => setTimeout(r, Math.min(30000, 1000 * 2 ** attempt))); continue; }
-        throw new Error(`concept-gate ${lastErr}`);
-      }
-      const cand = await res.json();
-      const stop = cand.stop_reason;
-      const txt = ((cand.content || []).find((b) => b.type === "text")?.text || "").trim();
-      if (stop === "max_tokens") { lastErr = `truncated (max_tokens=${maxTokens})`; if (attempt < retries) { maxTokens = Math.min(16000, maxTokens * 2); body.max_tokens = maxTokens; continue; } }
-      // output_config → puhas JSON; parse OTSE. Fallback regex ainult kui otse-parse viskab.
-      try { JSON.parse(txt); j = cand; break; }
-      catch { const m = txt.replace(/```(?:json)?/gi, "").match(/\{[\s\S]*\}/); if (m) { try { JSON.parse(m[0]); cand.__text = m[0]; j = cand; break; } catch {} } lastErr = `parse fail @len ${txt.length}`; if (attempt < retries) continue; throw new Error(`concept-gate JSON parse: ${txt.slice(0, 200)}`); }
-    } catch (e) { lastErr = String(e.message || e).slice(0, 200); if (attempt < retries) { await new Promise((r) => setTimeout(r, 1500)); continue; } throw e; }
+    const { json: cand } = await callMessages({ apiKey, task: "classify", body, ctx: "concept-gate" });
+    const stop = cand.stop_reason;
+    const txt = ((cand.content || []).find((b) => b.type === "text")?.text || "").trim();
+    if (stop === "max_tokens") { lastErr = `truncated (max_tokens=${body.max_tokens})`; if (attempt < retries) { body.max_tokens = Math.min(16000, body.max_tokens * 2); continue; } }
+    // output_config → puhas JSON; parse OTSE. Fallback regex ainult kui otse-parse viskab.
+    try { JSON.parse(txt); j = cand; break; }
+    catch { const m = txt.replace(/```(?:json)?/gi, "").match(/\{[\s\S]*\}/); if (m) { try { JSON.parse(m[0]); cand.__text = m[0]; j = cand; break; } catch {} } lastErr = `parse fail @len ${txt.length}`; if (attempt < retries) continue; throw new Error(`concept-gate JSON parse: ${txt.slice(0, 200)}`); }
   }
+  if (!j) throw new Error(`concept-gate: ${lastErr || "ei saanud vastust"}`);
   const raw = j.__text || ((j.content || []).find((b) => b.type === "text")?.text || "{}");
   const parsed = JSON.parse(raw);
   const out = new Map();

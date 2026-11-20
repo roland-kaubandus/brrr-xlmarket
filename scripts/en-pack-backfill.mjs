@@ -35,6 +35,9 @@ import { buildAssetsPrompt, seoClaimGate } from "./lib/l3-gates.mjs";
 import { runChunk, chunk } from "./lib/content-batch.mjs";
 import { acquireStackLock } from "./lib/stack-lock.mjs";
 import { sendTelegram, isUsageLimitError } from "./lib/spend-guard.mjs";
+// API-KUTSE SSoT (Faas 2, HARD RULE #5): inline parse-retry läbi jagatud kliendi → retry/usage-limit/
+//   recordSpend({task:"enpack:backfill"}) ühes kohas. Batch-tee (runChunk) jääb content-batch'i.
+import { callMessages } from "./lib/llm-client.mjs";
 
 const REPO = "/opt/xlmarket-github";
 const GLOSSARY = `${REPO}/backend/src/data/glossary.yaml`;
@@ -90,17 +93,11 @@ function psqlWrite(sqlText) {
 const sq = (s) => `'${String(s ?? "").replace(/'/g, "''")}'`;         // SQL string literal
 const sqN = (s) => s == null ? "NULL" : sq(s);                         // nullable
 
-// ── Inline (immediate) kutse — parse-retry jaoks (mitte batch) ──
+// ── Inline (immediate) kutse — parse-retry jaoks (mitte batch) — SSoT-klient ──
 async function inlineCall(model, system, user, maxTokens) {
   const body = { model, max_tokens: maxTokens, system, messages: [{ role: "user", content: user }] };
   if (model === M_FABLE) body.max_tokens = Math.max(maxTokens, 3000); // Fable thinking always-on
-  const res = await fetch("https://api.anthropic.com/v1/messages", {
-    method: "POST",
-    headers: { "content-type": "application/json", "x-api-key": API_KEY, "anthropic-version": "2023-06-01" },
-    body: JSON.stringify(body),
-  });
-  const json = await res.json();
-  if (!res.ok) { const e = new Error(`inline HTTP ${res.status}: ${JSON.stringify(json).slice(0, 200)}`); e._json = json; throw e; }
+  const { json } = await callMessages({ apiKey: API_KEY, task: "enpack:backfill", body });
   return textOf(json);
 }
 function textOf(message) {

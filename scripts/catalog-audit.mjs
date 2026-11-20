@@ -21,6 +21,7 @@ import { clusterize, judgeClassifyClusters, rateClassifyReferenceClusters,
   buildClusterJudgeBody, buildClusterRefBody, resolveJudgeBatch } from "./lib/judge.mjs";
 import { createChain } from "./lib/classify-chain.mjs";
 import { runChunk, chunk as chunkArr } from "./lib/content-batch.mjs";
+import { callMessages } from "./lib/llm-client.mjs"; // SSoT LLM-klient (Faas 2): retry/usage-limit/degrade + recordSpend(task) ühes kohas
 
 const SP = "/tmp/claude-0/-opt-xlmarket-github/8966820c-cfb5-4418-ab04-7e331739a85c/scratchpad";
 const REPO = "/opt/xlmarket-github";
@@ -59,27 +60,17 @@ function guard(stage) {
   if (COST.usd > CAP) { console.error(`🛑 KULUPIIR $${CAP} ÜLETATUD (${COST.usd.toFixed(2)}) @ ${stage} → STOPP`); throw new Error("COST_CAP"); }
 }
 
-// ───────────────── üldine Anthropic JSON-kutse (sieve + caching-mõõtmine) ─────────────────
-const API = "https://api.anthropic.com/v1/messages";
-const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+// ───────────────── üldine Anthropic JSON-kutse (sieve + caching-mõõtmine) — SSoT-klient ─────────────────
+// Cache'imine tuleb body cache_control-väljadest (GA); SSoT-klient teeb retry/usage-limit/recordSpend({task:"audit"}).
 async function callJSON({ model, systemBlocks, userContent, schema, maxTokens = 4000, retries = 5 }) {
   const body = { model, max_tokens: maxTokens, system: systemBlocks, messages: [{ role: "user", content: userContent }],
     output_config: { format: { type: "json_schema", schema } } };
-  for (let a = 1; a <= retries; a++) {
-    const ctrl = new AbortController(); const to = setTimeout(() => ctrl.abort(), 120000);
-    try {
-      const r = await fetch(API, { method: "POST", signal: ctrl.signal,
-        headers: { "x-api-key": KEY, "anthropic-version": "2023-06-01", "content-type": "application/json",
-          "anthropic-beta": "prompt-caching-2024-07-31" }, body: JSON.stringify(body) });
-      if (!r.ok) { const t = await r.text(); clearTimeout(to);
-        if ((r.status === 429 || r.status === 529 || r.status >= 500) && a < retries) { await sleep(Math.min(30000, 1000 * 2 ** a)); continue; }
-        return { ok: false, error: `API ${r.status}: ${t.slice(0, 180)}` }; }
-      const j = await r.json(); clearTimeout(to);
-      const txt = (j.content.find((b) => b.type === "text") || {}).text || "{}";
-      return { ok: true, parsed: JSON.parse(txt), usage: j.usage };
-    } catch (e) { clearTimeout(to); if (a < retries) { await sleep(Math.min(30000, 1000 * 2 ** a)); continue; } return { ok: false, error: String(e.message || e).slice(0, 180) }; }
+  try {
+    const { json, text } = await callMessages({ apiKey: KEY, task: "audit", body, timeoutMs: 120000, maxAttempts: retries, ctx: "catalog-audit" });
+    return { ok: true, parsed: JSON.parse(text || "{}"), usage: json.usage };
+  } catch (e) {
+    return { ok: false, error: String(e.message || e).slice(0, 180) };
   }
-  return { ok: false, error: "retries exhausted" };
 }
 
 // ───────────────── determ. seeme-valik (fikseeritud) ─────────────────

@@ -166,7 +166,7 @@ function totalCost() {
 }
 
 // API-kutsuja lib'ist — usage voolab acc()-i (kulu-arvestus). gen/gate/validate/regen = lib (HARD RULE #5 SSoT).
-const callApi = makeCaller({ apiKey: KEY, onUsage: acc });
+const callApi = makeCaller({ apiKey: KEY, task: "l3-desc", onUsage: acc });
 
 // ──────────────────────────── 6. PÕHIVOOG ────────────────────────────
 (async () => {

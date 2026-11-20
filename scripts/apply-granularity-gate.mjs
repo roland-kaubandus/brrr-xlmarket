@@ -61,6 +61,7 @@ let inTok = 0, outTok = 0;
 const RATES = { "claude-opus-4-8": [5, 25] };
 const caller = makeCaller({
   apiKey: API_KEY,
+  task: "classify",
   onUsage: (model, usage) => { inTok += usage?.input_tokens || 0; outTok += usage?.output_tokens || 0; },
   timeoutMs: 120000,
 });

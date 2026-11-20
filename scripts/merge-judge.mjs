@@ -15,6 +15,7 @@ import { execSync } from "node:child_process";
 import fs from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { callMessages } from "./lib/llm-client.mjs";
 const HERE = dirname(fileURLToPath(import.meta.url));
 
 const args = process.argv.slice(2);
@@ -67,15 +68,11 @@ ${blocks}
 Vasta AINULT JSON-massiiviga (tühi [] kui merge-paare pole):
 [{"l3_a":"pcat_...","l3_b":"pcat_...","confidence":"korge"|"kesk","reason":"miks sama tüüp"}]`;
 
-  const res = await fetch("https://api.anthropic.com/v1/messages", {
-    method: "POST", headers: { "content-type": "application/json", "x-api-key": KEY, "anthropic-version": "2023-06-01" },
-    body: JSON.stringify({ model: MODEL, max_tokens: 2000, thinking: { type: "adaptive" }, output_config: { effort: "low" }, messages: [{ role: "user", content: prompt }] }),
-  });
-  if (!res.ok) throw new Error(`API ${res.status}: ${(await res.text()).slice(0, 120)}`);
-  const data = await res.json();
-  if (data.usage) { USAGE.in += data.usage.input_tokens || 0; USAGE.out += data.usage.output_tokens || 0; }
-  const txt = (data.content.find((b) => b.type === "text") || {}).text || "";
-  const m = txt.match(/\[[\s\S]*\]/);
+  // SSoT-klient (Faas 2): kulu-arvestus (task="qa:merge") + transient-retry ühes kohas. Body verbatim.
+  const body = { model: MODEL, max_tokens: 2000, thinking: { type: "adaptive" }, output_config: { effort: "low" }, messages: [{ role: "user", content: prompt }] };
+  const { text: txt, usage } = await callMessages({ apiKey: KEY, task: "qa:merge", body, ctx: "merge-judge" });
+  if (usage) { USAGE.in += usage.input_tokens || 0; USAGE.out += usage.output_tokens || 0; }
+  const m = (txt || "").match(/\[[\s\S]*\]/);
   if (!m) throw new Error("JSON puudub: " + txt.slice(0, 120));
   return JSON.parse(m[0]);
 }
