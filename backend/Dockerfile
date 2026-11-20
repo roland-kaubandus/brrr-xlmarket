@@ -53,6 +53,10 @@ COPY --from=builder --chown=medusa:medusa /app/scripts/archive-proposals.mjs ./s
 # blokk) + lib/feed-stock (jagatud isOosFromFeed otsus, mida impordib ka index-meilisearch).
 COPY --from=builder --chown=medusa:medusa /app/scripts/sync-medusa-inventory.mjs ./scripts/sync-medusa-inventory.mjs
 COPY --from=builder --chown=medusa:medusa /app/scripts/lib/feed-stock.mjs ./scripts/lib/feed-stock.mjs
+# lib/brand-derive (deriveBrandSlug/deriveBrandName SSoT, inline BRAND_NAMES, 0 faili-dep) — impordib
+#   index-meilisearch (brand/brand_name väljad). 51a48b66 eraldas inline'ist, aga unustas selle COPY-rea
+#   → konteineri reindeks kukkus ERR_MODULE_NOT_FOUND (2026-11-20). Ilma selleta öine 03:00 reindeks sureb.
+COPY --from=builder --chown=medusa:medusa /app/scripts/lib/brand-derive.mjs ./scripts/lib/brand-derive.mjs
 # Feed-sync-bulk skriptid (build-cache + reindeks + synonyms). ⚠️ feed-sync-bulk.sh ISE EI ole
 #   praegu cron-ohutu: selle [2/5] feed-bulk-price.mjs = flat MAP×1.15, mis KONFLIKTIB uue
 #   pricing-engine'iga (computeRetail kulu+kaal) → revertiks hinnad iga 4h. Ära wire'i cronina
