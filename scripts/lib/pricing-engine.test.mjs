@@ -31,10 +31,13 @@ near('"1,299.00"', parsePrice("1,299.00"), 1299.00);
 near('"1299,00" (EU koma)', parsePrice("1299,00"), 1299.00);
 near('"1.299,50" (EU)', parsePrice("1.299,50"), 1299.50);
 
-console.log("\n=== Astmed VÄLJAS → default 1.15 kehtib ===");
+console.log("\n=== Astmed SISSE (ad4d22ca, 2026-07-22) → cost_net määrab astme ===");
 const cheap = computePrice({ cost_net: 20, map: 30, supplier: "vevor" });
-eq("odav toode rule_id (astmed väljas)", cheap.rule_id, "default");
-near("odav markup = 1.15 (mitte 1.35)", cheap.markup, 1.15);
+eq("cost_net 20 → tier-15-40", cheap.rule_id, "tier-15-40");
+near("tier-15-40 markup = 1.40", cheap.markup, 1.40);
+const dear = computePrice({ cost_net: 500, map: 700, supplier: "vevor" });
+eq("cost_net 500 → tier-300-800", dear.rule_id, "tier-300-800");
+near("ülemine aste markup = 1.15 (kallid ei muutu)", dear.markup, 1.15);
 
 console.log("\n=== EUR passthrough (VEVOR — fx vahele) ===");
 const c = computeCost({ priceRaw: 100, supplier: getSupplier("vevor") });
