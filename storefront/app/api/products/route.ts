@@ -27,6 +27,12 @@ const ALLOWED_FILTER_FIELDS = new Set([
   "categories", "category_handles", "taxonomy.ancestors", "taxonomy.l1_slug",
   "taxonomy.l2_slug", "taxonomy.l3_slug", "vertical_slugs",
   "in_stock", "brand",
+  // filter_tokens = quick-filtrite + brändi AINUS filtri-mehhanism (brand:<slug>, material:x,
+  //   power_w:1500W+ jne). `brand` EI ole Meilis filterable → brändi/quick-filter grid tuli AINULT
+  //   filter_tokens kaudu, aga see puudus siit → iga chip/brändi-klikk andis klient-gridis 400
+  //   "Invalid filter" → 0 toodet (server-fasetid näitasid loendureid, grid tühi). Väärtust
+  //   valideerib isSafeFilterToken + escapeMeiliFilterValue (injection kaetud). 2026-11-20.
+  "filter_tokens",
 ])
 
 
@@ -48,6 +54,14 @@ function isSafeCategoryName(v: string): boolean {
   return true
 }
 
+// filter_tokens väärtus = "<key>:<value>", nt brand:vevor, material:carbon-steel, power_w:1500W+.
+// Tähemärgistik (indeksi tegelik SSoT): alnum + `_ . + -` mõlemal pool üht koolonit. Tühikut/jutumärki/
+// kaldkriipsu EI luba (injection'i katab lisaks escapeMeiliFilterValue push-hetkel). isSafeHandleToken
+// ei sobi (ei luba koolonit) → eraldi värav just filter_tokens'ile.
+function isSafeFilterToken(v: string): boolean {
+  return typeof v === "string" && /^[a-z0-9_]{1,40}:[a-z0-9_.+-]{1,80}$/i.test(v)
+}
+
 function parseFilter(raw: string | null): string[] | undefined {
   if (!raw) return undefined
   const out: string[] = []
@@ -58,7 +72,11 @@ function parseFilter(raw: string | null): string[] | undefined {
     if (!ALLOWED_FILTER_FIELDS.has(field)) continue
     if (value === "true" || value === "false") {
       out.push(`${field} = ${value}`)
-    } else if (field === "categories" ? isSafeCategoryName(value) : isSafeHandleToken(value)) {
+    } else if (
+      field === "categories" ? isSafeCategoryName(value)
+      : field === "filter_tokens" ? isSafeFilterToken(value)
+      : isSafeHandleToken(value)
+    ) {
       out.push(`${field} = "${escapeMeiliFilterValue(value)}"`)
     }
   }
