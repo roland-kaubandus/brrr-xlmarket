@@ -20,17 +20,26 @@ type Props = {
    * OOS-tootel = Merchant-karistus + klient klikib tarnimatut. !==true → OutOfStock (konservatiivne).
    */
   inStock?: boolean
+  /**
+   * Brändi kuvanimi indekseerija SSoT-st (meiliHit.brand_name — deriveBrandSlug→BRAND_NAMES).
+   * ANTUD → kasutatakse otse (üks mehhanism, HARD RULE #5). PUUDUB (Meili maas) → langetatakse
+   * tagasi lokaalsele deriveBrandName'ile, mis PEEGELDAB backend deriveBrandSlug loogikat 1:1.
+   * Mõlemal teel: TUNDMATU bränd → "" (schema.org brand JÄETAKSE VÄLJA), MITTE "VEVOR".
+   */
+  brandName?: string
 }
 
 /**
  * Brändi kuvanimi TOOTEMETADATA'st — MITTE title'st. Kriitiline peale VEVOR-title-stripi
  * (2026-08-24): title ei sisalda enam brändi, seega schema.org Product.brand peab tulema
- * metadata'st (peegeldab backend deriveBrandSlug loogikat). Multi-brand: Powermat/KraftDele.
+ * metadata'st. Peegeldab backend deriveBrandSlug (index-meilisearch.mjs) loogikat 1:1 —
+ * BRÄND-AGNOSTILINE: tundmatu metadata → "" (EI vaikimisi "VEVOR"). SSoT = indekseerija
+ * brand_name; see on AINULT fallback kui meiliHit puudub (Meili maas). Multi-brand: Powermat/KraftDele.
  */
 const BRAND_NAMES: Record<string, string> = {
   vevor: "VEVOR", powermat: "Powermat", kraftdele: "KraftDele", blacktools: "BlackTools",
 }
-function deriveBrandName(product: Product): string {
+export function deriveBrandName(product: Product): string {
   const m = ((product as any).metadata || {}) as Record<string, any>
   const src = String(m.source || "").trim().toLowerCase()
   const ssku = String(m.supplier_sku || "").trim().toUpperCase()
@@ -39,11 +48,23 @@ function deriveBrandName(product: Product): string {
   else if (ssku.startsWith("PM-")) slug = "powermat"
   else if (ssku.startsWith("VV-")) slug = "vevor"
   else if (m.vevor_sku || m.vevor_product_type || m.vevor_upc) slug = "vevor"
-  // Fallback VEVOR: praegu 100% kataloogist on VEVOR; tundmatu metadata → ära jäta brändita.
-  return slug ? (BRAND_NAMES[slug] || slug) : "VEVOR"
+  // BRÄND-AGNOSTILINE: tundmatu → "" (mitte "VEVOR"). Muidu tulevased BlackTools/GEKO
+  // tooted märgitaks Google structured-data's valesti VEVORiks. deriveBrandSlug peegeldus.
+  if (!slug) return ""
+  return BRAND_NAMES[slug] || slug
 }
 
-export default function JsonLdProduct({ product, price, locale = "en", inStock }: Props) {
+export default function JsonLdProduct({ product, price, locale = "en", inStock, brandName }: Props) {
+  // SSoT: eelista indekseerija brand_name'i; puudub → lokaalne peegeldus (mõlemad bränd-agnostilised).
+  const brand =
+    typeof brandName === "string" && brandName.trim()
+      ? brandName.trim()
+      : deriveBrandName(product)
+  if (!brand) {
+    // SIGNAAL: bränd tuvastamata → schema.org brand jäetakse välja (ei valeta "VEVOR"-it).
+    // Aitab püüda metadata-lünki (uus tarnija ilma source/supplier_sku'ta).
+    console.warn(`[JsonLdProduct] bränd tuvastamata handle="${product.handle}" → schema.org brand VÄLJA JÄETUD`)
+  }
   const variant = product.variants?.[0]
   const sku =
     (variant as any)?.sku ||
@@ -68,10 +89,11 @@ export default function JsonLdProduct({ product, price, locale = "en", inStock }
     url: `https://xlmarket.ee/${locale}/toode/${product.handle}`,
     description,
     sku,
-    brand: {
-      "@type": "Brand",
-      name: deriveBrandName(product),
-    },
+  }
+
+  // Bränd AINULT kui tuvastatud — tühi → väli jäetakse välja (ei emiteeri valet/tühja brändi).
+  if (brand) {
+    jsonLd.brand = { "@type": "Brand", name: brand }
   }
 
   const gtin = typeof m.vevor_upc === "string" && m.vevor_upc.trim() ? m.vevor_upc : null

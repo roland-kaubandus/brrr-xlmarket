@@ -6,6 +6,9 @@ import { generateFilterTokens } from "../src/filters/filter-profiles.mjs"
 // ÜKS saadavuse-tõde: sama otsus juhib nii Meili `in_stock` (siin) kui Medusa `stocked_quantity`
 // (sync-medusa-inventory.mjs). Vt lib/feed-stock.mjs — definitsioon EI TOHI lahkneda.
 import { isOosFromFeed } from "./lib/feed-stock.mjs"
+// Brändi-tuletus SSoT (HARD RULE #5) — bränd-agnostiline, tundmatu → null/"". Storefront
+// JsonLdProduct peegeldab sama loogikat (TS). Vt lib/brand-derive.mjs.
+import { deriveBrandSlug, deriveBrandName } from "./lib/brand-derive.mjs"
 
 const DB_URL = process.env.DATABASE_URL || `postgres://xlmarket:${process.env.PGPASSWORD}@localhost:5435/xlmarket`
 const MEILI_HOST = process.env.MEILISEARCH_HOST || "http://127.0.0.1:7700"
@@ -215,24 +218,6 @@ function resolveFeedEntry(row) {
 }
 
 /**
- * Tuleta brändi-slug tootemetadata'st (cms/brands.yaml `filter: brand:<slug>`).
- * Prioriteet: 1) multi-feed `source`, 2) `supplier_sku` prefiks (VV-/PM-),
- * 3) VEVOR-i legacy metadata (vevor_*). Tundmatu → null (brand-tokenit ei lisa).
- */
-// Brändi-slug → kuvanimi (otsitav brand_name väli). cms/brands.yaml SSoT-nimed.
-const BRAND_NAMES = { vevor: "VEVOR", powermat: "Powermat", kraftdele: "KraftDele", blacktools: "BlackTools" }
-
-function deriveBrandSlug(meta) {
-  const src = String(meta.source || "").trim().toLowerCase()
-  if (src) return src
-  const ssku = String(meta.supplier_sku || "").trim().toUpperCase()
-  if (ssku.startsWith("PM-")) return "powermat"
-  if (ssku.startsWith("VV-")) return "vevor"
-  if (meta.vevor_sku || meta.vevor_product_type || meta.vevor_upc) return "vevor"
-  return null
-}
-
-/**
  * OMNIBUS 30-päeva viitehind (EL hinnaalanduse-direktiiv / Eesti THS §14^1).
  *
  * Reegel: hinnaalanduse teatamisel tuleb näidata "eelmine hind" = MADALAIM hind,
@@ -319,7 +304,7 @@ function transform(row) {
   if (brandSlug) filter_tokens.push(`brand:${brandSlug}`)
   // Bränd otsitava väljana (searchableAttributes: brand_name). Peale title-stripi on see
   // AINUS koht kust "vevor" tekstiotsing tuleb (title ei sisalda enam brändi).
-  const brandName = brandSlug ? (BRAND_NAMES[brandSlug] || brandSlug) : ''
+  const brandName = deriveBrandName(meta)
 
   const doc = {
     id: row.id,

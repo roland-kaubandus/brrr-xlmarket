@@ -44,7 +44,8 @@ export type MeiliHit = {
   // while the re-index backfill is in flight (spec §6.3 compat window).
   taxonomy?: MeiliTaxonomy
   vertical_slugs?: string[]
-  brand?: string
+  brand?: string          // brändi-slug (filter/URL), deriveBrandSlug SSoT, indekseerija täidab
+  brand_name?: string     // brändi kuvanimi (JSON-LD/PDP), indekseerija SSoT; tundmatu → "" (mitte VEVOR)
   discount_pct?: number
   popularity?: number
   _formatted?: {
