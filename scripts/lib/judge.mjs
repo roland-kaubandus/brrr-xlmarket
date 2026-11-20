@@ -16,14 +16,13 @@
  * Mudel ≠ generaator: sünonüüme teeb Haiku → kohtunik Sonnet (sõltumatu teine arvamus).
  */
 
-import { isUsageLimitError, alertUsageLimit, recordSpend } from "./spend-guard.mjs";
+// API-KUTSE — SSoT lib/llm-client.mjs (Faas 2, HARD RULE #5). Retry/usage-limit/degrade + recordSpend ühes kohas.
+// task="audit": judge.mjs = adjudikatsiooni-kiht (öine auto-judge / katalogi-audit) → kulu omistatav sellele sildile.
+import { callMessages } from "./llm-client.mjs";
 
-const API_URL = "https://api.anthropic.com/v1/messages";
 export const SYN_JUDGE_MODEL = "claude-sonnet-5";
 export const CLSF_JUDGE_MODEL = "claude-opus-4-8";
 export const JUDGE_VERSION = "judge-v1";
-
-const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 /** Üldine Anthropic-kutse json_schema väljundiga + retry (sama muster kui synonym-gen). */
 // buildJudgeBody — ÜKS päring-keha-ehitaja, mida kasutavad NII sünkroonne callJudge KUI batch-builderid
@@ -45,37 +44,13 @@ export function buildJudgeBody({ model, system, candsBlock, user, schema, maxTok
 async function callJudge({ apiKey, model, system, candsBlock, user, schema, maxTokens = 4000, timeoutMs = 120000, retries = 5 }) {
   if (!apiKey) return { ok: false, error: "ANTHROPIC_API_KEY puudub" };
   const body = buildJudgeBody({ model, system, candsBlock, user, schema, maxTokens });
-  for (let attempt = 1; attempt <= retries; attempt++) {
-    const ctrl = new AbortController();
-    const to = setTimeout(() => ctrl.abort(), timeoutMs);
-    try {
-      const r = await fetch(API_URL, {
-        method: "POST", signal: ctrl.signal,
-        headers: { "x-api-key": apiKey, "anthropic-version": "2023-06-01", "content-type": "application/json" },
-        body: JSON.stringify(body),
-      });
-      if (!r.ok) {
-        const t = await r.text();
-        // 1b: workspace spend-cap / tier usage-limit → KOHE Telegram (üks kord/protsess), ENNE retry-check'i.
-        if (isUsageLimitError(t)) { clearTimeout(to); alertUsageLimit(`API ${r.status}: ${t.slice(0, 200)}`, { ctx: "judge" }); return { ok: false, error: `API ${r.status}: ${t.slice(0, 200)}` }; }
-        if ((r.status === 429 || r.status === 529 || r.status >= 500) && attempt < retries) {
-          clearTimeout(to); await sleep(Math.min(30000, 1000 * 2 ** attempt)); continue;
-        }
-        clearTimeout(to);
-        return { ok: false, error: `API ${r.status}: ${t.slice(0, 200)}` };
-      }
-      const j = await r.json();
-      recordSpend({ model, usage: j.usage });   // per-projekt kuu-kulu liider (raport); 80%-värav = checkWorkspaceSpendAlert
-      const txt = (j.content.find((b) => b.type === "text") || {}).text || "{}";
-      clearTimeout(to);
-      return { ok: true, parsed: JSON.parse(txt), usage: j.usage };
-    } catch (e) {
-      clearTimeout(to);
-      if (attempt < retries) { await sleep(Math.min(30000, 1000 * 2 ** attempt)); continue; }
-      return { ok: false, error: String(e.message || e).slice(0, 200) };
-    }
+  // SSoT-klient: usage-limit→alert+throw, 429/529/5xx→exp-backoff, recordSpend({task:"audit"}) ühes kohas.
+  try {
+    const { json, text } = await callMessages({ apiKey, task: "audit", body, timeoutMs, maxAttempts: retries, ctx: "judge" });
+    return { ok: true, parsed: JSON.parse(text || "{}"), usage: json.usage };
+  } catch (e) {
+    return { ok: false, error: String(e.message || e).slice(0, 200) };
   }
-  return { ok: false, error: "retries exhausted" };
 }
 
 // ════════════════════════════ 1. SÜNONÜÜMI-KOHTUNIK ═════════════════════════════

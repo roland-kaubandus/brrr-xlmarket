@@ -32,6 +32,7 @@ import { execSync } from "node:child_process";
 import { readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { callMessages } from "./lib/llm-client.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const args = process.argv.slice(2);
@@ -126,16 +127,11 @@ ${blocks}
 Vasta AINULT JSON-massiiviga, üks objekt per pere järjekorras:
 [{"key":"<põhisõna>","verdict":"REAL"|"DOMAIN"|"GENERIC","confidence":"korge"|"kesk"|"madal","note":"lühi põhjendus + kui REAL: soovitus"}]`;
     try {
-      const res = await fetch("https://api.anthropic.com/v1/messages", {
-        method: "POST",
-        headers: { "content-type": "application/json", "x-api-key": KEY, "anthropic-version": "2023-06-01" },
-        body: JSON.stringify({ model: MODEL, max_tokens: 4000, thinking: { type: "adaptive" }, output_config: { effort: "low" }, messages: [{ role: "user", content: prompt }] }),
-      });
-      if (!res.ok) throw new Error(`API ${res.status}: ${(await res.text()).slice(0, 120)}`);
-      const data = await res.json();
-      if (data.usage) { USAGE.in += data.usage.input_tokens || 0; USAGE.out += data.usage.output_tokens || 0; }
-      const txt = (data.content.find((b) => b.type === "text") || {}).text || "";
-      const m = txt.match(/\[[\s\S]*\]/);
+      // SSoT-klient (Faas 2): kulu-arvestus (task="family-scatter") + transient-retry ühes kohas. Body verbatim.
+      const body = { model: MODEL, max_tokens: 4000, thinking: { type: "adaptive" }, output_config: { effort: "low" }, messages: [{ role: "user", content: prompt }] };
+      const { text: txt, usage } = await callMessages({ apiKey: KEY, task: "family-scatter", body, ctx: "family-scatter-detect" });
+      if (usage) { USAGE.in += usage.input_tokens || 0; USAGE.out += usage.output_tokens || 0; }
+      const m = (txt || "").match(/\[[\s\S]*\]/);
       if (!m) throw new Error("JSON puudub: " + txt.slice(0, 120));
       for (const v of JSON.parse(m[0])) verdicts[v.key] = v;
       console.error(`  [${Math.min(i + BATCH, cands.length)}/${cands.length}]`);

@@ -18,8 +18,9 @@
  */
 
 import { runAllGates, specialistGate, fragmentGate, normEn, buildMatchList, scanEnLongest } from "./glossary-gates.mjs";
-
-const API_URL = "https://api.anthropic.com/v1/messages";
+// API-KUTSE — SSoT lib/llm-client.mjs (Faas 2, HARD RULE #5). task="glossary": terminoloogia-ahela kulu oli
+// varem JÄLGIMATA (makeAnthropicCall ei kutsunud recordSpend) → nüüd salvestatud ühe koha kaudu. recordSpend ühes kohas.
+import { callMessages } from "./llm-client.mjs";
 
 // ——— SAMM 1: DETEKT (leia EN-sisust katmata tehnilised terminid) ———
 
@@ -80,8 +81,9 @@ export async function filterGlossaryWorthy(sonnetCall, candidates, { batch = 40 
   return kept;
 }
 
-/** makeAnthropicCall — tagastab async (system,user)→parsed-JSON. usage = {in,out} akumulaator (valikuline). */
-export function makeAnthropicCall(apiKey, model, usage = null) {
+/** makeAnthropicCall — tagastab async (system,user)→parsed-JSON. usage = {in,out} akumulaator (valikuline).
+ *  task vaikimisi "glossary" (by_task-silt); kutse-keha antakse OTSE → päringu kuju säilib muutumatult. */
+export function makeAnthropicCall(apiKey, model, usage = null, task = "glossary") {
   return async function call(system, user, { maxTokens = 400 } = {}) {
     const body = {
       model,
@@ -90,13 +92,8 @@ export function makeAnthropicCall(apiKey, model, usage = null) {
       messages: [{ role: "user", content: user }],
     };
     // Fable 5: thinking alati sees → ära saada budget_tokens; madal effort mitte-reasoning ülesandele.
-    const resp = await fetch(API_URL, {
-      method: "POST",
-      headers: { "content-type": "application/json", "x-api-key": apiKey, "anthropic-version": "2023-06-01" },
-      body: JSON.stringify(body),
-    });
-    if (!resp.ok) throw new Error(`API ${resp.status} (${model})`);
-    const j = await resp.json();
+    // SSoT-klient: 429/5xx retry + usage-limit + degrade + recordSpend({task}) ühes kohas.
+    const { json: j } = await callMessages({ apiKey, task, body, ctx: "glossary-term-chain" });
     if (usage && j.usage) { usage.in = (usage.in || 0) + (j.usage.input_tokens || 0); usage.out = (usage.out || 0) + (j.usage.output_tokens || 0); }
     const text = (j.content || []).filter((c) => c.type === "text").map((c) => c.text).join("");
     return extractJson(text);

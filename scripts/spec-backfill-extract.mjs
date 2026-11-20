@@ -3,6 +3,9 @@
 // Käsk: node spec-backfill-extract.mjs [--limit-l3 N] [--concurrency 5]
 import { execSync } from "node:child_process"
 import fs from "node:fs"
+// API-KUTSE SSoT (Faas 2, HARD RULE #5): spec-ekstraktsioon läbi jagatud kliendi → retry/usage-limit/
+//   recordSpend({task:"spec"}) ühes kohas.
+import { callMessages } from "./lib/llm-client.mjs"
 const KEY = process.env.ANTHROPIC_API_KEY
 if (!KEY) { console.error("ANTHROPIC_API_KEY puudub"); process.exit(1) }
 // HARD RULE #9: DB-write (metadata.specs UPDATE) → stack-lukk (alati kirjutab; re-entrant no-op orkestraatori all). Fix 3.
@@ -23,10 +26,8 @@ const RULES = `Ühiku-teisendus EU-metric: HP→W(×745,7), PSI→bar(÷14,504),
 const isText = (k) => /maarimine|materjal|protsess|tuup|tyyp|type|kutus/i.test(k)
 
 async function llm(prompt, maxTok) {
-  const r = await fetch("https://api.anthropic.com/v1/messages", { method: "POST", headers: { "x-api-key": KEY, "anthropic-version": "2023-06-01", "content-type": "application/json" }, body: JSON.stringify({ model: MODEL, max_tokens: maxTok, messages: [{ role: "user", content: prompt }] }) })
-  const j = await r.json()
-  if (!j.content) throw new Error("API " + JSON.stringify(j).slice(0, 100))
-  return { txt: j.content.map(c => c.text || "").join(""), usage: j.usage }
+  const { json } = await callMessages({ apiKey: KEY, task: "spec", body: { model: MODEL, max_tokens: maxTok, messages: [{ role: "user", content: prompt }] } })
+  return { txt: json.content.map(c => c.text || "").join(""), usage: json.usage }
 }
 const parseJson = (t) => { const m = t.match(/\{[\s\S]*\}/); return m ? JSON.parse(m[0]) : {} }
 // Re-resolve container iga kutse; kui write kukub (stale nimi redeploy järel), resolve uuesti + retry 1×.

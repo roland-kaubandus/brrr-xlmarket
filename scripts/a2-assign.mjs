@@ -23,6 +23,7 @@ import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { callMessages } from "./lib/llm-client.mjs"; // SSoT LLM-klient (Faas 2): retry/usage-limit/degrade + recordSpend(task) ühes kohas
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const arg = (k, d) => { const i = process.argv.indexOf(k); return i >= 0 ? process.argv[i + 1] : d; };
@@ -34,13 +35,11 @@ const REVISED = path.join(ROOT, "reports", "a2-revised.json");
 const OUT = path.join(ROOT, "reports", "a2-assign.json");
 const REPORT = path.join(ROOT, "reports", "a2-assign-REPORT.md");
 
-const API_URL = "https://api.anthropic.com/v1/messages";
 const API_KEY = (() => {
   try { return fs.readFileSync("/opt/eumotors-tasks/.env", "utf8").split("\n").find(l => l.startsWith("ANTHROPIC_API_KEY="))?.split("=").slice(1).join("=").replace(/^["']|["']$/g, "").trim(); }
   catch { return process.env.ANTHROPIC_API_KEY; }
 })();
 const MODEL = "claude-opus-4-8";
-const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 
 const dbC = () => execFileSync("docker", ["ps", "--format", "{{.Names}}"], { encoding: "utf8" })
   .split("\n").find((n) => n.startsWith("db-k33g")).trim();
@@ -104,31 +103,9 @@ async function callModel(rec, products) {
     messages: [{ role: "user", content: userMsg(rec, products) }],
     output_config: { format: { type: "json_schema", schema: SCHEMA } },
   };
-  for (let attempt = 1; attempt <= 5; attempt++) {
-    const ctrl = new AbortController();
-    const to = setTimeout(() => ctrl.abort(), 180000);
-    try {
-      const r = await fetch(API_URL, {
-        method: "POST", signal: ctrl.signal,
-        headers: { "x-api-key": API_KEY, "anthropic-version": "2023-06-01", "content-type": "application/json" },
-        body: JSON.stringify(body),
-      });
-      if (!r.ok) {
-        const t = await r.text();
-        if ((r.status === 429 || r.status === 529 || r.status >= 500) && attempt < 5) { clearTimeout(to); await sleep(Math.min(30000, 1000 * 2 ** attempt)); continue; }
-        clearTimeout(to); throw new Error(`API ${r.status}: ${t.slice(0, 200)}`);
-      }
-      const j = await r.json();
-      clearTimeout(to);
-      const txt = (j.content.find(b => b.type === "text") || {}).text || "{}";
-      return { parsed: JSON.parse(txt), usage: j.usage };
-    } catch (e) {
-      clearTimeout(to);
-      if (attempt < 5) { await sleep(Math.min(30000, 1000 * 2 ** attempt)); continue; }
-      throw e;
-    }
-  }
-  throw new Error("retries exhausted");
+  // SSoT-klient: 429/529/5xx→exp-backoff, usage-limit→alert+throw, recordSpend({task:"a2:assign"}) ühes kohas.
+  const { json, text } = await callMessages({ apiKey: API_KEY, task: "a2:assign", body, timeoutMs: 180000, ctx: "a2-assign" });
+  return { parsed: JSON.parse(text || "{}"), usage: json.usage };
 }
 
 async function runPool(thunks, n) {

@@ -7,6 +7,9 @@
 import { execSync } from "node:child_process"
 import fs from "node:fs"
 import { isDegradeError, alertDegradeOnce } from "./lib/credit-guard.mjs" // isDegradeError = krediit VÕI usage-cap (Fix 1)
+// API-KUTSE SSoT (Faas 2, HARD RULE #5): spec-ekstraktsioon läbi jagatud kliendi → retry/usage-limit/
+//   recordSpend({task:"spec"}) ühes kohas.
+import { callMessages } from "./lib/llm-client.mjs"
 
 // Mid-run billing-tõrge (krediit VÕI usage-cap) → DEGRADE (exit 3), MITTE fail. Shell [6] näeb rc=3 → laoseis [7] JÄTKUB.
 let CREDIT_HIT = false
@@ -62,14 +65,14 @@ const RULES = `Ühiku-teisendus EU-metric: HP→W(×745,7), PSI→bar(÷14,504),
 const isText = (k) => /maarimine|materjal|protsess|tuup|tyyp|type|kutus/i.test(k)
 
 async function llm(prompt, maxTok) {
-  const r = await fetch("https://api.anthropic.com/v1/messages", { method: "POST", headers: { "x-api-key": KEY, "anthropic-version": "2023-06-01", "content-type": "application/json" }, body: JSON.stringify({ model: MODEL, max_tokens: maxTok, messages: [{ role: "user", content: prompt }] }) })
-  const j = await r.json()
-  if (!j.content) {
-    const em = JSON.stringify(j).slice(0, 200)
-    if (isDegradeError(em)) { CREDIT_HIT = true; if (!CREDIT_ERR) CREDIT_ERR = em }  // krediit/usage-cap → märgi degrade, throw allpool skibitakse
-    throw new Error("API " + em.slice(0, 120))
+  try {
+    const { json } = await callMessages({ apiKey: KEY, task: "spec", body: { model: MODEL, max_tokens: maxTok, messages: [{ role: "user", content: prompt }] } })
+    return { txt: json.content.map(c => c.text || "").join(""), usage: json.usage }
+  } catch (e) {
+    // callMessages VISKAB; krediit/usage-cap → märgi degrade (CREDIT_HIT), throw allpool skibitakse (exit 3 graatsiline)
+    if (isDegradeError(e) && !CREDIT_HIT) { CREDIT_HIT = true; if (!CREDIT_ERR) CREDIT_ERR = String(e.message || e).slice(0, 200) }
+    throw e
   }
-  return { txt: j.content.map(c => c.text || "").join(""), usage: j.usage }
 }
 const parseJson = (t) => { const m = t.match(/\{[\s\S]*\}/); return m ? JSON.parse(m[0]) : {} }
 const psql = (sql) => {

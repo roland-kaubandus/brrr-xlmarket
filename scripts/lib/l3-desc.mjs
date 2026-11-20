@@ -13,8 +13,6 @@
  *   kuni regenMax) → valideerimine (kohtunik Opus + referents Sonnet, lahkheli → Fable viigimurdja).
  */
 
-import { isUsageLimitError, alertUsageLimit, recordSpend } from "./spend-guard.mjs";
-
 export const GEN_MODEL = "claude-opus-4-8";   // generaator (SSoT kvaliteet)
 export const JUDGE_MODEL = "claude-opus-4-8";  // kohtunik
 export const REF_MODEL = "claude-sonnet-5";    // sõltumatu referents (= REF_MODEL_CLSF)
@@ -86,43 +84,11 @@ export const VALIDATE_SCHEMA = {
   },
 };
 
-// ──────────────────────────── API-KUTSUJA (usage → onUsage callback kulu-arvestuseks) ────────────────────────────
-export function makeCaller({ apiKey, onUsage = null, timeoutMs = 120000 }) {
-  if (!apiKey) throw new Error("makeCaller: apiKey puudub");
-  return async function callApi(model, system, userText, { maxTokens = 2000, schema = null, cacheSystem = true, fable = false } = {}) {
-    const body = {
-      model, max_tokens: maxTokens,
-      thinking: fable ? undefined : { type: "adaptive" },          // Fable: thinking alati sees (omit); muidu adaptive
-      ...(fable ? {} : { output_config: { effort: "low" } }),
-      system: [{ type: "text", text: system, ...(cacheSystem ? { cache_control: { type: "ephemeral" } } : {}) }],
-      messages: [{ role: "user", content: [{ type: "text", text: userText }] }],
-    };
-    if (schema) body.output_config = { ...(body.output_config || {}), format: { type: "json_schema", schema } };
-    for (let attempt = 1; attempt <= 5; attempt++) {
-      const ctrl = new AbortController(); const to = setTimeout(() => ctrl.abort(), timeoutMs);
-      try {
-        const r = await fetch("https://api.anthropic.com/v1/messages", {
-          method: "POST", signal: ctrl.signal,
-          headers: { "content-type": "application/json", "x-api-key": apiKey, "anthropic-version": "2023-06-01" },
-          body: JSON.stringify(body),
-        });
-        clearTimeout(to);
-        if (!r.ok) {
-          const t = await r.text();
-          // 1b: workspace spend-cap / tier usage-limit → KOHE Telegram (üks kord/protsess). NB: ENNE retry-check'i,
-          //   sest usage-limit EI lahene retry'ga (transient per-minute 429 → isUsageLimitError=false → retry jätkub).
-          if (isUsageLimitError(t)) { alertUsageLimit(`API ${r.status}: ${t.slice(0, 250)}`, { ctx: "l3-desc" }); throw new Error(`API ${r.status}: ${t.slice(0, 250)}`); }
-          if ((r.status === 429 || r.status === 529 || r.status >= 500) && attempt < 5) { await new Promise((s) => setTimeout(s, Math.min(30000, 1000 * 2 ** attempt))); continue; }
-          throw new Error(`API ${r.status}: ${t.slice(0, 250)}`);
-        }
-        const j = await r.json();
-        recordSpend({ model, usage: j.usage });   // per-projekt kuu-kulu liider (raport); 80%-värav = checkWorkspaceSpendAlert
-        if (onUsage) onUsage(model, j.usage);
-        return (j.content.find((b) => b.type === "text") || {}).text || "";
-      } catch (e) { clearTimeout(to); if (attempt < 5) { await new Promise((s) => setTimeout(s, Math.min(30000, 1000 * 2 ** attempt))); continue; } throw e; }
-    }
-  };
-}
+// ──────────────────────────── API-KUTSUJA — SSoT lib/llm-client.mjs (Faas 2, HARD RULE #5) ────────────────────────────
+// makeCaller absorbeeritud jagatud kliendisse: callApi(model, system, user, {maxTokens,schema,cacheSystem,fable}) → text
+//   (ÜHILDUV kuju). Retry/usage-limit/degrade + recordSpend ühes kohas. KUTSUJA ANNAB task-sildi (jälgitavus):
+//   nt makeCaller({ apiKey, task: "l3-desc" }). Vaikeseaded (adaptive thinking, effort low, system-cache) säilivad.
+export { makeCaller } from "./llm-client.mjs";
 
 // ──────────────────────────── GENERAATOR (batch + üksik regen-tagasisidega) ────────────────────────────
 function genBlock(r) {
