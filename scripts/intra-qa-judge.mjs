@@ -18,6 +18,7 @@
  */
 import { execSync } from "node:child_process";
 import fs from "node:fs";
+import { callMessages } from "./lib/llm-client.mjs";
 
 const args = process.argv.slice(2);
 const MIN = +(args[args.indexOf("--min") + 1]) || 3;
@@ -93,16 +94,11 @@ ${blocks}
 Vasta AINULT JSON-massiiviga (tühi [] kui misfite pole):
 [{"product_id":"prod_...","current_l3":"pcat_...","suggested_l3":"pcat_... (menüüst!)","reason":"lühi","confidence":"korge"|"kesk"}]`;
 
-  const res = await fetch("https://api.anthropic.com/v1/messages", {
-    method: "POST",
-    headers: { "content-type": "application/json", "x-api-key": KEY, "anthropic-version": "2023-06-01" },
-    body: JSON.stringify({ model: MODEL, max_tokens: 4000, thinking: { type: "adaptive" }, output_config: { effort: EFFORT }, messages: [{ role: "user", content: prompt }] }),
-  });
-  if (!res.ok) throw new Error(`API ${res.status}: ${(await res.text()).slice(0, 120)}`);
-  const data = await res.json();
-  if (data.usage) { USAGE.in += data.usage.input_tokens || 0; USAGE.out += data.usage.output_tokens || 0; }
-  const txt = (data.content.find((b) => b.type === "text") || {}).text || "";
-  const m = txt.match(/\[[\s\S]*\]/);
+  // SSoT-klient (Faas 2): kulu-arvestus (task="qa:intra") + transient-retry ühes kohas. Body verbatim.
+  const body = { model: MODEL, max_tokens: 4000, thinking: { type: "adaptive" }, output_config: { effort: EFFORT }, messages: [{ role: "user", content: prompt }] };
+  const { text: txt, usage } = await callMessages({ apiKey: KEY, task: "qa:intra", body, ctx: "intra-qa-judge" });
+  if (usage) { USAGE.in += usage.input_tokens || 0; USAGE.out += usage.output_tokens || 0; }
+  const m = (txt || "").match(/\[[\s\S]*\]/);
   if (!m) throw new Error("JSON puudub: " + txt.slice(0, 150));
   return JSON.parse(m[0]);
 }

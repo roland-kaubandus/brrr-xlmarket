@@ -29,13 +29,7 @@ function tally(model, j) {
 }
 function makeCaller(model, maxTokens = 2000) {
   return async function call(system, user) {
-    const res = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: { "x-api-key": API_KEY, "anthropic-version": "2023-06-01", "content-type": "application/json" },
-      body: JSON.stringify({ model, max_tokens: maxTokens, system, messages: [{ role: "user", content: user }] }),
-    });
-    if (!res.ok) throw new Error(`${model} HTTP ${res.status}: ${(await res.text()).slice(0, 200)}`);
-    const j = await res.json();
+    const { json: j } = await callMessages({ apiKey: API_KEY, task: "enpack:sample", body: { model, max_tokens: maxTokens, system, messages: [{ role: "user", content: user }] }, ctx: "en-pack-dry" });
     tally(model, j);
     const raw = ((j.content || []).find(c => c.type === "text")?.text || "").replace(/```(?:json)?/gi, "").trim();
     const m = raw.match(/\{[\s\S]*\}/);

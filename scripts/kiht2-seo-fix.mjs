@@ -18,7 +18,8 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { cost, recordSpend, isUsageLimitError, alertUsageLimit } from "./lib/spend-guard.mjs";
+import { cost } from "./lib/spend-guard.mjs";
+import { callMessages } from "./lib/llm-client.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = path.join(ROOT, "reports", "kiht2-sonavara-dry.json");
@@ -27,10 +28,8 @@ const arg = (k, d) => { const i = process.argv.indexOf(k); return i >= 0 ? proce
 const BATCH = parseInt(arg("--batch", "15"), 10);
 const BUDGET = parseFloat(arg("--budget", "3"));
 const SCAN_ONLY = process.argv.includes("--dry-scan");
-const API_URL = "https://api.anthropic.com/v1/messages";
 const MODEL = "claude-opus-4-8";
 const MAXTOK = 6000;
-const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 const API_KEY = (() => {
   try { return fs.readFileSync("/opt/eumotors-tasks/.env", "utf8").split("\n").find(l => l.startsWith("ANTHROPIC_API_KEY="))?.split("=").slice(1).join("=").replace(/^["']|["']$/g, "").trim(); }
   catch { return process.env.ANTHROPIC_API_KEY; }
@@ -84,22 +83,8 @@ async function callModel(batch) {
     messages: [{ role: "user", content: userMsg(batch) }],
     output_config: { format: { type: "json_schema", schema: SCHEMA } },
   };
-  for (let attempt = 1; attempt <= 5; attempt++) {
-    const ctrl = new AbortController(); const to = setTimeout(() => ctrl.abort(), 120000);
-    try {
-      const r = await fetch(API_URL, { method: "POST", signal: ctrl.signal, headers: { "x-api-key": API_KEY, "anthropic-version": "2023-06-01", "content-type": "application/json" }, body: JSON.stringify(body) });
-      if (!r.ok) {
-        const t = await r.text(); clearTimeout(to);
-        if (isUsageLimitError(t)) { alertUsageLimit(`API ${r.status}`, { ctx: "seo-fix" }); throw new Error("USAGE_LIMIT"); }
-        if ((r.status === 429 || r.status === 529 || r.status >= 500) && attempt < 5) { await sleep(Math.min(30000, 1000 * 2 ** attempt)); continue; }
-        throw new Error(`API ${r.status}: ${t.slice(0, 160)}`);
-      }
-      const j = await r.json(); clearTimeout(to); recordSpend({ model: MODEL, usage: j.usage });
-      const txt = (j.content.find(b => b.type === "text") || {}).text || "{}";
-      return { parsed: JSON.parse(txt), usage: j.usage };
-    } catch (e) { clearTimeout(to); if (String(e.message) === "USAGE_LIMIT") throw e; if (attempt < 5) { await sleep(Math.min(30000, 1000 * 2 ** attempt)); continue; } throw e; }
-  }
-  throw new Error("retries exhausted");
+  const { json, text } = await callMessages({ apiKey: API_KEY, task: "kiht2:seo", body, timeoutMs: 120000, ctx: "seo-fix" });
+  return { parsed: JSON.parse(text || "{}"), usage: json.usage };
 }
 
 async function main() {

@@ -72,7 +72,7 @@ const candidates = created.map((c) => ({ ck: c.ck, name_et: c.name_et, name_en: 
 // siblingsOf peab kandidaadi enda välja jätma — grupeerime per-ck kaudu allpool. granularityGate kasutab
 // per-L2 õdesid; kandidaat ise on samas L2 õdede seas EI OLE (loodud L3 on treebis, aga me anname
 // siblingsOf(l2) = KÕIK L3 selles L2-s, sh teised loodud). See on TAOTLETUD: avastab ka uute-vaheline dup.
-const { results, apiCalls } = await granularityGate({ candidates, siblingsOf, caller: makeCaller({ apiKey }) });
+const { results, apiCalls } = await granularityGate({ candidates, siblingsOf, caller: makeCaller({ apiKey, task: "classify" }) });
 console.log(`   kohtuniku-kutseid: ${apiCalls}`);
 
 // ---- 4) koonda tulemus ----

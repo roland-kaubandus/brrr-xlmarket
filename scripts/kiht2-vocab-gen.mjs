@@ -24,7 +24,8 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { cost, recordSpend, isUsageLimitError, alertUsageLimit } from "./lib/spend-guard.mjs";
+import { cost } from "./lib/spend-guard.mjs";
+import { callMessages } from "./lib/llm-client.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SP = "/tmp/claude-0/-opt-xlmarket-github/8966820c-cfb5-4418-ab04-7e331739a85c/scratchpad";
@@ -42,13 +43,11 @@ const MERGE = process.argv.includes("--merge");           // merge tulemused ole
 const MAXTOK = parseInt(arg("--maxtok", "6000"), 10);     // 4000 kärpis 15-kirjelisi batch'e
 function L3_FILE_DEFAULT_SENTINEL() { return ""; }
 
-const API_URL = "https://api.anthropic.com/v1/messages";
 const API_KEY = (() => {
   try { return fs.readFileSync("/opt/eumotors-tasks/.env", "utf8").split("\n").find(l => l.startsWith("ANTHROPIC_API_KEY="))?.split("=").slice(1).join("=").replace(/^["']|["']$/g, "").trim(); }
   catch { return process.env.ANTHROPIC_API_KEY; }
 })();
 const MODELS = ["claude-sonnet-5", "claude-opus-4-8"];
-const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 
 const SYSTEM = `Oled eesti e-kaubanduse OTSINGU-sõnavara ekspert xlmarket.ee jaoks.
 Sulle antakse tootekategooriaid (L3) koos kontekstiga: L1 › L2 › L3 + näidistooted.
@@ -109,34 +108,8 @@ async function callModel(model, batch) {
     messages: [{ role: "user", content: userMsg(batch) }],
     output_config: { format: { type: "json_schema", schema: SCHEMA } },
   };
-  for (let attempt = 1; attempt <= 5; attempt++) {
-    const ctrl = new AbortController();
-    const to = setTimeout(() => ctrl.abort(), 120000);
-    try {
-      const r = await fetch(API_URL, {
-        method: "POST", signal: ctrl.signal,
-        headers: { "x-api-key": API_KEY, "anthropic-version": "2023-06-01", "content-type": "application/json" },
-        body: JSON.stringify(body),
-      });
-      if (!r.ok) {
-        const t = await r.text();
-        if (isUsageLimitError(t)) { clearTimeout(to); alertUsageLimit(`API ${r.status}: ${t.slice(0, 160)}`, { ctx: "kiht2-gen" }); throw new Error("USAGE_LIMIT"); }
-        if ((r.status === 429 || r.status === 529 || r.status >= 500) && attempt < 5) { clearTimeout(to); await sleep(Math.min(30000, 1000 * 2 ** attempt)); continue; }
-        clearTimeout(to); throw new Error(`API ${r.status}: ${t.slice(0, 160)}`);
-      }
-      const j = await r.json();
-      clearTimeout(to);
-      recordSpend({ model, usage: j.usage });
-      const txt = (j.content.find(b => b.type === "text") || {}).text || "{}";
-      return { parsed: JSON.parse(txt), usage: j.usage };
-    } catch (e) {
-      clearTimeout(to);
-      if (String(e.message) === "USAGE_LIMIT") throw e;
-      if (attempt < 5) { await sleep(Math.min(30000, 1000 * 2 ** attempt)); continue; }
-      throw e;
-    }
-  }
-  throw new Error("retries exhausted");
+  const { json, text } = await callMessages({ apiKey: API_KEY, task: "kiht2:vocab", body, timeoutMs: 120000, ctx: "kiht2-gen" });
+  return { parsed: JSON.parse(text || "{}"), usage: json.usage };
 }
 
 const keyOf = (t) => String(t).toLowerCase().trim().replace(/\s+/g, "");

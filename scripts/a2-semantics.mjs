@@ -9,6 +9,7 @@
  */
 import fs from "node:fs";
 import { classifySplitSemantics } from "./lib/split-semantics.mjs";
+import { callMessages } from "./lib/llm-client.mjs"; // SSoT LLM-klient (Faas 2): retry/usage-limit/degrade + recordSpend(task) ühes kohas
 
 const REPO = "/opt/xlmarket-github";
 const ASSIGN = `${REPO}/reports/a2-assign.json`;
@@ -20,17 +21,15 @@ if (!API_KEY) { console.error("❌ ANTHROPIC_API_KEY puudub"); process.exit(2); 
 
 let usage = { in: 0, out: 0, calls: 0 };
 async function caller(system, user) {
-  const res = await fetch("https://api.anthropic.com/v1/messages", {
-    method: "POST",
-    headers: { "x-api-key": API_KEY, "anthropic-version": "2023-06-01", "content-type": "application/json" },
-    body: JSON.stringify({ model: MODEL, max_tokens: 1500, system, messages: [{ role: "user", content: user }] }),
+  // SSoT-klient: 429/529/5xx→exp-backoff, usage-limit→alert+throw, recordSpend({task:"a2:semantics"}) ühes kohas.
+  const { json, text } = await callMessages({
+    apiKey: API_KEY, task: "a2:semantics",
+    body: { model: MODEL, max_tokens: 1500, system, messages: [{ role: "user", content: user }] },
+    ctx: "a2-semantics",
   });
-  if (!res.ok) throw new Error(`HTTP ${res.status}: ${(await res.text()).slice(0, 300)}`);
-  const jr = await res.json();
-  if (jr.usage) { usage.in += jr.usage.input_tokens || 0; usage.out += jr.usage.output_tokens || 0; usage.calls++; }
-  const raw = (jr.content || []).find(c => c.type === "text")?.text || "";
-  const m = raw.match(/\{[\s\S]*\}/);
-  if (!m) throw new Error(`JSON puudub: ${raw.slice(0, 200)}`);
+  if (json.usage) { usage.in += json.usage.input_tokens || 0; usage.out += json.usage.output_tokens || 0; usage.calls++; }
+  const m = text.match(/\{[\s\S]*\}/);
+  if (!m) throw new Error(`JSON puudub: ${text.slice(0, 200)}`);
   return JSON.parse(m[0]);
 }
 

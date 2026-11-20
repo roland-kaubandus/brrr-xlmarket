@@ -15,8 +15,11 @@
 // Sama kood → backfill ja hook ei lahkne kunagi.
 
 import fs from 'node:fs';
+// API-KUTSE — SSoT lib/llm-client.mjs (Faas 2, HARD RULE #5). task="content": kulu omistatav; recordSpend ühes kohas.
+// Truncation-retry (N3, max_tokens → tõsta lagi + ehita keha uuesti) jääb SIIA — see on content-gen-spetsiifiline
+// (vajab keha uuestiehitust), mida tsentraalne retry ei kata. 429/5xx/usage-limit/degrade käib kliendi sees.
+import { callMessages } from './llm-client.mjs';
 
-const API_URL = 'https://api.anthropic.com/v1/messages';
 const DEFAULT_MODEL = 'claude-sonnet-5';
 
 // ---------------------------------------------------------------------------
@@ -174,7 +177,6 @@ const SCHEMA = {
 // ---------------------------------------------------------------------------
 // 3. GENEREERIMINE (üks toode)
 // ---------------------------------------------------------------------------
-const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 
 // Ehita API request-body (jagatud: realtime generateContent + Batch API). Sama sisend → sama päring.
 export function buildRequestBody(product, opts = {}) {
@@ -219,68 +221,47 @@ export async function generateContent(product, opts = {}) {
     termBlock,
     useVision = false,           // pilt-vision ainult õhuke-teksti puhul
     maxTokens = 8000,
+    task = 'content',            // by_task-silt (kulu omistatav); kutsuja võib täpsustada
   } = opts;
   if (!apiKey) return { ok: false, error: 'ANTHROPIC_API_KEY puudub' };
   if (!termBlock) return { ok: false, error: 'termBlock puudub (buildGlossaryAssets)' };
 
   // Truncation-retry: kui vastus katkeb max_tokens-lakkes, tõsta lagi ja ehita päring uuesti.
+  // HTTP-retry (429/5xx), usage-limit-alert ja recordSpend teeb callMessages (SSoT) — siin AINULT truncation.
   let curMaxTokens = maxTokens;
   let truncRetried = false;
   let { body, mode } = buildRequestBody(product, { model, termBlock, useVision, maxTokens: curMaxTokens });
 
-  const maxAttempts = 6;
-  let lastErr;
-  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+  for (let pass = 0; pass < 2; pass++) {   // kuni 1 truncation-tõste
     const t0 = Date.now();
+    let json;
     try {
-      const ctrl = new AbortController();
-      const to = setTimeout(() => ctrl.abort(), 300000);
-      const res = await fetch(API_URL, {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json',
-          'x-api-key': apiKey,
-          'anthropic-version': '2023-06-01',
-        },
-        body: JSON.stringify(body),
-        signal: ctrl.signal,
-      });
-      clearTimeout(to);
-      const ms = Date.now() - t0;
-      if (res.status === 429 || res.status === 529 || res.status >= 500) {
-        const ra = parseInt(res.headers.get('retry-after') || '0', 10);
-        const wait = Math.max(ra * 1000, Math.min(60000, 1000 * 2 ** attempt));
-        lastErr = `HTTP ${res.status}`;
-        await sleep(wait);
-        continue;
-      }
-      const json = await res.json();
-      if (!res.ok) return { ok: false, error: `HTTP ${res.status}: ${JSON.stringify(json).slice(0, 300)}`, ms, mode };
-      const { parsed, parseErr, raw } = parseMessage(json);
-      // N3 TRUNCATION → tõsta lagi + proovi ÜKS kord uuesti (mitte jäta poolikuks). EI kuluta attempt-i.
-      if (isTruncated(json, parsed) && !truncRetried && curMaxTokens < RETRY_MAX_TOKENS) {
-        truncRetried = true;
-        curMaxTokens = RETRY_MAX_TOKENS;
-        ({ body } = buildRequestBody(product, { model, termBlock, useVision, maxTokens: curMaxTokens }));
-        attempt--;  // truncation-retry ei tohi kulutada HTTP-retry eelarvet
-        continue;
-      }
-      return {
-        ok: !!parsed,
-        stop_reason: json.stop_reason,
-        usage: json.usage,
-        ms, mode,
-        content: parsed,
-        parseErr,
-        raw,
-        truncRetried,
-      };
+      ({ json } = await callMessages({ apiKey, task, body, timeoutMs: 300000, ctx: 'content-gen' }));
     } catch (e) {
-      lastErr = String(e);
-      await sleep(Math.min(60000, 1000 * 2 ** attempt));
+      // callMessages ammendas retry'd / 4xx / degrade (krediit/usage) → ühtlane ok:false (säilib vana leping).
+      return { ok: false, error: String(e.message || e).slice(0, 300), mode };
     }
+    const ms = Date.now() - t0;
+    const { parsed, parseErr, raw } = parseMessage(json);
+    // N3 TRUNCATION → tõsta lagi + proovi ÜKS kord uuesti (mitte jäta poolikuks).
+    if (isTruncated(json, parsed) && !truncRetried && curMaxTokens < RETRY_MAX_TOKENS) {
+      truncRetried = true;
+      curMaxTokens = RETRY_MAX_TOKENS;
+      ({ body } = buildRequestBody(product, { model, termBlock, useVision, maxTokens: curMaxTokens }));
+      continue;
+    }
+    return {
+      ok: !!parsed,
+      stop_reason: json.stop_reason,
+      usage: json.usage,
+      ms, mode,
+      content: parsed,
+      parseErr,
+      raw,
+      truncRetried,
+    };
   }
-  return { ok: false, error: `exhausted retries: ${lastErr}`, mode };
+  return { ok: false, error: 'truncation-retry ei lahendanud (max_tokens)', mode };
 }
 
 export { SCHEMA, DEFAULT_MODEL };

@@ -40,6 +40,9 @@ import {
 import { runChunk, chunk as chunkArr } from "./lib/content-batch.mjs";
 import { acquireStackLock } from "./lib/stack-lock.mjs";
 import { sendTelegram, isUsageLimitError } from "./lib/spend-guard.mjs";
+// API-KUTSE SSoT (Faas 2, HARD RULE #5): inline parse-retry läbi jagatud kliendi → retry/usage-limit/
+//   recordSpend({task:"enmaster:backfill"}) ühes kohas. Batch-tee (runChunk) jääb content-batch'i.
+import { callMessages } from "./lib/llm-client.mjs";
 
 const REPO = "/opt/xlmarket-github";
 const LEDGER_DIR = `${REPO}/reports/en-master-batches`;
@@ -179,16 +182,13 @@ function sysBlock(system) { return [{ type: "text", text: String(system), cache_
 function pGen(user) { return { model: M_GEN, max_tokens: 1600, system: sysBlock(CLEAN_SYS), messages: [{ role: "user", content: user }] }; }
 function pJudge(user) { return { model: M_JUDGE, max_tokens: 900, system: sysBlock(JUDGE_SYS), messages: [{ role: "user", content: user }] }; }
 
-// ── inline (parse-retry / väike hook) ──
+// ── inline (parse-retry / väike hook) — SSoT-klient (sama keha mille vana otse-kutse saatis) ──
 async function inlineCall(model, system, user, maxTokens) {
-  const res = await fetch("https://api.anthropic.com/v1/messages", {
-    method: "POST",
-    headers: { "content-type": "application/json", "x-api-key": API_KEY, "anthropic-version": "2023-06-01" },
-    body: JSON.stringify({ model, max_tokens: maxTokens, system, messages: [{ role: "user", content: user }] }),
+  const { json } = await callMessages({
+    apiKey: API_KEY, task: "enmaster:backfill",
+    body: { model, max_tokens: maxTokens, system, messages: [{ role: "user", content: user }] },
   });
-  const json = await res.json();
-  if (!res.ok) { const e = new Error(`inline HTTP ${res.status}: ${JSON.stringify(json).slice(0, 200)}`); e._json = json; throw e; }
-  return textOf(json);
+  return textOf(json); // textOf = KÕIK text-blokid "\n"-ga (säilitab vana käitumise, mitte ainult esimene)
 }
 function textOf(message) { return (message?.content || []).filter((b) => b.type === "text").map((b) => b.text).join("\n"); }
 const usageHit = (r) => !r.ok && /credit|usage|insufficient|rate limit|quota/i.test(r.error || "");

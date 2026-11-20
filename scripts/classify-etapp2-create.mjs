@@ -26,6 +26,7 @@ import {
 // TÜÜBIPROFIIL-KIRJELDUS SSoT (HARD RULE #5 — SAMA transform kui backfill scripts/l3-desc-gen.mjs).
 // Uus L3 sünnib `product_category.description` = tüübiprofiil (internal kohtuniku-väli), MITTE SEO description_et.
 import { makeCaller, genValidatedDesc } from "./lib/l3-desc.mjs";
+import { callMessages } from "./lib/llm-client.mjs";
 // EN-NIME STIIL SSoT (HARD RULE #5 — uue L3 name_en sama deterministlik stiil kui en-pack-backfill).
 import { styleNormalize } from "./lib/en-name.mjs";
 
@@ -75,13 +76,7 @@ const existingHandles = new Set(Object.keys(NODES));
 // ---- Fable toor-kutse (callback l3-gates genAssetsGated jaoks) ----
 let usage = { input: 0, output: 0, calls: 0 };
 async function fableRaw(system, user) {
-  const res = await fetch("https://api.anthropic.com/v1/messages", {
-    method: "POST",
-    headers: { "x-api-key": API_KEY, "anthropic-version": "2023-06-01", "content-type": "application/json" },
-    body: JSON.stringify({ model: FABLE, max_tokens: 8000, system, messages: [{ role: "user", content: user }] }),
-  });
-  if (!res.ok) throw new Error(`Fable HTTP ${res.status}: ${(await res.text()).slice(0, 300)}`);
-  const j = await res.json();
+  const { json: j } = await callMessages({ apiKey: API_KEY, task: "classify", body: { model: FABLE, max_tokens: 8000, system, messages: [{ role: "user", content: user }] }, ctx: "classify-etapp2:fable" });
   if (j.usage) { usage.input += j.usage.input_tokens || 0; usage.output += j.usage.output_tokens || 0; usage.calls++; }
   const raw = (j.content || []).find(c => c.type === "text")?.text || "";
   const m = raw.match(/\{[\s\S]*\}/);
@@ -91,7 +86,7 @@ async function fableRaw(system, user) {
 
 // ---- tüübiprofiil-kirjelduse kutsuja (SAMA lib-transform kui backfill; kulu eraldi arvestuses) ----
 const tpUsage = { "claude-opus-4-8": { in: 0, out: 0, cr: 0, cw: 0 }, "claude-sonnet-5": { in: 0, out: 0, cr: 0, cw: 0 }, "claude-fable-5": { in: 0, out: 0, cr: 0, cw: 0 } };
-const callApiTP = makeCaller({ apiKey: API_KEY, onUsage: (model, u) => {
+const callApiTP = makeCaller({ apiKey: API_KEY, task: "classify", onUsage: (model, u) => {
   if (!u || !tpUsage[model]) return;
   tpUsage[model].in += u.input_tokens || 0; tpUsage[model].out += u.output_tokens || 0;
   tpUsage[model].cr += u.cache_read_input_tokens || 0; tpUsage[model].cw += u.cache_creation_input_tokens || 0;

@@ -23,11 +23,12 @@
  */
 
 import { deriveBrandSlug, BRAND_NAMES } from "./brand-strip.mjs";
+// API-KUTSE — SSoT lib/llm-client.mjs (Faas 2, HARD RULE #5). task="synonyms": kulu omistatav. recordSpend ühes kohas.
+import { callMessages } from "./llm-client.mjs";
 
 export const SG_VERSION = "sg-v1";            // tõsta kui prompt/skeem oluliselt muutub → regen
 export const CONF_AUTO = 0.85;                // ≥ → auto product_synonym; alla → review-bucket
 export const DEFAULT_MODEL = "claude-haiku-4-5";
-const API_URL = "https://api.anthropic.com/v1/messages";
 
 // ── Deterministlik ASCII-fold + glue (100% õige, tasuta — MITTE LLM) ──────────
 const FOLD_U = (s) => s.replace(/õ/g, "o").replace(/ä/g, "a").replace(/ö/g, "o").replace(/ü/g, "u").replace(/š/g, "s").replace(/ž/g, "z");
@@ -114,8 +115,6 @@ function userMsg(batch) {
   return `TOOTED:\n\n${list}`;
 }
 
-const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-
 /** buildRequestParams — Batch API jaoks (custom_id = product batch). Kutsuja mähib {custom_id, params}. */
 export function buildParams(batch, { model = DEFAULT_MODEL } = {}) {
   return {
@@ -127,40 +126,17 @@ export function buildParams(batch, { model = DEFAULT_MODEL } = {}) {
   };
 }
 
-/** Otsekutse (realtime, pilot/hook). Tagastab {ok, results|error}. */
+/** Otsekutse (realtime, pilot/hook). Tagastab {ok, results|error}. SSoT-klient (task="synonyms"): retry/usage-limit/degrade + recordSpend ühes kohas. */
 export async function generateSynonyms(batch, { apiKey, model = DEFAULT_MODEL, timeoutMs = 120000, retries = 5 } = {}) {
   if (!apiKey) return { ok: false, error: "ANTHROPIC_API_KEY puudub" };
   const body = buildParams(batch, { model });
-  for (let attempt = 1; attempt <= retries; attempt++) {
-    const ctrl = new AbortController();
-    const to = setTimeout(() => ctrl.abort(), timeoutMs);
-    try {
-      const r = await fetch(API_URL, {
-        method: "POST",
-        signal: ctrl.signal,
-        headers: { "x-api-key": apiKey, "anthropic-version": "2023-06-01", "content-type": "application/json" },
-        body: JSON.stringify(body),
-      });
-      if (!r.ok) {
-        const t = await r.text();
-        if ((r.status === 429 || r.status === 529 || r.status >= 500) && attempt < retries) {
-          clearTimeout(to); await sleep(Math.min(30000, 1000 * 2 ** attempt)); continue;
-        }
-        clearTimeout(to);
-        return { ok: false, error: `API ${r.status}: ${t.slice(0, 200)}` };
-      }
-      const j = await r.json();
-      const txt = (j.content.find((b) => b.type === "text") || {}).text || "{}";
-      const parsed = JSON.parse(txt);
-      clearTimeout(to);
-      return { ok: true, results: parsed.results || [] };
-    } catch (e) {
-      clearTimeout(to);
-      if (attempt < retries) { await sleep(Math.min(30000, 1000 * 2 ** attempt)); continue; }
-      return { ok: false, error: String(e.message || e).slice(0, 200) };
-    }
+  try {
+    const { text } = await callMessages({ apiKey, task: "synonyms", body, timeoutMs, maxAttempts: retries, ctx: "synonym-gen" });
+    const parsed = JSON.parse(text || "{}");
+    return { ok: true, results: parsed.results || [] };
+  } catch (e) {
+    return { ok: false, error: String(e.message || e).slice(0, 200) };
   }
-  return { ok: false, error: "retries exhausted" };
 }
 
 /** parseBatchMessage — Batch API tulem (message) → results[]. */

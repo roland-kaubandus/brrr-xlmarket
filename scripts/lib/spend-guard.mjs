@@ -68,7 +68,10 @@ const PRICE = {
 /** cost — USD ühe kutse usage-objektist (cache-väljad arvesse). */
 export function cost(model, usage) {
   if (!usage) return 0;
-  const p = PRICE[model] || { in: 0, out: 0 };
+  // Normaliseeri kuupäeva-suffiksiga mudeli-id (nt "claude-haiku-4-5-20251001" → "claude-haiku-4-5"),
+  // muidu PRICE-miss → cost $0 → kulu jääb task-sildil omistamata (Faas 2 eesmärk: 100% omistatav).
+  const key = String(model || "").replace(/-\d{8}$/, "");
+  const p = PRICE[key] || { in: 0, out: 0 };
   const inTok = (usage.input_tokens || 0)
     + (usage.cache_read_input_tokens || 0) * 0.1
     + (usage.cache_creation_input_tokens || 0) * 1.25;

@@ -21,6 +21,11 @@
  *   resolveChain tagastab results[] (iga r-il `_cluster` — kutsuja eemaldab enne JSON-i).
  */
 
+// API-KUTSE — SSoT lib/llm-client.mjs (Faas 2, HARD RULE #5). task="classify": Fable-viigimurdja kulu oli
+// varem JÄLGIMATA (makeFable ei kutsunud recordSpend) → nüüd salvestatud ühe koha kaudu. CAPS-escalation
+// (max_tokens → kõrgem lagi) jääb siia (Fable-spetsiifiline, thinking kõigub); 429/5xx/usage käib kliendi sees.
+import { callMessages } from "./llm-client.mjs";
+
 const FABLE = "claude-fable-5";
 
 // ---- §3 granulaarsus-prompt (sõna-sõnalt dryrun-ist) ----
@@ -103,13 +108,9 @@ export function makeFable(apiKey, usage) {
   return async function fableRaw(system, user) {
     let lastRaw = "", lastStop = "";
     for (let attempt = 0; attempt < CAPS.length; attempt++) {
-      const res = await fetch("https://api.anthropic.com/v1/messages", {
-        method: "POST",
-        headers: { "x-api-key": apiKey, "anthropic-version": "2023-06-01", "content-type": "application/json" },
-        body: JSON.stringify({ model: FABLE, max_tokens: CAPS[attempt], system, messages: [{ role: "user", content: user }] }),
-      });
-      if (!res.ok) throw new Error(`Fable HTTP ${res.status}: ${(await res.text()).slice(0, 300)}`);
-      const j = await res.json();
+      const body = { model: FABLE, max_tokens: CAPS[attempt], system, messages: [{ role: "user", content: user }] };
+      // SSoT-klient: 429/5xx retry + usage-limit-alert + degrade + recordSpend({task:"classify"}) ühes kohas.
+      const { json: j } = await callMessages({ apiKey, task: "classify", body, ctx: "classify-chain:fable" });
       if (j.usage) { usage.input += j.usage.input_tokens || 0; usage.output += j.usage.output_tokens || 0; usage.calls++; }
       lastStop = j.stop_reason || "";
       const raw = ((j.content || []).find(c => c.type === "text")?.text || "")
