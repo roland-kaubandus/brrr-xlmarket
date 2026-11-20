@@ -42,7 +42,7 @@ export default async function AdminLoginPage({
       <div className="w-full max-w-[420px] bg-white border border-[#E2E8F0] rounded-xl shadow-sm p-8">
         <h1 className="text-[24px] font-bold text-[#1a1a2e] mb-1">Admin login</h1>
         <p className="text-sm text-[#64748B] mb-6">
-          Sisselogimine on lubatud ainult XLMarket administraatoritele.
+          Sisselogimine on lubatud ainult XLmarket administraatoritele.
         </p>
         <LoginForm next={next} />
       </div>

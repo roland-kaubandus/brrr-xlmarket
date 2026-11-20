@@ -12,7 +12,7 @@ export const revalidate = 3600
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params
   return {
-    title: "XLMarket — Professional Tools, Half the Price",
+    title: "XLmarket — Professional Tools, Half the Price",
     description: "Over 16,000 products: tools, equipment, kitchen, automotive. Affordable prices, 2-year warranty, delivery across Europe.",
     alternates: {
       canonical: `https://xlmarket.ee/${locale}`,

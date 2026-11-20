@@ -35,8 +35,8 @@ export async function generateMetadata(
   // A1: locale-teadlik meta (ET-lehel ET, muidu EN-baseline) — nagu kategoorialeht.
   const loc = localisedVertical(v, locale)
   const metaTitle = locale === "et"
-    ? ((v as { meta_title_et?: string }).meta_title_et ?? v.meta_title_en ?? `${loc.name} — XLMarket`)
-    : (v.meta_title_en ?? `${v.name_en} — XLMarket`)
+    ? ((v as { meta_title_et?: string }).meta_title_et ?? v.meta_title_en ?? `${loc.name} — XLmarket`)
+    : (v.meta_title_en ?? `${v.name_en} — XLmarket`)
   const metaDesc = locale === "et"
     ? ((v as { meta_description_et?: string }).meta_description_et ?? loc.description ?? v.meta_description_en ?? v.description_en)
     : (v.meta_description_en ?? v.description_en)
