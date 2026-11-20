@@ -18,6 +18,14 @@ const BATCH = 500
 // Cache-path env-override (nt kui ../data/feeds pole kirjutatav — Coolify konteiner → /tmp).
 const FEED_CACHE_PATH = process.env.FEED_CACHE_PATH || new URL("../data/feeds/vevor-feed-cache.json", import.meta.url)
 
+// EN-MASTER VÄRAV (Tarmo DIRECTIVE 2026-11-20): staging DB-s on title_en_clean/description_en_clean
+// koos addMetric-vigadega (Opus-värav 31/100 fail). Vaikimisi (EN_MASTER_INDEX ≠ 'true') EI jõua
+// need indeksisse — doc kirjutab tühja → storefront getProductTitle/getProductDescription langeb
+// toorele (title_en/description_en), st EN PDP näitab SAMA mis enne (toores). Lipp avatakse alles
+// kui EN-masteri Opus-värav läbitud JA Tarmo annab GO.
+const EN_MASTER_INDEX = process.env.EN_MASTER_INDEX === "true"
+console.log(`🔒 EN_MASTER_INDEX=${EN_MASTER_INDEX ? "true (clean EN indekseeritakse)" : "false (clean EN BLOKEERITUD → toores)"}`)
+
 let feedCacheBySku = null
 let feedCacheByUpc = null
 
@@ -313,10 +321,11 @@ function transform(row) {
     // EN-master puhastatud väljad (en-master-backfill): display-kvaliteet EN-locale'is.
     // Storefront getProductTitle/getProductDescription eelistab neid toorele. Tühi string
     // kuni backfill jõuab tooteni (fallback toorele storefront'is). Otsitav (searchableAttributes).
-    title_en_clean: meta.title_en_clean || '',
+    // VÄRAV: kuni EN_MASTER_INDEX pole 'true', kirjuta '' (vigased addMetric-cleanid EI jõua indeksisse).
+    title_en_clean: EN_MASTER_INDEX ? (meta.title_en_clean || '') : '',
     title_et,                       // search: Estonian
     // future: title_ru, title_fi — same pattern
-    description_en_clean: meta.description_en_clean || '',
+    description_en_clean: EN_MASTER_INDEX ? (meta.description_en_clean || '') : '',
     morph_et: meta.morph_et || '',  // search: Eesti liitsõna KIHT 1 (lemma+komponendid; madal prio)
     brand: brandSlug || '',         // slug (filter/URL)
     brand_name: brandName,          // search: bränd (nt "VEVOR") — sõltumatu title'st

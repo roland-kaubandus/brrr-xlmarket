@@ -16,8 +16,13 @@ type Props = {
 
 export async function generateMetadata({ params }: Props) {
   const { handle, locale } = await params
-  const product = await getProduct(handle)
-  if (!product) return { title: "Product — XLMARKET" }
+  // meiliHit = brändi-nime SSoT (brand_name, bränd-agnostiline: tundmatu → ""). getProduct dedup'itakse
+  // Next fetch-cache'is (sama kutse ProductPage'is). Meili-maas → brand_name "" → ilma brändi-osata.
+  const [product, meiliHit] = await Promise.all([
+    getProduct(handle),
+    getMeiliProductByHandle(handle).catch(() => null),
+  ])
+  if (!product) return { title: "Product | XLmarket" }
   const ogImage = product.thumbnail
   const md = (product.metadata || {}) as Record<string, unknown>
   const titleEt = typeof md.title_et === "string" && md.title_et.trim() ? md.title_et : null
@@ -29,8 +34,23 @@ export async function generateMetadata({ params }: Props) {
       : product.description
       ? product.description.replace(/<[^>]*>/g, "").substring(0, 160)
       : product.title
+
+  // META TITLE (Tarmo DIRECTIVE 3b): "{pealkiri} — {bränd} | XLmarket".
+  //   · Bränd puudub (brand_name "") → ilma brändi-osata: "{pealkiri} | XLmarket".
+  //   · Liiga pikk (>60) → lühenda PEALKIRJA (mitte brändi ega saidi-nime): bränd + " | XLmarket" jäävad alati.
+  const brandName = (meiliHit as { brand_name?: string } | null)?.brand_name?.trim() || ""
+  const brandPart = brandName ? ` — ${brandName}` : ""
+  const tailPart = " | XLmarket"
+  const MAX_TITLE = 60
+  const budget = MAX_TITLE - brandPart.length - tailPart.length
+  const titleTrunc =
+    title.length > budget && budget > 1
+      ? title.slice(0, budget - 1).trimEnd() + "…"
+      : title
+  const metaTitle = `${titleTrunc}${brandPart}${tailPart}`
+
   return {
-    title: title + " — XLMARKET",
+    title: metaTitle,
     description: desc,
     alternates: {
       canonical: `https://xlmarket.ee/${locale}/toode/${handle}`,
