@@ -76,15 +76,11 @@ export function getProductDescription(hit: MeiliHit, locale: string = 'en'): str
   return hit.description_en_clean || hit.description || hit.description_en || ''
 }
 
-/** Escape a value for safe inclusion in a MeiliSearch filter string */
-export function escapeMeiliFilterValue(v: string): string {
-  return String(v).replace(/\\/g, "\\\\").replace(/"/g, '\\"')
-}
-
-/** Whitelist-validate a handle-like token (alnum + dash + underscore). */
-export function isSafeHandleToken(v: string): boolean {
-  return typeof v === "string" && /^[a-z0-9][a-z0-9_-]{0,127}$/i.test(v)
-}
+// escapeMeiliFilterValue + isSafeHandleToken = SSoT lib/filter-safe.ts-s (zero-dep, testitav).
+// Re-eksport hoiab senised importijad (route'id, ai/tools, kategooria-leht) töös; import hoiab
+// SELLE mooduli sisemise kasutuse (getMeiliProductByHandle) töös.
+export { escapeMeiliFilterValue, isSafeHandleToken } from "./filter-safe"
+import { escapeMeiliFilterValue, isSafeHandleToken } from "./filter-safe"
 
 export type MeiliSearchResult = {
   hits: MeiliHit[]
