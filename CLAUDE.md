@@ -29,6 +29,10 @@ staging'usse ja redeploy ehitab **vana koodi** (23.07: viis redeploy'd, tund seg
 Kui harud on lahknenud (main palju ees) → **cherry-pick** ainult uued commitid v4-le
 (mitte täis-merge, mis tooks sadu commit'e).
 
+**PUSH KOHE (Tarmo 2026-11-20):** commit → **push kohe MÕLEMALE harule** — GitHub on varukoopia,
+lokaalseid commit'e ei kuhjata (oli kord 19 pushimata). **Push ≠ deploy** — push on ohutu
+varukoopia-samm; **deploy (Coolify rebuild) on ERALDI, selge GO-ga samm**, ei käivitu pushist.
+
 **KONTROLL (raporti/deploy-teate lõpus näita MÕLEMA haru SHA, mitte ühte):**
 ```bash
 git fetch -q origin
