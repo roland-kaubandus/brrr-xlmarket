@@ -7,7 +7,7 @@ import LoginForm from "./LoginForm"
 export const dynamic = "force-dynamic"
 
 export const metadata = {
-  title: "Admin login — XLMARKET",
+  title: "Admin login — XLmarket",
   robots: "noindex, nofollow",
 }
 

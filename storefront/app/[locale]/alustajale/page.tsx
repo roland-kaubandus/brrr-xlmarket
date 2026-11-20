@@ -6,7 +6,7 @@ import { getStarterKitsCms, type CmsKit } from "@/lib/cms"
 import starterKitsFallback from "@/lib/cms-fallback/starter-kits.json"
 
 export const metadata: Metadata = {
-  title: "Starter Kits — Everything Your New Business Needs | XL Market",
+  title: "Starter Kits — Everything Your New Business Needs | XLmarket",
   description: "Six turnkey business starter packages — café, auto workshop, barber, print shop, bakery, cleaning service. One order, one invoice, one delivery. VAT 24% incl.",
 }
 

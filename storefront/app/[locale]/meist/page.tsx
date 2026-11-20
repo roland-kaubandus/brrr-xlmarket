@@ -7,7 +7,7 @@ import fallback from "@/lib/cms-fallback/about.json"
 import globalFallback from "@/lib/cms-fallback/global.json"
 
 export const metadata: Metadata = {
-  title: "Meist — XLMARKET",
+  title: "Meist — XLmarket",
   description: "XLmarket (Roland Kaubandus OÜ) — üle 25 aasta kogemust tööriistade ja seadmete vahendamisel Eesti klientidele.",
 }
 

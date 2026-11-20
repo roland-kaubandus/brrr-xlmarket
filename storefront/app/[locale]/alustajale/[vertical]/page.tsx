@@ -100,7 +100,7 @@ export default async function VerticalPage(
     },
     provider: {
       "@type": "Organization",
-      name: "XLMARKET",
+      name: "XLmarket",
       url: "https://xlmarket.ee",
     },
   }

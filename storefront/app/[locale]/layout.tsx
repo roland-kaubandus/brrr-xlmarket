@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title: {
       default: t.meta.title,
-      template: "%s | XL Market",
+      template: "%s | XLmarket",
     },
     description: t.meta.description,
     openGraph: {
@@ -33,9 +33,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       description: t.meta.ogDescription,
       locale: "en_US",
       type: "website",
-      siteName: "XL Market",
+      siteName: "XLmarket",
       url: "https://xlmarket.ee",
-      images: [{ url: "https://xlmarket.ee/og-image.png", width: 1200, height: 630, alt: "XL Market" }],
+      images: [{ url: "https://xlmarket.ee/og-image.png", width: 1200, height: 630, alt: "XLmarket" }],
     },
     alternates: {
       canonical: `https://xlmarket.ee/${locale}`,

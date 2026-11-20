@@ -5,8 +5,8 @@ import { getLegalPage } from "@/lib/cms"
 import fallback from "@/lib/cms-fallback/legal-shipping.json"
 
 export const metadata: Metadata = {
-  title: "Shipping Info — XLMARKET",
-  description: "XLMARKET shipping terms. Delivery 5-15 business days, shipping across Estonia.",
+  title: "Shipping Info — XLmarket",
+  description: "XLmarket shipping terms. Delivery 5-15 business days, shipping across Estonia.",
 }
 
 export default async function ShippingPage({ params }: { params: Promise<{ locale: string }> }) {

@@ -5,8 +5,8 @@ import { getLegalPage } from "@/lib/cms"
 import fallback from "@/lib/cms-fallback/legal-cookies.json"
 
 export const metadata: Metadata = {
-  title: "Cookie Policy — XLMARKET",
-  description: "XLMARKET cookie policy. What cookies we use and how you can manage your preferences.",
+  title: "Cookie Policy — XLmarket",
+  description: "XLmarket cookie policy. What cookies we use and how you can manage your preferences.",
 }
 
 export default async function CookiePolicyPage({ params }: { params: Promise<{ locale: string }> }) {

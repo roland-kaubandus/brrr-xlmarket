@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Tellimuse vormistamine — XLMARKET",
+  title: "Tellimuse vormistamine — XLmarket",
   robots: { index: false, follow: false },
 }
 

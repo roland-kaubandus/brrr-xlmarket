@@ -2,7 +2,7 @@ export default function JsonLdOrganization() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "XLMARKET",
+    name: "XLmarket",
     legalName: "Roland Kaubandus OÜ",
     url: "https://xlmarket.ee",
     email: "info@xlmarket.ee",

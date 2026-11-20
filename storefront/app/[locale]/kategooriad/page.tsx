@@ -8,7 +8,7 @@ import countsDoc from "@/lib/category-counts.generated.json"
 export const revalidate = 3600
 
 export const metadata = {
-  title: "All Categories — XLMARKET",
+  title: "All Categories — XLmarket",
   description: "Browse all product categories at XLMarket — Level 1, Level 2, Level 3 and beyond.",
 }
 

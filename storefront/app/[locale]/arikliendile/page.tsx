@@ -13,7 +13,7 @@ import {
 } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Business Customers — Net-30, Volume Pricing, Dedicated Manager | XL Market",
+  title: "Business Customers — Net-30, Volume Pricing, Dedicated Manager | XLmarket",
   description: "B2B account management for Estonian and EU businesses. Net-30 terms, volume pricing from 3%, dedicated account manager, custom equipment bundles, priority shipping.",
 }
 

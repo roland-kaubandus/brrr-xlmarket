@@ -1,8 +1,8 @@
 {
   "meta": {
-    "title": "XL Market — professionaalne varustus",
-    "description": "XL Market — Eesti suurim professionaalse varustuse e-pood. Köögitehnika, meretarvikud, ehitus-, aia- ja tööstusvarustus.",
-    "ogTitle": "XL Market — professionaalne varustus",
+    "title": "XLmarket — professionaalne varustus",
+    "description": "XLmarket — Eesti suurim professionaalse varustuse e-pood. Köögitehnika, meretarvikud, ehitus-, aia- ja tööstusvarustus.",
+    "ogTitle": "XLmarket — professionaalne varustus",
     "ogDescription": "Professionaalne varustus igale tööstusharule. 14 000+ toodet kiire tarnega üle Eesti."
   },
   "nav": {
@@ -213,14 +213,14 @@
   },
   "about": {
     "title": "Meist",
-    "subtitle": "XLMARKET on Eesti e-pood, mis pakub kvaliteetseid tööriistu, varustust ja majapidamiskaupu taskukohase hinnaga. Meie eesmärk on teha professionaalsed tööriistad kõigile kättesaadavaks.",
+    "subtitle": "XLmarket on Eesti e-pood, mis pakub kvaliteetseid tööriistu, varustust ja majapidamiskaupu taskukohase hinnaga. Meie eesmärk on teha professionaalsed tööriistad kõigile kättesaadavaks.",
     "productsInCatalog": "toodet kataloogis",
     "productCategories": "tootekategooriat",
     "warrantyAll": "garantii kõigile toodetele",
     "whatWeOffer": "Mida me pakume",
     "ourValues": "Meie väärtused",
     "companySection": "Ettevõte",
-    "companyDesc": "XLMARKET on Roland Kaubandus OÜ kaubamärk.",
+    "companyDesc": "XLmarket on Roland Kaubandus OÜ kaubamärk.",
     "contactUs": "Võta meiega ühendust"
   },
   "contact": {
