@@ -1,6 +1,7 @@
 import { NextRequest } from "next/server"
 import { jsonCL } from "@/lib/json-response"
-import { searchProducts, escapeMeiliFilterValue, isSafeHandleToken } from "@/lib/meilisearch"
+import { searchProducts } from "@/lib/meilisearch"
+import { parseFilter } from "@/lib/filter-safe"
 import { mapMeiliHitToProduct } from "@/lib/map-meili-hit"
 import { getProductsByHandles } from "@/lib/medusa"
 import type { Product } from "@/lib/medusa"
@@ -18,70 +19,13 @@ const ALLOWED_SORTS = new Set([
   "in_stock:desc", "in_stock:asc",
 ])
 
-// Allowlist filter fields — each accepts a safe token value or a boolean.
-// This replaces raw filter pass-through which allowed attacker to probe any
-// indexed field with arbitrary operators.
-const ALLOWED_FILTER_FIELDS = new Set([
-  // `categories` = kategooria-NIMED (otsingu-lehe facet + chip-id on nime-põhised).
-  // Kategooria-leht kasutab `taxonomy.ancestors` (handle). Mõlemad lubatud.
-  "categories", "category_handles", "taxonomy.ancestors", "taxonomy.l1_slug",
-  "taxonomy.l2_slug", "taxonomy.l3_slug", "vertical_slugs",
-  "in_stock", "brand",
-  // filter_tokens = quick-filtrite + brändi AINUS filtri-mehhanism (brand:<slug>, material:x,
-  //   power_w:1500W+ jne). `brand` EI ole Meilis filterable → brändi/quick-filter grid tuli AINULT
-  //   filter_tokens kaudu, aga see puudus siit → iga chip/brändi-klikk andis klient-gridis 400
-  //   "Invalid filter" → 0 toodet (server-fasetid näitasid loendureid, grid tühi). Väärtust
-  //   valideerib isSafeFilterToken + escapeMeiliFilterValue (injection kaetud). 2026-11-20.
-  "filter_tokens",
-])
-
-
+// ALLOWED_FILTER_FIELDS + ALLOWED_RANGE_FIELDS + parseFilter + valideerijad = SSoT @/lib/filter-safe
+// (zero-dep, testitav). Facet-allowlist jääb SIIA (route-spetsiifiline, ei jaga parseFilter'iga).
 const ALLOWED_FACETS = new Set([
   "category_handles", "taxonomy.ancestors", "taxonomy.l1_slug",
   "taxonomy.l2_slug", "taxonomy.l3_slug", "in_stock", "brand",
   "spec_filters", "filter_tokens",
 ])
-
-// Kategooria-NIMED sisaldavad tuhikuid + eesti tahti (nt "Autovaruosad ja -tarvikud")
-// -> isSafeHandleToken lukkab need tagasi. Luba piiratud prinditav nimi; injection'i
-// hoiab ara escapeMeiliFilterValue push-hetkel. Kontrolli-margid + jutumark + kaldkriips valja.
-function isSafeCategoryName(v: string): boolean {
-  if (typeof v !== "string" || v.length < 1 || v.length > 200) return false
-  for (let i = 0; i < v.length; i++) {
-    const c = v.charCodeAt(i)
-    if (c < 0x20 || c === 0x22 || c === 0x5c) return false // kontrollmark, " voi \
-  }
-  return true
-}
-
-// filter_tokens väärtus = "<key>:<value>", nt brand:vevor, material:carbon-steel, power_w:1500W+.
-// Tähemärgistik (indeksi tegelik SSoT): alnum + `_ . + -` mõlemal pool üht koolonit. Tühikut/jutumärki/
-// kaldkriipsu EI luba (injection'i katab lisaks escapeMeiliFilterValue push-hetkel). isSafeHandleToken
-// ei sobi (ei luba koolonit) → eraldi värav just filter_tokens'ile.
-function isSafeFilterToken(v: string): boolean {
-  return typeof v === "string" && /^[a-z0-9_]{1,40}:[a-z0-9_.+-]{1,80}$/i.test(v)
-}
-
-function parseFilter(raw: string | null): string[] | undefined {
-  if (!raw) return undefined
-  const out: string[] = []
-  for (const part of raw.split(";")) {
-    const m = part.trim().match(/^([a-zA-Z0-9_.]+)\s*=\s*"?([^"]*)"?$/)
-    if (!m) continue
-    const [, field, value] = m
-    if (!ALLOWED_FILTER_FIELDS.has(field)) continue
-    if (value === "true" || value === "false") {
-      out.push(`${field} = ${value}`)
-    } else if (
-      field === "categories" ? isSafeCategoryName(value)
-      : field === "filter_tokens" ? isSafeFilterToken(value)
-      : isSafeHandleToken(value)
-    ) {
-      out.push(`${field} = "${escapeMeiliFilterValue(value)}"`)
-    }
-  }
-  return out.length ? out : undefined
-}
 
 function parseSort(raw: string | null): string[] | undefined {
   if (!raw) return undefined
