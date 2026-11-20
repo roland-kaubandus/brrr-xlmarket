@@ -8,15 +8,19 @@ const ALLOWED_SORTS = new Set([
   "created_at:asc", "created_at:desc",
 ])
 
+// NB: `brand` EI ole siin — see ei ole Meili filterableAttribute (vt index-meilisearch.mjs).
+// Brändi-filter käib AINSA mehhanismi kaudu: filter_tokens = "brand:<slug>" (HARD RULE #5),
+// mida esilehe brand-carousel + /otsing?filters=brand:<slug> kasutavad. `brand=`-väljafilter
+// oleks teine, surnud mehhanism (andis "Search failed", kuna väli pole filtreeritav).
 const ALLOWED_FILTER_FIELDS = new Set([
   "categories", "category_handles", "taxonomy.ancestors", "taxonomy.l1_slug",
   "taxonomy.l2_slug", "taxonomy.l3_slug", "vertical_slugs",
-  "in_stock", "brand",
+  "in_stock",
 ])
 
 const ALLOWED_FACETS = new Set([
   "category_handles", "taxonomy.ancestors", "taxonomy.l1_slug",
-  "taxonomy.l2_slug", "taxonomy.l3_slug", "in_stock", "brand",
+  "taxonomy.l2_slug", "taxonomy.l3_slug", "in_stock",
 ])
 
 // Kategooria-NIMED sisaldavad tuhikuid + eesti tahti (nt "Autovaruosad ja -tarvikud")
