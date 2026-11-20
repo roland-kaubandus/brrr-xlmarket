@@ -9,7 +9,7 @@ export const revalidate = 3600
 
 export const metadata = {
   title: "All Categories — XLmarket",
-  description: "Browse all product categories at XLMarket — Level 1, Level 2, Level 3 and beyond.",
+  description: "Browse all product categories at XLmarket — Level 1, Level 2, Level 3 and beyond.",
 }
 
 const COUNTS: Record<string, number> = (countsDoc as { counts: Record<string, number> }).counts || {}

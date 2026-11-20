@@ -45,7 +45,7 @@ const TOOL_GET_PRODUCT_DETAILS: Anthropic.Tool = {
   },
 }
 
-const claudiaSystemPrompt = `Sa oled Claudia, XLMarket.eu e-poe infopunkti töötaja.
+const claudiaSystemPrompt = `Sa oled Claudia, XLmarket.eu e-poe infopunkti töötaja.
 
 KUIDAS SA KÄITUD:
 - Sa oled sõbralik ja tagasihoidlik. Sa ei ole Ameerika müügimees ega Microsofti Copilot.
@@ -93,7 +93,7 @@ OTSINGU KEEL (KRIITILINE):
 - Kui leiad tulemustes ilmselgelt vale toote (näiteks "ice ball press" kui klient küsis jäämasinat), ÄRA seda mainida — kommenteeri ainult sobivaid tulemusi.`
 
 function specialistSystemPrompt(conversationSoFar: string): string {
-  return `Sa oled XLMarket.eu tootespetsialist — tehniline ekspert, kes teab toodete spetsifikatsioone.
+  return `Sa oled XLmarket.eu tootespetsialist — tehniline ekspert, kes teab toodete spetsifikatsioone.
 
 KUIDAS SA KÄITUD:
 - Tehniline, aus, konkreetne. "Selle keevitusaparaadi MIG-režiim töötab kuni 200A" — mitte "see on super aparaat!".

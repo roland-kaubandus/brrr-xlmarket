@@ -26,7 +26,7 @@ interface Props {
 
 const STRINGS = {
   et: {
-    greeting: "Tere! Olen Claudia, XLMarketi tooteabiline.",
+    greeting: "Tere! Olen Claudia, XLmarketi tooteabiline.",
     analyzingPrefix: "Hetkeks, vaatan",
     askPlaceholder: "Kirjuta küsimus...",
     sendLabel: "Saada",
@@ -37,7 +37,7 @@ const STRINGS = {
     welcome: "Tere! Olen Claudia. Kirjelda mida otsid — leian sobivad tooted.",
   },
   en: {
-    greeting: "Hi, I'm Claudia, XLMarket's product helper.",
+    greeting: "Hi, I'm Claudia, XLmarket's product helper.",
     analyzingPrefix: "One moment, looking at",
     askPlaceholder: "Type your question...",
     sendLabel: "Send",
@@ -190,7 +190,7 @@ export default function SearchBarChat({ locale, initialQuery, onClose }: Props) 
           </span>
           <div>
             <p className="text-[13px] font-semibold leading-tight">Claudia</p>
-            <p className="text-[11px] text-white/60 leading-tight">XLMarket AI</p>
+            <p className="text-[11px] text-white/60 leading-tight">XLmarket AI</p>
           </div>
         </div>
         <button
