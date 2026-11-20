@@ -30,6 +30,8 @@ export type ProductContentProps = {
     archived?: boolean
   }
   localizedTitle: string
+  brand?: string       // brändi-slug (filter/URL); tundmatu → "" (link ei renderdu)
+  brandName?: string   // brändi kuvanimi (nt "VEVOR"); tundmatu → "" (bränd-agnostiline)
   images: Array<{ id: string; url: string }>
   specs: Array<{ key: string; value: string }>
   sellingPoints: string[]
@@ -62,7 +64,7 @@ export type ProductContentProps = {
 
 export default function ProductContent(props: ProductContentProps) {
   const {
-    locale, product, localizedTitle, images, specs, sellingPoints,
+    locale, product, localizedTitle, brand, brandName, images, specs, sellingPoints,
     mainDescriptionHtml, richDescription, manualLinks, breadcrumbItems,
     categoryId, categoryHandle, categoryHandles, categoryName, relatedSearchQuery,
     priceFormatted, priceAmount, priceCurrency, originalAmount,
@@ -148,6 +150,20 @@ export default function ProductContent(props: ProductContentProps) {
               {localizedTitle}
             </h1>
           </EditableText>
+
+          {/* Bränd: X — nähtav link brändi toodetele (filter_tokens brand:<slug> AINUS mehhanism,
+              HARD RULE #5). BRÄND-AGNOSTILINE: tundmatu bränd (slug/nimi "") → EI renderdu (mitte VEVOR). */}
+          {brand && brandName && (
+            <p className="text-[13.5px] text-[#64748B] mb-3 -mt-1">
+              {locale === "et" ? "Bränd: " : "Brand: "}
+              <Link
+                href={`/${locale}/otsing?filters=brand:${encodeURIComponent(brand)}`}
+                className="font-semibold text-[#0b7d79] hover:text-[#0ea5a0] transition-colors duration-200"
+              >
+                {brandName}
+              </Link>
+            </p>
+          )}
 
           <ProductPurchasePanel
             locale={locale}

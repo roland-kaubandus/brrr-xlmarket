@@ -505,6 +505,10 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
         archived: (meiliHit as { archived?: boolean } | null)?.archived === true,
       },
       localizedTitle,
+      // Bränd (SSoT = indekseerija brand/brand_name, bränd-agnostiline: tundmatu → ""/"").
+      // PDP "Bränd: X" link kasutab slug'i → /{locale}/otsing?filters=brand:<slug>.
+      brand: (meiliHit as { brand?: string } | null)?.brand || "",
+      brandName: (meiliHit as { brand_name?: string } | null)?.brand_name || "",
       images,
       specs,
       sellingPoints,
