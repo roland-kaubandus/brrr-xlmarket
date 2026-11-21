@@ -254,6 +254,12 @@ function convScalar(text, fam, addedPairs) {
   const afterMet = new RegExp(`^\\s*[/,(]?\\s*${_SC_SIGN}${_SC_NUM}(?:${_SC_SEP}${_SC_SIGN}${_SC_NUM})?\\s*(?:${_MET_ADJ})\\b`, "i");
   const beforeMet = new RegExp(`${_SC_SIGN}${_SC_NUM}(?:${_SC_SEP}${_SC_SIGN}${_SC_NUM})?\\s*(?:${_MET_ADJ})\\b\\s*[/,(]?\\s*$`, "i");
   const NUMSIGN = new RegExp(`(${_SC_SIGN})(${_SC_NUM})`, "g");
+  // SAMA-PEREKONNA naaber: vahemik, kus ühik on MÕLEMAL arvul ("14°F~50°F", "-40°F to 104°F") — RE haarab
+  //   ainult esimese otsa (ühik teise arvu küljes lõpetab mustri) → pooleldi-teisendus garbib ("-10 °C (14°F)~50°F").
+  //   FAIL-CLOSED: sama perekonna väärtus eraldajaga kõrval → ära teisenda, jäta allikatruu. Allikas annab
+  //   sellistel peaaegu alati meetrilise kõrvale (nt "/-10°C~10°C") → kaotust pole. Tarmo 2026-11-21 patch-ring A.
+  const sameFamAfter = new RegExp(`^\\s*(?:[~\\-–—/]\\s*|to\\s+)${_SC_SIGN}${_SC_NUM}\\s*(?:${fam.units})`, "i");
+  const sameFamBefore = new RegExp(`(?:${fam.units})\\s*(?:[~\\-–—/]|to)\\s*$`, "i");
   return text.replace(RE, (full, body, offset, whole) => {
     if (parenDepthAt(whole, offset) > 0) return full;             // sulgude sees = allika-meetriline annotatsioon
     // FAIL-CLOSED (Tarmo 2026-11-21 #2): kui match ALGAB vahetult arvu/eraldaja-fragmendi järel, on number
@@ -264,6 +270,7 @@ function convScalar(text, fam, addedPairs) {
     const after = whole.slice(offset + full.length, offset + full.length + 20);
     const before = whole.slice(Math.max(0, offset - 20), offset);
     if (afterMet.test(after) || beforeMet.test(before)) return full; // meetriline kõrval → allikas duaalne, ära korda
+    if (sameFamAfter.test(after) || sameFamBefore.test(before)) return full; // ühik-mõlemal-arvul vahemik → fail-closed
     // märgi-teadlik arvude-haare: juhtiv "−"/"-" = märk; number ees → kriips on vahemik, mitte märk
     const nums = []; let m2;
     while ((m2 = NUMSIGN.exec(body))) {
