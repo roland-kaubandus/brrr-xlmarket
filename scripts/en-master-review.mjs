@@ -18,7 +18,7 @@
  */
 import fs from "node:fs";
 import { execSync } from "node:child_process";
-import { sourceCorpus } from "./lib/en-master-clean.mjs";
+import { sourceCorpus, addMetric, metricGate } from "./lib/en-master-clean.mjs";
 import { runChunk } from "./lib/content-batch.mjs";
 
 const REPO = "/opt/xlmarket-github";
@@ -27,6 +27,10 @@ const val = (f) => { const i = argv.indexOf(f); return i >= 0 ? argv[i + 1] : nu
 const N = Number(val("--n")) || 50;
 const SEED = val("--seed") || "";
 const IDS_FILE = val("--ids") || ""; // kureeritud valim: reavahega toote-ID-d (nt A+B+dup) — asendab juhuvaliku
+// --remetric (Tarmo 2026-11-21 Samm 3): hinda remetric-i PAKUTUD uut clean'i = addMetric(base), MITTE
+//   praegust DB clean'i. Vajalik, sest 1680 sihtmärgil on clean NULL (base-only Pass) või aegunud. Audit
+//   kontrollib TÄPSELT seda, mis kirjutataks (kirjutus-GO eeltingimus: 0 fail / 0 fabrikatsiooni).
+const REMETRIC = argv.includes("--remetric");
 const M_REVIEW = "claude-opus-4-8";   // SÕLTUMATU: Opus (generaator/kohtunik olid Sonnet)
 
 const API_KEY = process.env.ANTHROPIC_API_KEY;
@@ -51,28 +55,55 @@ const OBJ = `json_build_object(
     'selling_points', p.metadata->'selling_points', 'specs', p.metadata->'specs',
     'dimensions', p.metadata->'dimensions', 'vptype', p.metadata->>'vevor_product_type',
     'clean_title', p.metadata->>'title_en_clean',
-    'clean_desc', p.metadata->>'description_en_clean'
+    'clean_desc', p.metadata->>'description_en_clean',
+    'base_title', p.metadata->>'title_en_base',
+    'base_desc', p.metadata->>'description_en_base'
   )`;
+// remetric-režiim: sihtmärk = base olemas (clean võib olla NULL); muidu = clean olemas.
+const HAVE_COND = REMETRIC
+  ? `(p.metadata->>'title_en_base' IS NOT NULL OR p.metadata->>'description_en_base' IS NOT NULL)`
+  : `(p.metadata->>'title_en_clean') IS NOT NULL`;
 let rows;
 if (IDS_FILE) {
   const ids = fs.readFileSync(IDS_FILE, "utf8").split(/\r?\n/).map((s) => s.trim()).filter(Boolean);
   const inList = ids.map((i) => `'${i.replace(/'/g, "''")}'`).join(",");
   rows = psqlJson(`SELECT coalesce(json_agg(obj),'[]') FROM (
     SELECT ${OBJ} AS obj FROM product p
-    WHERE (p.metadata->>'title_en_clean') IS NOT NULL AND p.id IN (${inList})
+    WHERE ${HAVE_COND} AND p.id IN (${inList})
   ) s;`);
 } else {
   const orderExpr = SEED ? `md5(p.id || '${SEED.replace(/'/g, "''")}')` : `md5(p.id)`;
   rows = psqlJson(`SELECT coalesce(json_agg(obj),'[]') FROM (
     SELECT ${OBJ} AS obj FROM product p
     WHERE p.status='published' AND p.deleted_at IS NULL
-      AND (p.metadata->>'title_en_clean') IS NOT NULL
+      AND ${HAVE_COND}
     ORDER BY ${orderExpr} LIMIT ${N}
   ) s;`);
 }
 
-if (!rows.length) { console.error("🔴 ei leidnud ühtki puhastatud toodet (title_en_clean) — kas backfill jooksis?"); process.exit(1); }
-console.log(`🔎 SÕLTUMATU Opus-kontroll · ${rows.length} ${IDS_FILE ? "kureeritud" : "juhuslikku"} toodet · mudel=${M_REVIEW}${SEED ? ` · seed=${SEED}` : ""}${IDS_FILE ? ` · ids=${IDS_FILE}` : ""}`);
+if (!rows.length) { console.error(`🔴 ei leidnud ühtki ${REMETRIC ? "base-kandidaati (title_en_base)" : "puhastatud toodet (title_en_clean)"} — kas backfill jooksis?`); process.exit(1); }
+
+// ── remetric-režiim: arvuta PAKUTUD clean = addMetric(base), rakenda VÄRAV, jäta ainult muudetud+läbinud ──
+if (REMETRIC) {
+  const kept = [];
+  for (const p of rows) {
+    const nc = {
+      title_en_clean: p.base_title != null ? addMetric(p.base_title, new Set()) : p.clean_title,
+      description_en_clean: p.base_desc != null ? addMetric(p.base_desc, new Set()) : p.clean_desc,
+    };
+    const g = metricGate(nc);
+    if (!g.pass) continue; // VÄRAV skip → ei kirjutataks, ei auditeeri
+    const tCh = p.base_title != null && nc.title_en_clean !== (p.clean_title ?? "");
+    const dCh = p.base_desc != null && nc.description_en_clean !== (p.clean_desc ?? "");
+    if (!tCh && !dCh) continue; // juba ajakohane → ei kirjutataks
+    p.clean_title = nc.title_en_clean;   // AUDITEERI pakutud uut väljundit
+    p.clean_desc = nc.description_en_clean;
+    kept.push(p);
+  }
+  rows = kept;
+  if (!rows.length) { console.error("🔴 remetric: ükski valimi toode ei muutuks (kõik juba ajakohased / väravas) — vali teised id-d"); process.exit(1); }
+}
+console.log(`🔎 SÕLTUMATU Opus-kontroll${REMETRIC ? " [REMETRIC — pakutud uus clean]" : ""} · ${rows.length} ${IDS_FILE ? "kureeritud" : "juhuslikku"} toodet · mudel=${M_REVIEW}${SEED ? ` · seed=${SEED}` : ""}${IDS_FILE ? ` · ids=${IDS_FILE}` : ""}`);
 
 // ── Opus prompt (sõltumatu audiitor) ──
 const SYS = `You are an INDEPENDENT quality-assurance reviewer for e-commerce product copy.
