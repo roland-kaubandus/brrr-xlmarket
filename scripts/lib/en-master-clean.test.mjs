@@ -267,5 +267,22 @@ console.log("\n=== Samm 5.2 (Tarmo 2026-11-21): kohtuniku KITSAS dim-lõdvendus 
   if (!ok) fails++;
 }
 
+console.log("\n=== Samm 4-A (Tarmo 2026-11-21): kõrval-meetriline VAHEMIK → ära topelt-teisenda ===");
+// allikas "imperiaal (meetriline-VAHEMIK)" → addMetric EI tohi lisada teist °C-teisendust (topelt-sulg)
+eq("A: temp vahemik-annotatsioon kõrval",
+   "range of 122-572°F (50-300°C) lets you",
+   "range of 122-572°F (50-300°C) lets you");
+eq("A: skalaar vahemik-annotatsioon kõrval (ühik eest)",
+   "operating 50-300°C (122-572°F) heat",      // °F sulgudes → parenDepth skip; °C jääb
+   "operating 50-300°C (122-572°F) heat");
+// REGRESSIOON-kaitse: kui kõrval-meetrilist POLE, teisenda ikka normaalselt
+eq("A: ilma kõrval-meetriliseta teiseneb ikka",
+   "range of 122-572°F only",
+   "range of 50-300 °C (122-572°F) only");
+// kõrval-meetriline ÜKSIK (mitte vahemik) töötab endiselt
+eq("A: üksik meetriline kõrval",
+   "heats to 205°F (96°C) max",
+   "heats to 205°F (96°C) max");
+
 console.log(fails === 0 ? "\n✅ KÕIK LÄBIS" : `\n❌ ${fails} EBAÕNNESTUS`);
 process.exit(fails === 0 ? 0 : 1);
