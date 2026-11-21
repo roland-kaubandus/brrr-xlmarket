@@ -330,5 +330,19 @@ eq("FC-regr: ühik viimasel → teiseneb vahemikuna",
    "drains 50 to 100 gallons tank",
    "drains 189.3 to 378.5 L (50 to 100 gallons) tank");
 
+console.log("\n=== Patch D (Tarmo 2026-11-21): per-aja-sufiks /h + sulg-meetriline → fail-closed ===");
+// FAIL 2 (diesel): "gal/h (L/h)" — /h eraldab imperiaali ja kõrval-meetrilist → EI tohi teist teisendust lisada
+eq("D: gal/h (L/h) kõrval → ära topelt-teisenda",
+   "uses 0.04-0.1 gal/h (0.15-0.35 L/h) fuel",
+   "uses 0.04-0.1 gal/h (0.15-0.35 L/h) fuel");
+// REGRESSIOON: gal/h ILMA kõrval-meetrilata → teiseneb endiselt
+eq("D-regr: gal/h ilma meetrilata → teiseneb",
+   "uses 2 gal/h output",
+   "uses 7.57 L (2 gal)/h output");
+// REGRESSIOON: " / " (tühikutega) kõrval-meetriline → endiselt skip (ei lõhkunud)
+eq("D-regr: gal / L (tühik-slash) → skip",
+   "holds 1.85 gal / 7 L tank",
+   "holds 1.85 gal / 7 L tank");
+
 console.log(fails === 0 ? "\n✅ KÕIK LÄBIS" : `\n❌ ${fails} EBAÕNNESTUS`);
 process.exit(fails === 0 ? 0 : 1);
