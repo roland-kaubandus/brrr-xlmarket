@@ -68,9 +68,20 @@ export function sourceCorpus(p) {
 // ─────────────────────────── number/ühik-ekstrakt ───────────────────────────
 const NUM_RE = /\d+(?:[.,]\d+)?/g;
 const normNum = (x) => x.replace(",", ".").replace(/(\.\d*?)0+$/, "$1").replace(/\.$/, "");
-// ℃ (U+2103) / ℉ (U+2109) ligatuurid → "°C"/"°F", et NUMUNIT_RE/normUnit neid tunneks.
-// Allikas kasutab juhuti ligatuuri (nt "0℃-240℃") → ilma selleta jäi "240 °C" allika-tuvastusest välja.
-export function degNorm(s) { return String(s == null ? "" : s).replace(/℃/g, "°C").replace(/℉/g, "°F"); }
+// ℃/℉ (U+2103/U+2109) + CJK ühiku-ligatuurid (㎡㎥㎝㎜㎞㎏㎎ + ℓ) → kanooniline °/ASCII, et
+//   NUMUNIT_RE/normUnit/addMetric neid tunneks (nt "0℃-240℃"; "20㎡" muidu ei loe kõrval-meetriliseks
+//   → addMetric topelt-teisendus "20 m² (215ft²)/20㎡"). Täislaius-tilde ～(U+FF5E)→~ (vahemiku-eraldaja).
+//   SSoT: üks normaliseerimis-koht, mida kasutavad nii väravad (numSet/srcUnitPairs) kui addMetric.
+//   Tarmo 2026-11-21 patch-ring (A tilde · B ligatuur).
+export function degNorm(s) {
+  return String(s == null ? "" : s)
+    .replace(/℃/g, "°C").replace(/℉/g, "°F")
+    .replace(/㎡/g, "m²").replace(/㎥/g, "m³")
+    .replace(/㎝/g, "cm").replace(/㎜/g, "mm").replace(/㎞/g, "km")
+    .replace(/㎏/g, "kg").replace(/㎎/g, "mg")
+    .replace(/ℓ/g, "L")
+    .replace(/～/g, "~");
+}
 export function numSet(s) { return new Set((degNorm(s).match(NUM_RE) || []).map(normNum)); }
 // ühik-normaliseerimine (variandid → kanooniline). AINULT teadaolevad mõõtühikud loevad ühikuks;
 // muu number-järgne sõna (nt "5 balance", "4 seats") on kogus/tekst → EI ole ühik.
@@ -228,7 +239,7 @@ const SCALAR = [
 const _MET_ADJ = `mm|cm|m²|cm²|m³|m|kg|g|t|L|mL|ml|°C|°c`;
 const _SC_NUM = `\\d+(?:[.,]\\d+)*`;
 const _SC_SIGN = `[−-]?`;                       // juhtiv märk (U+2212 või ASCII); vahemiku-kriips eristatakse _digitBefore'ga
-const _SC_SEP = `(?:\\s*[-–—]\\s*|\\s+to\\s+)`;
+const _SC_SEP = `(?:\\s*[-–—~]\\s*|\\s+to\\s+)`; // ~ = vahemiku-eraldaja (täislaius ～ degNorm'itud → ~)
 // convScalar: üksik VÕI vahemik; paren-kaitse; kõrval-meetriline → skip (allikas andis mõlemad); 1 sulg; vahemik aatomina.
 //   NEGATIIVNE allikas ("−4°F" = -4): märk HAARATAKSE tervikuna (teisendus -4°F→-20°C õige) ja algne märk ei jää orvuks
 //   (vana bug: "4°F"→"-16 °C" + orb "−" → "−-16 °C"; 21 temp-toodet). Vahemiku-kriips ("35-48") EI ole märk.
@@ -237,13 +248,21 @@ function convScalar(text, fam, addedPairs) {
   // kõrval-meetriline VÕIB olla vahemik ("50-300 °C", "34 to 48 cm") — luba valikuline vahemiku-ots,
   //   muidu afterMet näeb ainult esimest arvu ("50") ja jätab vahemiku-annotatsiooni tundmata → addMetric
   //   lisab TEISE teisenduse → topelt-sulg ("50-300 °C (122-572°F) (50-300°C)"). Tarmo 2026-11-21 Samm 4-A.
-  const afterMet = new RegExp(`^\\s*[/,(]?\\s*${_SC_NUM}(?:${_SC_SEP}${_SC_NUM})?\\s*(?:${_MET_ADJ})\\b`, "i");
-  const beforeMet = new RegExp(`${_SC_NUM}(?:${_SC_SEP}${_SC_NUM})?\\s*(?:${_MET_ADJ})\\b\\s*[/,(]?\\s*$`, "i");
+  // kõrval-meetriline arv võib olla NEGATIIVNE ("-0.4°F/-18°C", "-22°F / -5.5°C") → _SC_SIGN mõlemal otsal,
+  //   muidu afterMet ei näe "/-18°C" kõrval-°C-d → addMetric lisab teisenduse → fabritseeritud/vastuoluline
+  //   duaal ("-18 °C (-0.4°F)/-18°C"). Tarmo 2026-11-21 patch-ring C (kaldkriipsuga °F/°C paar).
+  const afterMet = new RegExp(`^\\s*[/,(]?\\s*${_SC_SIGN}${_SC_NUM}(?:${_SC_SEP}${_SC_SIGN}${_SC_NUM})?\\s*(?:${_MET_ADJ})\\b`, "i");
+  const beforeMet = new RegExp(`${_SC_SIGN}${_SC_NUM}(?:${_SC_SEP}${_SC_SIGN}${_SC_NUM})?\\s*(?:${_MET_ADJ})\\b\\s*[/,(]?\\s*$`, "i");
   const NUMSIGN = new RegExp(`(${_SC_SIGN})(${_SC_NUM})`, "g");
   return text.replace(RE, (full, body, offset, whole) => {
     if (parenDepthAt(whole, offset) > 0) return full;             // sulgude sees = allika-meetriline annotatsioon
-    const after = whole.slice(offset + full.length, offset + full.length + 18);
-    const before = whole.slice(Math.max(0, offset - 18), offset);
+    // FAIL-CLOSED (Tarmo 2026-11-21 #2): kui match ALGAB vahetult arvu/eraldaja-fragmendi järel, on number
+    //   OSALISELT haaratud (nt "100~200~300°F" keskmine ots, või tundmatu eraldaja) → teisendust EI lisa,
+    //   tekst jääb allikatruuks. Lõpetab erimärkide lappimise: ei teisenda, mida ei suuda TÄIELIKULT parsida.
+    const prevCh = whole[offset - 1];
+    if (prevCh && /[\d~.]/.test(prevCh)) return full;
+    const after = whole.slice(offset + full.length, offset + full.length + 20);
+    const before = whole.slice(Math.max(0, offset - 20), offset);
     if (afterMet.test(after) || beforeMet.test(before)) return full; // meetriline kõrval → allikas duaalne, ära korda
     // märgi-teadlik arvude-haare: juhtiv "−"/"-" = märk; number ees → kriips on vahemik, mitte märk
     const nums = []; let m2;
@@ -283,7 +302,7 @@ const _BEFORE_LEN_MET = new RegExp(`\\d+(?:[.,]\\d+)?\\s*(?:mm|cm|m)\\b\\s*[/(,]
 //   MÕLEMAD otsad haaratakse aatomina, et vältida osalist teisendust nagu "28–81.3 cm (32 inch)" või
 //   "34.8 to 123 cm (48.4 inches)" (parandus B, Tarmo 2026-11-19: vahemiku üks ots jäi varem teisendamata →
 //   ebasidus/vale ühik; vt parandus A sama loogika x-grupile). "to" nõuab ümber tühikut (väldib "into"/"onto").
-const DIM_SEP = `(?:\\s*(?:${LEN_UNIT})?\\s*(?:[x×]|[-–—])\\s*|\\s+to\\s+)`;
+const DIM_SEP = `(?:\\s*(?:${LEN_UNIT})?\\s*(?:[x×]|[-–—~])\\s*|\\s+to\\s+)`; // ~ = vahemik (tilde)
 const DIM_RE = new RegExp(
   `(\\d+(?:[.,]\\d+)?(?:${DIM_SEP}\\d+(?:[.,]\\d+)?)*)\\s*(${LEN_UNIT})(?![a-z])`,
   "gi",
@@ -292,13 +311,15 @@ function convertLengths(text, addedPairs) {
   return text.replace(DIM_RE, (full, body, endUnit, offset, whole) => {
     if (parenDepthAt(whole, offset) > 0) return full; // juba meetriline ees → jäta
     if (whole[offset - 1] === "/") return full;        // murd-toll (3/8") = keere-nominaal → EI teisenda
+    // FAIL-CLOSED (Tarmo 2026-11-21 #2): match algab arvu/tilde-fragmendi järel → osaliselt haaratud → jäta
+    if (/[\d~]/.test(whole[offset - 1] || "")) return full;
     // PINDALA/MAHT: "ft²"/"ft2"/"ft^3" (ühik järel vahetult ²/³/2/3) → PINDALA/MAHT-konverter, MITTE lineaarne pikkus
     //   (vana bug: "1500 ft²" → "457 m (1500 ft)²"). Tühik enne arvu ("6 ft 2 in" jalg-toll) EI käivita kaitset.
     { const tail0 = whole.slice(offset + full.length); if (/^(?:[²³]|\^?[23])(?![0-9])/.test(tail0)) return full; }
     const key = lenKey(endUnit);
     if (!key) return full;
     const isXGroup = /[x×]/.test(body);                   // mõõtme-grupp = ühemõtteliselt ühik
-    const isDashRange = /[-–—]/.test(body);               // kriips-vahemik
+    const isDashRange = /[-–—~]/.test(body);              // kriips-/tilde-vahemik
     const isToRange = /\s+to\s+/i.test(body);             // sõna-vahemik ("34 to 48")
     const isRange = !isXGroup && (isDashRange || isToRange);
     // bare "in" on ka inglise eessõna ("12 in the box") — ÜKSIKväärtusel JA vahemikul (mitte x-grupis) ära
@@ -323,7 +344,7 @@ function convertLengths(text, addedPairs) {
     // ühenda ORIGINAAL-struktuuriga: x-grupp → " x ", kriips-vahemik → sama kriipsumärk, "to"-vahemik → " to ".
     // Nii teiseneb vahemik TERVIKUNA ("28-32 inch" → "71.1-81.3 cm (28-32 inch)"), mitte pooleldi.
     let sep = " x ";
-    if (isRange && isDashRange) { const m = body.match(/[-–—]/); sep = m ? m[0] : "-"; }
+    if (isRange && isDashRange) { const m = body.match(/[-–—~]/); sep = m ? m[0] : "-"; }
     else if (isRange && isToRange) { sep = " to "; }
     return `${conv.join(sep)} ${fam.u} (${full.trim()})`;
   });
@@ -347,8 +368,9 @@ export function dedupeDualUnit(text) {
 
 export function addMetric(text, addedPairs) {
   // Töötab PUHTAL LLM-baasil (arhitektuur: metadata.*_en_base; addMetric = puhas funktsioon baas→clean).
-  // 1) pikkus (atomaarne x-grupp + vahemik, ²/³-kaitse)  2) skalaar-perekonnad (igaüks oma tüüp+reegel)
-  let out = convertLengths(text, addedPairs);
+  // 0) normaliseeri ligatuurid/tilde (℃/℉/㎡/㎥/… → kanooniline), et kõrval-värav näeks allika-meetrilist
+  //    ("20㎡","/-18°C") ja ei teki topelt-teisendust. 1) pikkus 2) skalaar-perekonnad.
+  let out = convertLengths(degNorm(text), addedPairs);
   for (const fam of SCALAR) out = convScalar(out, fam, addedPairs);
   return dedupeDualUnit(out); // duaalühiku-jääk (allikas "220 lbs/100 kg") kokku (SSoT, kõik kutsujad)
 }
