@@ -251,7 +251,10 @@ function convScalar(text, fam, addedPairs) {
   // kõrval-meetriline arv võib olla NEGATIIVNE ("-0.4°F/-18°C", "-22°F / -5.5°C") → _SC_SIGN mõlemal otsal,
   //   muidu afterMet ei näe "/-18°C" kõrval-°C-d → addMetric lisab teisenduse → fabritseeritud/vastuoluline
   //   duaal ("-18 °C (-0.4°F)/-18°C"). Tarmo 2026-11-21 patch-ring C (kaldkriipsuga °F/°C paar).
-  const afterMet = new RegExp(`^\\s*[/,(]?\\s*${_SC_SIGN}${_SC_NUM}(?:${_SC_SEP}${_SC_SIGN}${_SC_NUM})?\\s*(?:${_MET_ADJ})\\b`, "i");
+  // per-aja-sufiks ("gal/h (0.15-0.35 L/h)"): imperiaal + "/h" + sulg-meetriline. "/h " eraldab imperiaali ja
+  //   meetrilist → ilma selleta afterMet ei näe kõrval-L-i → addMetric lisab teise teisenduse → topelt+vastuolu
+  //   ("0.15-0.38 L (0.04-0.1 gal)/h (0.15-0.35 L/h)"). Luba valikuline juhtiv "/h|/hr|/min" enne [/,(]. Tarmo 2026-11-21 patch D.
+  const afterMet = new RegExp(`^\\s*(?:\\/[a-z]{1,4}\\b\\s*)?[/,(]?\\s*${_SC_SIGN}${_SC_NUM}(?:${_SC_SEP}${_SC_SIGN}${_SC_NUM})?\\s*(?:${_MET_ADJ})\\b`, "i");
   const beforeMet = new RegExp(`${_SC_SIGN}${_SC_NUM}(?:${_SC_SEP}${_SC_SIGN}${_SC_NUM})?\\s*(?:${_MET_ADJ})\\b\\s*[/,(]?\\s*$`, "i");
   const NUMSIGN = new RegExp(`(${_SC_SIGN})(${_SC_NUM})`, "g");
   // SAMA-PEREKONNA naaber: vahemik, kus ühik on MÕLEMAL arvul ("14°F~50°F", "-40°F to 104°F") — RE haarab
@@ -267,8 +270,8 @@ function convScalar(text, fam, addedPairs) {
     //   tekst jääb allikatruuks. Lõpetab erimärkide lappimise: ei teisenda, mida ei suuda TÄIELIKULT parsida.
     const prevCh = whole[offset - 1];
     if (prevCh && /[\d~.]/.test(prevCh)) return full;
-    const after = whole.slice(offset + full.length, offset + full.length + 20);
-    const before = whole.slice(Math.max(0, offset - 20), offset);
+    const after = whole.slice(offset + full.length, offset + full.length + 24);
+    const before = whole.slice(Math.max(0, offset - 24), offset);
     if (afterMet.test(after) || beforeMet.test(before)) return full; // meetriline kõrval → allikas duaalne, ära korda
     if (sameFamAfter.test(after) || sameFamBefore.test(before)) return full; // ühik-mõlemal-arvul vahemik → fail-closed
     // märgi-teadlik arvude-haare: juhtiv "−"/"-" = märk; number ees → kriips on vahemik, mitte märk
