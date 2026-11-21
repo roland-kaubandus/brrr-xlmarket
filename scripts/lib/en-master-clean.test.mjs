@@ -317,6 +317,18 @@ eq("C: negatiivne üksik °F ilma kõrvalita → teiseneb",
 eq("FC: mitmik-tilde fragment → ära teisenda",
    "cycles 100~200~300°F test",
    "cycles 100~200~300°F test");
+// SAMA-PEREKOND: ühik MÕLEMAL arvul tilde-vahemikus (triple-tank slushy fail) → fail-closed, allikatruu
+eq("FC: 14°F~50°F (ühik mõlemal) + kõrval-°C → ära teisenda",
+   "adjust 14°F~50°F / -10°C~10°C range",
+   "adjust 14°F~50°F / -10°C~10°C range");
+// SAMA-PEREKOND: ühik mõlemal arvul " to "-vahemikus (diisel-soojendi temp fail) → fail-closed, allikatruu
+eq("FC: -40°F to 104°F (ühik mõlemal) + kõrval-°C → ära teisenda",
+   "operates -40°F to 104°F / -40°C to 40°C outside",
+   "operates -40°F to 104°F / -40°C to 40°C outside");
+// REGRESSIOON: ühik AINULT viimasel arvul (" to ") teiseneb endiselt tervikuna
+eq("FC-regr: ühik viimasel → teiseneb vahemikuna",
+   "drains 50 to 100 gallons tank",
+   "drains 189.3 to 378.5 L (50 to 100 gallons) tank");
 
 console.log(fails === 0 ? "\n✅ KÕIK LÄBIS" : `\n❌ ${fails} EBAÕNNESTUS`);
 process.exit(fails === 0 ? 0 : 1);
