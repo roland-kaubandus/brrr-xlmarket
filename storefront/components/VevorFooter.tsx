@@ -66,19 +66,12 @@ export default async function VevorFooter({ locale = "en" }: { locale?: string }
             <p className="text-[13px] text-[#94A3B8] leading-relaxed mb-3.5">
               {locale === "et" ? "Ole kursis parimate pakkumiste ja uute toodetega." : "Stay updated with the best deals and new product launches."}
             </p>
-            <form className="flex gap-2" action="#">
-              <input
-                type="email"
-                placeholder="your@email.com"
-                className="flex-1 px-4 py-2.5 rounded-full border border-[#e2e8f0] bg-white text-[#1a1a2e] text-[13px] outline-none placeholder:text-[#94a3b8] focus:border-[#0ea5a0] focus:shadow-[0_0_0_3px_rgba(14,165,160,0.12)] min-w-0"
-              />
-              <button
-                type="submit"
-                className="px-5 py-2.5 rounded-full bg-[#0ea5a0] hover:bg-[#0b7d79] text-white text-[13px] font-semibold shrink-0 transition-colors"
-              >
-                {locale === "et" ? "Telli" : "Subscribe"}
-              </button>
-            </form>
+            {/* Uudiskirja-vorm ajutiselt peidetud (Tarmo 2026-11-21): endine <form action="#"> ei saatnud
+                andmeid kuhugi (ei DB/meil/ESP) → eksitas külastajaid. Päris lahendus (nõusolekute SSoT +
+                double opt-in + loobumine) tuleb enne launch'i; siis taastatakse töötav vorm. */}
+            <p className="text-[13px] text-[#64748B] italic leading-relaxed">
+              {locale === "et" ? "Peagi saadaval." : "Coming soon."}
+            </p>
           </div>
         </div>
 
