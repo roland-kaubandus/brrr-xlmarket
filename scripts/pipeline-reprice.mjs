@@ -3,6 +3,12 @@
 //   ostuhind muutub → jaehind muutub kaasa (computeRetail: kulu + astmed). EI puutu
 //   kategooriaid/tõlkeid/specs/staatust. Ainus kirjutus = price.amount + price_history rida.
 //
+// STAATUS (2026-11-21, HARD RULE #5): hinnastab nii status='published' KUI 'draft' VEVOR-tooteid.
+//   Põhjus: [3] import-new-drafts kirjutab AJUTISE platshoidja (flat MAP×1.15); autoriteetne
+//   astmeline computeRetail oli varem ainult published'il → degrade-ööl jäi draft platshoidjale.
+//   Nüüd kirjutatakse platshoidja SAMAL ÖÖL üle (draft'id ka updates-is) ENNE publitseerimist →
+//   ÜKS autoriteetne valem (computeRetail), platshoidjat EI jäädvustata Omnibus-baseline'ina (vt loop).
+//
 // + OMNIBUS: iga muutus → price_history (30p madalaim tuletatav).
 // + MARGINAALI-ALARM (DELTA): alarm kui uus marginaal langeb >= margin_alert_drop_pp
 //   protsendipunkti vs EELMINE (price_history) marginaal — ka kui hind tõusis kaasa.
@@ -10,10 +16,12 @@
 //
 // DB: docker exec db-k33g psql (host-run; hostil pole pg-porti). LLM-i EI kasuta.
 // Kasutus:
-//   node scripts/pipeline-reprice.mjs [--dry|--execute] [--feed <xlsx>]
-//   Vaikimisi = --dry (mõju-raport + alarmid, EI kirjuta).
+//   node scripts/pipeline-reprice.mjs [--dry|--execute] [--feed <xlsx>] [--skus <fail>]
+//   Vaikimisi = --dry (mõju-raport + alarmid, EI kirjuta). --skus = piira ainult loetletud SKU-dega
+//   (üks SKU/rida; nt 12 uue draft'i sihitud backfill). Ilma --skus = kogu feed (öine [5]).
 import XLSX from "xlsx";
 import { execSync } from "node:child_process";
+import { readFileSync } from "node:fs";
 import { computeRetail, loadPricingRules } from "./lib/pricing-engine.mjs";
 import { parsePrice } from "./lib/cost-engine.mjs";
 
@@ -21,6 +29,16 @@ const argv = process.argv;
 const argVal = (n, d) => { const i = argv.indexOf(n); return i > 0 ? argv[i + 1] : d; };
 const EXECUTE = argv.includes("--execute");
 const DRY = !EXECUTE;
+// --skus <fail>: piira reprice ainult loetletud SKU-dega (sihitud backfill). Ilma = kogu feed.
+const SKUS_FILE = argVal("--skus", null);
+const SKU_FILTER = SKUS_FILE
+  ? [...new Set(readFileSync(SKUS_FILE, "utf8").split("\n").map(s => s.trim()).filter(Boolean))]
+  : null;
+if (SKU_FILTER) {
+  const bad = SKU_FILTER.filter(s => !/^[A-Za-z0-9._-]+$/.test(s));   // injektsiooni-värav (ainult SKU-tähed)
+  if (bad.length) { console.error(`--skus: lubamatud SKU-d (${bad.length}): ${bad.slice(0, 5).join(", ")}`); process.exit(1); }
+  if (!SKU_FILTER.length) { console.error("--skus: fail tühi"); process.exit(1); }
+}
 // HARD RULE #9: DB-write → stack-lukk (re-entrant: orkestraatori all no-op; standalone --execute kaitseb). DRY EI lukusta (Fix 3).
 import { acquireStackLock } from "./lib/stack-lock.mjs";
 if (EXECUTE) {
@@ -38,7 +56,7 @@ const q = (sql, tuplesOnly = true) => execSync(
 const marginOf = (markup) => markup ? (1 - 1 / markup) : 0;      // 1.15 → 0.130
 
 // --- FEED → uus sent + markup per SKU ----------------------------------------
-console.log(`=== REPRICE (${DRY ? "DRY-RUN" : "EXECUTE"}) — feed ${FEED.split("/").pop()} | alarm-läve ${DROP_PP}pp ===`);
+console.log(`=== REPRICE (${DRY ? "DRY-RUN" : "EXECUTE"}) — feed ${FEED.split("/").pop()} | alarm-läve ${DROP_PP}pp${SKU_FILTER ? ` | --skus ${SKU_FILTER.length}` : ""} | status: published+draft ===`);
 const wb = XLSX.readFile(FEED);
 const raw = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]);
 const feedNew = new Map();
@@ -53,7 +71,7 @@ console.log(`Feed SKU (hinnaga): ${feedNew.size}`);
 
 // --- DB: praegused eur-hinnad + eelmine marginaal (price_history) -------------
 const rows = q(`SELECT jsonb_build_object('price_id',pr.id,'variant_id',pv.id,'product_id',p.id,
-    'sku',p.metadata->>'vevor_sku','cents',pr.amount,
+    'sku',p.metadata->>'vevor_sku','cents',pr.amount,'status',p.status,
     'prev_margin',(SELECT h.margin FROM price_history h WHERE h.variant_id=pv.id AND h.margin IS NOT NULL
                    ORDER BY h.changed_at DESC LIMIT 1),
     'has_hist',(SELECT count(*)>0 FROM price_history h WHERE h.variant_id=pv.id))::text
@@ -61,7 +79,8 @@ const rows = q(`SELECT jsonb_build_object('price_id',pr.id,'variant_id',pv.id,'p
   JOIN product_variant pv ON pv.product_id=p.id
   JOIN product_variant_price_set pvps ON pvps.variant_id=pv.id
   JOIN price pr ON pr.price_set_id=pvps.price_set_id AND pr.currency_code='eur'
-  WHERE p.deleted_at IS NULL AND p.status='published' AND p.metadata->>'vevor_sku' IS NOT NULL`)
+  WHERE p.deleted_at IS NULL AND p.status IN ('published','draft') AND p.metadata->>'vevor_sku' IS NOT NULL
+  ${SKU_FILTER ? `AND p.metadata->>'vevor_sku' IN (${SKU_FILTER.map(s => `'${s}'`).join(",")})` : ""}`)
   .trim().split("\n").filter(l => l.startsWith("{")).map(l => JSON.parse(l));
 
 const updates = [], alarms = [], backfill = [];
@@ -95,11 +114,19 @@ const up = updates.filter(u => u.pct > 0).length;
 console.log(`Olemasolevaid eur-hinnaga:  ${rows.length}`);
 console.log(`Feedist puudu (churn):      ${noFeed}`);
 console.log(`Sama (<0.5%):               ${same}`);
-console.log(`UUENDATAKSE:                ${updates.length}  (kallineb ${up} / odavneb ${updates.length - up})`);
+const upDraft = updates.filter(u => u.status === "draft").length;
+console.log(`UUENDATAKSE:                ${updates.length}  (kallineb ${up} / odavneb ${updates.length - up}) | draft ${upDraft} / published ${updates.length - upDraft}`);
 console.log(`Ilma price_history baseline'ita (backfill vaja): ${backfill.length}`);
 console.log(`\n🔔 MARGINAALI-ALARM (langus >=${DROP_PP}pp vs eelmine): ${alarms.length}`);
 for (const a of alarms.slice(0, 10))
   console.log(`   ${a.sku.padEnd(24)} marginaal ${(a.prev * 100).toFixed(1)}% → ${(a.neu * 100).toFixed(1)}% (−${a.dropPp}pp) | €${(a.oldE / 100).toFixed(2)}→€${(a.newE / 100).toFixed(2)}`);
+
+// --skus (sihitud backfill): näita iga SKU vana→uus (audit; dry JA execute)
+if (SKU_FILTER) {
+  console.log(`\n── per-SKU vana→uus (${updates.length}) ──`);
+  for (const u of [...updates].sort((a, b) => a.neu - b.neu))
+    console.log(`   ${u.sku.padEnd(24)} €${(u.old / 100).toFixed(2).padStart(8)} → €${(u.neu / 100).toFixed(2).padStart(8)}  (${u.pct > 0 ? "+" : ""}${u.pct.toFixed(1)}% | markup ${u.markup} | marginaal ${(u.margin * 100).toFixed(1)}%) [${u.status}]`);
+}
 
 if (DRY) { console.log(`\n[DRY-RUN] EI kirjutatud. ${updates.length} hinda + ${backfill.length} baseline valmis.`); process.exit(0); }
 

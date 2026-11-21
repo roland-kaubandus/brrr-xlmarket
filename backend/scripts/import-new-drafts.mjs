@@ -37,7 +37,13 @@ import { randomUUID } from "crypto"
 import fs from "fs"
 
 const CACHE_PATH = process.env.FEED_CACHE_PATH || "/data/vevor-feed-cache.json"
-const PRICE_MARKUP = 1.15          // PLATSHOIDJA — samm [5] reprice asendab autoriteetse computeRetail'iga
+// HARD RULE #5 (üks hinna-SSoT) — see EI OLE hinna-valem, vaid AJUTINE platshoidja loomise hetkeks.
+// Ainus autoriteetne hinna-SSoT = computeRetail (config/pricing-rules.yaml), mida rakendab HOST-samm
+// [5] pipeline-reprice.mjs. [5] hinnastab nüüd ka DRAFT'e (2026-11-21) → platshoidja kirjutatakse
+// SAMAL ÖÖL üle astmelise computeRetail-hinnaga ENNE publitseerimist. computeRetail'i EI saa siia
+// tuua: lib elab repo-juures scripts/lib (väljaspool backend/ build-konteksti) → konteiner-import
+// nõuaks Dockerfile COPY-sid + deploy'd (sama muster kui feed-bulk-price, vt Dockerfile 60-63).
+const PRICE_MARKUP = 1.15          // PLATSHOIDJA (ajutine, vt ülal) — [5] reprice asendab autoriteetsega
 const MIN_CACHE_SKU = 10000        // < 10k = osaline/katkine cache → EI impordi (mass-vale oht)
 
 function slugify(str) {
