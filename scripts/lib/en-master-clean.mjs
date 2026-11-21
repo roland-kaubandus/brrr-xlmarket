@@ -492,6 +492,105 @@ export function metricGate(clean) {
 export const rangeCoherenceOffenders = metricOffenders;
 export const rangeCoherenceGate = metricGate;
 
+// ─────── VÄRAV — ALLIKA-VASTUOLU (Tarmo 2026-11-21, GO tee A / reegel #5) ───────
+// FAIL-1 juht: base-TITLE imperiaal-AINULT ("800 lbs Capacity") → addMetric arvutab meetrilise
+//   ("362.9 kg"), KUID allika-spets ütleb SAMA imperiaali jaoks ERINEVA meetrilise ("363,6 kg").
+//   Arvutatud ≠ allikas = VASTUOLU (#4), MITTE addMetric'u parandada. FAIL-CLOSED: ära lisa/kirjuta,
+//   toode skip + signaal → detsembri base-regen lahendab.
+// MIKS eraldi väravast: SRC_GATE (accuracy/unit) jookseb BASE-tekstil (imperiaal-ainult läbib) ja
+//   addMetric lisab arvutatud paari addedPairs-valgesse → väärtuse-vastuolu allikaga jääb nähtamatuks.
+//   metricGate vaatab AINULT sisemist kooskõla (tagasiarvutus 800 lbs→362.9 kg klapib) → ei märka,
+//   et allikas pakub 363.6. See värav täidab täpselt selle lünga. Taaskasutab _IMP2MET/_METU/_MET_FAM/_annRe/_nums/pNum.
+const _CONF_IMP = `pounds?|pound|lbs|lb|gallons?|gal|inches|inch|feet|foot|℉|°\\s?F|fahrenheit|ft|in|″|"`;
+// Ehita allikast kaart: imperiaal-väärtus → allika pakutav meetriline ({kanooniline baas, allika ühik, allika kümnendkohad}).
+//   Otsib imperiaal↔meetriline NAABRUST ("800 lbs/363,6 kg", "363,6 kg (800 lbs)") mõlemat pidi.
+function _decimals(s) { const m = /[.,](\d+)/.exec(String(s)); return m ? m[1].length : 0; }
+function _srcMetricMap(srcText) {
+  const txt = degNorm(srcText);
+  const map = new Map();                                       // "famDim:impVal" → {canon, unit, dec}
+  const put = (impText, impUnitText, metText, metUnit) => {
+    const fam = _IMP2MET.find((x) => x.re.test(impUnitText)); if (!fam) return;
+    const mf = _MET_FAM[fam.u]; const gm = _MET_FAM[metUnit];
+    if (!mf || !gm || mf.fam !== gm.fam) return;               // peab olema SAMA dimensioon
+    const key = `${mf.fam}:${normNum(String(pNum(impText)))}`;
+    if (!map.has(key)) map.set(key, { canon: pNum(metText) * gm.base, unit: metUnit, dec: _decimals(metText) }); // esimene võidab
+  };
+  const SEP = `\\s*[^0-9A-Za-z]{0,3}\\s*`;                      // /, (, koma, tühik — MITTE tähed (ei silla "lbs x 5 m")
+  const N = `\\d+(?:[.,]\\d+)?`;
+  // USALDUS-kontroll: naabrus-paar on usaldusväärne AINULT lihtsa skalaari jaoks. Jäta vahele:
+  //   • KOMPOSIIT-mõõde "A x B / C x D" (positsiooniline, nt "3.35 in x 30 ft/85.1 mm x 9.1 m" → "30 ft/85.1 mm"
+  //     on VALE paar, õiged on in↔mm, ft↔m) → "x"/"×" paari ümbruses;
+  //   • MURD/mixed-arv ("1/2\"", "2-5/16\"") → imperiaal pole puhas väärtus;
+  //   • number vahetult paari ees/järel (osa suuremast arvust/vahemikust).
+  const trust = (whole, idx, len) => {
+    const before = whole.slice(Math.max(0, idx - 6), idx);
+    const after = whole.slice(idx + len, idx + len + 6);
+    if (/[x×]/i.test(before) || /[x×]/i.test(after)) return false;      // komposiit-mõõde
+    if (/[\/\d]$/.test(before)) return false;                           // murd/mixed/number vahetult ees (1/2", 2-5/16")
+    if (/^[\/\d]/.test(after)) return false;                            // number/murd vahetult järel
+    return true;
+  };
+  let m;
+  const re1 = new RegExp(`(${N})\\s*(${_CONF_IMP})${SEP}(${N})\\s*(${_METU})`, "gi"); // imperiaal → meetriline
+  while ((m = re1.exec(txt))) { if (trust(txt, m.index, m[0].length)) put(m[1], m[2], m[3], m[4]); }
+  const re2 = new RegExp(`(${N})\\s*(${_METU})${SEP}(${N})\\s*(${_CONF_IMP})`, "gi"); // meetriline → imperiaal
+  while ((m = re2.exec(txt))) { if (trust(txt, m.index, m[0].length)) put(m[3], m[4], m[1], m[2]); }
+  return map;
+}
+export function srcConflictOffenders(text, srcMap) {
+  const t = String(text); const out = []; const RE = _annRe(); let m;
+  while ((m = RE.exec(t))) {
+    if (/[x×]/i.test(m[1]) || /[x×]/i.test(m[3])) continue;     // mõõtme-grupp, mitte üksik teisendus
+    const metNums = _nums(m[1]); const munit = m[2]; const paren = m[3];
+    if (metNums.length !== 1) continue;                        // ainult üksikväärtus (vahemik → jäta)
+    const fam = _IMP2MET.find((x) => x.re.test(paren)); if (!fam) continue;
+    const impNums = _nums(paren); if (impNums.length !== 1) continue;
+    const mf = _MET_FAM[munit]; if (!mf) continue;
+    const key = `${mf.fam}:${normNum(String(impNums[0]))}`;
+    const sv = srcMap.get(key);
+    if (!sv) continue;                                         // allikas ei paku sellele imperiaalile meetrilist → ok
+    // TÕELINE teisendus imperiaalist (ümardamata), allika ÜHIKUS → ümarda allika KÜMNENDTÄPSUSELE.
+    //   Kui ühtib allika väärtusega → allikas on lihtsalt sama (või vähem täpne) ⇒ POLE vastuolu (nt "4 m (13 ft)",
+    //   true 3.96 → 0 kohta → "4" = allikas "4"). Kui ERINEB allika enda täpsusel → VASTUOLU (dump-cart: true 362.87
+    //   → 1 koht → 362.9 ≠ allikas 363.6). See eristab allika-ebatäpsuse (ok) tõelisest konfliktist (fail-closed).
+    const sfm = _MET_FAM[sv.unit]; if (!sfm || sfm.fam !== mf.fam) continue;
+    const trueFamVal = fam.f === null ? (impNums[0] - 32) / 1.8 : impNums[0] * fam.f;     // fam.u ühikus
+    const trueCanon = trueFamVal * _MET_FAM[fam.u].base;
+    const trueInSrcUnit = trueCanon / sfm.base;                                            // → allika ühikusse
+    const srcVal = sv.canon / sfm.base;
+    // (a) kas ALLIKAS erineb TÕELISEST füüsikast allika enda täpsusel? ("4 m" 13 ft jaoks: true 3.96→"4"=allikas ⇒ EI)
+    const srcDisagrees = Number(trueInSrcUnit.toFixed(sv.dec)) !== Number(srcVal.toFixed(sv.dec));
+    if (!srcDisagrees) continue;                              // allikas = (või vähem täpne kui) füüsika → pole vastuolu
+    // SAMA-MÕÕTME piir: tõeline vastuolu = allikas pakub SAMA mõõtme jaoks veidi erinevat meetrilist (ümardus/ümber-
+    //   arvutus, nt dump-cart 362.9 vs 363.6 = 0.2%). SUUR lahknevus (≥12%) tähendab, et allika väärtus kuulub HOOPIS
+    //   TEISELE mõõtmele (sama imperiaal-number eri dimensioonis valesti paaritatud, nt "52 inch"→132 cm vs allikas
+    //   31 cm = 77%) → addMetric'u füüsika-teisendus on ÕIGE, EI ole sama-mõõtme vastuolu → ÄRA skip'i (fail-OPEN).
+    if (fam.f === null) {                                     // temp: absoluutne piir (°C-skaala nihe → suhteline ei tööta)
+      if (Math.abs(trueInSrcUnit - srcVal) > 2) continue;
+    } else {
+      if (Math.abs(trueInSrcUnit - srcVal) / Math.max(Math.abs(trueInSrcUnit), 1e-9) > 0.12) continue;
+    }
+    // (b) kas annotatsioon on ARVUTATUD (lähemal tõelisele teisendusele kui allika väärtusele)? Kui clean-tekst
+    //   hoopis KOPEERIB allika väärtust (nt desc "363.6 kg (800 lbs)" = allikas), siis teisendust EI lisatud →
+    //   tekst on allikatruu → POLE vastuolu. Vastuolu = addMetric lisas ARVUTATUD meetrilise, mis läheb allikast lahku.
+    const annInMunit = metNums[0];
+    const trueInMunit = trueCanon / mf.base;
+    const srcInMunit = sv.canon / mf.base;
+    if (Math.abs(annInMunit - trueInMunit) >= Math.abs(annInMunit - srcInMunit)) continue; // tekst = allika koopia → ok
+    out.push(`allika-vastuolu: "${m[0]}" (arvutatud ${Number(trueInSrcUnit.toFixed(sv.dec))} ${sv.unit} ≠ allikas ${Number(srcVal.toFixed(sv.dec))} ${sv.unit})`);
+  }
+  return out;
+}
+/** Allika-vastuolu-värav clean-objektile. srcText = sourceCorpus väljund. Tagastab {pass, offenders}. */
+export function srcConflictGate(clean, srcText) {
+  const srcMap = _srcMetricMap(srcText || "");
+  const off = [
+    ...srcConflictOffenders(clean.title_en_clean || "", srcMap).map((s) => `title: ${s}`),
+    ...srcConflictOffenders(clean.description_en_clean || "", srcMap).map((s) => `desc: ${s}`),
+  ];
+  return { pass: off.length === 0, offenders: off };
+}
+
 // ─────────────────────────── PROMPTID ───────────────────────────
 export const CLEAN_SYS = `Sa oled XL e-poe (xlmarket.ee) ingliskeelse sisu MASTER-toimetaja. Sulle antakse TARNIJA (VEVOR) TOORE ingliskeelse toote title + müügipunktid + spetsifikatsioonid. Tee neist PUHAS, display-kvaliteediga ingliskeelne MASTER-title ja -kirjeldus.
 

@@ -35,7 +35,7 @@ import { execSync } from "node:child_process";
 import {
   M_GEN, M_JUDGE, CLEAN_SYS, cleanUser, JUDGE_SYS, judgeUser, CLEAN_TOOL, cleanFromMessage,
   parseCleanJson, parseJudgeJson, sourceCorpus, numSet, srcUnitPairs, filterJudgeClaims,
-  runDetGates, applyMetric, buildAvoidNote, rangeCoherenceGate,
+  runDetGates, applyMetric, buildAvoidNote, rangeCoherenceGate, srcConflictGate,
 } from "./lib/en-master-clean.mjs";
 import { runChunk, chunk as chunkArr } from "./lib/content-batch.mjs";
 import { acquireStackLock } from "./lib/stack-lock.mjs";
@@ -345,6 +345,23 @@ const usageHit = (r) => !r.ok && /credit|usage|insufficient|rate limit|quota/i.t
           skipCount++; skippedThisRun.push(t.id);
           const cmsg = `⚠️ EN-master EBASIDUSUS-VÄRAV (addMetric järel) · ${t.id}: ${coh.offenders[0]} → EI kirjutatud`;
           console.error(cmsg); if (EXECUTE) sendTelegram(cmsg);
+          continue;
+        }
+      }
+      // ── ALLIKA-VASTUOLU-VÄRAV (Tarmo 2026-11-21 GO tee A, öine hook [6.55] / reegel #5): addMetric arvutatud
+      //   imperiaal→meetriline (nt title "800 lbs"→362.9 kg) erineb allika-spetsi meetrilisest (363,6 kg) →
+      //   FAIL-CLOSED: teisendust EI usaldata, toode skip + signaal. BASE_ONLY: ainult telemeetria (base ohutu). ──
+      const scg = srcConflictGate(s.clean, t._src);
+      if (!scg.pass) {
+        if (BASE_ONLY) {
+          if (!ledger.base_src_conflict) ledger.base_src_conflict = {};
+          ledger.base_src_conflict[t.id] = scg.offenders.slice(0, 4);
+        } else {
+          if (emit) emit.push({ id: t.id, vptype: t.vptype, status: "src-conflict", base: s.base, clean: { title: s.clean.title_en_clean, description: s.clean.description_en_clean }, offenders: scg.offenders.slice(0, 6), source: t._src });
+          ledger.skipped[t.id] = { reason: "src-conflict", offenders: scg.offenders.slice(0, 4) };
+          skipCount++; skippedThisRun.push(t.id);
+          const smsg = `⚠️ EN-master ALLIKA-VASTUOLU-VÄRAV · ${t.id}: ${scg.offenders[0]} → EI kirjutatud (vajab base-regenit)`;
+          console.error(smsg); if (EXECUTE) sendTelegram(smsg);
           continue;
         }
       }

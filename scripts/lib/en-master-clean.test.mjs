@@ -5,7 +5,7 @@
  * Tarmo 2026-11-19 (parandus B): kriips- ja "to"-vahemik teisenevad TERVIKUNA, mitte pooleldi.
  * Varem lõhkus addMetric vahemiku ("28-32 inch" → "28–81.3 cm (32 inch)") → ebasidus/vale ühik.
  */
-import { addMetric, rangeCoherenceOffenders, rangeCoherenceGate, accuracyGate, unitGate, numSet, srcUnitPairs, sourceCorpus, dimsLines, degNorm, isGroundedDimClaim, filterJudgeClaims, stripToolMarkup, normalizeClean, cleanFromMessage, CLEAN_TOOL } from "./en-master-clean.mjs";
+import { addMetric, rangeCoherenceOffenders, rangeCoherenceGate, accuracyGate, unitGate, numSet, srcUnitPairs, sourceCorpus, dimsLines, degNorm, isGroundedDimClaim, filterJudgeClaims, stripToolMarkup, normalizeClean, cleanFromMessage, CLEAN_TOOL, srcConflictGate } from "./en-master-clean.mjs";
 
 let fails = 0;
 function eq(label, input, want) {
@@ -343,6 +343,38 @@ eq("D-regr: gal/h ilma meetrilata → teiseneb",
 eq("D-regr: gal / L (tühik-slash) → skip",
    "holds 1.85 gal / 7 L tank",
    "holds 1.85 gal / 7 L tank");
+
+console.log("\n=== GO tee A (Tarmo 2026-11-21): ALLIKA-VASTUOLU-värav (FAIL-1 dump-cart) ===");
+function confTest(label, clean, srcText, wantPass) {
+  const g = srcConflictGate(clean, srcText);
+  const ok = g.pass === wantPass;
+  console.log(`${ok ? "✓" : "✗"} ${label} → pass=${g.pass}${ok ? "" : ` (OODATUD ${wantPass}) off=${g.offenders[0] || ""}`}`);
+  if (!ok) fails++;
+}
+// FAIL-1: title imperiaal-ainult base → addMetric arvutas 362.9 kg, allikas ütleb 363,6 kg → VASTUOLU → skip
+confTest("dump-cart: title 362.9 kg vs allikas 363,6 kg → skip (fail)",
+  { title_en_clean: "Poly Garden Dump Cart, 362.9 kg (800 lbs) Capacity", description_en_clean: "Heavy-duty cart." },
+  "VEVOR Poly Garden Dump Cart 800 lbs/363,6 kg kandevoimsus\nKandevoimsus: 363,6 kg (800 lbs)", false);
+// Allikas pakub SAMA meetrilise mis arvutatud (363,6 ei ole, aga 362.9 ~ allika 362,9) → pass
+confTest("klappiv: title 362.9 kg vs allikas 362,9 kg → pass",
+  { title_en_clean: "Poly Garden Dump Cart, 362.9 kg (800 lbs) Capacity", description_en_clean: "Cart." },
+  "Kandevoimsus: 362,9 kg (800 lbs)", true);
+// Allikas ei paku imperiaalile üldse meetrilist → addMetric teisendus on ainus → pass (korrektne käitumine)
+confTest("allikas ainult imperiaal (800 lbs, meetrilist pole) → pass",
+  { title_en_clean: "Dump Cart, 362.9 kg (800 lbs) Capacity", description_en_clean: "Cart." },
+  "Capacity: 800 lbs load", true);
+// Kirjelduses allikas-duaal (addMetric jättis puutumata) klapib allikaga → pass
+confTest("desc allika-duaal 363.6 kg (800 lbs) klapib → pass",
+  { title_en_clean: "Dump Cart", description_en_clean: "Holds up to 363.6 kg (800 lbs) of material." },
+  "Kandevoimsus: 363,6 kg (800 lbs)", true);
+// Maht-perekond: title 9.46 L (2.5 gal) vs allikas 10 L (2,5 gal) → vastuolu → skip
+confTest("gallon: title 9.46 L vs allikas 10 L → skip (fail)",
+  { title_en_clean: "Dispenser 9.46 L (2.5 gal) Tank", description_en_clean: "Big tank." },
+  "Mahuti: 10 L (2.5 gallon)", false);
+// Tuhande-koma allikas (pNum): 11,000 lbs → arvutatud 4989.5 kg, allikas 4989,5 kg → pass
+confTest("tuhande-koma: 4989.5 kg vs allikas 4989,5 kg (11,000 lbs) → pass",
+  { title_en_clean: "Winch 4989.5 kg (11000 lbs)", description_en_clean: "Strong." },
+  "Max pull: 4989,5 kg (11,000 lbs)", true);
 
 console.log(fails === 0 ? "\n✅ KÕIK LÄBIS" : `\n❌ ${fails} EBAÕNNESTUS`);
 process.exit(fails === 0 ? 0 : 1);
