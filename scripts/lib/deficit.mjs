@@ -47,11 +47,16 @@ export const DEFICIT_SQL = {
       AND NOT EXISTS (SELECT 1 FROM product_synonym ps WHERE ps.product_id=p.id AND ps.lang='et')`,
   // enmaster [6.55]: EN-master puhastus puudu (title_en_clean NULL) — SAMA allikas-tingimus kui
   //   en-master-backfill.mjs SOURCE_COND (HARD RULE #5 SSoT): title + (selling_points massiiv VÕI specs).
+  //   KATSE-CAP (Tarmo 2026-11-21): en_master_attempts >= 3 → "giveup" (backfill märgib) → JÄTA VÄLJA, et
+  //   öine self-heal EI maksaks igal ööl lootusetu toote eest (toores tekst jääb kuvama). Käsitsi-reset
+  //   (metadata.en_master_attempts=0) toob tagasi (nt pärast prompt-parandust). SAMA filter kui backfill
+  //   loadTargets --all (HARD RULE #5 SSoT).
   enmaster: `SELECT metadata->>'vevor_sku' FROM product
     WHERE deleted_at IS NULL AND status='published'
       AND metadata->>'vevor_sku' IS NOT NULL AND title IS NOT NULL
       AND (jsonb_typeof(metadata->'selling_points')='array' OR metadata->'specs' IS NOT NULL)
-      AND (metadata->>'title_en_clean') IS NULL`,
+      AND (metadata->>'title_en_clean') IS NULL
+      AND COALESCE((metadata->>'en_master_attempts')::int, 0) < 3`,
 };
 
 // Jäme $/toode hinnang (AINULT Telegram-hoiatuse suurusjärguks — EI ole täppisarve):
