@@ -31,6 +31,10 @@ const IDS_FILE = val("--ids") || ""; // kureeritud valim: reavahega toote-ID-d (
 //   praegust DB clean'i. Vajalik, sest 1680 sihtmärgil on clean NULL (base-only Pass) või aegunud. Audit
 //   kontrollib TÄPSELT seda, mis kirjutataks (kirjutus-GO eeltingimus: 0 fail / 0 fabrikatsiooni).
 const REMETRIC = argv.includes("--remetric");
+// --from-file FILE (Tarmo 2026-11-21 Samm 4.3): auditeeri backfill --emit väljundit (PAKUTUD clean + allikas
+//   failist), MITTE DB-d. Võimaldab Opus-auditit ENNE ühtegi DB-kirjutust (tõeline-DRY). Auditeerib ainult
+//   status=pass kirjeid (need, mis kirjutataks). Source tuleb failist (sama korpus mida GEN nägi).
+const FROM_FILE = val("--from-file") || "";
 const M_REVIEW = "claude-opus-4-8";   // SÕLTUMATU: Opus (generaator/kohtunik olid Sonnet)
 
 const API_KEY = process.env.ANTHROPIC_API_KEY;
@@ -42,7 +46,7 @@ function resolveDB() {
   if (!n) { console.error("🔴 db-k33g konteiner ei leitud"); process.exit(2); }
   return n;
 }
-let DB = resolveDB();
+let DB = FROM_FILE ? null : resolveDB();
 function psqlJson(sql) {
   const out = execSync(`docker exec -i ${DB} psql -U xlmarket -d xlmarket -At`, { input: sql, encoding: "utf8", maxBuffer: 512 * 1024 * 1024 }).trim();
   return out ? JSON.parse(out) : [];
@@ -64,7 +68,17 @@ const HAVE_COND = REMETRIC
   ? `(p.metadata->>'title_en_base' IS NOT NULL OR p.metadata->>'description_en_base' IS NOT NULL)`
   : `(p.metadata->>'title_en_clean') IS NOT NULL`;
 let rows;
-if (IDS_FILE) {
+if (FROM_FILE) {
+  // --from-file: auditeeri backfill --emit väljundit (PAKUTUD clean + allikas), status=pass kirjed
+  const emit = JSON.parse(fs.readFileSync(FROM_FILE, "utf8"));
+  const recs = (emit.records || []).filter((r) => r.status === "pass");
+  rows = recs.map((r) => ({
+    id: r.id, vptype: r.vptype,
+    clean_title: r.clean?.title ?? "", clean_desc: r.clean?.description ?? "",
+    _srcText: r.source || "", // allikas failist (SAMA korpus mida GEN nägi) → userMsg kasutab seda
+  }));
+  if (!rows.length) { console.error(`🔴 --from-file: üksi status=pass kirjet failis ${FROM_FILE} (total=${emit.total ?? "?"})`); process.exit(1); }
+} else if (IDS_FILE) {
   const ids = fs.readFileSync(IDS_FILE, "utf8").split(/\r?\n/).map((s) => s.trim()).filter(Boolean);
   const inList = ids.map((i) => `'${i.replace(/'/g, "''")}'`).join(",");
   rows = psqlJson(`SELECT coalesce(json_agg(obj),'[]') FROM (
@@ -84,7 +98,7 @@ if (IDS_FILE) {
 if (!rows.length) { console.error(`🔴 ei leidnud ühtki ${REMETRIC ? "base-kandidaati (title_en_base)" : "puhastatud toodet (title_en_clean)"} — kas backfill jooksis?`); process.exit(1); }
 
 // ── remetric-režiim: arvuta PAKUTUD clean = addMetric(base), rakenda VÄRAV, jäta ainult muudetud+läbinud ──
-if (REMETRIC) {
+if (REMETRIC && !FROM_FILE) {
   const kept = [];
   for (const p of rows) {
     const nc = {
@@ -103,7 +117,9 @@ if (REMETRIC) {
   rows = kept;
   if (!rows.length) { console.error("🔴 remetric: ükski valimi toode ei muutuks (kõik juba ajakohased / väravas) — vali teised id-d"); process.exit(1); }
 }
-console.log(`🔎 SÕLTUMATU Opus-kontroll${REMETRIC ? " [REMETRIC — pakutud uus clean]" : ""} · ${rows.length} ${IDS_FILE ? "kureeritud" : "juhuslikku"} toodet · mudel=${M_REVIEW}${SEED ? ` · seed=${SEED}` : ""}${IDS_FILE ? ` · ids=${IDS_FILE}` : ""}`);
+const mode = FROM_FILE ? "[FROM-FILE — pakutud clean failist]" : (REMETRIC ? "[REMETRIC — pakutud uus clean]" : "");
+const srcLbl = FROM_FILE ? "emit-faili (status=pass)" : (IDS_FILE ? "kureeritud" : "juhuslikku");
+console.log(`🔎 SÕLTUMATU Opus-kontroll${mode ? " " + mode : ""} · ${rows.length} ${srcLbl} toodet · mudel=${M_REVIEW}${SEED ? ` · seed=${SEED}` : ""}${IDS_FILE ? ` · ids=${IDS_FILE}` : ""}${FROM_FILE ? ` · from-file=${FROM_FILE}` : ""}`);
 
 // ── Opus prompt (sõltumatu audiitor) ──
 const SYS = `You are an INDEPENDENT quality-assurance reviewer for e-commerce product copy.
@@ -126,7 +142,7 @@ accuracy 5 = every claim supported; 1 = multiple fabrications. readability 5 = c
 verdict "fail" = any invented claim or wrong unit or broken readability; "minor" = small style nits only; "pass" = clean.`;
 
 function userMsg(p) {
-  const src = sourceCorpus(p); // SAMA allikas mida generaator nägi (võrdlusalus) — EI sisalda generaatori arutlust
+  const src = p._srcText != null ? p._srcText : sourceCorpus(p); // failist (--from-file) VÕI DB-reast; sama korpus mida generaator nägi
   return `SOURCE MATERIAL:\n${src}\n\n` +
     `CLEANED TITLE:\n${p.clean_title || "(tühi)"}\n\n` +
     `CLEANED DESCRIPTION:\n${p.clean_desc || "(tühi)"}\n`;
