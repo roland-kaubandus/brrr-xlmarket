@@ -284,5 +284,39 @@ eq("A: üksik meetriline kõrval",
    "heats to 205°F (96°C) max",
    "heats to 205°F (96°C) max");
 
+console.log("\n=== Patch-ring A+B+C (Tarmo 2026-11-21): tilde · CJK-ligatuur · °F/°C paar · fail-closed ===");
+// (A) tilde kõrval-meetriline → allikatruu (slush-masina fail: "5~50°F / -15~10°C")
+eq("A: tilde-vahemik + kõrval-°C → ära teisenda",
+   "range of 5~50°F / -15~10°C lets you",
+   "range of 5~50°F / -15~10°C lets you");
+// (A) tilde-vahemik ILMA kõrval-meetriliseta → teiseneb vahemikuna (mitte garbled)
+eq("A: tilde-vahemik üksi → teiseneb tervikuna",
+   "operates 50~100°F zone",
+   "operates 10~38 °C (50~100°F) zone");
+// (B) CJK ruut-meeter ligatuur → m², kõrval-ft² → allikatruu (diisel-soojendi fail: "215ft²/20㎡")
+eq("B: ㎡ ligatuur normaliseeritud + kõrval-ft² skip",
+   "keep a 215ft²/20㎡ area warm",
+   "keep a 215ft²/20m² area warm");
+// (B) kuup-meeter ligatuur paljas normaliseerimine
+eq("B: ㎥ ligatuur normaliseeritud",
+   "tank volume 3㎥ total",
+   "tank volume 3m³ total");
+// (C) negatiivne kaldkriipsuga °F/°C paar → ära lisa fabritseeritud teisendust (blast-freezer fail)
+eq("C: -0.4°F/-18°C kõrval → allikatruu",
+   "drops down to -0.4°F/-18°C within 240 min",
+   "drops down to -0.4°F/-18°C within 240 min");
+// (C) negatiivne tühikuga °F / °C paar (ice-shelter fail: "-22°F / -5.5°C", allikas ise vastuoluline)
+eq("C: -22°F / -5.5°C kõrval → ära fabritseeri -30°C",
+   "comfortable down to -22°F / -5.5°C keeping",
+   "comfortable down to -22°F / -5.5°C keeping");
+// REGRESSIOON: negatiivne üksik °F ILMA kõrval-°C-ta teiseneb endiselt
+eq("C: negatiivne üksik °F ilma kõrvalita → teiseneb",
+   "freezes at -4°F solid",
+   "freezes at -20 °C (-4°F) solid");
+// FAIL-CLOSED: osaliselt parsitav mitmik-tilde ("100~200~300°F") → ei teisenda, allikatruu
+eq("FC: mitmik-tilde fragment → ära teisenda",
+   "cycles 100~200~300°F test",
+   "cycles 100~200~300°F test");
+
 console.log(fails === 0 ? "\n✅ KÕIK LÄBIS" : `\n❌ ${fails} EBAÕNNESTUS`);
 process.exit(fails === 0 ? 0 : 1);
