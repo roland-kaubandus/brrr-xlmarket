@@ -5,7 +5,7 @@
  * Tarmo 2026-11-19 (parandus B): kriips- ja "to"-vahemik teisenevad TERVIKUNA, mitte pooleldi.
  * Varem lõhkus addMetric vahemiku ("28-32 inch" → "28–81.3 cm (32 inch)") → ebasidus/vale ühik.
  */
-import { addMetric, rangeCoherenceOffenders, rangeCoherenceGate, accuracyGate, unitGate, numSet, srcUnitPairs, sourceCorpus, stripToolMarkup, normalizeClean, cleanFromMessage, CLEAN_TOOL } from "./en-master-clean.mjs";
+import { addMetric, rangeCoherenceOffenders, rangeCoherenceGate, accuracyGate, unitGate, numSet, srcUnitPairs, sourceCorpus, dimsLines, stripToolMarkup, normalizeClean, cleanFromMessage, CLEAN_TOOL } from "./en-master-clean.mjs";
 
 let fails = 0;
 function eq(label, input, want) {
@@ -194,6 +194,38 @@ tm("päris võrdlusmärk säilib", "Tolerance <5 mm on each panel.", "Tolerance 
   console.log(`${ok ? "✓" : "✗"} cleanFromMessage(tool_use) saniteerib → ${JSON.stringify(c.description_en_clean)}`);
   if (!ok) fails++;
 }
+
+console.log("\n=== Samm 4.4 (Tarmo 2026-11-21): dimensions kõrvuti-render — väär-positiivse skip'i parandus ===");
+// dimsLines renderdab iga mõõdu kõrvuti "N ühik" → unitGate saab paari panna.
+{
+  const dl = dimsLines({ high: 11.5, long: 41, wide: 40, unit: "cm" });
+  const ok = dl.includes("11.5 cm") && dl.includes("41 cm") && dl.includes("40 cm") && dl.length === 3;
+  console.log(`${ok ? "✓" : "✗"} dimsLines(flat {high,long,wide,unit}) → ${JSON.stringify(dl)}`);
+  if (!ok) fails++;
+}
+{
+  // pesastus + päritav ühik
+  const dl = dimsLines({ box: { a: 5, b: 6 }, unit: "mm" });
+  const ok = dl.includes("5 mm") && dl.includes("6 mm");
+  console.log(`${ok ? "✓" : "✗"} dimsLines(pesastus, päritav unit) → ${JSON.stringify(dl)}`);
+  if (!ok) fails++;
+}
+{
+  // ühikuta → ei emiti paari (accuracy katab JSON-ist)
+  const dl = dimsLines({ high: 11.5, long: 41 });
+  const ok = dl.length === 0;
+  console.log(`${ok ? "✓" : "✗"} dimsLines(ilma unit'ita) → ${JSON.stringify(dl)}`);
+  if (!ok) fails++;
+}
+// ENDINE VÄÄR-POSITIIVNE: allikas AINULT dims'is "11.5 cm", base kordab → nüüd LÄBIB (varem skip)
+srcg("dims 11.5 cm = allika-truu (läbib, varem väär-skip)",
+  { title: "Wooden Bread Box", dimensions: { high: 11.5, long: 41, wide: 40, unit: "cm" } },
+  "Wooden Bread Box",
+  "Compact wooden bread box, 11.5 cm tall, 41 cm long and 40 cm wide.", true);
+// KINDLUS: dims ei muuda fabrikatsiooni lubatuks — number väljaspool dims'i endiselt skip
+srcg("dims olemas, aga 99 cm leiutatud (skip)",
+  { title: "Box", dimensions: { high: 11.5, long: 41, wide: 40, unit: "cm" } },
+  "Box", "Stands 99 cm tall.", false);
 
 console.log(fails === 0 ? "\n✅ KÕIK LÄBIS" : `\n❌ ${fails} EBAÕNNESTUS`);
 process.exit(fails === 0 ? 0 : 1);

@@ -16,7 +16,8 @@
  *   1. TÄPSUS       — iga number puhtas tekstis peab esinema allikas.
  *   2. BRÄND        — EI tohi olla VEVOR/BlackTools/KraftDele/GEKO.
  *   3. HTML         — EI tohi olla tage/entity'sid.
- *   4. PIKKUS       — title ≤ 90 tähte, description 40..700 tähte.
+ *   4. PIKKUS       — title ≤ 90 tähte, description 40..800 tähte (siht ~700; 800 = patoloogia-lagi,
+ *                     MITTE UI/SEO piir — meta-desc kärbib igal pool substring(0,160)).
  *   5. VÄIDE-JÄLGITAVUS — lemma-vihje + Sonnet-kohtunik: iga komponent/funktsioon/komplekti-sisu allikas.
  *   6. ÜHIK         — (number,ühik) peab esinema allikas SAMA ühikuga; LLM EI teisenda; imperiaalne-ainult
  *                     → KOOD lisab meetrilise (addMetric, deterministlik).
@@ -35,11 +36,32 @@ export function specsLines(specs) {
   }
   return out;
 }
+// dimensions → kõrvuti "N ühik" read, et unitGate saaks paari panna.
+// Shape staging'us ühtlane {high,long,wide,unit}, aga renderdaja käib generiliselt
+// läbi ja pärib lähima `unit` välja (tuleviku-kujud + pesastus OK).
+export function dimsLines(dims) {
+  if (!dims || typeof dims !== "object") return [];
+  const out = [];
+  const walk = (o, inheritedUnit) => {
+    if (!o || typeof o !== "object") return;
+    const unit = typeof o.unit === "string" && o.unit.trim() ? o.unit.trim() : inheritedUnit;
+    for (const [k, v] of Object.entries(o)) {
+      if (k === "unit") continue;
+      if (typeof v === "number" && unit) out.push(`${v} ${unit}`);
+      else if (v && typeof v === "object") walk(v, unit);
+    }
+  };
+  walk(dims, "");
+  return out;
+}
 export function sourceCorpus(p) {
   const parts = [p.title || "", p.description || ""];
   if (Array.isArray(p.selling_points)) parts.push(...p.selling_points);
   parts.push(...specsLines(p.specs));
-  if (p.dimensions && typeof p.dimensions === "object") parts.push(JSON.stringify(p.dimensions));
+  if (p.dimensions && typeof p.dimensions === "object") {
+    parts.push(...dimsLines(p.dimensions));       // "28 cm" kõrvuti → unitGate paar
+    parts.push(JSON.stringify(p.dimensions));      // toore JSON → accuracyGate numbri-kate
+  }
   return parts.join("\n");
 }
 
@@ -115,7 +137,7 @@ export function lengthGate(clean) {
   if (t.length < 8) off.push(`title lühike (${t.length})`);
   if (t.length > 90) off.push(`title pikk (${t.length}>90)`);
   if (d.length < 40) off.push(`desc lühike (${d.length})`);
-  if (d.length > 700) off.push(`desc pikk (${d.length}>700)`);
+  if (d.length > 800) off.push(`desc pikk (${d.length}>800)`);
   return { pass: off.length === 0, offenders: off };
 }
 
@@ -417,7 +439,7 @@ export const CLEAN_SYS = `Sa oled XL e-poe (xlmarket.ee) ingliskeelse sisu MASTE
 
 RANGED REEGLID:
 1. title_en_clean: LÜHIKE selge toote-nimi (nagu inimese kataloogis), MAX ~70 tähte. EI keyword-stuffing'ut ega komaga atribuut-loendit. Nimeta toode + 1-2 eristavat omadust. MITTE "VEVOR".
-2. description_en_clean: LOOMULIK inglise proosa, 3-5 lauset, SIHT ~650 tähemärki (MAX 700 — ära ületa). MITTE ühtegi HTML-tagi. MITTE "VEVOR". Kirjelda MIS toode on + peamine kasu/kasutus + konkreetsed allika-omadused (ära täida tühja turundus-sõnavaraga).
+2. description_en_clean: LOOMULIK inglise proosa, 3-5 lauset, SIHT ~700 tähemärki (MAX 800 — ära ületa). MITTE ühtegi HTML-tagi. MITTE "VEVOR". Kirjelda MIS toode on + peamine kasu/kasutus + konkreetsed allika-omadused (ära täida tühja turundus-sõnavaraga).
 3. 🔑 FAKTID (kriitiline): KÕIK, mida kirjutad — komponendid, komplekti-sisu, funktsioonid, materjalid — PEAB tulema allikast. ÄRA leiuta ühtegi omadust ega komponenti. Kui allikas ei ütle → ÄRA kirjuta.
 4. 🔑 NUMBRID+ÜHIKUD: iga number ja ühik PEAB esinema allikas. ÄRA leiuta numbreid.
 5. 🔑 ÜHIKUD — ÄRA TEISENDA ISE: kui allikas annab meetrilise (mm/cm/m/kg/L/°C), KASUTA SEDA. Kui allikas annab ainult imperiaalse (lbs/ft/inch/°F), JÄTA imperiaalne nii nagu allikas (süsteem lisab meetrilise ise). ÄRA KUNAGI teisenda mm→toll ega lbs→kg ise. Eelista meetrilist seal, kus allikas pakub.
@@ -437,7 +459,7 @@ export const CLEAN_TOOL = {
     type: "object",
     properties: {
       title_en_clean: { type: "string", description: "Lühike puhas EN toote-nimi, max ~70 tähte, ei VEVOR, ei keyword-stuffing." },
-      description_en_clean: { type: "string", description: "Loomulik EN proosa 3-5 lauset, ~650 tähemärki (max 700), ei HTML, ei VEVOR." },
+      description_en_clean: { type: "string", description: "Loomulik EN proosa 3-5 lauset, ~700 tähemärki (max 800), ei HTML, ei VEVOR." },
       data_quality: { type: "array", items: { type: "string" }, description: "Allika-vastuolu/väljajätu märked (TÜHI loend [] kui pole — alati tagasta see väli)." },
     },
     // data_quality KOHUSTUSLIK (Tarmo 2026-11-21): valikulisena jättis mudel selle JUHUTI välja ja lekitas
