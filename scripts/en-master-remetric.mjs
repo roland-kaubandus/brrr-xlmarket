@@ -17,7 +17,7 @@
  */
 import fs from "node:fs";
 import { execSync } from "node:child_process";
-import { addMetric, metricGate, accuracyGate, unitGate, numSet, srcUnitPairs, sourceCorpus } from "./lib/en-master-clean.mjs";
+import { addMetric, metricGate, accuracyGate, unitGate, numSet, srcUnitPairs, sourceCorpus, srcConflictGate } from "./lib/en-master-clean.mjs";
 import { acquireStackLock } from "./lib/stack-lock.mjs";
 import { sendTelegram } from "./lib/spend-guard.mjs";
 
@@ -64,11 +64,12 @@ const rows = JSON.parse(psql(`SELECT coalesce(json_agg(obj),'[]') FROM (
   ${limSql}
 ) s;`));
 
-const changes = []; const gated = []; const srcGated = [];
+const changes = []; const gated = []; const srcGated = []; const conflictGated = [];
 for (const r of rows) {
+  // allika-korpus korra (kasutavad nii base-allika-värav kui allika-vastuolu-värav)
+  const srcText = sourceCorpus({ title: r.src_title, description: r.src_desc, selling_points: r.selling_points, specs: r.specs, dimensions: r.dimensions });
   // ── ALLIKA-VÄRAV (base-tasand): iga number+ühik base'is peab olema allikas (sama ühikuga) ──
   if (SRC_GATE) {
-    const srcText = sourceCorpus({ title: r.src_title, description: r.src_desc, selling_points: r.selling_points, specs: r.specs, dimensions: r.dimensions });
     const base = { title_en_clean: r.tb ?? "", description_en_clean: r.db ?? "" };
     const acc = accuracyGate(base, numSet(srcText));
     const un = unitGate(base, srcUnitPairs(srcText), null);
@@ -83,6 +84,11 @@ for (const r of rows) {
   // VÄRAV tulemusel — ebasidus → EI kirjuta
   const g = metricGate(nc);
   if (!g.pass) { gated.push({ id: r.id, offenders: g.offenders.slice(0, 3) }); continue; }
+  // ── ALLIKA-VASTUOLU-VÄRAV (Tarmo 2026-11-21 GO tee A / reegel #5): addMetric arvutatud imperiaal→meetriline
+  //   erineb allika-spetsi meetrilisest (FAIL-1, nt title "800 lbs"→362.9 kg vs allikas 363,6 kg) → FAIL-CLOSED,
+  //   EI kirjuta, toode skip + signaal → detsembri base-regen. Jookseb addMetric-VÄLJUNDIL vs allikas. ──
+  const sc = srcConflictGate(nc, srcText);
+  if (!sc.pass) { conflictGated.push({ id: r.id, offenders: sc.offenders.slice(0, 3) }); continue; }
   const tChanged = r.tb != null && nc.title_en_clean !== (r.tc ?? "");
   const dChanged = r.db != null && nc.description_en_clean !== (r.dc ?? "");
   if (!tChanged && !dChanged) continue; // juba ajakohane → jäta
@@ -91,9 +97,11 @@ for (const r of rows) {
 }
 
 const fields = changes.reduce((n, c) => n + (c.tc_new != null ? 1 : 0) + (c.dc_new != null ? 1 : 0), 0);
-console.log(`🔎 base-kandidaadid: ${rows.length} · ümberjooks muudab: ${changes.length} toodet / ${fields} välja · metricGate skip: ${gated.length} · ALLIKA-värav skip: ${srcGated.length}`);
+console.log(`🔎 base-kandidaadid: ${rows.length} · ümberjooks muudab: ${changes.length} toodet / ${fields} välja · metricGate skip: ${gated.length} · ALLIKA-värav skip: ${srcGated.length} · ALLIKA-VASTUOLU skip: ${conflictGated.length}`);
 if (srcGated.length) { console.log("\n⛔ ALLIKA-värav skip (base number/ühik pole allikas — EI kirjutata, vajab GEN-regen):");
   for (const x of srcGated.slice(0, 20)) console.log(`  [${x.id}] ${x.offenders[0]}`); }
+if (conflictGated.length) { console.log("\n🚫 ALLIKA-VASTUOLU skip (arvutatud meetriline ≠ allika-spets — FAIL-CLOSED, vajab detsembri base-regenit):");
+  for (const x of conflictGated.slice(0, 20)) console.log(`  [${x.id}] ${x.offenders[0]}`); }
 for (const c of changes.slice(0, 8)) {
   if (c.tc_new != null) console.log(`  [${c.id}] TITLE\n    - ${c.tc_old}\n    + ${c.tc_new}`);
   if (c.dc_new != null) console.log(`  [${c.id}] DESC (muudetud)`);
@@ -102,8 +110,10 @@ if (changes.length > 8) console.log(`  … +${changes.length - 8} veel`);
 if (gated.length) { console.log("\n⚠️ VÄRAV skip (EI kirjutata — ebasidus peale ümberjooksu, vajab käsitsi/LLM):");
   for (const x of gated.slice(0, 20)) console.log(`  [${x.id}] ${x.offenders[0]}`); }
 if (GATED_OUT) {
-  fs.writeFileSync(GATED_OUT, gated.map((x) => x.id).join("\n") + (gated.length ? "\n" : ""));
-  console.log(`\n📝 gated product-id-d (${gated.length}) → ${GATED_OUT}`);
+  // metricGate + allika-vastuolu skip'id → mõlemad vajavad detsembri base-regenit (unikaalsed id-d)
+  const regenIds = [...new Set([...gated.map((x) => x.id), ...conflictGated.map((x) => x.id)])];
+  fs.writeFileSync(GATED_OUT, regenIds.join("\n") + (regenIds.length ? "\n" : ""));
+  console.log(`\n📝 regen-vajavad product-id-d (${regenIds.length} = ${gated.length} metricGate + ${conflictGated.length} vastuolu) → ${GATED_OUT}`);
 }
 
 if (!EXECUTE) { console.log(`\n🟡 DRY — ei kirjutanud. Käivita: node scripts/en-master-remetric.mjs --execute`); process.exit(0); }
@@ -131,6 +141,9 @@ try {
     { input: stmts.join("\n"), stdio: ["pipe", "inherit", "inherit"] });
   const msg = `✅ EN-master remetric · ${changes.length} toodet / ${fields} välja (deterministlik, base→addMetric). Undo: node scripts/en-master-undo.mjs --file ${undoPath}`;
   console.log(msg);
-  if (gated.length) { const gm = `⚠️ EN-master remetric: ${gated.length} toodet VÄRAV-skip (ebasidus peale ümberjooksu)`; console.error(gm); sendTelegram(gm); }
+  if (gated.length || conflictGated.length) {
+    const gm = `⚠️ EN-master remetric: ${gated.length} metricGate-skip (ebasidus) + ${conflictGated.length} allika-VASTUOLU-skip (arvutatud ≠ allika-spets) → detsembri base-regen`;
+    console.error(gm); sendTelegram(gm);
+  }
   console.log("NB: jooksuta Meili-reindeks, et EN-otsing kajastaks.");
 } finally { release(); }
