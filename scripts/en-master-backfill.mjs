@@ -59,6 +59,12 @@ const ALL = has("--all");
 const BASE_ONLY = has("--base-only");
 const CHUNK = Number(val("--chunk")) || 2000;
 const BATCH_ID = val("--batch-id") || `enmaster-${new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19)}`;
+// KATSE-CAP (Tarmo 2026-11-21): toode, mis läbib GEN+väravad ja kukub (skip), saab +1 en_master_attempts.
+//   ATTEMPT_CAP korda → en_master_giveup=true + ÜKS Telegram-erandite-nimekiri (mitte igal ööl). Toores tekst
+//   jääb kuvama (storefront fallback). --reset-attempts (ainult --skus) nullib enne jooksu (nt prompt-paranduse
+//   järel uus katse). deficit.mjs + loadTargets --all jätavad giveup-tooted VÄLJA (HARD RULE #5 SSoT).
+const ATTEMPT_CAP = 3;
+const RESET_ATTEMPTS = has("--reset-attempts");
 
 const API_KEY = process.env.ANTHROPIC_API_KEY;
 if (!API_KEY) { console.error("🔴 ANTHROPIC_API_KEY puudub (set -a; . /opt/eumotors-tasks/.env; set +a)"); process.exit(2); }
@@ -138,6 +144,7 @@ function loadTargets() {
   return psqlJson(`SELECT coalesce(json_agg(obj),'[]') FROM (
     SELECT ${COLS} AS obj FROM product p
     WHERE ${SOURCE_COND} AND (p.metadata->>'title_en_clean') IS NULL
+      AND COALESCE((p.metadata->>'en_master_attempts')::int, 0) < ${ATTEMPT_CAP}
     ${order} ${limit}
   ) s;`);
 }
@@ -196,6 +203,11 @@ const usageHit = (r) => !r.ok && /credit|usage|insufficient|rate limit|quota/i.t
 (async () => {
   console.log(`🌐 EN-master backfill · batch=${BATCH_ID} · ${EXECUTE ? "EXECUTE" : "DRY"} · DB=${DB} · chunk=${CHUNK}`);
   const ledger = loadLedger();
+  if (RESET_ATTEMPTS) {
+    if (!SKUS_FILE) { console.error("🔴 --reset-attempts ainult koos --skus (sihitud nimekiri)"); process.exit(2); }
+    if (!EXECUTE) { console.error("🔴 --reset-attempts on DB-kirjutus → nõuab --execute"); process.exit(2); }
+    await resetAttempts(ledger);
+  }
   let targets = loadTargets();
   const before = targets.length;
   targets = targets.filter((t) => !ledger.done[t.id]); // resume
@@ -208,6 +220,7 @@ const usageHit = (r) => !r.ok && /credit|usage|insufficient|rate limit|quota/i.t
   const groups = chunkArr(targets, CHUNK);
   let okCount = 0, skipCount = 0, metrCount = 0, regenCount = 0;
   const samples = [];
+  const skippedThisRun = []; // KATSE-CAP: GEN läbinud + kukkunud tooted → +1 en_master_attempts (jooksu lõpus)
 
   for (let gi = 0; gi < groups.length && !STOPPED; gi++) {
     const grp = groups[gi];
@@ -298,8 +311,8 @@ const usageHit = (r) => !r.ok && /credit|usage|insufficient|rate limit|quota/i.t
     const toWrite = [];
     for (const t of grp) {
       const s = state.get(t.id);
-      if (!s) { ledger.skipped[t.id] = { reason: "parse-fail" }; skipCount++; continue; }
-      if (s.offenders && s.offenders.length) { ledger.skipped[t.id] = { reason: "gate", offenders: s.offenders.slice(0, 4) }; skipCount++; continue; }
+      if (!s) { ledger.skipped[t.id] = { reason: "parse-fail" }; skipCount++; skippedThisRun.push(t.id); continue; }
+      if (s.offenders && s.offenders.length) { ledger.skipped[t.id] = { reason: "gate", offenders: s.offenders.slice(0, 4) }; skipCount++; skippedThisRun.push(t.id); continue; }
       // BAAS = LLM-tekst ENNE addMetric (Tarmo 2026-11-19 #1 arhitektuur): salvesta eraldi, et tulevane
       // addMetric-parandus oleks deterministlik ümberjooks ILMA LLM-ita. applyMetric muteerib s.clean kohapeal.
       s.base = { title: s.clean.title_en_clean ?? "", description: s.clean.description_en_clean ?? "" };
@@ -316,7 +329,7 @@ const usageHit = (r) => !r.ok && /credit|usage|insufficient|rate limit|quota/i.t
           ledger.base_coherence[t.id] = coh.offenders.slice(0, 4);
         } else {
           ledger.skipped[t.id] = { reason: "coherence", offenders: coh.offenders.slice(0, 4) };
-          skipCount++;
+          skipCount++; skippedThisRun.push(t.id);
           const cmsg = `⚠️ EN-master EBASIDUSUS-VÄRAV (addMetric järel) · ${t.id}: ${coh.offenders[0]} → EI kirjutatud`;
           console.error(cmsg); if (EXECUTE) sendTelegram(cmsg);
           continue;
@@ -343,6 +356,9 @@ const usageHit = (r) => !r.ok && /credit|usage|insufficient|rate limit|quota/i.t
     }
     console.log(`  → kirjutada ${toWrite.length} · skip ${grp.length - toWrite.length} (kumulatiiv ok=${okCount} skip=${skipCount})`);
   }
+
+  // ── KATSE-CAP: +1 en_master_attempts kõigile selle jooksu skip'idele; ATTEMPT_CAP → giveup + ÜKS Telegram ──
+  if (EXECUTE && skippedThisRun.length) await bumpAttempts(skippedThisRun, ledger);
 
   ledger.samples = samples;
   const dqCount = Object.keys(ledger.data_quality || {}).length;
@@ -407,5 +423,65 @@ async function writeChunk(toWrite, state, ledger) {
   } catch (e) {
     if (isUsageLimitError(e)) { safeStop(`writeChunk: ${e.message}`, ledger); return; }
     throw e;
+  } finally { release(); }
+}
+
+// ── KATSE-CAP reset (--reset-attempts --skus): nulli en_master_attempts + eemalda giveup enne uut katset ──
+//   (nt pärast GEN-prompt parandust — annab lootusetuks märgitud toodetele uue võimaluse). DB-kirjutus →
+//   vaikuse-aken + stack-lukk (HARD RULE #9).
+async function resetAttempts(ledger) {
+  const raw = fs.readFileSync(SKUS_FILE, "utf8").split("\n").map((s) => s.trim()).filter(Boolean);
+  if (!raw.length) { console.log("ℹ️ --reset-attempts: tühi --skus nimekiri, ei tee midagi"); return; }
+  const list = raw.map(sq).join(",");
+  const where = `(id IN (${list}) OR metadata->>'vevor_sku' IN (${list}))`;
+  await waitOutQuietWindow(ledger);
+  if (STOPPED) return;
+  const release = acquireStackLock({ holder: "en-master-backfill:reset", waitMs: Number(process.env.XL_DBWRITE_WAIT_MS) || 120_000 });
+  try {
+    const n = psqlJson(`SELECT coalesce(json_agg(id),'[]') FROM product
+      WHERE ${where} AND (metadata ? 'en_master_attempts' OR metadata ? 'en_master_giveup');`).length;
+    psqlWrite(`UPDATE product SET metadata = (metadata - 'en_master_attempts' - 'en_master_giveup'), updated_at = NOW()
+      WHERE ${where} AND (metadata ? 'en_master_attempts' OR metadata ? 'en_master_giveup');`);
+    const msg = `🔄 EN-master katse-loendur NULLITUD: ${n} toodet (uus katse, nt prompt-paranduse järel) · batch=${BATCH_ID}`;
+    console.log(msg); sendTelegram(msg);
+  } finally { release(); }
+}
+
+// ── KATSE-CAP increment: +1 en_master_attempts selle jooksu skip'idele; ATTEMPT_CAP → giveup + ÜKS Telegram ──
+//   Giveup-tooted jäävad deficit.mjs + loadTargets --all päringust VÄLJA → öine self-heal EI korda neid (ega
+//   maksa) igal ööl. Toores tekst jääb storefront'is kuvama (fallback). DB-kirjutus → vaikuse-aken + stack-lukk.
+async function bumpAttempts(ids, ledger) {
+  if (!ids.length) return;
+  const arr = sq(ids.join(","));
+  await waitOutQuietWindow(ledger);
+  if (STOPPED) { console.log("🟠 katse-cap: peatus (krediit) → increment jäi tegemata, kordub järgmisel jooksul"); return; }
+  const release = acquireStackLock({ holder: "en-master-backfill:attempts", waitMs: Number(process.env.XL_DBWRITE_WAIT_MS) || 120_000 });
+  try {
+    // 1) +1 kõigile; 2) giveup=true kui jõudis cap'ini
+    psqlWrite(
+      `UPDATE product SET metadata = jsonb_set(COALESCE(metadata,'{}'::jsonb), '{en_master_attempts}',`
+      + ` to_jsonb(COALESCE((metadata->>'en_master_attempts')::int,0) + 1), true), updated_at = NOW()`
+      + ` WHERE id = ANY(string_to_array(${arr}, ','));\n`
+      + `UPDATE product SET metadata = jsonb_set(metadata, '{en_master_giveup}', 'true'::jsonb, true)`
+      + ` WHERE id = ANY(string_to_array(${arr}, ',')) AND COALESCE((metadata->>'en_master_attempts')::int,0) >= ${ATTEMPT_CAP};`
+    );
+    // äsja cap'i ületanud (täpselt == ATTEMPT_CAP pärast increment'i) → ÜKS erandite-nimekiri
+    const fresh = psqlJson(`SELECT coalesce(json_agg(obj),'[]') FROM (
+      SELECT json_build_object('sku', metadata->>'vevor_sku', 'id', id, 'title', left(title,70)) AS obj
+      FROM product
+      WHERE id = ANY(string_to_array(${arr}, ','))
+        AND COALESCE((metadata->>'en_master_attempts')::int,0) = ${ATTEMPT_CAP}
+    ) s;`);
+    console.log(`  🔢 katse-loendur: +1 ${ids.length} tootele · uusi giveup'e: ${fresh.length}`);
+    if (fresh.length) {
+      ledger.giveup = (ledger.giveup || []).concat(fresh.map((f) => f.sku || f.id));
+      const head = fresh.slice(0, 30).map((f) => `• ${f.sku || f.id} — ${f.title}`).join("\n");
+      const tail = fresh.length > 30 ? `\n… +${fresh.length - 30} veel` : "";
+      sendTelegram(
+        `🔴 EN-master GIVEUP: ${fresh.length} toodet jõudsid ${ATTEMPT_CAP} ebaõnnestunud katseni → LOOBUTUD.\n`
+        + `Toores tekst jääb kuvama. Öine self-heal EI korda neid (säästab krediiti). Prompt-paranduse järel:\n`
+        + `en-master-backfill --skus <fail> --reset-attempts --execute → uus katse.\n${head}${tail}`
+      );
+    }
   } finally { release(); }
 }
