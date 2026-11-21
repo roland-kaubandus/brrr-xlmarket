@@ -10,7 +10,9 @@
  * raw title/description JÄÄVAD. --dry (vaikimisi) näitab; --execute kirjutab + undo-ledger (rule #6/#8).
  * Ohutus: AINULT staging db-k33g; stack-lukk (#9); keeldub vaikuse-aknas 02:45–04:30 EET.
  *
- * Käsk:  node scripts/en-master-remetric.mjs [--execute] [--limit N] [--ids a,b,c]
+ * Käsk:  node scripts/en-master-remetric.mjs [--execute] [--limit N] [--ids a,b,c] [--gated-out FILE]
+ *        --gated-out FILE: kirjuta VÄRAV-skip product-id-d (üks reale) faili → base-regen sisend
+ *                          (backfill --skus võtab id VÕI vevor_sku). DRY'na = vaba 114-nimekirja allikas.
  * Undo:  node scripts/en-master-undo.mjs --file <remetric-undo-ledger> ... (vt väljund)
  */
 import fs from "node:fs";
@@ -26,6 +28,8 @@ const limIdx = argv.indexOf("--limit");
 const LIMIT = limIdx >= 0 ? parseInt(argv[limIdx + 1], 10) : 0;
 const idsIdx = argv.indexOf("--ids");
 const ONLY_IDS = idsIdx >= 0 ? argv[idsIdx + 1].split(",").map((s) => s.trim()).filter(Boolean) : null;
+const goIdx = argv.indexOf("--gated-out");
+const GATED_OUT = goIdx >= 0 ? argv[goIdx + 1] : null;
 
 // ── DB: AINULT staging k33g (ei tohi kunagi puutuda prod uo28) ──
 const DB = execSync("docker ps --format '{{.Names}}' | grep -E '^db-k33g' | head -1", { encoding: "utf8" }).trim();
@@ -79,6 +83,10 @@ for (const c of changes.slice(0, 8)) {
 if (changes.length > 8) console.log(`  … +${changes.length - 8} veel`);
 if (gated.length) { console.log("\n⚠️ VÄRAV skip (EI kirjutata — ebasidus peale ümberjooksu, vajab käsitsi/LLM):");
   for (const x of gated.slice(0, 20)) console.log(`  [${x.id}] ${x.offenders[0]}`); }
+if (GATED_OUT) {
+  fs.writeFileSync(GATED_OUT, gated.map((x) => x.id).join("\n") + (gated.length ? "\n" : ""));
+  console.log(`\n📝 gated product-id-d (${gated.length}) → ${GATED_OUT}`);
+}
 
 if (!EXECUTE) { console.log(`\n🟡 DRY — ei kirjutanud. Käivita: node scripts/en-master-remetric.mjs --execute`); process.exit(0); }
 if (!changes.length) { console.log("\n✓ midagi uuendada pole (kõik clean juba = uus addMetric(base))."); process.exit(0); }

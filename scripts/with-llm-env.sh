@@ -22,6 +22,7 @@ ALLOW=(
   "scripts/en-master-backfill.mjs"
   "scripts/en-master-detect.mjs"
   "scripts/en-master-remetric.mjs"
+  "scripts/credit-probe.mjs"
 )
 
 die() { echo "with-llm-env: keeldun — $1" >&2; exit 97; }
