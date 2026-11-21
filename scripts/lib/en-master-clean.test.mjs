@@ -5,7 +5,7 @@
  * Tarmo 2026-11-19 (parandus B): kriips- ja "to"-vahemik teisenevad TERVIKUNA, mitte pooleldi.
  * Varem lõhkus addMetric vahemiku ("28-32 inch" → "28–81.3 cm (32 inch)") → ebasidus/vale ühik.
  */
-import { addMetric, rangeCoherenceOffenders, rangeCoherenceGate } from "./en-master-clean.mjs";
+import { addMetric, rangeCoherenceOffenders, rangeCoherenceGate, accuracyGate, unitGate, numSet, srcUnitPairs, sourceCorpus, stripToolMarkup, normalizeClean, cleanFromMessage, CLEAN_TOOL } from "./en-master-clean.mjs";
 
 let fails = 0;
 function eq(label, input, want) {
@@ -132,6 +132,66 @@ coh("katki: lähi-paren-kordus (artefakt)", "capacity (10 lbs) weight (10 lbs) l
   const g = rangeCoherenceGate({ title_en_clean: "ok 71.1-81.3 cm (28-32 inch)", description_en_clean: "bad 28–81.3 cm (32 inch)" });
   const ok = g.pass === false && g.offenders.length === 1;
   console.log(`${ok ? "✓" : "✗"} gate clean-objektil: pass=${g.pass} offenders=${g.offenders.length}`);
+  if (!ok) fails++;
+}
+
+console.log("\n=== Samm 4.2 (Tarmo 2026-11-21): BASE allika-värav — iga number+ühik base'is allikas ===");
+// srcg: jooksuta accuracy+unit BASE-tekstil allika vastu (= remetric SRC_GATE + GEN-aja runDetGates).
+//   wantPass=true → base on allika-truu (kirjutus ok); false → number/ühik pole allikas (skip).
+function srcg(label, src, baseTitle, baseDesc, wantPass) {
+  const srcText = sourceCorpus(src);
+  const base = { title_en_clean: baseTitle, description_en_clean: baseDesc };
+  const off = [...accuracyGate(base, numSet(srcText)).offenders, ...unitGate(base, srcUnitPairs(srcText), null).offenders];
+  const pass = off.length === 0;
+  const ok = pass === wantPass;
+  console.log(`${ok ? "✓" : "✗"} ${label} → pass=${pass}${ok ? "" : ` (OODATUD ${wantPass}) off=${off[0] || ""}`}`);
+  if (!ok) fails++;
+}
+// PANINI-GRILL (tegelik juht): allikas ANNAB "529 cm² (9"×9")" + 1800 W → base-koopia PEAB läbima (ei fabrikatsioon)
+srcg("panini 529 cm² = allika-truu (läbib)",
+  { title: 'Panini Maker 9"x9" Plate', selling_points: ["1800W stainless steel"], specs: { plaat_pindala: '529 cm² (9"×9")', voimsus: "1800 W" } },
+  "Commercial Electric Panini Grill",
+  'Enamel plate with 529 cm² (9"x9") cooking surface and 1800 W element.', true);
+// FABRIKATSIOON: base leiutab numbri, mida allikas EI ütle → accuracy-värav püüab
+srcg("leiutatud pindala 720 cm² (skip)",
+  { title: 'Panini Maker 9"x9" Plate', specs: { plaat_pindala: '529 cm² (9"×9")' } },
+  "Panini Grill", "Large 720 cm² cooking surface.", false);
+// ISE-TEISENDUS: allikas annab 5 kg, base kirjutab 5 lbs (sama arv, VALE ühik) → unit-värav püüab
+srcg("ise-teisendus 5 kg→5 lbs (skip)",
+  { title: "Tool", specs: { kaal: "5 kg" } }, "Tool", "Weighs 5 lbs.", false);
+// LUBATUD: ainult allika ühikud (imperiaal jäetakse, addMetric lisab hiljem meetrilise)
+srcg("imperiaal allikast = ok (läbib)",
+  { title: "Hose", specs: { pikkus: "25 ft", labimoot: "12 inch" } }, "PVC Duct Hose", "Flexible hose, 25 ft long, 12 inch diameter.", true);
+
+console.log("\n=== Samm 4.3 (Tarmo 2026-11-21): TOOL-MARKUP lekke saniteerimine (tool_use parse-artefakt) ===");
+function tm(label, inVal, wantOut) {
+  const got = stripToolMarkup(inVal);
+  const ok = got === wantOut;
+  console.log(`${ok ? "✓" : "✗"} ${label}${ok ? "" : ` → sain ${JSON.stringify(got)} OODATUD ${JSON.stringify(wantOut)}`}`);
+  if (!ok) fails++;
+}
+// TÄPNE vaadeldud leke: data_quality sulu-markup lekib description-stringi lõppu
+tm("desc + </description_en_clean><parameter> leke",
+  'Pressure rating is 82.7 bar (40-120 PSI).</description_en_clean>\n<parameter name="data_quality">[]',
+  "Pressure rating is 82.7 bar (40-120 PSI).");
+tm("title + </title_en_clean> leke", "Rolling Garment Rack</title_en_clean>", "Rolling Garment Rack");
+tm("antml:parameter variant", 'Clean text.</description_en_clean><parameter name="x">y', "Clean text.");
+tm("puhas tekst muutumatu", "Weighs 16.2 kg and rolls on casters.", "Weighs 16.2 kg and rolls on casters.");
+// päris < allika-tekstis (nt "<5 mm") EI tohi kärpida — marker nõuab nime-tagi
+tm("päris võrdlusmärk säilib", "Tolerance <5 mm on each panel.", "Tolerance <5 mm on each panel.");
+// normalizeClean rakendab saniteerimist mõlemal väljal + taastab data_quality
+{
+  const n = normalizeClean({ title_en_clean: "Anvil 11.5 kg", description_en_clean: 'Cast steel anvil.</description_en_clean>\n<parameter name="data_quality">["note"]', data_quality: ["note"] });
+  const ok = n.description_en_clean === "Cast steel anvil." && n.title_en_clean === "Anvil 11.5 kg";
+  console.log(`${ok ? "✓" : "✗"} normalizeClean saniteerib description-lekke → ${JSON.stringify(n.description_en_clean)}`);
+  if (!ok) fails++;
+}
+// cleanFromMessage: tool_use plokk lekke-sisuga → saniteeritud tulemus
+{
+  const msg = { content: [{ type: "tool_use", name: CLEAN_TOOL.name, input: { title_en_clean: "Bread Box", description_en_clean: 'Wood bread box, 41 x 40 x 11.5 cm.</description_en_clean>\n<parameter name="data_quality">[]', data_quality: [] } }] };
+  const c = cleanFromMessage(msg);
+  const ok = c.description_en_clean === "Wood bread box, 41 x 40 x 11.5 cm." && !/<\/?(parameter|description_en_clean)/.test(c.description_en_clean);
+  console.log(`${ok ? "✓" : "✗"} cleanFromMessage(tool_use) saniteerib → ${JSON.stringify(c.description_en_clean)}`);
   if (!ok) fails++;
 }
 

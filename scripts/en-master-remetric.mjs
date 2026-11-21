@@ -17,7 +17,7 @@
  */
 import fs from "node:fs";
 import { execSync } from "node:child_process";
-import { addMetric, metricGate } from "./lib/en-master-clean.mjs";
+import { addMetric, metricGate, accuracyGate, unitGate, numSet, srcUnitPairs, sourceCorpus } from "./lib/en-master-clean.mjs";
 import { acquireStackLock } from "./lib/stack-lock.mjs";
 import { sendTelegram } from "./lib/spend-guard.mjs";
 
@@ -30,6 +30,11 @@ const idsIdx = argv.indexOf("--ids");
 const ONLY_IDS = idsIdx >= 0 ? argv[idsIdx + 1].split(",").map((s) => s.trim()).filter(Boolean) : null;
 const goIdx = argv.indexOf("--gated-out");
 const GATED_OUT = goIdx >= 0 ? argv[goIdx + 1] : null;
+// ALLIKA-VÄRAV (Tarmo 2026-11-21 Samm 4.2): iga number+ühik base'is PEAB olema allikas (sama ühikuga) —
+//   kirjutus-GO deterministlik kaitse. Jookseb accuracy+unit BASE-tekstil (MITTE addMetric-väljundil,
+//   muidu lipuks addMetric enda meetrilise lisanduse). base peaks juba GEN-ajal läbinud olema — see on
+//   kaitse-kiht (vana base enne väravat / serva-juht). --no-src-gate lülitab välja (nt diagnostika).
+const SRC_GATE = !argv.includes("--no-src-gate");
 
 // ── DB: AINULT staging k33g (ei tohi kunagi puutuda prod uo28) ──
 const DB = execSync("docker ps --format '{{.Names}}' | grep -E '^db-k33g' | head -1", { encoding: "utf8" }).trim();
@@ -51,14 +56,25 @@ const limSql = LIMIT > 0 ? `LIMIT ${LIMIT}` : "";
 const rows = JSON.parse(psql(`SELECT coalesce(json_agg(obj),'[]') FROM (
   SELECT json_build_object('id',p.id,
     'tb',p.metadata->>'title_en_base','db',p.metadata->>'description_en_base',
-    'tc',p.metadata->>'title_en_clean','dc',p.metadata->>'description_en_clean') AS obj
+    'tc',p.metadata->>'title_en_clean','dc',p.metadata->>'description_en_clean',
+    'src_title',p.title,'src_desc',left(p.description,2000),
+    'selling_points',p.metadata->'selling_points','specs',p.metadata->'specs','dimensions',p.metadata->'dimensions') AS obj
   FROM product p
   WHERE (p.metadata->>'title_en_base' IS NOT NULL OR p.metadata->>'description_en_base' IS NOT NULL) ${idFilter}
   ${limSql}
 ) s;`));
 
-const changes = []; const gated = [];
+const changes = []; const gated = []; const srcGated = [];
 for (const r of rows) {
+  // ── ALLIKA-VÄRAV (base-tasand): iga number+ühik base'is peab olema allikas (sama ühikuga) ──
+  if (SRC_GATE) {
+    const srcText = sourceCorpus({ title: r.src_title, description: r.src_desc, selling_points: r.selling_points, specs: r.specs, dimensions: r.dimensions });
+    const base = { title_en_clean: r.tb ?? "", description_en_clean: r.db ?? "" };
+    const acc = accuracyGate(base, numSet(srcText));
+    const un = unitGate(base, srcUnitPairs(srcText), null);
+    const off = [...acc.offenders, ...un.offenders];
+    if (off.length) { srcGated.push({ id: r.id, offenders: off.slice(0, 3) }); continue; } // base pole allika-truu → EI kirjuta
+  }
   // UUS addMetric puhtalt baasilt (ILMA LLM-ita)
   const nc = {
     title_en_clean: r.tb != null ? addMetric(r.tb, new Set()) : r.tc,
@@ -75,7 +91,9 @@ for (const r of rows) {
 }
 
 const fields = changes.reduce((n, c) => n + (c.tc_new != null ? 1 : 0) + (c.dc_new != null ? 1 : 0), 0);
-console.log(`🔎 base-kandidaadid: ${rows.length} · ümberjooks muudab: ${changes.length} toodet / ${fields} välja · VÄRAV skip (ebasidus): ${gated.length}`);
+console.log(`🔎 base-kandidaadid: ${rows.length} · ümberjooks muudab: ${changes.length} toodet / ${fields} välja · metricGate skip: ${gated.length} · ALLIKA-värav skip: ${srcGated.length}`);
+if (srcGated.length) { console.log("\n⛔ ALLIKA-värav skip (base number/ühik pole allikas — EI kirjutata, vajab GEN-regen):");
+  for (const x of srcGated.slice(0, 20)) console.log(`  [${x.id}] ${x.offenders[0]}`); }
 for (const c of changes.slice(0, 8)) {
   if (c.tc_new != null) console.log(`  [${c.id}] TITLE\n    - ${c.tc_old}\n    + ${c.tc_new}`);
   if (c.dc_new != null) console.log(`  [${c.id}] DESC (muudetud)`);

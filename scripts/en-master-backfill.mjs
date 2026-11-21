@@ -33,7 +33,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { execSync } from "node:child_process";
 import {
-  M_GEN, M_JUDGE, CLEAN_SYS, cleanUser, JUDGE_SYS, judgeUser,
+  M_GEN, M_JUDGE, CLEAN_SYS, cleanUser, JUDGE_SYS, judgeUser, CLEAN_TOOL, cleanFromMessage,
   parseCleanJson, parseJudgeJson, sourceCorpus, numSet, srcUnitPairs,
   runDetGates, applyMetric, buildAvoidNote, rangeCoherenceGate,
 } from "./lib/en-master-clean.mjs";
@@ -65,6 +65,10 @@ const BATCH_ID = val("--batch-id") || `enmaster-${new Date().toISOString().repla
 //   järel uus katse). deficit.mjs + loadTargets --all jätavad giveup-tooted VÄLJA (HARD RULE #5 SSoT).
 const ATTEMPT_CAP = 3;
 const RESET_ATTEMPTS = has("--reset-attempts");
+// --emit FILE (Tarmo 2026-11-21 Samm 4.3): TÕELINE DRY eelvaade. Jookseb GEN+väravad (uus tool_use tee) ja
+//   kirjutab iga toote kohta {id, base (LLM enne addMetric), clean (addMetric järel), värava-otsus+offenders,
+//   allikas} JSON-faili. EI kirjuta DB-sse, EI tõsta en_master_attempts. Sisend Opus-auditile (review --from-file).
+const EMIT = val("--emit");
 
 const API_KEY = process.env.ANTHROPIC_API_KEY;
 if (!API_KEY) { console.error("🔴 ANTHROPIC_API_KEY puudub (set -a; . /opt/eumotors-tasks/.env; set +a)"); process.exit(2); }
@@ -186,7 +190,8 @@ function safeStop(reason, ledger) {
 
 // ── batch params (cache_control jagatud süsteemiplokile — identne system kõigil N päringul) ──
 function sysBlock(system) { return [{ type: "text", text: String(system), cache_control: { type: "ephemeral" } }]; }
-function pGen(user) { return { model: M_GEN, max_tokens: 1600, system: sysBlock(CLEAN_SYS), messages: [{ role: "user", content: user }] }; }
+// GEN: SUNNITUD tool_use (struktureeritud väljund) → parse-fail kaob. Mudel tagastab emit_clean ploki.
+function pGen(user) { return { model: M_GEN, max_tokens: 1600, system: sysBlock(CLEAN_SYS), tools: [CLEAN_TOOL], tool_choice: { type: "tool", name: CLEAN_TOOL.name }, messages: [{ role: "user", content: user }] }; }
 function pJudge(user) { return { model: M_JUDGE, max_tokens: 900, system: sysBlock(JUDGE_SYS), messages: [{ role: "user", content: user }] }; }
 
 // ── inline (parse-retry / väike hook) — SSoT-klient (sama keha mille vana otse-kutse saatis) ──
@@ -220,6 +225,7 @@ const usageHit = (r) => !r.ok && /credit|usage|insufficient|rate limit|quota/i.t
   const groups = chunkArr(targets, CHUNK);
   let okCount = 0, skipCount = 0, metrCount = 0, regenCount = 0;
   const samples = [];
+  const emit = EMIT ? [] : null; // Samm 4.3 tõeline-DRY eelvaade (vt --emit)
   const skippedThisRun = []; // KATSE-CAP: GEN läbinud + kukkunud tooted → +1 en_master_attempts (jooksu lõpus)
 
   for (let gi = 0; gi < groups.length && !STOPPED; gi++) {
@@ -242,7 +248,7 @@ const usageHit = (r) => !r.ok && /credit|usage|insufficient|rate limit|quota/i.t
     for (const t of grp) {
       const i = ix.get(t.id), r = gMap.get(`g_${i}`);
       let clean = null;
-      try { clean = parseCleanJson(textOf(r?.message)); }
+      try { clean = cleanFromMessage(r?.message); }
       catch {
         for (let a = 1; a <= 2 && !clean && !STOPPED; a++) {
           try { clean = parseCleanJson(await inlineCall(M_GEN, CLEAN_SYS, cleanUser(t, ""), 1600)); }
@@ -292,7 +298,7 @@ const usageHit = (r) => !r.ok && /credit|usage|insufficient|rate limit|quota/i.t
       for (const t of failTargets) {
         const s = state.get(t.id); const r = rMap.get(`r_${ix.get(t.id)}`);
         let clean2 = null;
-        try { clean2 = parseCleanJson(textOf(r?.message)); } catch { clean2 = null; }
+        try { clean2 = cleanFromMessage(r?.message); } catch { clean2 = null; }
         if (!clean2) continue; // jääb kukkunuks → skip
         const det2 = runDetGates(clean2, t._nums, t._pairs, t._src, null);
         let claim2 = [];
@@ -311,8 +317,14 @@ const usageHit = (r) => !r.ok && /credit|usage|insufficient|rate limit|quota/i.t
     const toWrite = [];
     for (const t of grp) {
       const s = state.get(t.id);
-      if (!s) { ledger.skipped[t.id] = { reason: "parse-fail" }; skipCount++; skippedThisRun.push(t.id); continue; }
-      if (s.offenders && s.offenders.length) { ledger.skipped[t.id] = { reason: "gate", offenders: s.offenders.slice(0, 4) }; skipCount++; skippedThisRun.push(t.id); continue; }
+      if (!s) {
+        if (emit) emit.push({ id: t.id, vptype: t.vptype, status: "parse-fail", base: null, clean: null, offenders: [], source: t._src });
+        ledger.skipped[t.id] = { reason: "parse-fail" }; skipCount++; skippedThisRun.push(t.id); continue;
+      }
+      if (s.offenders && s.offenders.length) {
+        if (emit) emit.push({ id: t.id, vptype: t.vptype, status: "gate", base: { title: s.clean.title_en_clean ?? "", description: s.clean.description_en_clean ?? "" }, clean: null, offenders: s.offenders.slice(0, 6), source: t._src });
+        ledger.skipped[t.id] = { reason: "gate", offenders: s.offenders.slice(0, 4) }; skipCount++; skippedThisRun.push(t.id); continue;
+      }
       // BAAS = LLM-tekst ENNE addMetric (Tarmo 2026-11-19 #1 arhitektuur): salvesta eraldi, et tulevane
       // addMetric-parandus oleks deterministlik ümberjooks ILMA LLM-ita. applyMetric muteerib s.clean kohapeal.
       s.base = { title: s.clean.title_en_clean ?? "", description: s.clean.description_en_clean ?? "" };
@@ -328,6 +340,7 @@ const usageHit = (r) => !r.ok && /credit|usage|insufficient|rate limit|quota/i.t
           if (!ledger.base_coherence) ledger.base_coherence = {};
           ledger.base_coherence[t.id] = coh.offenders.slice(0, 4);
         } else {
+          if (emit) emit.push({ id: t.id, vptype: t.vptype, status: "coherence", base: s.base, clean: { title: s.clean.title_en_clean, description: s.clean.description_en_clean }, offenders: coh.offenders.slice(0, 6), source: t._src });
           ledger.skipped[t.id] = { reason: "coherence", offenders: coh.offenders.slice(0, 4) };
           skipCount++; skippedThisRun.push(t.id);
           const cmsg = `⚠️ EN-master EBASIDUSUS-VÄRAV (addMetric järel) · ${t.id}: ${coh.offenders[0]} → EI kirjutatud`;
@@ -335,6 +348,7 @@ const usageHit = (r) => !r.ok && /credit|usage|insufficient|rate limit|quota/i.t
           continue;
         }
       }
+      if (emit) emit.push({ id: t.id, vptype: t.vptype, status: "pass", base: s.base, clean: { title: s.clean.title_en_clean, description: s.clean.description_en_clean }, metrized, data_quality: Array.isArray(s.clean.data_quality) ? s.clean.data_quality : [], offenders: [], source: t._src });
       if (metrized) metrCount++;
       s.metrized = metrized;
       if (Array.isArray(s.clean.data_quality) && s.clean.data_quality.length) {
@@ -359,6 +373,14 @@ const usageHit = (r) => !r.ok && /credit|usage|insufficient|rate limit|quota/i.t
 
   // ── KATSE-CAP: +1 en_master_attempts kõigile selle jooksu skip'idele; ATTEMPT_CAP → giveup + ÜKS Telegram ──
   if (EXECUTE && skippedThisRun.length) await bumpAttempts(skippedThisRun, ledger);
+
+  if (emit) {
+    const pass = emit.filter((e) => e.status === "pass").length;
+    const path0 = EMIT.startsWith("/") ? EMIT : `${REPO}/${EMIT}`;
+    fs.writeFileSync(path0, JSON.stringify({ batch_id: BATCH_ID, created_at: new Date().toISOString(), total: emit.length, pass, records: emit }, null, 2));
+    const pct = emit.length ? Math.round((pass / emit.length) * 1000) / 10 : 0;
+    console.log(`\n📄 EMIT (tõeline-DRY): ${emit.length} toodet · läbis väravad: ${pass} (${pct}%) → ${path0}`);
+  }
 
   ledger.samples = samples;
   const dqCount = Object.keys(ledger.data_quality || {}).length;

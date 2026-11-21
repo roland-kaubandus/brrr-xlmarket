@@ -417,7 +417,7 @@ export const CLEAN_SYS = `Sa oled XL e-poe (xlmarket.ee) ingliskeelse sisu MASTE
 
 RANGED REEGLID:
 1. title_en_clean: LÜHIKE selge toote-nimi (nagu inimese kataloogis), MAX ~70 tähte. EI keyword-stuffing'ut ega komaga atribuut-loendit. Nimeta toode + 1-2 eristavat omadust. MITTE "VEVOR".
-2. description_en_clean: LOOMULIK inglise proosa, 2-4 lauset. MITTE ühtegi HTML-tagi. MITTE "VEVOR". Kirjelda MIS toode on + peamine kasu/kasutus.
+2. description_en_clean: LOOMULIK inglise proosa, 3-5 lauset, SIHT ~650 tähemärki (MAX 700 — ära ületa). MITTE ühtegi HTML-tagi. MITTE "VEVOR". Kirjelda MIS toode on + peamine kasu/kasutus + konkreetsed allika-omadused (ära täida tühja turundus-sõnavaraga).
 3. 🔑 FAKTID (kriitiline): KÕIK, mida kirjutad — komponendid, komplekti-sisu, funktsioonid, materjalid — PEAB tulema allikast. ÄRA leiuta ühtegi omadust ega komponenti. Kui allikas ei ütle → ÄRA kirjuta.
 4. 🔑 NUMBRID+ÜHIKUD: iga number ja ühik PEAB esinema allikas. ÄRA leiuta numbreid.
 5. 🔑 ÜHIKUD — ÄRA TEISENDA ISE: kui allikas annab meetrilise (mm/cm/m/kg/L/°C), KASUTA SEDA. Kui allikas annab ainult imperiaalse (lbs/ft/inch/°F), JÄTA imperiaalne nii nagu allikas (süsteem lisab meetrilise ise). ÄRA KUNAGI teisenda mm→toll ega lbs→kg ise. Eelista meetrilist seal, kus allikas pakub.
@@ -425,6 +425,26 @@ RANGED REEGLID:
 7. 🔑 ALLIKA VASTUOLU: kui allikas annab SAMALE atribuudile vastuolulised väärtused (nt mootor "100 HP" ühes kohas, "150 HP" teises), ÄRA vali vaikselt ühte. Kui SPETSIFIKATSIOONI-väljal (specs) on väärtus, kasuta SEDA; kui specs ei ütle, JÄTA see number hoopis välja. Ära arva. Lisa iga selline juhtum "data_quality" loendisse (nt "motor power: source conflicts 100 HP vs 150 HP").
 
 Tagasta AINULT JSON: {"title_en_clean":"<lühike puhas EN title>","description_en_clean":"<loomulik EN proosa>","data_quality":["<vastuolu/väljajätu märge või tühi loend>"]}`;
+
+// STRUKTUREERITUD VÄLJUND (Tarmo 2026-11-21 Samm 4): batch-GEN sunnib selle tööriista → parse-fail kaob
+//   (mudel ei saa tagastada vigast JSON-i). Inline-tee (hook/parse-retry) kasutab ikka teksti-JSON-i —
+//   CLEAN_SYS hoiab "Tagasta AINULT JSON" rea, nii et MÕLEMAD teed töötavad. cleanFromMessage proovib
+//   esmalt tool_use plokki, siis langeb tagasi teksti-parsele.
+export const CLEAN_TOOL = {
+  name: "emit_clean",
+  description: "Tagasta puhastatud EN master-title + kirjeldus + data_quality märked.",
+  input_schema: {
+    type: "object",
+    properties: {
+      title_en_clean: { type: "string", description: "Lühike puhas EN toote-nimi, max ~70 tähte, ei VEVOR, ei keyword-stuffing." },
+      description_en_clean: { type: "string", description: "Loomulik EN proosa 3-5 lauset, ~650 tähemärki (max 700), ei HTML, ei VEVOR." },
+      data_quality: { type: "array", items: { type: "string" }, description: "Allika-vastuolu/väljajätu märked (TÜHI loend [] kui pole — alati tagasta see väli)." },
+    },
+    // data_quality KOHUSTUSLIK (Tarmo 2026-11-21): valikulisena jättis mudel selle JUHUTI välja ja lekitas
+    //   sulu-markup'i description-stringi (vt stripToolMarkup). Kohustuslikuna emiteerib eraldi parameetrina.
+    required: ["title_en_clean", "description_en_clean", "data_quality"],
+  },
+};
 
 export function cleanUser(p, avoidNote) {
   const sp = Array.isArray(p.selling_points) ? p.selling_points.map((s) => `  • ${s}`).join("\n") : "  (pole)";
@@ -449,17 +469,43 @@ export function judgeUser(p, clean, orphans) {
 }
 
 // ─────────────────────────── PARSE ───────────────────────────
-export function parseCleanJson(raw) {
-  const t = (raw || "").replace(/```(?:json)?/gi, "").trim();
-  const m = t.match(/\{[\s\S]*\}/);
-  if (!m) throw new Error(`JSON puudub: ${t.slice(0, 120)}`);
-  const o = JSON.parse(m[0]);
-  if (typeof o.title_en_clean !== "string" || typeof o.description_en_clean !== "string")
+// TOOL-MARKUP leke (Tarmo 2026-11-21 Samm 4.3 juurpõhjus): sunnitud tool_use korral lisab mudel JUHUTI
+//   valikulise `data_quality`-parameetri SULU-MARKUP'i otse description_en_clean STRINGI lõppu, nt
+//   "...40-120 PSI).</description_en_clean>\n<parameter name=\"data_quality\">[]". See on parse-artefakt (MITTE
+//   mudeli sisu): tegelik tekst ENNE lekke-markerit on terviklik. Lõika stringi esimesest tool-markerist →
+//   taastab soovitud väljundi (muidu vallandab HTML-värava + paisutab pikkust = vale skip). DB vana-tee
+//   base'id (1756) seda EI sisalda → ohutu lisand.
+const TOOL_MARKUP_RE = /\s*<\/?(?:title_en_clean|description_en_clean|data_quality|parameter|invoke|function_calls|antml:[a-z_]+)\b[^>]*>[\s\S]*$/i;
+export function stripToolMarkup(s) {
+  return typeof s === "string" ? s.replace(TOOL_MARKUP_RE, "") : s;
+}
+// Üks normaliseerija: valideeri + trimmi (jagatud teksti-parse ja tool-use parse vahel).
+export function normalizeClean(o) {
+  if (!o || typeof o.title_en_clean !== "string" || typeof o.description_en_clean !== "string")
     throw new Error("title_en_clean/description_en_clean puudub");
   const dq = Array.isArray(o.data_quality)
     ? o.data_quality.filter((x) => typeof x === "string" && x.trim()).map((x) => x.trim())
     : [];
-  return { title_en_clean: o.title_en_clean.trim(), description_en_clean: o.description_en_clean.trim(), data_quality: dq };
+  return {
+    title_en_clean: stripToolMarkup(o.title_en_clean).trim(),
+    description_en_clean: stripToolMarkup(o.description_en_clean).trim(),
+    data_quality: dq,
+  };
+}
+export function parseCleanJson(raw) {
+  const t = (raw || "").replace(/```(?:json)?/gi, "").trim();
+  const m = t.match(/\{[\s\S]*\}/);
+  if (!m) throw new Error(`JSON puudub: ${t.slice(0, 120)}`);
+  return normalizeClean(JSON.parse(m[0]));
+}
+// KAHE-TEE: batch-GEN tagastab tool_use ploki (struktureeritud) → võta input otse; inline-GEN tagastab
+//   teksti-JSON-i → parse. message = Anthropic Messages API vastus (content-massiiv).
+export function cleanFromMessage(message) {
+  const blocks = message?.content || [];
+  const tu = blocks.find((b) => b.type === "tool_use" && b.name === CLEAN_TOOL.name);
+  if (tu && tu.input) return normalizeClean(tu.input);
+  const text = blocks.filter((b) => b.type === "text").map((b) => b.text).join("\n");
+  return parseCleanJson(text);
 }
 export function parseJudgeJson(raw) {
   const t = (raw || "").replace(/```(?:json)?/gi, "").trim();
