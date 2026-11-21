@@ -68,7 +68,10 @@ export function sourceCorpus(p) {
 // ─────────────────────────── number/ühik-ekstrakt ───────────────────────────
 const NUM_RE = /\d+(?:[.,]\d+)?/g;
 const normNum = (x) => x.replace(",", ".").replace(/(\.\d*?)0+$/, "$1").replace(/\.$/, "");
-export function numSet(s) { return new Set((String(s).match(NUM_RE) || []).map(normNum)); }
+// ℃ (U+2103) / ℉ (U+2109) ligatuurid → "°C"/"°F", et NUMUNIT_RE/normUnit neid tunneks.
+// Allikas kasutab juhuti ligatuuri (nt "0℃-240℃") → ilma selleta jäi "240 °C" allika-tuvastusest välja.
+export function degNorm(s) { return String(s == null ? "" : s).replace(/℃/g, "°C").replace(/℉/g, "°F"); }
+export function numSet(s) { return new Set((degNorm(s).match(NUM_RE) || []).map(normNum)); }
 // ühik-normaliseerimine (variandid → kanooniline). AINULT teadaolevad mõõtühikud loevad ühikuks;
 // muu number-järgne sõna (nt "5 balance", "4 seats") on kogus/tekst → EI ole ühik.
 const UNIT_MAP = { inch: "in", inches: "in", '"': "in", "″": "in", foot: "ft", feet: "ft", pound: "lbs", pounds: "lbs", lb: "lbs", litre: "l", liter: "l", litres: "l", liters: "l", pcs: "pc", pieces: "pc", piece: "pc", kgs: "kg", grams: "g", gram: "g", meter: "m", meters: "m", metre: "m", metres: "m", watt: "w", watts: "w", volt: "v", volts: "v", amp: "a", amps: "a", ampere: "a", gallon: "gal", gallons: "gal", ounce: "oz", ounces: "oz" };
@@ -82,11 +85,31 @@ const NUMUNIT_RE = /(\d+(?:[.,]\d+)?)\s*([a-zA-Z%°″"]+)?/g;
 
 export function srcUnitPairs(srcText) {
   const set = new Set(); let m; NUMUNIT_RE.lastIndex = 0;
-  while ((m = NUMUNIT_RE.exec(srcText))) {
+  const txt = degNorm(srcText);
+  while ((m = NUMUNIT_RE.exec(txt))) {
     const unit = normUnit(m[2]); if (!unit) continue;
     set.add(`${normNum(m[1])}|${unit}`);
   }
   return set;
+}
+
+// ─────── KOHTUNIKU KITSAS LÕDVENDUS (Tarmo 2026-11-21) ───────
+// Mõõt-kompositsioon "A x B x C ühik" EI ole fabrikatsioon, kui KÕIK kolm väärtust on
+// allikas SAMA ühikuga (deterministlikud väravad lubavad need niikuinii). Leiutatud
+// väärtus → paar puudub srcPairs'ist → EI lülitata välja (jääb fail). Temperatuurivahemik
+// nagu "-10°C to 40°C" ei vasta mustrile (pole x-eraldus) → ei lülitata kunagi välja.
+const DIM_COMPOSITION_RE = /(-?\d+(?:[.,]\d+)?)\s*[x×*]\s*(-?\d+(?:[.,]\d+)?)\s*[x×*]\s*(-?\d+(?:[.,]\d+)?)\s*([a-zA-Z°″"]+)/;
+export function isGroundedDimClaim(claimText, srcPairs) {
+  const m = DIM_COMPOSITION_RE.exec(String(claimText || ""));
+  if (!m) return false;
+  const unit = normUnit(m[4]);
+  if (!unit) return false;
+  return [m[1], m[2], m[3]].every((n) => srcPairs.has(`${normNum(n)}|${unit}`));
+}
+// Filtreerib kohtuniku "unsupported" loendist AINULT allika-truud mõõt-kompositsioonid.
+export function filterJudgeClaims(unsupported, srcPairs) {
+  if (!Array.isArray(unsupported)) return [];
+  return unsupported.filter((x) => !isGroundedDimClaim(x && x.claim, srcPairs));
 }
 
 const FIELDS = ["title_en_clean", "description_en_clean"];
@@ -96,7 +119,7 @@ const FIELDS = ["title_en_clean", "description_en_clean"];
 export function accuracyGate(clean, srcNums) {
   const off = [];
   for (const f of FIELDS) {
-    const v = String(clean[f] || ""); let m; NUMUNIT_RE.lastIndex = 0;
+    const v = degNorm(clean[f] || ""); let m; NUMUNIT_RE.lastIndex = 0;
     while ((m = NUMUNIT_RE.exec(v))) {
       const num = normNum(m[1]);
       if (!/^(x|nd|rd|st|th)$/.test((m[2] || "").toLowerCase()) && !srcNums.has(num))
@@ -109,7 +132,7 @@ export function accuracyGate(clean, srcNums) {
 export function unitGate(clean, srcPairs, allowExtraPairs) {
   const off = [];
   for (const f of FIELDS) {
-    const v = String(clean[f] || ""); let m; NUMUNIT_RE.lastIndex = 0;
+    const v = degNorm(clean[f] || ""); let m; NUMUNIT_RE.lastIndex = 0;
     while ((m = NUMUNIT_RE.exec(v))) {
       const unit = normUnit(m[2]);
       if (!unit || /^(x|nd|rd|st|th)$/.test(unit)) continue; // ühikuta arv = kogus/kordaja (täpsus-värav katab)
@@ -483,6 +506,8 @@ Tee puhas EN master-title + kirjeldus. Kõik faktid ja numbrid AINULT ülaltoodu
 export const JUDGE_SYS = `Sa oled range faktikontrollija e-poe sisule. Antakse ALLIKAS (tarnija toore toote-andmed) ja PUHASTATUD master-tekst. Leia PUHASTATUD tekstis IGA konkreetne faktiväide, mida ALLIKAS EI TOETA.
 Konkreetne väide = komponent/osa, komplekti kuuluv ese, funktsioon/režiim, materjal, sertifikaat, ühilduvus, nimetatud omadus/võimekus.
 TOETATUD = allikas ütleb seda VÕI vihjab üheselt; ümbersõnastus/sünonüüm on toetatud; üldine turundus-omadussõna (vastupidav, kvaliteetne) EI ole väide.
+🌐 SPETSID võivad olla EESTIKEELSETE siltidega (nt "keevituskadu" = fusion loss, "võimsus" = power, "kaal" = weight). Kui PUHASTATUD väite väärtus+ühik vastab mõnele allika-spetsi väärtusele, on see TOETATUD — sildi keel EI loe. Ära märgi toetamatuks väidet, mille number+ühik on allika spetsides olemas.
+📐 MÕÕDUD: allika mõõdud (high/long/wide + ühik) kokku pandud kujule "A x B x C ühik" on TOETATUD, kui kõik kolm väärtust on allikas samade numbritega. Ära märgi seda leiutamiseks.
 🔑 PER-VARIANT ÜLDISTUS (loe rikkumiseks): kui puhas tekst ütleb "each/all/every/per <ese>" KOOS konkreetse mõõdu/kaaluga, aga allikas annab erinevatele variantidele ERINEVAD väärtused (nt kettad 210 vs 214 vs 213 mm), siis on see TOETAMATA väide — üks variandi arv on vale-üldistatud kõigile. Lisa see "unsupported" loendisse (why = millised allika-väärtused erinevad).
 Tagasta AINULT JSON: {"ok":true|false,"unsupported":[{"claim":"<väide>","field":"title|description","why":"<miks allikas ei toeta>"}]}`;
 
@@ -569,7 +594,7 @@ export async function cleanGatedInline(p, srcText, { callGen, callJudge, maxAtte
       try { judgeRes = parseJudgeJson(await callJudge(JUDGE_SYS, judgeUser(p, clean, orphans))); }
       catch (e) { judgeRes = { ok: true, unsupported: [], _err: e.message }; }
     } else { judgeRes = det.detOff.length === 0 ? { ok: true, unsupported: [] } : null; }
-    const claimOff = (judgeRes && !judgeRes.ok) ? (judgeRes.unsupported || []).map((x) => `VÄIDE «${x.claim}» (${x.field}): ${x.why}`) : [];
+    const claimOff = (judgeRes && !judgeRes.ok) ? filterJudgeClaims(judgeRes.unsupported, srcPairs).map((x) => `VÄIDE «${x.claim}» (${x.field}): ${x.why}`) : [];
     const offenders = [...det.detOff, ...claimOff];
     gate = { pass: offenders.length === 0, offenders, attempts: attempt, orphans, detail: { ...det.detail, claim: claimOff.length === 0 } };
     if (gate.pass) break;

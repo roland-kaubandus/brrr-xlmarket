@@ -34,7 +34,7 @@ import path from "node:path";
 import { execSync } from "node:child_process";
 import {
   M_GEN, M_JUDGE, CLEAN_SYS, cleanUser, JUDGE_SYS, judgeUser, CLEAN_TOOL, cleanFromMessage,
-  parseCleanJson, parseJudgeJson, sourceCorpus, numSet, srcUnitPairs,
+  parseCleanJson, parseJudgeJson, sourceCorpus, numSet, srcUnitPairs, filterJudgeClaims,
   runDetGates, applyMetric, buildAvoidNote, rangeCoherenceGate,
 } from "./lib/en-master-clean.mjs";
 import { runChunk, chunk as chunkArr } from "./lib/content-batch.mjs";
@@ -275,7 +275,7 @@ const usageHit = (r) => !r.ok && /credit|usage|insufficient|rate limit|quota/i.t
         const s = state.get(t.id); const r = jMap.get(`j_${ix.get(t.id)}`);
         let jr = { ok: true, unsupported: [] };
         try { jr = parseJudgeJson(textOf(r?.message)); } catch { jr = { ok: true, unsupported: [] }; } // parse-fail → ära blokeeri (det-väravad hoiavad)
-        s.claimOff = (jr && !jr.ok) ? (jr.unsupported || []).map((x) => `VÄIDE «${x.claim}» (${x.field}): ${x.why}`) : [];
+        s.claimOff = (jr && !jr.ok) ? filterJudgeClaims(jr.unsupported, t._pairs).map((x) => `VÄIDE «${x.claim}» (${x.field}): ${x.why}`) : [];
       }
     }
 
@@ -303,7 +303,7 @@ const usageHit = (r) => !r.ok && /credit|usage|insufficient|rate limit|quota/i.t
         const det2 = runDetGates(clean2, t._nums, t._pairs, t._src, null);
         let claim2 = [];
         if (det2.detOff.length === 0) {
-          try { const jr = parseJudgeJson(await inlineCall(M_JUDGE, JUDGE_SYS, judgeUser(t, clean2, det2.orphans), 900)); claim2 = (jr && !jr.ok) ? (jr.unsupported || []).map((x) => `VÄIDE «${x.claim}»`) : []; }
+          try { const jr = parseJudgeJson(await inlineCall(M_JUDGE, JUDGE_SYS, judgeUser(t, clean2, det2.orphans), 900)); claim2 = (jr && !jr.ok) ? filterJudgeClaims(jr.unsupported, t._pairs).map((x) => `VÄIDE «${x.claim}»`) : []; }
           catch (e) { if (isUsageLimitError(e) || isUsageLimitError(e._json)) { safeStop(`REGEN-judge: ${e.message}`, ledger); break; } claim2 = []; }
         }
         const off2 = [...det2.detOff, ...claim2];
