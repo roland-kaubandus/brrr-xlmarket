@@ -14,6 +14,7 @@ ALLOW=(
   "scripts/en-master-backfill.mjs"
   "scripts/en-master-detect.mjs"
   "scripts/en-master-remetric.mjs"
+  "scripts/en-master-review.mjs"
   "scripts/with-llm-env.sh"
 )
 
