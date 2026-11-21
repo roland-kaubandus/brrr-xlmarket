@@ -234,8 +234,11 @@ const _SC_SEP = `(?:\\s*[-–—]\\s*|\\s+to\\s+)`;
 //   (vana bug: "4°F"→"-16 °C" + orb "−" → "−-16 °C"; 21 temp-toodet). Vahemiku-kriips ("35-48") EI ole märk.
 function convScalar(text, fam, addedPairs) {
   const RE = new RegExp(`(${_SC_SIGN}${_SC_NUM}(?:${_SC_SEP}${_SC_SIGN}${_SC_NUM})?)\\s*(?:${fam.units})(?![a-zA-Z])`, "gi");
-  const afterMet = new RegExp(`^\\s*[/,(]?\\s*${_SC_NUM}\\s*(?:${_MET_ADJ})\\b`, "i");
-  const beforeMet = new RegExp(`${_SC_NUM}\\s*(?:${_MET_ADJ})\\b\\s*[/,(]?\\s*$`, "i");
+  // kõrval-meetriline VÕIB olla vahemik ("50-300 °C", "34 to 48 cm") — luba valikuline vahemiku-ots,
+  //   muidu afterMet näeb ainult esimest arvu ("50") ja jätab vahemiku-annotatsiooni tundmata → addMetric
+  //   lisab TEISE teisenduse → topelt-sulg ("50-300 °C (122-572°F) (50-300°C)"). Tarmo 2026-11-21 Samm 4-A.
+  const afterMet = new RegExp(`^\\s*[/,(]?\\s*${_SC_NUM}(?:${_SC_SEP}${_SC_NUM})?\\s*(?:${_MET_ADJ})\\b`, "i");
+  const beforeMet = new RegExp(`${_SC_NUM}(?:${_SC_SEP}${_SC_NUM})?\\s*(?:${_MET_ADJ})\\b\\s*[/,(]?\\s*$`, "i");
   const NUMSIGN = new RegExp(`(${_SC_SIGN})(${_SC_NUM})`, "g");
   return text.replace(RE, (full, body, offset, whole) => {
     if (parenDepthAt(whole, offset) > 0) return full;             // sulgude sees = allika-meetriline annotatsioon
