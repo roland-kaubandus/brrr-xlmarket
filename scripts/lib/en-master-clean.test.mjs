@@ -5,7 +5,7 @@
  * Tarmo 2026-11-19 (parandus B): kriips- ja "to"-vahemik teisenevad TERVIKUNA, mitte pooleldi.
  * Varem lõhkus addMetric vahemiku ("28-32 inch" → "28–81.3 cm (32 inch)") → ebasidus/vale ühik.
  */
-import { addMetric, rangeCoherenceOffenders, rangeCoherenceGate, accuracyGate, unitGate, numSet, srcUnitPairs, sourceCorpus, dimsLines, stripToolMarkup, normalizeClean, cleanFromMessage, CLEAN_TOOL } from "./en-master-clean.mjs";
+import { addMetric, rangeCoherenceOffenders, rangeCoherenceGate, accuracyGate, unitGate, numSet, srcUnitPairs, sourceCorpus, dimsLines, degNorm, isGroundedDimClaim, filterJudgeClaims, stripToolMarkup, normalizeClean, cleanFromMessage, CLEAN_TOOL } from "./en-master-clean.mjs";
 
 let fails = 0;
 function eq(label, input, want) {
@@ -226,6 +226,46 @@ srcg("dims 11.5 cm = allika-truu (läbib, varem väär-skip)",
 srcg("dims olemas, aga 99 cm leiutatud (skip)",
   { title: "Box", dimensions: { high: 11.5, long: 41, wide: 40, unit: "cm" } },
   "Box", "Stands 99 cm tall.", false);
+
+console.log("\n=== Samm 5.1 (Tarmo 2026-11-21): ℃/℉ ligatuuri normaliseerimine ===");
+{
+  const ok = degNorm("0℃-240℃") === "0°C-240°C" && degNorm("32℉-464℉") === "32°F-464°F";
+  console.log(`${ok ? "✓" : "✗"} degNorm ligatuur → ${JSON.stringify(degNorm("0℃-240℃"))}`);
+  if (!ok) fails++;
+}
+// allikas ℃-ligatuuriga, base tavalise °C-ga → nüüd LÄBIB (varem det-väär-positiivne)
+srcg("℃-ligatuur allikas, 240 °C base (läbib, varem väär-skip)",
+  { title: "Rotisserie Oven", specs: { temp: "0℃-240℃ / 32℉-464℉" } },
+  "Rotisserie Oven", "Adjustable temperature up to 240 °C for roasting.", true);
+// leiutatud temp (üle allika max) → endiselt skip
+srcg("leiutatud 300 °C (üle allika, skip)",
+  { title: "Oven", specs: { temp: "0℃-240℃" } }, "Oven", "Reaches 300 °C.", false);
+
+console.log("\n=== Samm 5.2 (Tarmo 2026-11-21): kohtuniku KITSAS dim-lõdvendus ===");
+{
+  const srcPairs = srcUnitPairs(sourceCorpus({ dimensions: { high: 76, long: 46, wide: 41, unit: "cm" } }));
+  // allika-truu mõõt-kompositsioon → DROP (pole fabrikatsioon)
+  const g1 = isGroundedDimClaim("measures 76 x 46 x 41 cm", srcPairs);
+  console.log(`${g1 ? "✓" : "✗"} grounded dim 76x46x41 cm → drop=${g1}`);
+  if (!g1) fails++;
+  // üks number leiutatud (99 pole allikas) → EI drop (jääb fail)
+  const g2 = isGroundedDimClaim("measures 76 x 46 x 99 cm", srcPairs);
+  console.log(`${!g2 ? "✓" : "✗"} fabrik 76x46x99 cm → drop=${g2} (OODATUD false)`);
+  if (g2) fails++;
+  // TARMO NÕUTUD: temperatuurivahemik EI vasta mustrile → EI drop (jääb fail)
+  const g3 = isGroundedDimClaim("operating range -10°C to 40°C", srcPairs);
+  console.log(`${!g3 ? "✓" : "✗"} temp -10…40°C → drop=${g3} (OODATUD false — fabrikatsioon jääb)`);
+  if (g3) fails++;
+  // filterJudgeClaims: segu → ainult grounded dim eemaldatakse
+  const filtered = filterJudgeClaims([
+    { claim: "measures 76 x 46 x 41 cm", field: "description" },
+    { claim: "operating range -10°C to 40°C", field: "description" },
+    { claim: "includes a titanium blade", field: "description" },
+  ], srcPairs);
+  const ok = filtered.length === 2 && filtered.every((x) => !/76 x 46 x 41/.test(x.claim));
+  console.log(`${ok ? "✓" : "✗"} filterJudgeClaims jätab temp+blade (${filtered.length}/3), eemaldab dim`);
+  if (!ok) fails++;
+}
 
 console.log(fails === 0 ? "\n✅ KÕIK LÄBIS" : `\n❌ ${fails} EBAÕNNESTUS`);
 process.exit(fails === 0 ? 0 : 1);
