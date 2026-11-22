@@ -14,6 +14,7 @@
  */
 
 import treeData from "./category-tree.generated.json"
+import { categoryName } from "./category-name"
 
 export type Locale = "et" | "en"
 
@@ -56,8 +57,8 @@ export function getNode(handle: string): CategoryNode | null {
 }
 
 export function nodeName(node: CategoryNode, locale?: string): string {
-  if (locale === "et" && node.name_et) return node.name_et
-  return node.name_en
+  // Delegate to the SSoT derivation in i18n (one locale rule for all consumers).
+  return categoryName(node, locale ?? "")
 }
 
 export function nodeImage(node: CategoryNode | null): string | null {

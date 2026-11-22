@@ -55,6 +55,10 @@ export function branchPath(locale: Locale, slug: string): string {
   return `/${locale}/haru/${slug}`
 }
 
+// SSoT locale-aware category-name derivation lives in a pure, dependency-free
+// module (testable in isolation); re-exported here for import ergonomics.
+export { categoryName } from "./category-name"
+
 export function translateLocalePath(path: string, locale: Locale): string {
   const withoutLocale = path.replace(/^\/(et|en)(?=\/|$)/, "")
   const translated = withoutLocale

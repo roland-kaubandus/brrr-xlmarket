@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef, useMemo } from "react"
 import SafeLink from "@/components/SafeLink"
-import { categoryPath, branchPath, type Locale } from "@/lib/i18n"
+import { categoryPath, branchPath, categoryName, type Locale } from "@/lib/i18n"
 import { V3_ICONS } from "@/lib/taxonomy-v3"
 import { CONCEPT_CATEGORY_IMAGES } from "@/lib/concept-banners"
 import type { HomepageL1Node } from "@/lib/menu-data"
@@ -164,11 +164,10 @@ export default function HomepageShell({ locale, l1Nodes, slides, promos, navShor
   const CATEGORIES: HomepageCategory[] = useMemo(
     () =>
       l1Nodes.map((n, i) => {
-        const et = (n as { name_et?: string }).name_et
         return {
           id: i + 1,
           slug: n.handle,
-          name: loc === "et" && et ? et : n.name_en,
+          name: categoryName(n, loc),
           prodNum: i + 1,
         }
       }),
@@ -475,9 +474,7 @@ export default function HomepageShell({ locale, l1Nodes, slides, promos, navShor
                       </span>
                     </SafeLink>
                     {l2List.map((l2) => {
-                      const l2Name = (loc === "et" && (l2 as { name_et?: string }).name_et)
-                        ? (l2 as { name_et?: string }).name_et!
-                        : l2.name_en
+                      const l2Name = categoryName(l2, loc)
                       return (
                         <SafeLink
                           key={l2.handle}
@@ -522,8 +519,7 @@ export default function HomepageShell({ locale, l1Nodes, slides, promos, navShor
                     const imgSrc = child.image_path
                       ? decodeURIComponent(child.image_path)
                       : (CONCEPT_CATEGORY_IMAGES[child.handle] ?? null)
-                    const childEt = (child as { name_et?: string }).name_et
-                    const childName = loc === "et" && childEt ? childEt : child.name_en
+                    const childName = categoryName(child, loc)
                     return (
                       <SafeLink
                         key={child.handle}

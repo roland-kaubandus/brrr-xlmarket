@@ -21,6 +21,25 @@ test('S2: kategooria-leht avaneb (L1 → sisu)', async ({ page }) => {
   await expect(page.locator('h1').first()).toBeVisible({ timeout: 10000 })
 })
 
+test('S4: ET-lehe alamkategooriate karussell on EESTI keeles (regressioon 8291d480)', async ({ page }) => {
+  // 2026-04-20 "EN-only cleanup" hardcode'is SubcategoryCarousel childName = name_en →
+  // ET-leht kuvas INGLISEKEELSEID alamkategooria-nimesid. Lukusta: karussellis ET-nimed,
+  // MITTE EN. (Fikseeritud leht + nimed; taksonoomia ümbernimetamisel uuenda ootused.)
+  const resp = await page.goto(`${BASE}/et/kategooriad/v4-meditsiin-ja-liikumisabi-liikumisabi`, { waitUntil: 'domcontentloaded' })
+  expect(resp?.status(), 'leht peab vastama 200').toBe(200)
+  const carousel = page.locator('[role="list"][aria-label="Alamkategooriad"]')
+  await expect(carousel.first()).toBeVisible({ timeout: 10000 })
+  const text = await carousel.first().innerText()
+  // Peab sisaldama EESTI nimesid
+  for (const et of ['Rollaatorid', 'Ratastoolid', 'Dušitoolid']) {
+    expect(text, `karussell peab sisaldama ET-nime "${et}"`).toContain(et)
+  }
+  // EI tohi sisaldada INGLISE nimesid (leke)
+  for (const en of ['Rollators', 'Wheelchairs', 'Shower Chairs']) {
+    expect(text, `karussell EI tohi sisaldada EN-nime "${en}" (ET-lehel)`).not.toContain(en)
+  }
+})
+
 test('S3: otsing "soojendi" annab tulemusi (KIHT 1 regressioon)', async ({ page }) => {
   const resp = await page.goto(`${BASE}/et/otsing?q=soojendi`, { waitUntil: 'domcontentloaded' })
   // otsingu-marsruut võib erineda; kui 404, märgi SKIP-ina (ära kukuta kogu smoke'i)

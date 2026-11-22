@@ -7,6 +7,7 @@ import ProductGrid from "@/components/ProductGrid"
 import BranchFilters from "@/components/BranchFilters"
 import SubcategoryGrid from "@/components/SubcategoryGrid"
 import { categoryPath } from "@/lib/i18n"
+import { getNode, nodeName } from "@/lib/category-tree"
 
 export const revalidate = 3600
 const DEFAULT_LIMIT = 12
@@ -100,7 +101,11 @@ export default async function BranchLandingPage({ params, searchParams }: Props)
     .filter(([h]) => !branchCategoryHandles.has(h))
     .map(([h, count]) => {
       const catObj = allCategories.find((c) => c.handle === h)
-      const name = catObj?.name || h.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ")
+      // SSoT locale-aware name (getCategoriesCached is locale-agnostic → EN leak on ET).
+      const node = getNode(h)
+      const name = node
+        ? nodeName(node, locale)
+        : (catObj?.name || h.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" "))
       return { id: catObj?.id || `meili_${h}`, name, handle: h, count }
     })
     .filter((c) => c.count > 0)
