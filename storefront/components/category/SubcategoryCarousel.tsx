@@ -3,7 +3,7 @@
 import { useEffect, useRef, useCallback, useState, type ReactElement } from "react"
 import Link from "next/link"
 import CategoryThumb from "@/components/CategoryThumb"
-import { categoryPath, type Locale } from "@/lib/i18n"
+import { categoryPath, categoryName, type Locale } from "@/lib/i18n"
 import type { ChildWithCount } from "@/lib/category-tree"
 
 interface SubcategoryCarouselProps {
@@ -169,7 +169,7 @@ export default function SubcategoryCarousel({
         style={{ scrollSnapType: "x mandatory" }}
       >
         {children.map((child, idx) => {
-          const childName = child.name_en
+          const childName = categoryName(child, locale)
           const isCurrent = previousHandle === child.handle
           const basePath = categoryPath(locale as Locale, child.handle)
           const childHref = safeCurrent ? `${basePath}?from=${encodeURIComponent(safeCurrent)}` : basePath

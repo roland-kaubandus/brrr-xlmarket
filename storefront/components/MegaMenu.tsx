@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect, useCallback, useMemo } from "react"
 import { usePathname } from "next/navigation"
 import Link from "@/components/SafeLink"
-import { categoryPath } from "@/lib/i18n"
+import { categoryPath, categoryName } from "@/lib/i18n"
 import { Menu, X, ChevronRight, ChevronLeft } from "lucide-react"
 import { V3_ICONS } from "@/lib/taxonomy-v3"
 import CategoryThumb from "@/components/CategoryThumb"
@@ -332,9 +332,8 @@ export default function MegaMenu({ locale = "en", menuData }: MegaMenuProps) {
   const totalWidth = 340 + (activeL1 ? 360 : 0) + drillPanels.length * panelWidth
 
   function nodeName(node: MenuNode, nlocale?: string): string {
-    const et = (node as { name_et?: string }).name_et
-    if (nlocale === "et" && et) return et
-    return node.name_en
+    // SSoT: one locale rule for all consumers (see i18n.categoryName).
+    return categoryName(node, nlocale ?? "")
   }
 
   return (
