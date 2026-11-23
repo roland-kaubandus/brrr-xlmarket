@@ -110,6 +110,28 @@ else
   echo "  Playwright/config puudub → SKIP (ei FAIL)"
 fi
 
+# ============ [3b] KEEL-LEKE (kategooria-nimed vales keeles, juhuvalim) ============
+# Deterministlik (ei LLM): juhuslik valim ET+EN kategooria-/toote-/avalehti; võrdleb
+# nähtavat kategooria-nime-teksti SSoT name_en/name_et loendiga. ET-lehel EI tohi olla
+# EN kategooria-nime, EN-lehel EI tohi olla ET-nime (erand: name_et==name_en või tõlget
+# pole). Valvab regressiooni 8291d480 tervel pinnal (S4-smoke lukustab vaid ühe lehe).
+echo "--- [3b] keele-leke (kategooria-nimed, Playwright → staging) ---"
+LEAK_MSG="keele-leke: SKIP"
+if [ -f "$ROOT/scripts/qa-lang-leak.mjs" ] && (cd "$ROOT/storefront" && npx --no-install playwright --version >/dev/null 2>&1); then
+  LEAK_OUT="$(timeout 300 node "$ROOT/scripts/qa-lang-leak.mjs" --cat 30 --prod 20 --conc 6 2>>"$LOG")"
+  LEAK_RC=$?
+  LEAK_LINE="$(printf '%s\n' "$LEAK_OUT" | tail -1)"
+  if [ "$LEAK_RC" -eq 0 ] && [ "${LEAK_LINE:0:2}" = "OK" ]; then
+    LEAK_MSG="keele-leke: ${LEAK_LINE}"
+  else
+    LEAK_MSG="keele-leke: ${LEAK_LINE:-KUKKUS (rc=$LEAK_RC, vt log)}"
+    FAILS+=("$LEAK_MSG")
+  fi
+  echo "  $LEAK_MSG"
+else
+  echo "  Playwright/skript puudub → SKIP (ei FAIL)"
+fi
+
 # ============ [4] A2/A4 SEIS (report-only) ============
 # AUS: family-scatter-detect --json annab TOORED kandidaadid (verdict/confidence=null;
 # neid täidab alles LLM-sõel). Seega see arv = tooraine, MITTE teostatavad. Gated-execute
@@ -126,6 +148,7 @@ if [ ${#FAILS[@]} -eq 0 ]; then
 $SCATTER_MSG
 $SMOKE
 $PAGE_MSG
+$LEAK_MSG
 $A_MSG"
 else
   RESULT=FAIL
@@ -133,11 +156,13 @@ else
   tg "🔴 Nädalane QA — $(( ${#FAILS[@]} )) probleemi
 $FJOIN
 $SCATTER_MSG
+$LEAK_MSG
 log: $LOG"
 fi
 echo "result=$RESULT fails=${#FAILS[@]} ts=$STAMP" | tee "$LOGDIR/weekly-qa-STATUS"
 # prune: hoia viimased ~8 ajatempliga scatter-snapshot'i + logi (baseline jääb alles)
 ls -1t "$BASEDIR"/scatter-2*.json 2>/dev/null | tail -n +9 | xargs -r rm -f
 ls -1t "$LOGDIR"/weekly-qa-2*.log 2>/dev/null | tail -n +9 | xargs -r rm -f
+ls -1t "$ROOT"/reports/qa-lang-leak-2*.md 2>/dev/null | tail -n +9 | xargs -r rm -f
 echo "=== weekly-qa valmis: $RESULT ==="
 [ "$RESULT" = OK ]
