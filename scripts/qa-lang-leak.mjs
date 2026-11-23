@@ -12,8 +12,11 @@
  *   Erand: kui kategoorial POLE name_et → ET-leht kuvab seaduslikult name_en (fallback) → EI leke.
  *
  * KUST nimed: ainult kategooria-nime-chrome — `a[href*="/kategooriad/"]` linkide tekst + (kat-lehel) H1.
- *   EI skanni tootevõre sisu (staging'us tootekirjeldused veel inglise VEVOR → vale-positiiv välditud).
- *   Sobitus = TÄPNE (normaliseeritud, reavahe-kaupa) → ei lõika tooteteksti substringe.
+ *   See on TÄPSUSE valik: kategooria-nimi lekeb just siin (karussell/breadcrumb/menüü/avaleht).
+ *   Terve-lehe tekst võrdluseks tooks vale-positiive — bränd/ühik/mudel-märgend (nt "Type 2",
+ *   "in", "VEVOR") võib juhuslikult kattuda mõne kategooria-nimega. (NB: ET tootesisu ISE on
+ *   eesti keeles — kontrollitud 2026-11-23; skoop pole seotud tootesisu keelega.)
+ *   Sobitus = TÄPNE (normaliseeritud, reavahe-kaupa) → ei lõika substringe.
  *
  * SSoT nimeloend: storefront/lib/category-tree.generated.json (name_en + name_et, sama mis DB-tuletus).
  * Väljund: reports/qa-lang-leak-<stamp>.md + viimane stdout-rida = masin-tulem (OK / FAIL ...).
