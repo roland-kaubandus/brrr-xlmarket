@@ -340,6 +340,32 @@ else
   [ "$CREDIT_OK" = "1" ] && echo "  sisu-deficit tühi → sisu-gen vahele (kõigil ET-sisu olemas)" || echo "  krediit/API maas → sisu-gen SKIP (degrade)"
 fi
 
+# ── [6.52] METRIC-ET (host) — imperiaal→meetriline ET-kuju HOOK (HARD RULE #5+#6) ──
+# SAMA transform+väravad kui backfill (scripts/pipeline-apply-metric-et.mjs jagab lib/metric-et.mjs +
+# en-master-clean.mjs addMetric-ahelat). DETERMINISTLIK (MITTE-LLM) → EI sõltu krediidist, jookseb alati.
+# --all (self-healing, HARD RULE #6: deficit ⊇ delta): normaliseerib uued tooted + [6.5] sisu-gen'i värsked
+# ET-kirjeldused + varasemad möödalased. Idempotentne (juba-normaliseeritu = NOOP, 0 kirjutust). Fail-closed
+# väravad sees (allika-vastuolu / imperiaal-vahemik / jala-prim ' / rate-ühik / erandid foto+ratas+velo).
+# ASUKOHT: PÄRAST [6.5] sisu-gen (ET-tekst värske), ENNE [6.9] morph + [7] reindeks (morph/indeks näevad
+# normaliseeritud title_et). Stack-lukk päritakse (re-entrant). Vaikne aken 02:45–04:30: jookseb post-04:30
+# (pärast en-master [6.55] ooteakent); kui ERANDINA aknasse satub → runner exit 1 → HOIATUS + self-heal.
+# FAIL-SOFT: ET-mõõtkuju = display-poleerimine (pood toimib ka toore kujuga) → rc!=0 = HOIATUS, EI blokeeri reindeksit.
+echo "[6.52/7] metric-et (imperiaal→meetriline ET-kuju — self-healing --all, deterministlik)"
+if [ "$EXECUTE" = "1" ]; then
+  MT_OUT=$(node "$ROOT/scripts/pipeline-apply-metric-et.mjs" --all --execute 2>&1) && MT_RC=0 || MT_RC=$?
+  echo "$MT_OUT" | sed 's/^/  /'
+  if [ "$MT_RC" != "0" ]; then
+    echo "  ⚠️ [6.52] metric-et rc=$MT_RC — HOIATUS (ei blokeeri): [7] reindeks JÄTKUB"
+    slack "⚠️ XLM metric-et [6.52] rc=$MT_RC (HOIATUS, mitte FAIL): ET-mõõtkuju normaliseerimine kukkus (vaikne aken / stack-lukk / DB?). Pood uueneb (toores ET-kuju jääb). Self-heal järgmine öö või käsitsi: node scripts/pipeline-apply-metric-et.mjs --all --execute"
+  else
+    MT_N=$(printf '%s' "$MT_OUT" | grep -oE 'APPLIED=[0-9]+' | tail -1 | cut -d= -f2); MT_N=${MT_N:-0}
+    echo "  metric-et rakendatud: $MT_N välja-muudatust"
+  fi
+else
+  MT_OUT=$(node "$ROOT/scripts/pipeline-apply-metric-et.mjs" --all 2>&1 || true)
+  echo "$MT_OUT" | sed 's/^/  /'
+fi
+
 # ── [6.55] EN-MASTER PUHASTUS (host) — HARD RULE #5 HOOK (display-kvaliteet EN, ENNE reindeks) ─
 # SAMA transform+write kui backfill (en-master-backfill.mjs jagab en-master-clean.mjs lib'i). DEFICIT-peal
 # (title_en_clean puudu — self-healing, Fix 2). Batch API: GEN→kohtunik→regen→det-väravad→applyMetric.

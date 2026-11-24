@@ -204,23 +204,30 @@ function pNum(s) {
   let x = String(s).trim().replace(/,(?=\d{3}(?:\D|$))/g, ""); // 17,600 → 17600
   return Number(x.replace(",", "."));
 }
+// ── robustne ümardus (pool ÜLES), ujukoma-artefakti-vaba ──
+//   VANA BUG: Number((6.35).toFixed(1)) = 6.3 (6.35 salvestub kui 6.3499…) → peaks 6.4 (pool üles).
+//   Epsilon (1e-9) korrigeerib IEEE754-müra enne skaleeritud Math.round'i. Normaalväärtusi ei muuda.
+function rnd(v, dec) {
+  const f = 10 ** dec;
+  return Math.round((v + (v < 0 ? -1 : 1) * 1e-9) * f) / f;
+}
 // ── magnituudi-teadlik ümardus iga meetrilise ühiku jaoks (loetav + täpne) ──
 //   VANA BUG: 0.33 lb → 0.15 kg → toFixed(1) = "0.1" (liiga agar). Nüüd väikesed kg/L/m 2 kohta.
 function roundMet(v, u) {
   switch (u) {
-    case "mm": return v >= 100 ? Math.round(v) : Number(v.toFixed(1));
-    case "cm": return v >= 100 ? Math.round(v) : Number(v.toFixed(1));
-    case "m": return v >= 10 ? Number(v.toFixed(1)) : Number(v.toFixed(2));
-    case "kg": return v >= 10 ? Number(v.toFixed(1)) : Number(v.toFixed(2));
+    case "mm": return v >= 100 ? Math.round(v) : rnd(v, 1);
+    case "cm": return v >= 100 ? Math.round(v) : rnd(v, 1);
+    case "m": return v >= 10 ? rnd(v, 1) : rnd(v, 2);
+    case "kg": return v >= 10 ? rnd(v, 1) : rnd(v, 2);
     case "g": return Math.round(v);
-    case "L": return v >= 10 ? Number(v.toFixed(1)) : Number(v.toFixed(2));
+    case "L": return v >= 10 ? rnd(v, 1) : rnd(v, 2);
     case "mL": return Math.round(v);
     case "°C": return Math.round(v);
-    case "m²": return v >= 10 ? Number(v.toFixed(1)) : Number(v.toFixed(2));
+    case "m²": return v >= 10 ? rnd(v, 1) : rnd(v, 2);
     case "cm²": return Math.round(v);
-    case "m³": return Number(v.toFixed(2));
+    case "m³": return rnd(v, 2);
     case "cm³": return Math.round(v);
-    default: return Number(v.toFixed(2));
+    default: return rnd(v, 2);
   }
 }
 // ── SKALAAR-perekonnad (ümberehitus, Tarmo 2026-11-19): igaühel OMA ühiku-tüüp + reegel. ──
@@ -298,8 +305,8 @@ const LEN = {
 };
 const lenKey = (u) => { u = (u || "").toLowerCase(); return LEN[u] ? u : null; };
 const lenRound = (met, unit) => unit === "cm"
-  ? (met >= 100 ? Math.round(met) : Number(met.toFixed(1)))
-  : (met >= 10 ? Number(met.toFixed(1)) : Number(met.toFixed(2)));
+  ? (met >= 100 ? Math.round(met) : rnd(met, 1))
+  : (met >= 10 ? rnd(met, 1) : rnd(met, 2));
 const LEN_UNIT = `inches|inch|feet|foot|ft|in|″|"`; // pikim enne (inches enne in)
 // allikas-duaal PIKKUSELE: imperiaal + KOHE meetriline pikkus-annotatsioon ("12\" (320 mm)", "60 x 24 in (152 x 61 cm)",
 //   "2 in / 5 cm") → ära lisa teist teisendust (väldib topelt-sulgu). AINULT pikkus-ühikud (mm/cm/m): "12 in, 5 kg"

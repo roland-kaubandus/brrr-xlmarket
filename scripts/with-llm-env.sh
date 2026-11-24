@@ -23,6 +23,7 @@ ALLOW=(
   "scripts/en-master-detect.mjs"
   "scripts/en-master-remetric.mjs"
   "scripts/en-master-review.mjs"
+  "scripts/metric-et-audit.mjs"
   "scripts/credit-probe.mjs"
 )
 
