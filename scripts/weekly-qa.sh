@@ -132,6 +132,22 @@ else
   echo "  Playwright/skript puudub → SKIP (ei FAIL)"
 fi
 
+# ============ [3c] CMS-DRIFT (git-fallback == LIVE DB, legal-lehed) ============
+# Storefront loeb CMS-i LIVE DB-st (getLegalPage võidab fallback'i). Fallback-JSON = git-SSoT.
+# Kui DB-d muudetakse admin-CMS-ist ilma fallback'i eksportimata (või vastupidi), kaks allikat
+# triivivad lahku → leht näitab üht, git teist (juhtus §6 lisamisel 2026-11-25). Deep-equal
+# (parsitud JSON, võtme-sort) — vorming ei loe, SISU loeb. REPORT-ONLY, EI kirjuta.
+echo "--- [3c] cms-drift (fallback == DB, legal) ---"
+DRIFT_OUT="$(node "$ROOT/scripts/cms-fallback-drift.mjs" 2>>"$LOG")"
+DRIFT_RC=$?
+DRIFT_MSG="$(printf '%s\n' "$DRIFT_OUT" | tail -1)"
+if [ "$DRIFT_RC" -eq 0 ] && [ "${DRIFT_MSG:0:2}" = "OK" ]; then
+  echo "  $DRIFT_MSG"
+else
+  DRIFT_MSG="${DRIFT_MSG:-cms-drift KUKKUS (rc=$DRIFT_RC, vt log)}"
+  echo "  $DRIFT_MSG"; FAILS+=("$DRIFT_MSG")
+fi
+
 # ============ [4] A2/A4 SEIS (report-only) ============
 # AUS: family-scatter-detect --json annab TOORED kandidaadid (verdict/confidence=null;
 # neid täidab alles LLM-sõel). Seega see arv = tooraine, MITTE teostatavad. Gated-execute
@@ -149,6 +165,7 @@ $SCATTER_MSG
 $SMOKE
 $PAGE_MSG
 $LEAK_MSG
+$DRIFT_MSG
 $A_MSG"
 else
   RESULT=FAIL
@@ -157,6 +174,7 @@ else
 $FJOIN
 $SCATTER_MSG
 $LEAK_MSG
+$DRIFT_MSG
 log: $LOG"
 fi
 echo "result=$RESULT fails=${#FAILS[@]} ts=$STAMP" | tee "$LOGDIR/weekly-qa-STATUS"
