@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer"
+import { buildListUnsubscribeHeaders } from "../modules/newsletter/logic.js"
 import { notifyTelegram } from "./telegram.js"
 import { computeInvoiceTotals } from "./invoice-totals.js"
 import { resolveLocale, resolveBuyer, resolveInvoiceNumber, itemTitle, LABELS } from "./invoice-view.js"
@@ -75,9 +76,12 @@ interface SendEmailOptions {
   html: string
   bcc?: string | string[]
   attachments?: EmailAttachment[]
+  // Turunduskirjad (uudiskiri): üks-kliki loobumise päis (RFC 2369/8058). url = storefront
+  // /api/newsletter/unsubscribe?token=...; mailto valikuline fallback. Tehingukirjad jätavad tühjaks.
+  listUnsubscribe?: { url: string; mailto?: string }
 }
 
-export async function sendEmail({ to, subject, html, bcc, attachments }: SendEmailOptions) {
+export async function sendEmail({ to, subject, html, bcc, attachments, listUnsubscribe }: SendEmailOptions) {
   // SSoT-värav: allowlist (staging) → kill-switch → prod. Iga saaja (to JA bcc) läbib värava
   // SÕLTUMATULT (SSoT). BUG-FIX 2026-11-07: `to` blokk EI tohi kaotada bcc-koopiat —
   // nt staging'us ettevõtte-arve läheb kliendile (blokis) + raamatupidamise bcc-koopiale (lubatud);
@@ -105,6 +109,9 @@ export async function sendEmail({ to, subject, html, bcc, attachments }: SendEma
   const att = attachments && attachments.length ? ` +${attachments.length} manus` : ""
   const toField = toAllowed ? to : undefined
   console.log(`[EMAIL] SEND (${gate.reason}) — to=${toField ?? "(blokis, ainult bcc)"}${bccList.length ? ` bcc=${bccList.join(",")}` : ""}${att} subject="${subject}"`)
+  const unsubHeaders = listUnsubscribe
+    ? buildListUnsubscribeHeaders(listUnsubscribe.url, listUnsubscribe.mailto)
+    : {}
   await transporter.sendMail({
     from: `"${EMAIL_FROM_NAME}" <${EMAIL_FROM}>`,
     ...(toField ? { to: toField } : {}),
@@ -112,6 +119,7 @@ export async function sendEmail({ to, subject, html, bcc, attachments }: SendEma
     ...(EMAIL_REPLY_TO ? { replyTo: EMAIL_REPLY_TO } : {}),
     subject,
     html,
+    ...(Object.keys(unsubHeaders).length ? { headers: unsubHeaders } : {}),
     ...(attachments && attachments.length ? { attachments } : {}),
   })
 }
