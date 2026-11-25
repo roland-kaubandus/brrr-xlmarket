@@ -103,16 +103,26 @@ for pair in "${ARGS[@]}"; do
     VAL="$(cat "$f")"
   fi
 
+  # NEXT_PUBLIC_* bake'itakse Next.js build-ajal → is_buildtime PEAB olema true, muidu
+  # Coolify ei asenda ${VAR} build.args'is ja väärtus ei jõua bundlisse (2026-11-25 regressioon:
+  # runtime-env=true, aga build=false → linnuke DCE'iti). Sunni AUTOMAATSELT, --build-time lipust sõltumata.
+  KBT="$BUILD_TIME"
+  case "$KEY" in NEXT_PUBLIC_*) KBT="true" ;; esac
+
   EXISTING="$(env_uuid_for "$KEY" || true)"
   BEFORE="$(env_updated_for "$KEY" || true)"
   if [ -n "$EXISTING" ]; then METHOD="PATCH"; OP="uuenda (kirje ${EXISTING:0:8})"; else METHOD="POST"; OP="LOO uus"; fi
-  echo "• $KEY → $OP · $(mask "$KEY" "$VAL")"
+  echo "• $KEY → $OP · $(mask "$KEY" "$VAL") · is_buildtime=$KBT"
+  case "$KEY" in NEXT_PUBLIC_*)
+    echo "  ⚠️ NEXT_PUBLIC_* → is_buildtime=true määratud AUTOMAATSELT. Jõustub ALLES pärast rebuild'i"
+    echo "     (coolify-deploy.sh) — runtime-env üksi Next.js bundlit EI bake'i." ;;
+  esac
 
   if [ "$DRY" = "true" ]; then continue; fi
 
   # Payload node'iga (escapib väärtuse ohutult; väärtust EI prindita). is_literal=true → Coolify
   # ei tõlgenda $-märke (meie väärtused on true/false/email-list — literaal ohutu).
-  RESP="$(KEY="$KEY" VAL="$VAL" BT="$BUILD_TIME" node -e '
+  RESP="$(KEY="$KEY" VAL="$VAL" BT="$KBT" node -e '
     process.stdout.write(JSON.stringify({
       key: process.env.KEY, value: process.env.VAL,
       is_preview: false, is_buildtime: process.env.BT==="true",
@@ -131,10 +141,10 @@ for pair in "${ARGS[@]}"; do
     if [ -n "$EXISTING" ] && [ "$AFTER" = "$BEFORE" ]; then
       echo "  ⚠️ HTTP $RESP aga updated_at ei muutunud ($BEFORE) — kontrolli UI"; RC=6; continue
     fi
-    LINE="$(date -u +%FT%TZ) k33g $METHOD $KEY $(mask "$KEY" "$VAL") is_preview=false build_time=$BUILD_TIME http=$RESP uuid=${NOWUUID:0:8} updated=$AFTER"
+    LINE="$(date -u +%FT%TZ) k33g $METHOD $KEY $(mask "$KEY" "$VAL") is_preview=false is_buildtime=$KBT http=$RESP uuid=${NOWUUID:0:8} updated=$AFTER"
     echo "  ✅ HTTP $RESP · kirje ${NOWUUID:0:8} updated=$AFTER"
     echo "$LINE" >> "$AUDIT_LOG"
-    tg "🔧 Coolify k33g env: $METHOD $KEY ($(mask "$KEY" "$VAL")) is_preview=false → HTTP $RESP (uuid ${NOWUUID:0:8}). Vajab redeploy't, et jõustuks."
+    tg "🔧 Coolify k33g env: $METHOD $KEY ($(mask "$KEY" "$VAL")) is_preview=false is_buildtime=$KBT → HTTP $RESP (uuid ${NOWUUID:0:8}). Vajab redeploy't, et jõustuks."
   else
     echo "  ❌ HTTP $RESP (401=write-õigus puudub, 404=vale uuid/endpoint, 422=valideerimis-viga)"
     cat /tmp/coolify-env-resp.json 2>/dev/null | sed -E 's/("value"[[:space:]]*:[[:space:]]*)"[^"]*"/\1"<MASKED>"/g'; echo

@@ -47,5 +47,19 @@ else
   echo "  … (vahele: .env puudub, behavioral allowlist-test nõuab tokenit)"
 fi
 
+echo "── 5) NEXT_PUBLIC_* → is_buildtime=true AUTOMAATNE (2026-11-25 regressiooni-lukk) ──"
+# staatiline: auto-force haru olemas
+grep -qE 'case "\$KEY" in NEXT_PUBLIC_\*\) KBT="true"' "$S" && pass "NEXT_PUBLIC_* sunnib KBT=true" || fail "NEXT_PUBLIC_* auto-force puudub"
+# käitumuslik (dry-run; GET localhost:8000, POST/PATCH-i EI tehta) — nõuab tokenit
+if [ -f /opt/eumotors-tasks/.env ]; then
+  out="$(bash "$S" NEXT_PUBLIC_NEWSLETTER_ENABLED=true --dry-run 2>&1)"
+  echo "$out" | grep -qE 'is_buildtime=true' && pass "NEXT_PUBLIC → is_buildtime=true (dry-run)" || { fail "NEXT_PUBLIC ei sundinud build-time'i:"; echo "$out" | sed 's/^/      /'; }
+  echo "$out" | grep -qiE 'rebuild' && pass "hoiatab rebuild'i vajadusest" || { fail "rebuild-hoiatus puudub:"; echo "$out" | sed 's/^/      /'; }
+  out2="$(bash "$S" EMAIL_DISABLED=true --dry-run 2>&1)"
+  echo "$out2" | grep -qE 'is_buildtime=false' && pass "mitte-NEXT_PUBLIC jääb is_buildtime=false" || { fail "EMAIL_DISABLED polnud is_buildtime=false:"; echo "$out2" | sed 's/^/      /'; }
+else
+  echo "  … (vahele: .env puudub — dry-run nõuab tokenit)"
+fi
+
 echo
 [ "$FAIL" = 0 ] && echo "✅ KÕIK ROHELINE" || { echo "🔴 TEST KUKKUS"; exit 1; }
