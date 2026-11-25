@@ -115,7 +115,7 @@ for pair in "${ARGS[@]}"; do
   RESP="$(KEY="$KEY" VAL="$VAL" BT="$BUILD_TIME" node -e '
     process.stdout.write(JSON.stringify({
       key: process.env.KEY, value: process.env.VAL,
-      is_preview: false, is_build_time: process.env.BT==="true",
+      is_preview: false, is_buildtime: process.env.BT==="true",
       is_literal: true, is_multiline: false, is_shown_once: false
     }))' \
     | curl -s -o /tmp/coolify-env-resp.json -w "%{http_code}" \
