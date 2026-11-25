@@ -50,6 +50,8 @@ type FormData = {
   company_name: string
   company_reg: string // Eesti äriregistri kood, 8 numbrit
   company_vat: string // KMKR number, EE + 9 numbrit (valikuline — kõik firmad pole KM-kohustuslased)
+  // Uudiskirja nõusolek (märkimata vaikimisi — GDPR: opt-in). Kassa = single opt-in, kohe confirmed.
+  marketing_consent: boolean
 }
 
 const initialForm: FormData = {
@@ -65,7 +67,12 @@ const initialForm: FormData = {
   company_name: "",
   company_reg: "",
   company_vat: "",
+  marketing_consent: false,
 }
+
+// Uudiskirja kogumise lipp (vaikimisi OFF). Linnuke kuvatakse AINULT kui lipp on sees.
+// Kogumine aktiveerub alles pärast privaatsuspoliitika otseturunduse punkti heakskiitu.
+const NEWSLETTER_ENABLED = process.env.NEXT_PUBLIC_NEWSLETTER_ENABLED === "true"
 
 const inputClass = "w-full border border-[#E2E8F0] rounded-lg px-3 py-2.5 text-[13px] text-[#1a1a2e] bg-white focus:outline-none focus:border-[#0ea5a0] focus:ring-1 focus:ring-[#0ea5a0]/20 transition-colors"
 const labelClass = "block text-[12px] font-medium text-[#64748B] mb-1.5"
@@ -209,6 +216,21 @@ export default function CheckoutPage() {
         setError(locale === "et" ? "Kliendiandmete salvestamine ebaõnnestus" : "Failed to save customer details")
         setSubmitting(false)
         return
+      }
+
+      // Uudiskirja nõusolek (kassa single opt-in). MITTE-blokeeriv: viga siin EI tohi
+      // tellimust peatada. Ainult kui lipp sees JA linnuke märgitud. IP/UA + versioon
+      // salvestab backend. Kogumine aktiveerub alles pärast poliitika heakskiitu.
+      if (NEWSLETTER_ENABLED && form.marketing_consent) {
+        try {
+          await fetch("/api/newsletter/consent", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email: form.email, locale }),
+          })
+        } catch {
+          /* vaikne — nõusolek on kõrvaltegevus, ei mõjuta kassat */
+        }
       }
 
       // Step 2: Set shipping method
@@ -694,6 +716,25 @@ export default function CheckoutPage() {
                     </span>
                   </div>
                 </div>
+
+                {/* Uudiskirja nõusolek — märkimata vaikimisi (GDPR opt-in). Kuvatakse
+                    AINULT kui kogumis-lipp sees. Single opt-in → kohe confirmed. */}
+                {NEWSLETTER_ENABLED && (
+                  <label htmlFor="marketing_consent" className="flex items-start gap-2.5 mt-5 cursor-pointer select-none">
+                    <input
+                      id="marketing_consent"
+                      type="checkbox"
+                      checked={form.marketing_consent}
+                      onChange={(e) => setForm((prev) => ({ ...prev, marketing_consent: e.target.checked }))}
+                      className="h-4 w-4 mt-0.5 rounded border-[#CBD5E1] text-[#0ea5a0] focus:ring-[#0ea5a0]/30 shrink-0"
+                    />
+                    <span className="text-[13px] text-[#475569] leading-snug">
+                      {locale === "et"
+                        ? "Soovin pakkumisi ja uudiseid e-postiga. Saan igal ajal loobuda."
+                        : "I'd like to receive offers and news by email. I can unsubscribe anytime."}
+                    </span>
+                  </label>
+                )}
 
                 <button
                   type="submit"

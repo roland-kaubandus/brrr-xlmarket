@@ -68,6 +68,10 @@ COPY --from=builder --chown=medusa:medusa /app/scripts/feed-sync-bulk.sh ./scrip
 # warm-cache.sh — homepage külm-render 504 leevendus (Coolify Scheduled Task iga 15min
 # + feed-sync [8/8]). POSIX sh (konteineris pole bash). Vt scaling-doc §17/§19.
 COPY --from=builder --chown=medusa:medusa /app/scripts/warm-cache.sh ./scripts/warm-cache.sh
+# Uudiskirja-nõusolekute tabeli ÜHEKORDNE setup (idempotentne DDL, `node scripts/setup-newsletter-consent.mjs`).
+#   AINULT pg + node builtins. Vajalik image's, et tabel saaks luua ka pärast DB-reset'i / prod-cutover'it
+#   ilma docker cp'ta. Moodul ise (src/modules/newsletter) kompileeritakse medusa build'iga → ei vaja COPY-rida.
+COPY --from=builder --chown=medusa:medusa /app/scripts/setup-newsletter-consent.mjs ./scripts/setup-newsletter-consent.mjs
 COPY --from=builder --chown=medusa:medusa /app/src/filters ./src/filters
 COPY --from=builder --chown=medusa:medusa /app/src/data/filter-profiles.yaml ./src/data/filter-profiles.yaml
 
