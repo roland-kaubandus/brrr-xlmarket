@@ -17,6 +17,10 @@ ARG NEXT_PUBLIC_REGION_ID
 ARG NEXT_PUBLIC_BASE_URL=https://xlmarket.eu
 ARG NEXT_PUBLIC_MEILI_URL
 ARG NEXT_PUBLIC_MEILI_KEY
+# Uudiskirja kassa-linnukese build-time lipp (Next.js bake'b NEXT_PUBLIC_* ainult build-ajal
+# → ilma selle ARG/ENV-paarita jääks Coolify build-env märkamata ja linnuke ei renderduks).
+# Vaikimisi tühi = OFF (process.env...==="true" false). Coolify seab is_build_time väärtuse.
+ARG NEXT_PUBLIC_NEWSLETTER_ENABLED
 
 ENV NEXT_PUBLIC_MEDUSA_URL=${NEXT_PUBLIC_MEDUSA_URL} \
     NEXT_PUBLIC_MEDUSA_KEY=${NEXT_PUBLIC_MEDUSA_KEY} \
@@ -24,6 +28,7 @@ ENV NEXT_PUBLIC_MEDUSA_URL=${NEXT_PUBLIC_MEDUSA_URL} \
     NEXT_PUBLIC_BASE_URL=${NEXT_PUBLIC_BASE_URL} \
     NEXT_PUBLIC_MEILI_URL=${NEXT_PUBLIC_MEILI_URL} \
     NEXT_PUBLIC_MEILI_KEY=${NEXT_PUBLIC_MEILI_KEY} \
+    NEXT_PUBLIC_NEWSLETTER_ENABLED=${NEXT_PUBLIC_NEWSLETTER_ENABLED} \
     NEXT_TELEMETRY_DISABLED=1
 
 COPY --from=deps /app/node_modules ./node_modules

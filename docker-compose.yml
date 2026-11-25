@@ -266,6 +266,9 @@ services:
         NEXT_PUBLIC_BASE_URL: ${NEXT_PUBLIC_BASE_URL}
         NEXT_PUBLIC_MEILI_URL: ${NEXT_PUBLIC_MEILI_URL}
         NEXT_PUBLIC_MEILI_KEY: ${NEXT_PUBLIC_MEILI_KEY}
+        # Uudiskirja kassa-linnukese build-time lipp (Next.js bake'b NEXT_PUBLIC_* build-ajal).
+        # Vaikimisi tühi = OFF; Coolify app-env NEXT_PUBLIC_NEWSLETTER_ENABLED=true lülitab sisse.
+        NEXT_PUBLIC_NEWSLETTER_ENABLED: ${NEXT_PUBLIC_NEWSLETTER_ENABLED:-}
     restart: unless-stopped
     environment:
       NODE_ENV: production
@@ -275,6 +278,8 @@ services:
       NEXT_PUBLIC_BASE_URL: ${NEXT_PUBLIC_BASE_URL}
       NEXT_PUBLIC_MEILI_URL: ${NEXT_PUBLIC_MEILI_URL}
       NEXT_PUBLIC_MEILI_KEY: ${NEXT_PUBLIC_MEILI_KEY}
+      # Runtime-peegeldus (SSR-moodul loeb sama lippu); tegelik bake toimub build.args kaudu.
+      NEXT_PUBLIC_NEWSLETTER_ENABLED: ${NEXT_PUBLIC_NEWSLETTER_ENABLED:-}
       # Server-side (SSR) Meili calls go over the internal Docker network.
       # MEILISEARCH_HOST is read by lib/meilisearch.ts, lib/verticals.ts, api/muuja.
       # MEILI_INTERNAL_URL is read by the xl-admin categorization-queue page.
