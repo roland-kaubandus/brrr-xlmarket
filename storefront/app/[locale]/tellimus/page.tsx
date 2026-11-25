@@ -732,6 +732,15 @@ export default function CheckoutPage() {
                       {locale === "et"
                         ? "Soovin pakkumisi ja uudiseid e-postiga. Saan igal ajal loobuda."
                         : "I'd like to receive offers and news by email. I can unsubscribe anytime."}
+                      {" "}
+                      <Link
+                        href={`/${locale}/privaatsus`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="underline text-[#0ea5a0] hover:text-[#0c8a86]"
+                      >
+                        {locale === "et" ? "Loe lähemalt" : "Read more"}
+                      </Link>
                     </span>
                   </label>
                 )}

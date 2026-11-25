@@ -21,14 +21,14 @@ kassa linnuke (single opt-in), jaluse vorm (double opt-in — tuleb hiljem), ja 
 
 > ## 6. Otseturundus
 >
-> Kui annad selleks nõusoleku, saadame sulle e-postiga uudiskirja, pakkumisi ja teateid toodete kohta.
+> Kui annad selleks nõusoleku, saadame sulle e-postiga uudiskirja, pakkumisi ja teateid toodete kohta. Pakkumisi võime kohandada sinu varasemate ostude põhjal.
 >
 > - **Õiguslik alus:** sinu nõusolek (GDPR art 6 lg 1 p a). Nõusolek on vabatahtlik — see ei ole tellimuse esitamise eeldus.
-> - **Kuidas nõusolekut anda:** märgid kassas vastava linnukese (märkimata vaikimisi) või täidad veebilehe uudiskirja-vormi ja kinnitad liitumise e-kirja lingilt.
-> - **Mida salvestame nõusoleku tõendamiseks:** e-posti aadress, nõusoleku aeg, allikas (kassa / vorm), nõusoleku-teksti versioon ning tehniline metaandmed (IP-aadress ja brauseri tunnus) — ainult selleks, et nõusolekut tõendada.
-> - **Loobumine:** saad igal ajal loobuda ühe klikiga iga kirja jaluses oleva lingi kaudu või kirjutades aadressile info@xlmarket.ee. Loobumine lõpetab turunduskirjad, kuid ei mõjuta tellimustega seotud teateid (nt arve, tarneinfo).
-> - **Säilitamine:** nõusoleku andmeid hoiame kuni loobumiseni ja mõistliku aja pärast seda, et tõendada nõusoleku kehtivust. Pärast loobumist sind enam turunduse sihtrühma ei lisata.
-> - **Jagamine:** uudiskirja saatmiseks võime kasutada e-posti teenusepakkujat (volitatud töötleja), kes töötleb andmeid ainult meie juhiste alusel. Me ei müü sinu andmeid.
+> - **Kuidas nõusolekut anda:** lisad kassas linnukese vastavasse kasti (märkimata vaikimisi) või täidad veebilehe uudiskirja-vormi ja kinnitad liitumise e-kirja lingilt.
+> - **Mida salvestame nõusoleku tõendamiseks:** e-posti aadress, nõusoleku aeg, allikas (kassa / vorm), nõusoleku-teksti versioon ning tehnilised metaandmed (IP-aadress ja brauseri tunnus) — ainult selleks, et nõusolekut tõendada.
+> - **Loobumine:** saad igal ajal loobuda ühe klikiga iga kirja jaluses oleva lingi kaudu või kirjutades aadressile info@xlmarket.ee. Loobumine lõpetab turunduskirjad, kuid ei mõjuta tellimustega seotud teateid (nt arve, tarneinfo). Loobumine ei mõjuta enne seda toimunud töötlemise seaduslikkust.
+> - **Säilitamine:** nõusoleku andmeid hoiame seni, kuni oled uudiskirjaga liitunud. Pärast loobumist kasutame neid enam ainult nõusoleku tõendamiseks võimaliku vaidluse korral ja kustutame hiljemalt 3 aasta möödudes. Lisaks hoiame keeldude nimekirjas sinu e-posti aadressi ja loobumise kuupäeva nii kaua, kui see on vajalik, et sind kogemata uuesti turunduse sihtrühma ei lisataks.
+> - **Jagamine:** uudiskirja saatmiseks võime kasutada volitatud töötlejat (e-posti teenusepakkuja), kes töötleb andmeid ainult meie juhiste alusel. Konkreetse teenusepakkuja nime avaldame selles poliitikas, kui see on valitud. Me ei müü sinu andmeid.
 
 ---
 
@@ -36,14 +36,14 @@ kassa linnuke (single opt-in), jaluse vorm (double opt-in — tuleb hiljem), ja 
 
 > ## 6. Direct Marketing
 >
-> If you give your consent, we will send you a newsletter, offers and product updates by email.
+> If you give your consent, we will send you a newsletter, offers and product updates by email. We may tailor offers based on your previous purchases.
 >
 > - **Legal basis:** your consent (GDPR Art. 6(1)(a)). Consent is voluntary — it is not a condition of placing an order.
 > - **How to give consent:** tick the relevant box at checkout (unticked by default) or fill in the newsletter form on the website and confirm your subscription via the link in a confirmation email.
 > - **What we store as proof of consent:** your email address, the time of consent, the source (checkout / form), the consent-text version, and technical metadata (IP address and browser identifier) — solely to evidence the consent.
-> - **Unsubscribing:** you can unsubscribe at any time with one click via the link in the footer of every email, or by writing to info@xlmarket.ee. Unsubscribing stops marketing emails but does not affect order-related messages (e.g. invoice, delivery info).
-> - **Retention:** we keep consent data until you unsubscribe and for a reasonable period afterwards to demonstrate that the consent was valid. After unsubscribing you are no longer included in marketing audiences.
-> - **Sharing:** to send the newsletter we may use an email service provider (processor) that processes data only on our instructions. We do not sell your data.
+> - **Unsubscribing:** you can unsubscribe at any time with one click via the link in the footer of every email, or by writing to info@xlmarket.ee. Unsubscribing stops marketing emails but does not affect order-related messages (e.g. invoice, delivery info). Withdrawal does not affect the lawfulness of processing before it.
+> - **Retention:** we keep consent data while you are subscribed. After you unsubscribe, we use it only to demonstrate the validity of your consent in case of a dispute, and delete it no later than 3 years afterwards. In addition, we keep your email address and the date of unsubscribing on a suppression list for as long as needed to avoid accidentally adding you back to marketing audiences.
+> - **Sharing:** to send the newsletter we may use a processor (an email service provider) that processes data only on our instructions. We will name the specific provider in this policy once one is selected. We do not sell your data.
 
 ---
 
@@ -53,8 +53,10 @@ kassa linnuke (single opt-in), jaluse vorm (double opt-in — tuleb hiljem), ja 
 - Pärast sinu OK-d: uuendan CMS ET+EN privaatsuspoliitika read (§6 + renumbering) ja alles SIIS lülitan kogumis-lipud sisse.
 - Kui muudad sõnastust nii, et nõusoleku sisu muutub → tõstan `CONSENT_TEXT_VERSION` uuele kuupäevale.
 
-## Lahtised küsimused sulle
+## Lahtised küsimused — LAHENDATUD (Tarmo, 2026-11-25)
 
-1. Kas „volitatud töötleja (ESP)" mainimine sobib juba praegu, kuigi ESP (#6) tuleb hiljem? (Soovitan jah — katab tuleviku, ei pea poliitikat uuesti muutma.)
-2. Säilitustähtaeg pärast loobumist — kas fikseerime konkreetse aja (nt „kuni 3 aastat") või jätame „mõistliku aja"? (Jurist eelistab tihti konkreetset.)
-3. Kas tahad kassa-linnukese teksti ja poliitika sõnastuse 1:1 samaks, või piisab sisulisest vastavusest? (Praegu: linnuke = „Soovin pakkumisi ja uudiseid e-postiga. Saan igal ajal loobuda.")
+1. ✅ ESP mainitakse üldiselt: „volitatud töötleja (e-posti teenusepakkuja)", **nime pole** (lisandub kui valitud).
+2. ✅ Säilitamine pärast loobumist: keeldude nimekirjas **ainult e-post + loobumise kuupäev**; nõusoleku tõend **kuni 3 aastat**.
+3. ✅ Sisuline vastavus piisab. Linnukese tekst jääb samaks („Soovin pakkumisi ja uudiseid e-postiga. Saan igal ajal loobuda."), **kõrvale lisatakse link privaatsuspoliitikale** („Loe lähemalt" / „Read more" → `/${locale}/privaatsus`).
+
+**`CONSENT_TEXT_VERSION` jääb `2026-11-25`:** nõusoleku _sisu_ (mida klient linnukesega kinnitab) ei muutunud — muutusid vaid meiepoolse käitlemise kirjeldused (säilitus/jagamine) ja lisandub info-link. Kui tulevikus linnukese sõnastus ise muutub, tõstame versiooni.
