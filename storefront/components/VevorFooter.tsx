@@ -1,5 +1,6 @@
 import Link from "@/components/SafeLink"
 import CategoryTreeMenu from "@/components/CategoryTreeMenu"
+import NewsletterSignup from "@/components/NewsletterSignup"
 import { getGlobalCms, type GlobalContent } from "@/lib/cms"
 import globalFallback from "@/lib/cms-fallback/global.json"
 
@@ -66,12 +67,10 @@ export default async function VevorFooter({ locale = "en" }: { locale?: string }
             <p className="text-[13px] text-[#94A3B8] leading-relaxed mb-3.5">
               {locale === "et" ? "Ole kursis parimate pakkumiste ja uute toodetega." : "Stay updated with the best deals and new product launches."}
             </p>
-            {/* Uudiskirja-vorm ajutiselt peidetud (Tarmo 2026-11-21): endine <form action="#"> ei saatnud
-                andmeid kuhugi (ei DB/meil/ESP) → eksitas külastajaid. Päris lahendus (nõusolekute SSoT +
-                double opt-in + loobumine) tuleb enne launch'i; siis taastatakse töötav vorm. */}
-            <p className="text-[13px] text-[#64748B] italic leading-relaxed">
-              {locale === "et" ? "Peagi saadaval." : "Coming soon."}
-            </p>
+            {/* GO #2 (2026-11-26): päris double opt-in vorm (nõusolekute SSoT + kinnituskiri + honeypot
+                + rate-limit). Nähtavus-gate on KLIENT-komponendis (NewsletterSignup) — seal inline'itakse
+                NEXT_PUBLIC_NEWSLETTER_ENABLED build-ajal. Lipp off → "Peagi saadaval". */}
+            <NewsletterSignup locale={locale} />
           </div>
         </div>
 

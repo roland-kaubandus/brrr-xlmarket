@@ -547,6 +547,47 @@ export async function sendShippingConfirmation(order: OrderData, trackingNumber?
   })
 }
 
+// Uudiskirja double opt-in kinnituskiri (JALUS-vorm, GO #2). Saadetakse pärast createPendingConsent'it:
+// klient PEAB lingile klõpsama → confirmByToken → confirmed (tõendab, et aadress on tema oma).
+// emailGate (sendEmail sees) jõustab staging-allowlist'i automaatselt (HARD RULE #7).
+// confirmUrl = storefront /{locale}/uudiskiri/kinnita?token=... (meie ehitatud, token=base64url → ohutu).
+export async function sendNewsletterConfirmation(email: string, locale: string, confirmUrl: string) {
+  const et = (locale || "et").toLowerCase().startsWith("et")
+  const T = et
+    ? {
+        subject: "Kinnita uudiskirja tellimus — XLmarket.ee",
+        h: "Kinnita oma tellimus",
+        p: "Aitäh huvi eest! Uudiskirja tellimuse lõpuleviimiseks kinnita palun oma e-posti aadress, klõpsates allolevale nupule.",
+        btn: "Kinnita tellimus",
+        alt: "Kui nupp ei tööta, kopeeri see link brauserisse:",
+        ignore:
+          "Kui sa seda tellimust ei esitanud, siis eira seda kirja — ilma kinnituseta me sulle kirju ei saada.",
+      }
+    : {
+        subject: "Confirm your newsletter subscription — XLmarket.ee",
+        h: "Confirm your subscription",
+        p: "Thanks for your interest! To complete your newsletter subscription, please confirm your email address by clicking the button below.",
+        btn: "Confirm subscription",
+        alt: "If the button doesn't work, copy this link into your browser:",
+        ignore:
+          "If you didn't request this, just ignore this email — we won't send you anything without confirmation.",
+      }
+
+  const safeUrl = escapeHtml(confirmUrl)
+  const html = emailWrapper(`
+    <h1 style="font-size: 22px; color: #111827; margin: 0 0 16px;">${T.h}</h1>
+    <p style="color: #4b5563; margin: 0 0 24px; line-height: 1.6;">${T.p}</p>
+    <p style="margin: 0 0 24px;">
+      <a href="${safeUrl}" style="display: inline-block; background: #f59e0b; color: #ffffff; padding: 13px 28px; text-decoration: none; font-weight: 700; border-radius: 6px;">${T.btn}</a>
+    </p>
+    <p style="color: #6b7280; font-size: 13px; margin: 0 0 6px;">${T.alt}</p>
+    <p style="margin: 0 0 24px; font-size: 13px; word-break: break-all;"><a href="${safeUrl}" style="color: #d97706;">${safeUrl}</a></p>
+    <p style="color: #9ca3af; font-size: 12px; margin: 0; line-height: 1.6;">${T.ignore}</p>
+  `)
+
+  await sendEmail({ to: email, subject: T.subject, html })
+}
+
 function renderOrderItems(order: OrderData, locale: InvoiceLocale = "et"): string {
   return order.items
     .map(

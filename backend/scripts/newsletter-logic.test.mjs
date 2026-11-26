@@ -17,6 +17,8 @@ import {
   normalizeIp,
   normalizeUa,
   buildListUnsubscribeHeaders,
+  isHoneypotFilled,
+  SlidingWindowRateLimiter,
 } from "../src/modules/newsletter/logic.ts"
 
 let pass = 0
@@ -133,6 +135,44 @@ t("päised URL + mailto (mailto esimesena)", () => {
     h["List-Unsubscribe"],
     "<mailto:loobu@xlmarket.ee?subject=unsubscribe>, <https://xlmarket.ee/u?token=x>"
   )
+})
+
+// --- isHoneypotFilled (GO #2) ---
+t("isHoneypotFilled: tühi/puudu → false (inimene)", () => {
+  assert.equal(isHoneypotFilled(""), false)
+  assert.equal(isHoneypotFilled("   "), false)
+  assert.equal(isHoneypotFilled(null), false)
+  assert.equal(isHoneypotFilled(undefined), false)
+  assert.equal(isHoneypotFilled(123), false)
+})
+t("isHoneypotFilled: täidetud → true (bot)", () => {
+  assert.equal(isHoneypotFilled("http://spam.example"), true)
+  assert.equal(isHoneypotFilled(" x "), true)
+})
+
+// --- SlidingWindowRateLimiter (GO #2) ---
+t("rate-limiter: lubab kuni max, siis blokib", () => {
+  const rl = new SlidingWindowRateLimiter(3, 1000)
+  const now = 1_000_000
+  assert.equal(rl.check("ip1", now), true)
+  assert.equal(rl.check("ip1", now + 1), true)
+  assert.equal(rl.check("ip1", now + 2), true)
+  assert.equal(rl.check("ip1", now + 3), false) // 4. üle limiidi
+})
+t("rate-limiter: aken libiseb — vanad kukuvad välja", () => {
+  const rl = new SlidingWindowRateLimiter(2, 1000)
+  const now = 2_000_000
+  assert.equal(rl.check("ip2", now), true)
+  assert.equal(rl.check("ip2", now + 500), true)
+  assert.equal(rl.check("ip2", now + 600), false) // 2 akna sees
+  assert.equal(rl.check("ip2", now + 1600), true) // esimene (now) väljus → vaba koht
+})
+t("rate-limiter: võtmed sõltumatud (per-IP)", () => {
+  const rl = new SlidingWindowRateLimiter(1, 1000)
+  const now = 3_000_000
+  assert.equal(rl.check("a", now), true)
+  assert.equal(rl.check("a", now + 1), false)
+  assert.equal(rl.check("b", now + 1), true) // teine IP ei mõjuta
 })
 
 console.log(`\n${fail === 0 ? "✅" : "🔴"} newsletter-logic: ${pass} õnnestus, ${fail} kukkus`)
