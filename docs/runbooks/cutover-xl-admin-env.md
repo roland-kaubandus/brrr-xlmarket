@@ -143,3 +143,62 @@ Prod-is ei ole test-režiimi: samm 3 testtellimus on **päris Montonio makse** (
    `Reply-To:` = `info@xlmarket.ee`.
 3. **Kui räsi ≠ deb7ef7a VÕI EMAIL_REPLY_TO puudub** → Coolify env vale/puudu → paranda + redeploy ENNE
    kui prod päris kliente teenindab.
+
+---
+
+# Uudiskiri / nõusolekute kogumine cutover'il (uo28 prod)
+
+> Lisatud 2026-11-26 (GO #1 live stagingus). Uudiskirja kassa-nõusolek kogub e-posti aadresse
+> (SSoT tabel `newsletter_consent`). **Boolean-lipud (true/puudub) EI ole saladus → tohib logida.**
+> Taust: [[uudiskiri-nousolek-plaan]]; env-tööriist `scripts/coolify-env-set.sh`.
+
+## ⚠️ KÕIGE OLULISEM: kaks lippu, kaks ERINEVAT jõustumis-mehhanismi
+
+| Env | Teenus | Tüüp | is_buildtime | Jõustub |
+|---|---|---|---|---|
+| `NEWSLETTER_COLLECTION_ENABLED` | medusa (backend) | **runtime** | `false` | konteineri recreate'il (redeploy) |
+| `NEXT_PUBLIC_NEWSLETTER_ENABLED` | storefront | **BUILD-TIME** | **`true` (KOHUSTUSLIK)** | **ainult REBUILD'il** (mitte restart, mitte recreate) |
+
+> **🔑 ÕPPETUND (2026-11-25 regressioon):** `NEXT_PUBLIC_*` bake'itakse Next.js bundlisse **build-ajal**.
+> Kui Coolify kirje `is_buildtime=false`, EI asendata `${VAR}` docker-compose `build.args`'is → Next
+> bake'ib väärtuse tühjaks/`false` → kassa-linnukese JSX-plokk **dead-code-eliminate'itakse** (kaob bundlist
+> täielikult, runtime-env ei aita). Stagingus läks linnuke seetõttu 3 korda "kadunuks". **Lahendus:**
+> `scripts/coolify-env-set.sh` sunnib iga `NEXT_PUBLIC_*` kirjele `is_buildtime=true` AUTOMAATSELT.
+> Prodis: kui sead UI-st käsitsi, **märgi kirje "Build Variable" / is_buildtime=True** JA tee **rebuild**
+> (mitte pelk redeploy). Tõend pärast: bundle-grep `"Loe lähemalt"` count ≥ 1 VÕI Playwright kassa-linnuke.
+
+## Cutover-sammud (uo28, uudiskiri)
+
+1. **`newsletter_consent` tabeli setup prodis.** Tabel luuakse `scripts/setup-newsletter-consent.mjs`-iga
+   (idempotentne; Dockerfile COPY olemas → skript on medusa-konteineris). Prod medusa-konteineris:
+   ```bash
+   docker exec <prod-medusa> node /app/scripts/setup-newsletter-consent.mjs   # idempotentne DDL
+   # Kontroll: tabel olemas + 0 rida + UNIQUE(email)
+   docker exec <prod-medusa> node -e 'const{Client}=require("pg");(async()=>{const c=new Client({connectionString:process.env.DATABASE_URL});await c.connect();const r=await c.query("select count(*)::int n from newsletter_consent");console.log("newsletter_consent ridu:",r.rows[0].n);await c.end()})()'
+   ```
+2. **`legal-privacy` §6 Otseturundus olemas prodis.** Enne lippude sissepanekut peab prod CMS-is olema §6
+   (muidu kogud nõusolekut ilma avaldatud otseturundus-punktita). Sünk fallback→prod-DB VÕI kontroll:
+   ```bash
+   # eeldab MEDUSA_CONTAINER=<prod-medusa>
+   MEDUSA_CONTAINER=<prod-medusa> node scripts/cms-fallback-drift.mjs --pages=legal-privacy
+   # OODATUD: "OK cms-drift: 2 legal-lehte/keelt kattuvad" (en+et). Kui DB-s PUUDUB → sünk:
+   MEDUSA_CONTAINER=<prod-medusa> node scripts/sync-cms-from-fallback.mjs --pages=legal-privacy --execute
+   ```
+   Live-kontroll pärast: `https://xlmarket.ee/et/privaatsus` sisaldab "6. Otseturundus",
+   `/en/privacy` "6. Direct Marketing", jõustumiskuupäev nähtav.
+3. **Lipud Coolify prod-app env'i** (Tarmo loal — HARD RULE #12 r2; staging'i tööriist on k33g-lukus,
+   prodile EI kirjuta):
+   - `NEWSLETTER_COLLECTION_ENABLED=true` (runtime, is_buildtime=false)
+   - `NEXT_PUBLIC_NEWSLETTER_ENABLED=true` (**Build Variable / is_buildtime=True**)
+4. **REBUILD prod storefront** (mitte pelk redeploy — build-time lipp vajab uut buildi). Backend medusa
+   piisab redeploy'st (runtime-lipp).
+5. **Kontroll jooksvast seisust (KOHUSTUSLIK):**
+   - storefront bundle VÕI live: kassa-linnuke `#marketing_consent` renderdub `/et/tellimus` + `/en/tellimus`
+     (vaikimisi märkimata, "Loe lähemalt"/"Read more" → `/{locale}/privaatsus`).
+   - backend runtime: `docker exec <prod-medusa> sh -c 'printf "NEWSLETTER_COLLECTION_ENABLED=[%s]\n" "$(printenv NEWSLETTER_COLLECTION_ENABLED)"'` → `[true]`.
+   - end-to-end: POST `/api/newsletter/consent` test-aadressiga → `status=confirmed, source=checkout`,
+     unsubscribe tokeniga → `status=unsubscribed`, **test-rida kustuta pärast**.
+
+> **Konteiner vs Coolify:** nagu e-maili sektsioonis — env-muutus jõustub recreate'il/rebuild'il, MITTE
+> `docker restart`-il. `NEXT_PUBLIC_*` vajab lisaks is_buildtime=True + rebuild'i (muidu vana bundle jääb).
+> Tõe-allikas = jooksev bundle/konteiner, mitte Coolify staged väärtus.
